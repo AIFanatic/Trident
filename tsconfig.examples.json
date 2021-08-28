@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "rootDir": "./examples",
+        "module": "es6",
+        "target": "es6",
+        "lib": [ "es2016", "dom" ],
+        "outDir": "dist-examples",
+        "sourceMap": false,
+        "declaration": false,
+        "moduleResolution": "node",
+    },
+    "include": ["./examples/**/*.ts"],
+    "exclude": ["./node_modules/**/*"]
+}

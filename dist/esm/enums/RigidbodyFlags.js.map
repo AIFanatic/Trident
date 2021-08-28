@@ -1,0 +1,1 @@
+{"version":3,"file":"RigidbodyFlags.js","sourceRoot":"","sources":["../../../src/enums/RigidbodyFlags.ts"],"names":[],"mappings":"AAAA,MAAM,CAAN,IAAY,cAUX;AAVD,WAAY,cAAc;IACtB,mDAAQ,CAAA;IACR,6DAAa,CAAA;IACb,uHAA0C,CAAA;IAC1C,+DAAc,CAAA;IACd,iFAAuB,CAAA;IACvB,0GAAoC,CAAA;IACpC,wFAA2B,CAAA;IAC3B,wGAAmC,CAAA;IACnC,qFAA0B,CAAA;AAC9B,CAAC,EAVW,cAAc,KAAd,cAAc,QAUzB"}
