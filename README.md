@@ -24,7 +24,7 @@ yarn add https://github.com/AIFanatic/trident
 ### Basic scene
 Creates a new scene, adds a Cube and changes its position.
 
-[Live example](./dist-examples/Mesh.Cube.html)
+[Live example](https://aifanatic.github.io/Trident/dist-examples/Mesh.Cube.html)
 
 - Typescript
 ```javascript
@@ -84,7 +84,7 @@ scene.OnLoaded = () => {
 ### Custom component
 Creates a new scene, adds a CustomComponent which in turn adds a Cube to itself and rotates it every frame.
 
-[Live example](./dist-examples/Components.Custom.html)
+[Live example](https://aifanatic.github.io/Trident/dist-examples/Components.Custom.html)
 
 - Typescript
 ```javascript
