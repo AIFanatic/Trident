@@ -55,6 +55,8 @@ for (let example_filename of files) {
 }
 
 // Create markdown
+const gh_page_url = "https://aifanatic.github.io/Trident/dist-examples";
+
 let markdown_template = `
 # Trident examples
 
@@ -62,7 +64,7 @@ let markdown_template = `
 |-|-|-|
 `
 for (let description of descriptions) {
-    const link = `[${description.name}](./${description.name}.html)`
+    const link = `[${description.name}](${gh_page_url}/${description.name}.html)`
     markdown_template += `|${description.category}|${link}|${description.description}|\n`;
 }
 
