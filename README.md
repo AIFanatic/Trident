@@ -24,10 +24,10 @@ yarn add https://github.com/AIFanatic/trident
 ### Basic scene
 Creates a new scene, adds a Cube and changes its position.
 
-[Live example](./dist-examples/objects/Cube.html)
+[Live example](./dist-examples/Mesh.Cube.html)
 
 - Typescript
-```typescript
+```javascript
 import { Scene, GameObject, Components } from 'trident';
 
 const rendererConfig = {
@@ -35,7 +35,7 @@ const rendererConfig = {
     targetFrameRate: 60,
 };
 const physicsConfig = {
-    physxWasmURL: "./dist/physx-js-webidl/dist/physx-js-webidl.wasm.wasm",
+    physxWasmURL: "./dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
 };
 
 const scene = new Scene(rendererConfig, physicsConfig);
@@ -63,7 +63,7 @@ scene.OnLoaded = () => {
                 targetFrameRate: 60,
             };
             const physicsConfig = {
-                physxWasmURL: "./dist/physx-js-webidl/dist/physx-js-webidl.wasm.wasm",
+                physxWasmURL: "./dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
             };
 
             const scene = new Scene(rendererConfig, physicsConfig);
@@ -84,10 +84,10 @@ scene.OnLoaded = () => {
 ### Custom component
 Creates a new scene, adds a CustomComponent which in turn adds a Cube to itself and rotates it every frame.
 
-[Live example](./dist-examples/components/Custom.html)
+[Live example](./dist-examples/Components.Custom.html)
 
 - Typescript
-```typescript
+```javascript
 import { Scene, GameObject, Components } from 'trident';
 
 class CustomComponent extends Components.Component {
@@ -108,7 +108,7 @@ const rendererConfig = {
 }
 
 const physicsConfig = {
-    physxWasmURL: "./dist/physx-js-webidl/dist/physx-js-webidl.wasm.wasm",
+    physxWasmURL: "./dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
 }
 
 const scene = new Scene(rendererConfig, physicsConfig);
