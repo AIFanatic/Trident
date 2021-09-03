@@ -21,4 +21,5 @@ export * from "./PointLight";
 export * from "./DirectionalLight";
 export * from "./SpotLight";
 export * from "./AreaLight";
+export * from './ArticulationBody';
 //# sourceMappingURL=index.js.map

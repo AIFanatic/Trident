@@ -30,13 +30,11 @@ var MeshFilter = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
-    // public GetMesh(): Geometry {
-    //     return this.mesh;
-    // }
     MeshFilter.prototype.Destroy = function () {
         if (this.mesh) {
             this.mesh.dispose();
         }
+        this.gameObject.RemoveComponent(this);
     };
     return MeshFilter;
 }(Component));

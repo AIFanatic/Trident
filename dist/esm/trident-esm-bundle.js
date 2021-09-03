@@ -28,11 +28,11 @@ var __toModule = (module) => {
 // node_modules/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.js
 var require_trident_physx_js_webidl_wasm = __commonJS({
   "node_modules/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.js"(exports, module) {
-    var PhysX9 = function() {
+    var PhysX10 = function() {
       var _scriptDir = typeof document !== "undefined" && document.currentScript ? document.currentScript.src : void 0;
       return function(PhysXInstance) {
-        PhysXInstance = PhysX9 || {};
-        var Module = typeof PhysX9 !== "undefined" ? PhysX9 : {};
+        PhysXInstance = PhysX10 || {};
+        var Module = typeof PhysX10 !== "undefined" ? PhysX10 : {};
         var readyPromiseResolve, readyPromiseReject;
         Module["ready"] = new Promise(function(resolve, reject) {
           readyPromiseResolve = resolve;
@@ -27692,17 +27692,17 @@ var require_trident_physx_js_webidl_wasm = __commonJS({
           else
             addOnPreMain(setupEnums);
         })();
-        return PhysX9.ready;
+        return PhysX10.ready;
       };
     }();
     if (typeof exports === "object" && typeof module === "object")
-      module.exports = PhysX9;
+      module.exports = PhysX10;
     else if (typeof define === "function" && define["amd"])
       define([], function() {
-        return PhysX9;
+        return PhysX10;
       });
     else if (typeof exports === "object")
-      exports["PhysX"] = PhysX9;
+      exports["PhysX"] = PhysX10;
   }
 });
 
@@ -57411,8 +57411,12 @@ var Transform = class {
   Stop() {
   }
   Destroy() {
+    if (this.parent) {
+      this.parent.group.remove(this.group);
+    } else {
+      this.gameObject.scene.GetRenderer().scene.remove(this.group);
+    }
     this.group.clear();
-    this.gameObject.scene.GetRenderer().scene.remove(this.group);
   }
 };
 
@@ -58203,6 +58207,7 @@ var components_exports = {};
 __export(components_exports, {
   Animation: () => Animation,
   AreaLight: () => AreaLight,
+  ArticulationBody: () => ArticulationBody,
   BoxCollider: () => BoxCollider,
   Camera: () => Camera2,
   Capsule: () => Capsule,
@@ -58242,6 +58247,7 @@ var MeshFilter = class extends Component {
     if (this.mesh) {
       this.mesh.dispose();
     }
+    this.gameObject.RemoveComponent(this);
   }
 };
 
@@ -59624,6 +59630,54 @@ var AreaLight = class extends Component {
     this.OnGizmosDisabled();
     this.transform.group.remove(this.light);
     this.gameObject.RemoveComponent(this);
+  }
+};
+
+// src/components/ArticulationBody.ts
+var import_trident_physx_js_webidl9 = __toModule(require_trident_physx_js_webidl_wasm());
+var ArticulationBody = class extends Component {
+  get immovable() {
+    const flags = this.articulation.getArticulationFlags();
+    return flags.isSet(import_trident_physx_js_webidl9.default.eFIX_BASE);
+  }
+  set immovable(immovable) {
+  }
+  OnEnable() {
+    this.physics = this.gameObject.scene.GetPhysics().GetPhysics();
+    this.physicsScene = this.gameObject.scene.GetPhysics().GetScene();
+    const position = new import_trident_physx_js_webidl9.default.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+    const rotation = new import_trident_physx_js_webidl9.default.PxQuat(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z, this.transform.rotation.w);
+    const pose = new import_trident_physx_js_webidl9.default.PxTransform(position, rotation);
+    if (this.transform.parent) {
+      const parentArticulation = this.transform.parent.gameObject.GetComponent(ArticulationBody);
+      if (parentArticulation) {
+        this.articulation = parentArticulation.articulation;
+        this.link = this.articulation.createLink(parentArticulation.link, pose);
+        console.log("adding child", this.link);
+      }
+    } else {
+      this.articulation = this.physics.createArticulationReducedCoordinate();
+      this.link = this.articulation.createLink(null, pose);
+      this.physicsScene.addArticulation(this.articulation);
+      console.log("adding parent", this.link);
+    }
+    const inboundJoint = this.link.getInboundJoint();
+    if (inboundJoint.ptr != 0) {
+      this.joint = import_trident_physx_js_webidl9.default.castObject(inboundJoint, import_trident_physx_js_webidl9.default.PxArticulationJointReducedCoordinate);
+      console.log(this.joint);
+      this.joint.setJointType(import_trident_physx_js_webidl9.default.eREVOLUTE);
+    }
+    setInterval(() => {
+      if (this.link) {
+        const pose2 = this.link.getGlobalPose();
+        console.log(pose2.p.x, pose2.p.y, pose2.p.z);
+      }
+    }, 1e3);
+  }
+  FixedUpdate() {
+    const pose = this.link.getGlobalPose();
+    this.transform.position.set(pose.p.x, pose.p.y, pose.p.z);
+    this.transform.rotation.set(pose.q.x, pose.q.y, pose.q.z, pose.q.w);
   }
 };
 export {

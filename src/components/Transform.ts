@@ -249,7 +249,13 @@ export class Transform implements IComponent {
     }
 
     public Destroy() {
+        if (this.parent) {
+            this.parent.group.remove(this.group);
+        }
+        else {
+            this.gameObject.scene.GetRenderer().scene.remove(this.group);
+        }
+
         this.group.clear();
-        this.gameObject.scene.GetRenderer().scene.remove(this.group);
     }
 }

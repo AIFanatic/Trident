@@ -230,8 +230,13 @@ var Transform = /** @class */ (function () {
     Transform.prototype.Stop = function () {
     };
     Transform.prototype.Destroy = function () {
+        if (this.parent) {
+            this.parent.group.remove(this.group);
+        }
+        else {
+            this.gameObject.scene.GetRenderer().scene.remove(this.group);
+        }
         this.group.clear();
-        this.gameObject.scene.GetRenderer().scene.remove(this.group);
     };
     return Transform;
 }());
