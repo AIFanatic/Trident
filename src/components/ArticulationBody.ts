@@ -267,15 +267,15 @@ class JointTypePrismatic  extends JointTypeBase {
  * @noInheritDoc
  */
 export class ArticulationBody extends Component {
-    public articulation: PhysX.PxArticulationReducedCoordinate;
-    public link: PhysX.PxArticulationLink;
-    public joint: PhysX.PxArticulationJointReducedCoordinate;
-    private rigidActor: PhysX.PxRigidActorExt;
+    public joint: JointTypeFixed | JointTypePrismatic | JointTypeRevolute | JointTypeSpherical;
+
+    private articulation: PhysX.PxArticulationReducedCoordinate;
+    private link: PhysX.PxArticulationLink;
+    private inboundJoint: PhysX.PxArticulationJointReducedCoordinate;
     
     private physics: PhysX.PxPhysics;
     private physicsScene: PhysX.PxScene;
 
-    public jointType: JointTypeFixed | JointTypePrismatic | JointTypeRevolute | JointTypeSpherical;
 
     public get immovable(): boolean {
         const flags = this.articulation.getArticulationFlags();
@@ -290,22 +290,22 @@ export class ArticulationBody extends Component {
 
     public get articulationJointType(): ArticulationJointType {
         // @ts-ignore
-        return this.joint.getJointType();
+        return this.inboundJoint.getJointType();
     }
 
     public set articulationJointType(articulationJointType: ArticulationJointType) {
-        if (this.joint) {
+        if (this.inboundJoint) {
             if (articulationJointType == ArticulationJointType.FIXED) {
-                this.jointType = new JointTypeFixed(this.joint);
+                this.joint = new JointTypeFixed(this.inboundJoint);
             }
             else if (articulationJointType == ArticulationJointType.PRISMATIC) {
-                this.jointType = new JointTypePrismatic(this.gameObject.scene.GetPhysics().GetScene(), this.articulation, this.joint);
+                this.joint = new JointTypePrismatic(this.gameObject.scene.GetPhysics().GetScene(), this.articulation, this.inboundJoint);
             }
             else if (articulationJointType == ArticulationJointType.REVOLUTE) {
-                this.jointType = new JointTypeRevolute(this.joint);
+                this.joint = new JointTypeRevolute(this.inboundJoint);
             }
             else if (articulationJointType == ArticulationJointType.SPHERICAL) {
-                this.jointType = new JointTypeSpherical(this.joint);
+                this.joint = new JointTypeSpherical(this.inboundJoint);
             }
         }
     }
@@ -338,7 +338,7 @@ export class ArticulationBody extends Component {
 
                 const inboundJoint = this.link.getInboundJoint();
                 // @ts-ignore
-                this.joint = PhysX.castObject(inboundJoint, PhysX.PxArticulationJointReducedCoordinate);
+                this.inboundJoint = PhysX.castObject(inboundJoint, PhysX.PxArticulationJointReducedCoordinate);
 
                 this.articulationJointType = ArticulationJointType.FIXED;
 
