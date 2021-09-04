@@ -1,7 +1,7 @@
 /**
  * @description Rigidbody change transform properties.
  */
-import { Scene, GameObject, Components, THREE } from '../dist/esm/trident-esm-bundle.js';
+import { Scene, GameObject, Components } from '../dist/esm/trident-esm-bundle.js';
 
 const rendererConfig = {
     containerId: "canvasContainer",
@@ -17,8 +17,6 @@ cameraComponent.transform.position.z = 40;
 scene.OnLoaded = () => {
     const floorGameObject = new GameObject(scene);
     const floor = floorGameObject.AddComponent(Components.Cube);
-    const floorMeshRenderer = floorGameObject.GetComponent(Components.MeshRenderer);
-    floorMeshRenderer.material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
     floorGameObject.transform.localScale.set(50, 1, 50);
     floorGameObject.transform.position.y = -10;
     

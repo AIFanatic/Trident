@@ -44,6 +44,9 @@ export class MeshRenderer extends Component {
 
     public set castShadows(castShadows: boolean) {
         this.transform.group.castShadow = castShadows;
+        this.transform.group.traverse(object => {
+            object.castShadow = castShadows;
+        })
     }
 
     public get receiveShadows(): boolean {
@@ -51,7 +54,11 @@ export class MeshRenderer extends Component {
     }
 
     public set receiveShadows(receiveShadows: boolean) {
+        // this.transform.group.receiveShadow = receiveShadows;
         this.transform.group.receiveShadow = receiveShadows;
+        this.transform.group.traverse(object => {
+            object.receiveShadow = receiveShadows;
+        })
     }
 
     public OnEnable() {
@@ -81,6 +88,8 @@ export class MeshRenderer extends Component {
 
         if (geometry) {
             this.mesh = new Mesh(geometry, this.material);
+            this.castShadows = true;
+            this.receiveShadows = true;
         }
     }
 

@@ -1,7 +1,7 @@
 /**
  * @description A simple cube with physics.
  */
-import { Scene, GameObject, Components, THREE } from '../dist/esm/trident-esm-bundle.js';
+import { Scene, GameObject, Components } from '../dist/esm/trident-esm-bundle.js';
 import { IPhysicsConfiguration } from '../dist/esm/interfaces/IPhysicsConfiguration.js';
 
 
@@ -28,10 +28,7 @@ scene.OnLoaded = () => {
     cubeGameobject.transform.position.set(0, -2, -10);
 
     const cubeComponent = cubeGameobject.AddComponent(Components.Cube) as Components.Cube;
-    const cubeMeshrenderer = cubeGameobject.GetComponent(Components.MeshRenderer);
-    cubeMeshrenderer.material = new THREE.MeshBasicMaterial({color: 0xff0000})
     const cubeRigidbody = cubeGameobject.AddComponent(Components.Rigidbody) as Components.Rigidbody;
-
 
     scene.Start()
 };

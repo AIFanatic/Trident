@@ -1,7 +1,7 @@
-import { Material, MeshBasicMaterial } from "three";
+import { Material, MeshStandardMaterial } from "three";
 
 export class MeshRendererDefaults {
     static DefaultMaterial(): Material {
-        return new MeshBasicMaterial();   
+        return new MeshStandardMaterial();
     }
 }

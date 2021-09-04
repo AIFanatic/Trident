@@ -4,7 +4,7 @@ const HTML_TEMPLATE =
 `<html>
     <head></head>
 
-    <body>
+    <body style="margin: 0">
         <canvas id="canvasContainer"></canvas>
 
         <script type="module">
