@@ -59862,18 +59862,18 @@ var trident = (() => {
       this.articulation.setArticulationFlag(import_trident_physx_js_webidl9.default.eFIX_BASE, immovable);
     }
     get articulationJointType() {
-      return this.joint.getJointType();
+      return this.inboundJoint.getJointType();
     }
     set articulationJointType(articulationJointType) {
-      if (this.joint) {
+      if (this.inboundJoint) {
         if (articulationJointType == ArticulationJointType.FIXED) {
-          this.jointType = new JointTypeFixed(this.joint);
+          this.joint = new JointTypeFixed(this.inboundJoint);
         } else if (articulationJointType == ArticulationJointType.PRISMATIC) {
-          this.jointType = new JointTypePrismatic(this.gameObject.scene.GetPhysics().GetScene(), this.articulation, this.joint);
+          this.joint = new JointTypePrismatic(this.gameObject.scene.GetPhysics().GetScene(), this.articulation, this.inboundJoint);
         } else if (articulationJointType == ArticulationJointType.REVOLUTE) {
-          this.jointType = new JointTypeRevolute(this.joint);
+          this.joint = new JointTypeRevolute(this.inboundJoint);
         } else if (articulationJointType == ArticulationJointType.SPHERICAL) {
-          this.jointType = new JointTypeSpherical(this.joint);
+          this.joint = new JointTypeSpherical(this.inboundJoint);
         }
       }
     }
@@ -59896,7 +59896,7 @@ var trident = (() => {
             import_trident_physx_js_webidl9.default.PxRigidBodyExt.prototype.updateMassAndInertia(this.link, 1);
           }
           const inboundJoint = this.link.getInboundJoint();
-          this.joint = import_trident_physx_js_webidl9.default.castObject(inboundJoint, import_trident_physx_js_webidl9.default.PxArticulationJointReducedCoordinate);
+          this.inboundJoint = import_trident_physx_js_webidl9.default.castObject(inboundJoint, import_trident_physx_js_webidl9.default.PxArticulationJointReducedCoordinate);
           this.articulationJointType = ArticulationJointType.FIXED;
           this.physicsScene.addArticulation(this.articulation);
         }

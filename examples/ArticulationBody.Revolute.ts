@@ -26,9 +26,9 @@ scene.OnLoaded = () => {
     articulationGameobject2.transform.parent = articulationGameobject1.transform;
     articulationGameobject2.AddComponent(Components.Cube);
     articulationGameobject2.transform.localScale.set(3, 1, 1);
-    const articulation2 = articulationGameobject2.AddComponent(Components.ArticulationBody);
+    const articulation2 = articulationGameobject2.AddComponent(Components.ArticulationBody) as Components.ArticulationBody;
     articulation2.articulationJointType = ArticulationJointType.REVOLUTE;
-    articulation2.jointType.xDrive.stiffness = 100;
+    articulation2.joint.xDrive.stiffness = 100;
 
     const blockerCubeGameobject = new GameObject(scene);
     blockerCubeGameobject.transform.position.set(0, -4.5, 0);
@@ -36,7 +36,7 @@ scene.OnLoaded = () => {
     blockerCubeGameobject.transform.localScale.set(0.5, 0.5, 0.5);
 
     setInterval(() => {
-        articulation2.jointType.xDrive.target += 0.02;
+        articulation2.joint.xDrive.target += 0.02;
     }, 100);
 
     scene.Start();

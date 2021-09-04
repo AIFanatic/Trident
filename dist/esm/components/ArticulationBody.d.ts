@@ -71,13 +71,12 @@ declare class JointTypePrismatic extends JointTypeBase {
  * @noInheritDoc
  */
 export declare class ArticulationBody extends Component {
-    articulation: PhysX.PxArticulationReducedCoordinate;
-    link: PhysX.PxArticulationLink;
-    joint: PhysX.PxArticulationJointReducedCoordinate;
-    private rigidActor;
+    joint: JointTypeFixed | JointTypePrismatic | JointTypeRevolute | JointTypeSpherical;
+    private articulation;
+    private link;
+    private inboundJoint;
     private physics;
     private physicsScene;
-    jointType: JointTypeFixed | JointTypePrismatic | JointTypeRevolute | JointTypeSpherical;
     get immovable(): boolean;
     set immovable(immovable: boolean);
     get articulationJointType(): ArticulationJointType;

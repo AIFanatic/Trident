@@ -313,21 +313,21 @@ var ArticulationBody = /** @class */ (function (_super) {
     Object.defineProperty(ArticulationBody.prototype, "articulationJointType", {
         get: function () {
             // @ts-ignore
-            return this.joint.getJointType();
+            return this.inboundJoint.getJointType();
         },
         set: function (articulationJointType) {
-            if (this.joint) {
+            if (this.inboundJoint) {
                 if (articulationJointType == ArticulationJointType.FIXED) {
-                    this.jointType = new JointTypeFixed(this.joint);
+                    this.joint = new JointTypeFixed(this.inboundJoint);
                 }
                 else if (articulationJointType == ArticulationJointType.PRISMATIC) {
-                    this.jointType = new JointTypePrismatic(this.gameObject.scene.GetPhysics().GetScene(), this.articulation, this.joint);
+                    this.joint = new JointTypePrismatic(this.gameObject.scene.GetPhysics().GetScene(), this.articulation, this.inboundJoint);
                 }
                 else if (articulationJointType == ArticulationJointType.REVOLUTE) {
-                    this.jointType = new JointTypeRevolute(this.joint);
+                    this.joint = new JointTypeRevolute(this.inboundJoint);
                 }
                 else if (articulationJointType == ArticulationJointType.SPHERICAL) {
-                    this.jointType = new JointTypeSpherical(this.joint);
+                    this.joint = new JointTypeSpherical(this.inboundJoint);
                 }
             }
         },
@@ -356,7 +356,7 @@ var ArticulationBody = /** @class */ (function (_super) {
                 }
                 var inboundJoint = this.link.getInboundJoint();
                 // @ts-ignore
-                this.joint = PhysX.castObject(inboundJoint, PhysX.PxArticulationJointReducedCoordinate);
+                this.inboundJoint = PhysX.castObject(inboundJoint, PhysX.PxArticulationJointReducedCoordinate);
                 this.articulationJointType = ArticulationJointType.FIXED;
                 this.physicsScene.addArticulation(this.articulation);
             }
