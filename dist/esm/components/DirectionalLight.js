@@ -13,6 +13,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import { Component } from "./Component";
 import { DirectionalLight as DirectionalLightTHREE, DirectionalLightHelper } from "three";
+/**
+ * A directional light.
+ *
+ * @noInheritDoc
+ */
 var DirectionalLight = /** @class */ (function (_super) {
     __extends(DirectionalLight, _super);
     function DirectionalLight() {

@@ -4,6 +4,11 @@ import { RectAreaLight as RectAreaLightTHREE } from "three";
 import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js';
 import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib.js';
 
+/**
+ * A rectangle area light.
+ * 
+ * @noInheritDoc
+ */
 export class AreaLight extends Component {
     private light: RectAreaLightTHREE;
     private helper: RectAreaLightHelper;

@@ -2,6 +2,11 @@ import { Mesh, SphereGeometry } from "three";
 import { MeshFilter, MeshRenderer, SphereCollider } from ".";
 import { Component } from "./Component";
 
+/**
+ * A sphere primitive, it consists of a MeshFilter, MeshRenderer and SphereCollider.
+ * 
+ * @noInheritDoc
+ */
 export class Sphere extends Component {
     public OnEnable() {
         const geometry = new SphereGeometry(this.transform.localScale.length(), 32, 32 );

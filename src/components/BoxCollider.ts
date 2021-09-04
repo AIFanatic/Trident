@@ -5,6 +5,11 @@ import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
 import { PhysicsBody } from "../physics/PhysicsBody";
 
+/**
+ * Adds a static box collider to the GameObject.
+ * 
+ * @noInheritDoc
+ */
 export class BoxCollider extends Collider {
     public OnEnable() {
         const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();

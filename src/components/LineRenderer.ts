@@ -1,8 +1,11 @@
 import { BufferGeometry, Line, LineBasicMaterial, Vector3 } from "three";
 import { Component } from "./Component";
-import { MeshFilter } from "./MeshFilter";
-import { MeshRenderer } from "./MeshRenderer";
 
+/**
+ * Creates a line from point A (from) to point B (to).
+ * 
+ * @noInheritDoc
+ */
 export class LineRenderer extends Component {
     public from: Vector3 = new Vector3();
     public to: Vector3 = new Vector3();

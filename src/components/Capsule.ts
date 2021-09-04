@@ -3,8 +3,12 @@ import { Component } from "./Component";
 
 import { CapsuleBufferGeometry } from "../utils/CapsuleGeometry";
 import { CapsuleCollider } from "./CapsuleCollider";
-import { MeshBasicMaterial } from "three";
 
+/**
+ * A capsule primitive, it consists of a MeshFilter, MeshRenderer and CapsuleCollider.
+ * 
+ * @noInheritDoc
+ */
 export class Capsule extends Component {
     public OnEnable() {
         const geometry = CapsuleBufferGeometry(1, 1, 2, 16, 1, 4, 4, 0, 2*Math.PI);

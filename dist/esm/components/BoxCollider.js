@@ -16,6 +16,11 @@ import { Rigidbody } from './Rigidbody';
 import { PhysicsRigidbody } from '../physics/PhysicsRigidbody';
 import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
+/**
+ * Adds a static box collider to the GameObject.
+ *
+ * @noInheritDoc
+ */
 var BoxCollider = /** @class */ (function (_super) {
     __extends(BoxCollider, _super);
     function BoxCollider() {

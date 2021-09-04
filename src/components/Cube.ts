@@ -2,6 +2,11 @@ import { BoxGeometry, Mesh } from "three";
 import { BoxCollider, MeshFilter, MeshRenderer } from ".";
 import { Component } from "./Component";
 
+/**
+ * A cube primitive, it consists of a MeshFilter, MeshRenderer and CapsuleCollider.
+ * 
+ * @noInheritDoc
+ */
 export class Cube extends Component {
     public OnEnable() {
         const geometry = new BoxGeometry(

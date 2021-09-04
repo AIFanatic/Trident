@@ -16,6 +16,13 @@ import { Rigidbody } from './Rigidbody';
 import { PhysicsRigidbody } from '../physics/PhysicsRigidbody';
 import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
+/**
+ * Adds a static plane collider to the GameObject.
+ *
+ * Note that a plane should extend to infinity, but in this case it's just a box with a small Y scale.
+ *
+ * @noInheritDoc
+ */
 var PlaneCollider = /** @class */ (function (_super) {
     __extends(PlaneCollider, _super);
     function PlaneCollider() {

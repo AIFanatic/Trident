@@ -15,6 +15,11 @@ import { MeshFilter } from "./MeshFilter";
 import { Component } from "./Component";
 import { MeshRendererDefaults } from "../defaults/MeshRendererDefaults";
 import { Mesh } from "three";
+/**
+ * Renders a geometry from MeshFilter into the scene.
+ *
+ * @noInheritDoc
+ */
 var MeshRenderer = /** @class */ (function (_super) {
     __extends(MeshRenderer, _super);
     function MeshRenderer() {

@@ -14,6 +14,11 @@ var __extends = (this && this.__extends) || (function () {
 import { PlaneGeometry } from "three";
 import { MeshFilter, MeshRenderer, PlaneCollider } from ".";
 import { Component } from "./Component";
+/**
+ * A plane primitive, it consists of a MeshFilter, MeshRenderer and PlaneCollider.
+ *
+ * @noInheritDoc
+ */
 var Plane = /** @class */ (function (_super) {
     __extends(Plane, _super);
     function Plane() {

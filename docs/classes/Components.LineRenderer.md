@@ -4,6 +4,8 @@
 
 [Components](../modules/Components.md).LineRenderer
 
+Creates a line from point A (from) to point B (to).
+
 ## Hierarchy
 
 - [`Component`](Components.Component.md)
@@ -12,91 +14,19 @@
 
 ## Table of contents
 
-### Constructors
-
-- [constructor](Components.LineRenderer.md#constructor)
-
 ### Properties
 
-- [classname](Components.LineRenderer.md#classname)
-- [classtype](Components.LineRenderer.md#classtype)
 - [color](Components.LineRenderer.md#color)
 - [from](Components.LineRenderer.md#from)
-- [gameObject](Components.LineRenderer.md#gameobject)
-- [hasStarted](Components.LineRenderer.md#hasstarted)
-- [name](Components.LineRenderer.md#name)
 - [to](Components.LineRenderer.md#to)
-- [transform](Components.LineRenderer.md#transform)
-- [uuid](Components.LineRenderer.md#uuid)
 
 ### Methods
 
 - [Destroy](Components.LineRenderer.md#destroy)
-- [FixedUpdate](Components.LineRenderer.md#fixedupdate)
-- [LateUpdate](Components.LineRenderer.md#lateupdate)
-- [OnDisable](Components.LineRenderer.md#ondisable)
-- [OnDrawGizmos](Components.LineRenderer.md#ondrawgizmos)
 - [OnEnable](Components.LineRenderer.md#onenable)
-- [OnGizmosDisabled](Components.LineRenderer.md#ongizmosdisabled)
-- [OnGizmosEnabled](Components.LineRenderer.md#ongizmosenabled)
-- [Start](Components.LineRenderer.md#start)
-- [Stop](Components.LineRenderer.md#stop)
 - [Update](Components.LineRenderer.md#update)
 
-## Constructors
-
-### constructor
-
-• **new LineRenderer**(`gameObject`, `transform`)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `gameObject` | [`GameObject`](GameObject.md) |
-| `transform` | [`Transform`](Components.Transform.md) |
-
-#### Inherited from
-
-[Component](Components.Component.md).[constructor](Components.Component.md#constructor)
-
-#### Defined in
-
-[components/Component.ts:57](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L57)
-
 ## Properties
-
-### classname
-
-• **classname**: `string`
-
-Used to identify the class name of individual components.
-
-#### Inherited from
-
-[Component](Components.Component.md).[classname](Components.Component.md#classname)
-
-#### Defined in
-
-[components/Component.ts:35](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L35)
-
-___
-
-### classtype
-
-• `Readonly` **classtype**: `string` = `"Component"`
-
-Used to detect valid components.
-
-#### Inherited from
-
-[Component](Components.Component.md).[classtype](Components.Component.md#classtype)
-
-#### Defined in
-
-[components/Component.ts:30](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L30)
-
-___
 
 ### color
 
@@ -104,7 +34,7 @@ ___
 
 #### Defined in
 
-[components/LineRenderer.ts:9](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/LineRenderer.ts#L9)
+[components/LineRenderer.ts:12](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/LineRenderer.ts#L12)
 
 ___
 
@@ -114,55 +44,7 @@ ___
 
 #### Defined in
 
-[components/LineRenderer.ts:7](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/LineRenderer.ts#L7)
-
-___
-
-### gameObject
-
-• **gameObject**: [`GameObject`](GameObject.md)
-
-GameObject the this component is attached to.
-
-#### Inherited from
-
-[Component](Components.Component.md).[gameObject](Components.Component.md#gameobject)
-
-#### Defined in
-
-[components/Component.ts:45](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L45)
-
-___
-
-### hasStarted
-
-• **hasStarted**: `boolean`
-
-**`todo`** Indicates that this component has started.
-
-#### Inherited from
-
-[Component](Components.Component.md).[hasStarted](Components.Component.md#hasstarted)
-
-#### Defined in
-
-[components/Component.ts:55](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L55)
-
-___
-
-### name
-
-• **name**: `string`
-
-Name of the component.
-
-#### Inherited from
-
-[Component](Components.Component.md).[name](Components.Component.md#name)
-
-#### Defined in
-
-[components/Component.ts:40](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L40)
+[components/LineRenderer.ts:10](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/LineRenderer.ts#L10)
 
 ___
 
@@ -172,39 +54,7 @@ ___
 
 #### Defined in
 
-[components/LineRenderer.ts:8](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/LineRenderer.ts#L8)
-
-___
-
-### transform
-
-• **transform**: [`Transform`](Components.Transform.md)
-
-Transform that this component is attached to.
-
-#### Inherited from
-
-[Component](Components.Component.md).[transform](Components.Component.md#transform)
-
-#### Defined in
-
-[components/Component.ts:50](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L50)
-
-___
-
-### uuid
-
-• **uuid**: `string`
-
-UUID of the component. Generated randomly.
-
-#### Inherited from
-
-[Component](Components.Component.md).[uuid](Components.Component.md#uuid)
-
-#### Defined in
-
-[components/Component.ts:25](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L25)
+[components/LineRenderer.ts:11](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/LineRenderer.ts#L11)
 
 ## Methods
 
@@ -224,85 +74,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/LineRenderer.ts:44](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/LineRenderer.ts#L44)
-
-___
-
-### FixedUpdate
-
-▸ **FixedUpdate**(): `void`
-
-Called before every Physics update.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[FixedUpdate](Components.Component.md#fixedupdate)
-
-#### Defined in
-
-[components/Component.ts:89](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L89)
-
-___
-
-### LateUpdate
-
-▸ **LateUpdate**(): `void`
-
-Called after every Renderer update.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[LateUpdate](Components.Component.md#lateupdate)
-
-#### Defined in
-
-[components/Component.ts:101](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L101)
-
-___
-
-### OnDisable
-
-▸ **OnDisable**(): `void`
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[OnDisable](Components.Component.md#ondisable)
-
-#### Defined in
-
-[components/Component.ts:71](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L71)
-
-___
-
-### OnDrawGizmos
-
-▸ **OnDrawGizmos**(): `void`
-
-Called after every Update if Gizmos are enabled.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[OnDrawGizmos](Components.Component.md#ondrawgizmos)
-
-#### Defined in
-
-[components/Component.ts:120](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L120)
+[components/LineRenderer.ts:47](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/LineRenderer.ts#L47)
 
 ___
 
@@ -322,88 +94,7 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/LineRenderer.ts:18](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/LineRenderer.ts#L18)
-
-___
-
-### OnGizmosDisabled
-
-▸ **OnGizmosDisabled**(): `void`
-
-Called once when Gizmos are disabled.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[OnGizmosDisabled](Components.Component.md#ongizmosdisabled)
-
-#### Defined in
-
-[components/Component.ts:114](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L114)
-
-___
-
-### OnGizmosEnabled
-
-▸ **OnGizmosEnabled**(): `void`
-
-Called once when Gizmos are enabled.
-If Gizmos are enabled before the component is created this method is called once after Start.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[OnGizmosEnabled](Components.Component.md#ongizmosenabled)
-
-#### Defined in
-
-[components/Component.ts:108](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L108)
-
-___
-
-### Start
-
-▸ **Start**(): `void`
-
-Called once after the scene is started.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[Start](Components.Component.md#start)
-
-#### Defined in
-
-[components/Component.ts:77](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L77)
-
-___
-
-### Stop
-
-▸ **Stop**(): `void`
-
-Called once after the scene is stopped.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[Stop](Components.Component.md#stop)
-
-#### Defined in
-
-[components/Component.ts:83](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L83)
+[components/LineRenderer.ts:21](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/LineRenderer.ts#L21)
 
 ___
 
@@ -423,4 +114,4 @@ Called before every Renderer update.
 
 #### Defined in
 
-[components/LineRenderer.ts:28](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/LineRenderer.ts#L28)
+[components/LineRenderer.ts:31](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/LineRenderer.ts#L31)

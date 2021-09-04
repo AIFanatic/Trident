@@ -13,6 +13,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import { Component } from "./Component";
 import { LineRenderer } from "./LineRenderer";
+/**
+ * Allows to visualize the local axis of a Transform.
+ *
+ * @noInheritDoc
+ */
 var Gizmo = /** @class */ (function (_super) {
     __extends(Gizmo, _super);
     function Gizmo() {

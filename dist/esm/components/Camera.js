@@ -18,6 +18,13 @@ export var ProjectionTypes;
     ProjectionTypes[ProjectionTypes["Perspective"] = 0] = "Perspective";
     ProjectionTypes[ProjectionTypes["Orthographic"] = 1] = "Orthographic";
 })(ProjectionTypes || (ProjectionTypes = {}));
+/**
+ * Camera allows to create multiple cameras for the same scene.
+ *
+ * Use scene.SetActiveCamera(camera) to set it as the main camera.
+ *
+ * @noInheritDoc
+ */
 var Camera = /** @class */ (function (_super) {
     __extends(Camera, _super);
     function Camera() {

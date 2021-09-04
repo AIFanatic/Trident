@@ -63,6 +63,13 @@ declare class JointTypePrismatic extends JointTypeBase {
     set axis(axis: ArticulationAxis.X | ArticulationAxis.Y | ArticulationAxis.Z);
     constructor(physicsScene: PhysX.PxScene, articulation: PhysX.PxArticulationReducedCoordinate, joint: PhysX.PxArticulationJointReducedCoordinate);
 }
+/**
+ * An ArticulationBody is a joint chain that obbeys physics.
+ *
+ * Joint links can be FIXED, PRISMATIC, REVOLUTE and SPHERICAL.
+ *
+ * @noInheritDoc
+ */
 export declare class ArticulationBody extends Component {
     articulation: PhysX.PxArticulationReducedCoordinate;
     link: PhysX.PxArticulationLink;

@@ -5,6 +5,13 @@ import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
 import { PhysicsBody } from "../physics/PhysicsBody";
 
+/**
+ * Adds a static plane collider to the GameObject.
+ * 
+ * Note that a plane should extend to infinity, but in this case it's just a box with a small Y scale.
+ * 
+ * @noInheritDoc
+ */
 export class PlaneCollider extends Collider {
     public OnEnable() {
         const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();

@@ -4,7 +4,13 @@ import { PhysicsRigidbody } from "../physics/PhysicsRigidbody";
 import { ForceMode } from '../enums/ForceMode';
 import { RigidbodyConstraints } from '../enums/RigidbodyConstraints';
 /**
- * RigidBody adds physics properties to an object
+ * RigidBody adds physics properties to an object.
+ *
+ * When added the GameObject Transform will be controlled by the RigidBody component.
+ *
+ * Rigid bodies obbey physics such as gravity collisions etc, therefore it should only by controlled
+ * with forces, although setting the position, rotation, scale directly works.
+ *
  * @noInheritDoc
  */
 export declare class Rigidbody extends Component {

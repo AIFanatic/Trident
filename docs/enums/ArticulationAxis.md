@@ -22,7 +22,7 @@
 
 #### Defined in
 
-enums/ArticulationAxis.ts:9
+[enums/ArticulationAxis.ts:9](https://github.com/AIFanatic/Trident/blob/8a19b43/src/enums/ArticulationAxis.ts#L9)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-enums/ArticulationAxis.ts:4
+[enums/ArticulationAxis.ts:4](https://github.com/AIFanatic/Trident/blob/8a19b43/src/enums/ArticulationAxis.ts#L4)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-enums/ArticulationAxis.ts:5
+[enums/ArticulationAxis.ts:5](https://github.com/AIFanatic/Trident/blob/8a19b43/src/enums/ArticulationAxis.ts#L5)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-enums/ArticulationAxis.ts:3
+[enums/ArticulationAxis.ts:3](https://github.com/AIFanatic/Trident/blob/8a19b43/src/enums/ArticulationAxis.ts#L3)
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 #### Defined in
 
-enums/ArticulationAxis.ts:6
+[enums/ArticulationAxis.ts:6](https://github.com/AIFanatic/Trident/blob/8a19b43/src/enums/ArticulationAxis.ts#L6)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-enums/ArticulationAxis.ts:7
+[enums/ArticulationAxis.ts:7](https://github.com/AIFanatic/Trident/blob/8a19b43/src/enums/ArticulationAxis.ts#L7)
 
 ___
 
@@ -82,4 +82,4 @@ ___
 
 #### Defined in
 
-enums/ArticulationAxis.ts:8
+[enums/ArticulationAxis.ts:8](https://github.com/AIFanatic/Trident/blob/8a19b43/src/enums/ArticulationAxis.ts#L8)

@@ -5,6 +5,11 @@ import { Renderer } from "../Renderer";
 import { MeshRendererDefaults } from "../defaults/MeshRendererDefaults";
 import { BufferGeometry, Geometry, Material, Mesh } from "three";
 
+/**
+ * Renders a geometry from MeshFilter into the scene.
+ * 
+ * @noInheritDoc
+ */
 export class MeshRenderer extends Component {
     private renderer: Renderer;
     private _material: Material = MeshRendererDefaults.DefaultMaterial();

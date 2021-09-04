@@ -14,6 +14,11 @@ var __extends = (this && this.__extends) || (function () {
 import { SphereGeometry } from "three";
 import { MeshFilter, MeshRenderer, SphereCollider } from ".";
 import { Component } from "./Component";
+/**
+ * A sphere primitive, it consists of a MeshFilter, MeshRenderer and SphereCollider.
+ *
+ * @noInheritDoc
+ */
 var Sphere = /** @class */ (function (_super) {
     __extends(Sphere, _super);
     function Sphere() {

@@ -13,6 +13,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import { Component } from "./Component";
 import { MathUtils, SpotLight as SpotLightTHREE, SpotLightHelper } from "three";
+/**
+ * A spot light.
+ *
+ * @noInheritDoc
+ */
 var SpotLight = /** @class */ (function (_super) {
     __extends(SpotLight, _super);
     function SpotLight() {

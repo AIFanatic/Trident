@@ -1,5 +1,10 @@
 import { Component } from "./Component";
 import { BufferGeometry, Geometry, Material, Mesh } from "three";
+/**
+ * Renders a geometry from MeshFilter into the scene.
+ *
+ * @noInheritDoc
+ */
 export declare class MeshRenderer extends Component {
     private renderer;
     private _material;

@@ -2,6 +2,13 @@ import { AnimationAction, AnimationClip, AnimationMixer, Clock } from "three";
 import { Component } from "./Component";
 import { MeshRenderer } from "./MeshRenderer";
 
+/**
+ * Add and play animations from an existing mesh.
+ * 
+ * This mostly works with glTF models that have animations embedded into the model.
+ * 
+ * @noInheritDoc
+ */
 export class Animation extends Component {
     private mixer: AnimationMixer;
     private animations: Map<string, AnimationClip>;

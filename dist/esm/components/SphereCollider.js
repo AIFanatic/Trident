@@ -16,6 +16,11 @@ import { Rigidbody } from './Rigidbody';
 import { PhysicsRigidbody } from '../physics/PhysicsRigidbody';
 import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
+/**
+ * Adds a static sphere collider to the GameObject.
+ *
+ * @noInheritDoc
+ */
 var SphereCollider = /** @class */ (function (_super) {
     __extends(SphereCollider, _super);
     function SphereCollider() {

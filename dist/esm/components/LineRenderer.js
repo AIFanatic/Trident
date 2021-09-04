@@ -13,6 +13,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import { BufferGeometry, Line, LineBasicMaterial, Vector3 } from "three";
 import { Component } from "./Component";
+/**
+ * Creates a line from point A (from) to point B (to).
+ *
+ * @noInheritDoc
+ */
 var LineRenderer = /** @class */ (function (_super) {
     __extends(LineRenderer, _super);
     function LineRenderer() {

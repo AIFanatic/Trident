@@ -5,6 +5,14 @@ export enum ProjectionTypes {
     Perspective,
     Orthographic
 }
+
+/**
+ * Camera allows to create multiple cameras for the same scene.
+ * 
+ * Use scene.SetActiveCamera(camera) to set it as the main camera.
+ * 
+ * @noInheritDoc
+ */
 export class Camera extends Component {
     private camera: PerspectiveCamera;
     private helper: CameraHelper;

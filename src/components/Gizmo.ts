@@ -3,6 +3,11 @@ import { Component } from "./Component";
 import { LineRenderer } from "./LineRenderer";
 import { Transform } from "./Transform";
 
+/**
+ * Allows to visualize the local axis of a Transform.
+ * 
+ * @noInheritDoc
+ */
 export class Gizmo extends Component {
     private upLine: LineRenderer;
     private rightLine: LineRenderer;

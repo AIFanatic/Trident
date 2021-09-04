@@ -4,6 +4,8 @@
 
 [Components](../modules/Components.md).AreaLight
 
+A rectangle area light.
+
 ## Hierarchy
 
 - [`Component`](Components.Component.md)
@@ -11,20 +13,6 @@
   ↳ **`AreaLight`**
 
 ## Table of contents
-
-### Constructors
-
-- [constructor](Components.AreaLight.md#constructor)
-
-### Properties
-
-- [classname](Components.AreaLight.md#classname)
-- [classtype](Components.AreaLight.md#classtype)
-- [gameObject](Components.AreaLight.md#gameobject)
-- [hasStarted](Components.AreaLight.md#hasstarted)
-- [name](Components.AreaLight.md#name)
-- [transform](Components.AreaLight.md#transform)
-- [uuid](Components.AreaLight.md#uuid)
 
 ### Accessors
 
@@ -37,149 +25,10 @@
 ### Methods
 
 - [Destroy](Components.AreaLight.md#destroy)
-- [FixedUpdate](Components.AreaLight.md#fixedupdate)
-- [LateUpdate](Components.AreaLight.md#lateupdate)
-- [OnDisable](Components.AreaLight.md#ondisable)
 - [OnDrawGizmos](Components.AreaLight.md#ondrawgizmos)
 - [OnEnable](Components.AreaLight.md#onenable)
 - [OnGizmosDisabled](Components.AreaLight.md#ongizmosdisabled)
 - [OnGizmosEnabled](Components.AreaLight.md#ongizmosenabled)
-- [Start](Components.AreaLight.md#start)
-- [Stop](Components.AreaLight.md#stop)
-- [Update](Components.AreaLight.md#update)
-
-## Constructors
-
-### constructor
-
-• **new AreaLight**(`gameObject`, `transform`)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `gameObject` | [`GameObject`](GameObject.md) |
-| `transform` | [`Transform`](Components.Transform.md) |
-
-#### Inherited from
-
-[Component](Components.Component.md).[constructor](Components.Component.md#constructor)
-
-#### Defined in
-
-[components/Component.ts:57](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L57)
-
-## Properties
-
-### classname
-
-• **classname**: `string`
-
-Used to identify the class name of individual components.
-
-#### Inherited from
-
-[Component](Components.Component.md).[classname](Components.Component.md#classname)
-
-#### Defined in
-
-[components/Component.ts:35](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L35)
-
-___
-
-### classtype
-
-• `Readonly` **classtype**: `string` = `"Component"`
-
-Used to detect valid components.
-
-#### Inherited from
-
-[Component](Components.Component.md).[classtype](Components.Component.md#classtype)
-
-#### Defined in
-
-[components/Component.ts:30](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L30)
-
-___
-
-### gameObject
-
-• **gameObject**: [`GameObject`](GameObject.md)
-
-GameObject the this component is attached to.
-
-#### Inherited from
-
-[Component](Components.Component.md).[gameObject](Components.Component.md#gameobject)
-
-#### Defined in
-
-[components/Component.ts:45](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L45)
-
-___
-
-### hasStarted
-
-• **hasStarted**: `boolean`
-
-**`todo`** Indicates that this component has started.
-
-#### Inherited from
-
-[Component](Components.Component.md).[hasStarted](Components.Component.md#hasstarted)
-
-#### Defined in
-
-[components/Component.ts:55](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L55)
-
-___
-
-### name
-
-• **name**: `string`
-
-Name of the component.
-
-#### Inherited from
-
-[Component](Components.Component.md).[name](Components.Component.md#name)
-
-#### Defined in
-
-[components/Component.ts:40](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L40)
-
-___
-
-### transform
-
-• **transform**: [`Transform`](Components.Transform.md)
-
-Transform that this component is attached to.
-
-#### Inherited from
-
-[Component](Components.Component.md).[transform](Components.Component.md#transform)
-
-#### Defined in
-
-[components/Component.ts:50](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L50)
-
-___
-
-### uuid
-
-• **uuid**: `string`
-
-UUID of the component. Generated randomly.
-
-#### Inherited from
-
-[Component](Components.Component.md).[uuid](Components.Component.md#uuid)
-
-#### Defined in
-
-[components/Component.ts:25](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L25)
 
 ## Accessors
 
@@ -193,7 +42,7 @@ UUID of the component. Generated randomly.
 
 #### Defined in
 
-[components/AreaLight.ts:27](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L27)
+[components/AreaLight.ts:32](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L32)
 
 • `set` **color**(`color`): `void`
 
@@ -209,7 +58,7 @@ UUID of the component. Generated randomly.
 
 #### Defined in
 
-[components/AreaLight.ts:31](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L31)
+[components/AreaLight.ts:36](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L36)
 
 ___
 
@@ -223,7 +72,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:19](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L19)
+[components/AreaLight.ts:24](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L24)
 
 • `set` **height**(`height`): `void`
 
@@ -239,7 +88,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:23](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L23)
+[components/AreaLight.ts:28](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L28)
 
 ___
 
@@ -253,7 +102,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:35](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L35)
+[components/AreaLight.ts:40](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L40)
 
 • `set` **intensity**(`intensity`): `void`
 
@@ -269,7 +118,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:39](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L39)
+[components/AreaLight.ts:44](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L44)
 
 ___
 
@@ -283,7 +132,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:43](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L43)
+[components/AreaLight.ts:48](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L48)
 
 • `set` **shadows**(`shadows`): `void`
 
@@ -299,7 +148,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:47](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L47)
+[components/AreaLight.ts:52](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L52)
 
 ___
 
@@ -313,7 +162,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:11](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L11)
+[components/AreaLight.ts:16](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L16)
 
 • `set` **width**(`width`): `void`
 
@@ -329,7 +178,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:15](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L15)
+[components/AreaLight.ts:20](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L20)
 
 ## Methods
 
@@ -349,65 +198,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/AreaLight.ts:81](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L81)
-
-___
-
-### FixedUpdate
-
-▸ **FixedUpdate**(): `void`
-
-Called before every Physics update.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[FixedUpdate](Components.Component.md#fixedupdate)
-
-#### Defined in
-
-[components/Component.ts:89](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L89)
-
-___
-
-### LateUpdate
-
-▸ **LateUpdate**(): `void`
-
-Called after every Renderer update.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[LateUpdate](Components.Component.md#lateupdate)
-
-#### Defined in
-
-[components/Component.ts:101](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L101)
-
-___
-
-### OnDisable
-
-▸ **OnDisable**(): `void`
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[OnDisable](Components.Component.md#ondisable)
-
-#### Defined in
-
-[components/Component.ts:71](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L71)
+[components/AreaLight.ts:86](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L86)
 
 ___
 
@@ -427,7 +218,7 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-[components/AreaLight.ts:67](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L67)
+[components/AreaLight.ts:72](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L72)
 
 ___
 
@@ -447,7 +238,7 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/AreaLight.ts:51](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L51)
+[components/AreaLight.ts:56](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L56)
 
 ___
 
@@ -467,7 +258,7 @@ Called once when Gizmos are disabled.
 
 #### Defined in
 
-[components/AreaLight.ts:73](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L73)
+[components/AreaLight.ts:78](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L78)
 
 ___
 
@@ -488,64 +279,4 @@ If Gizmos are enabled before the component is created this method is called once
 
 #### Defined in
 
-[components/AreaLight.ts:60](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/AreaLight.ts#L60)
-
-___
-
-### Start
-
-▸ **Start**(): `void`
-
-Called once after the scene is started.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[Start](Components.Component.md#start)
-
-#### Defined in
-
-[components/Component.ts:77](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L77)
-
-___
-
-### Stop
-
-▸ **Stop**(): `void`
-
-Called once after the scene is stopped.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[Stop](Components.Component.md#stop)
-
-#### Defined in
-
-[components/Component.ts:83](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L83)
-
-___
-
-### Update
-
-▸ **Update**(): `void`
-
-Called before every Renderer update.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[Update](Components.Component.md#update)
-
-#### Defined in
-
-[components/Component.ts:95](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L95)
+[components/AreaLight.ts:65](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L65)

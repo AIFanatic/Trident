@@ -14,6 +14,11 @@ var __extends = (this && this.__extends) || (function () {
 import { Component } from "./Component";
 import { RectAreaLight as RectAreaLightTHREE } from "three";
 import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js';
+/**
+ * A rectangle area light.
+ *
+ * @noInheritDoc
+ */
 var AreaLight = /** @class */ (function (_super) {
     __extends(AreaLight, _super);
     function AreaLight() {

@@ -12,6 +12,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Component } from "./Component";
+/**
+ * Stores a geometry that later can be rendered to the scene.
+ *
+ * @noInheritDoc
+ */
 var MeshFilter = /** @class */ (function (_super) {
     __extends(MeshFilter, _super);
     function MeshFilter() {

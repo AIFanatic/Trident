@@ -14,6 +14,11 @@ var __extends = (this && this.__extends) || (function () {
 import { BoxGeometry } from "three";
 import { BoxCollider, MeshFilter, MeshRenderer } from ".";
 import { Component } from "./Component";
+/**
+ * A cube primitive, it consists of a MeshFilter, MeshRenderer and CapsuleCollider.
+ *
+ * @noInheritDoc
+ */
 var Cube = /** @class */ (function (_super) {
     __extends(Cube, _super);
     function Cube() {

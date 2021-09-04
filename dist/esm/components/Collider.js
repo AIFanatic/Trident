@@ -16,6 +16,11 @@ import { Component } from "./Component";
 import PhysX from "trident-physx-js-webidl";
 import { LayerMask } from "../enums/LayerMask";
 import { Mathf } from "../utils/Mathf";
+/**
+ * Base collider class that all colliders extend.
+ *
+ * @noInheritDoc
+ */
 var Collider = /** @class */ (function (_super) {
     __extends(Collider, _super);
     function Collider() {

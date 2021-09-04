@@ -15,6 +15,11 @@ import { MeshFilter, MeshRenderer } from ".";
 import { Component } from "./Component";
 import { CapsuleBufferGeometry } from "../utils/CapsuleGeometry";
 import { CapsuleCollider } from "./CapsuleCollider";
+/**
+ * A capsule primitive, it consists of a MeshFilter, MeshRenderer and CapsuleCollider.
+ *
+ * @noInheritDoc
+ */
 var Capsule = /** @class */ (function (_super) {
     __extends(Capsule, _super);
     function Capsule() {

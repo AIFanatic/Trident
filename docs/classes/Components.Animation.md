@@ -4,6 +4,10 @@
 
 [Components](../modules/Components.md).Animation
 
+Add and play animations from an existing mesh.
+
+This mostly works with glTF models that have animations embedded into the model.
+
 ## Hierarchy
 
 - [`Component`](Components.Component.md)
@@ -12,168 +16,13 @@
 
 ## Table of contents
 
-### Constructors
-
-- [constructor](Components.Animation.md#constructor)
-
-### Properties
-
-- [classname](Components.Animation.md#classname)
-- [classtype](Components.Animation.md#classtype)
-- [gameObject](Components.Animation.md#gameobject)
-- [hasStarted](Components.Animation.md#hasstarted)
-- [name](Components.Animation.md#name)
-- [transform](Components.Animation.md#transform)
-- [uuid](Components.Animation.md#uuid)
-
 ### Methods
 
 - [AddClip](Components.Animation.md#addclip)
-- [Destroy](Components.Animation.md#destroy)
-- [FixedUpdate](Components.Animation.md#fixedupdate)
-- [LateUpdate](Components.Animation.md#lateupdate)
-- [OnDisable](Components.Animation.md#ondisable)
-- [OnDrawGizmos](Components.Animation.md#ondrawgizmos)
 - [OnEnable](Components.Animation.md#onenable)
-- [OnGizmosDisabled](Components.Animation.md#ongizmosdisabled)
-- [OnGizmosEnabled](Components.Animation.md#ongizmosenabled)
 - [Play](Components.Animation.md#play)
-- [Start](Components.Animation.md#start)
 - [Stop](Components.Animation.md#stop)
 - [Update](Components.Animation.md#update)
-
-## Constructors
-
-### constructor
-
-• **new Animation**(`gameObject`, `transform`)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `gameObject` | [`GameObject`](GameObject.md) |
-| `transform` | [`Transform`](Components.Transform.md) |
-
-#### Inherited from
-
-[Component](Components.Component.md).[constructor](Components.Component.md#constructor)
-
-#### Defined in
-
-[components/Component.ts:57](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L57)
-
-## Properties
-
-### classname
-
-• **classname**: `string`
-
-Used to identify the class name of individual components.
-
-#### Inherited from
-
-[Component](Components.Component.md).[classname](Components.Component.md#classname)
-
-#### Defined in
-
-[components/Component.ts:35](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L35)
-
-___
-
-### classtype
-
-• `Readonly` **classtype**: `string` = `"Component"`
-
-Used to detect valid components.
-
-#### Inherited from
-
-[Component](Components.Component.md).[classtype](Components.Component.md#classtype)
-
-#### Defined in
-
-[components/Component.ts:30](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L30)
-
-___
-
-### gameObject
-
-• **gameObject**: [`GameObject`](GameObject.md)
-
-GameObject the this component is attached to.
-
-#### Inherited from
-
-[Component](Components.Component.md).[gameObject](Components.Component.md#gameobject)
-
-#### Defined in
-
-[components/Component.ts:45](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L45)
-
-___
-
-### hasStarted
-
-• **hasStarted**: `boolean`
-
-**`todo`** Indicates that this component has started.
-
-#### Inherited from
-
-[Component](Components.Component.md).[hasStarted](Components.Component.md#hasstarted)
-
-#### Defined in
-
-[components/Component.ts:55](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L55)
-
-___
-
-### name
-
-• **name**: `string`
-
-Name of the component.
-
-#### Inherited from
-
-[Component](Components.Component.md).[name](Components.Component.md#name)
-
-#### Defined in
-
-[components/Component.ts:40](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L40)
-
-___
-
-### transform
-
-• **transform**: [`Transform`](Components.Transform.md)
-
-Transform that this component is attached to.
-
-#### Inherited from
-
-[Component](Components.Component.md).[transform](Components.Component.md#transform)
-
-#### Defined in
-
-[components/Component.ts:50](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L50)
-
-___
-
-### uuid
-
-• **uuid**: `string`
-
-UUID of the component. Generated randomly.
-
-#### Inherited from
-
-[Component](Components.Component.md).[uuid](Components.Component.md#uuid)
-
-#### Defined in
-
-[components/Component.ts:25](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L25)
 
 ## Methods
 
@@ -194,105 +43,7 @@ UUID of the component. Generated randomly.
 
 #### Defined in
 
-[components/Animation.ts:28](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Animation.ts#L28)
-
-___
-
-### Destroy
-
-▸ **Destroy**(): `void`
-
-Called when the component is destroyed.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[Destroy](Components.Component.md#destroy)
-
-#### Defined in
-
-[components/Component.ts:126](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L126)
-
-___
-
-### FixedUpdate
-
-▸ **FixedUpdate**(): `void`
-
-Called before every Physics update.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[FixedUpdate](Components.Component.md#fixedupdate)
-
-#### Defined in
-
-[components/Component.ts:89](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L89)
-
-___
-
-### LateUpdate
-
-▸ **LateUpdate**(): `void`
-
-Called after every Renderer update.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[LateUpdate](Components.Component.md#lateupdate)
-
-#### Defined in
-
-[components/Component.ts:101](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L101)
-
-___
-
-### OnDisable
-
-▸ **OnDisable**(): `void`
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[OnDisable](Components.Component.md#ondisable)
-
-#### Defined in
-
-[components/Component.ts:71](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L71)
-
-___
-
-### OnDrawGizmos
-
-▸ **OnDrawGizmos**(): `void`
-
-Called after every Update if Gizmos are enabled.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[OnDrawGizmos](Components.Component.md#ondrawgizmos)
-
-#### Defined in
-
-[components/Component.ts:120](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L120)
+[components/Animation.ts:35](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/Animation.ts#L35)
 
 ___
 
@@ -312,48 +63,7 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/Animation.ts:12](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Animation.ts#L12)
-
-___
-
-### OnGizmosDisabled
-
-▸ **OnGizmosDisabled**(): `void`
-
-Called once when Gizmos are disabled.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[OnGizmosDisabled](Components.Component.md#ongizmosdisabled)
-
-#### Defined in
-
-[components/Component.ts:114](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L114)
-
-___
-
-### OnGizmosEnabled
-
-▸ **OnGizmosEnabled**(): `void`
-
-Called once when Gizmos are enabled.
-If Gizmos are enabled before the component is created this method is called once after Start.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[OnGizmosEnabled](Components.Component.md#ongizmosenabled)
-
-#### Defined in
-
-[components/Component.ts:108](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L108)
+[components/Animation.ts:19](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/Animation.ts#L19)
 
 ___
 
@@ -373,27 +83,7 @@ ___
 
 #### Defined in
 
-[components/Animation.ts:32](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Animation.ts#L32)
-
-___
-
-### Start
-
-▸ **Start**(): `void`
-
-Called once after the scene is started.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[Component](Components.Component.md).[Start](Components.Component.md#start)
-
-#### Defined in
-
-[components/Component.ts:77](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L77)
+[components/Animation.ts:39](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/Animation.ts#L39)
 
 ___
 
@@ -413,7 +103,7 @@ Called once after the scene is stopped.
 
 #### Defined in
 
-[components/Animation.ts:46](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Animation.ts#L46)
+[components/Animation.ts:53](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/Animation.ts#L53)
 
 ___
 
@@ -433,4 +123,4 @@ Called before every Renderer update.
 
 #### Defined in
 
-[components/Animation.ts:51](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Animation.ts#L51)
+[components/Animation.ts:58](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/Animation.ts#L58)

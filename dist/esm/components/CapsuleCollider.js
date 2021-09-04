@@ -16,6 +16,11 @@ import { Rigidbody } from './Rigidbody';
 import { PhysicsRigidbody } from '../physics/PhysicsRigidbody';
 import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
+/**
+ * Adds a static capsule collider to the GameObject.
+ *
+ * @noInheritDoc
+ */
 var CapsuleCollider = /** @class */ (function (_super) {
     __extends(CapsuleCollider, _super);
     function CapsuleCollider() {

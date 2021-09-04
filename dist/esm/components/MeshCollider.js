@@ -18,6 +18,13 @@ import { PhysicsRigidbody } from '../physics/PhysicsRigidbody';
 import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
 import { ConvertGeometryToIndexed, TrianglesModeEnum } from '../utils/ConvertGeometryToIndexed';
+/**
+ * Adds a static mesh collider to the GameObject.
+ *
+ * A MeshCollider can either be convex or a trimesh.
+ *
+ * @noInheritDoc
+ */
 var MeshCollider = /** @class */ (function (_super) {
     __extends(MeshCollider, _super);
     function MeshCollider() {

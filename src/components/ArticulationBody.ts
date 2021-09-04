@@ -259,6 +259,13 @@ class JointTypePrismatic  extends JointTypeBase {
     }
 }
 
+/**
+ * An ArticulationBody is a joint chain that obbeys physics.
+ * 
+ * Joint links can be FIXED, PRISMATIC, REVOLUTE and SPHERICAL.
+ * 
+ * @noInheritDoc
+ */
 export class ArticulationBody extends Component {
     public articulation: PhysX.PxArticulationReducedCoordinate;
     public link: PhysX.PxArticulationLink;

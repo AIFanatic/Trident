@@ -1,4 +1,9 @@
 import { Component } from "./Component";
+/**
+ * A spot light.
+ *
+ * @noInheritDoc
+ */
 export declare class SpotLight extends Component {
     private light;
     private helper;

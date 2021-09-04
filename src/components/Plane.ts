@@ -2,6 +2,11 @@ import { Mesh, PlaneGeometry } from "three";
 import { MeshFilter, MeshRenderer, PlaneCollider } from ".";
 import { Component } from "./Component";
 
+/**
+ * A plane primitive, it consists of a MeshFilter, MeshRenderer and PlaneCollider.
+ * 
+ * @noInheritDoc
+ */
 export class Plane extends Component {
     public OnEnable() {
         const geometry = new PlaneGeometry(

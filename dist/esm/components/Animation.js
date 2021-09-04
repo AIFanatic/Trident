@@ -14,6 +14,13 @@ var __extends = (this && this.__extends) || (function () {
 import { AnimationMixer, Clock } from "three";
 import { Component } from "./Component";
 import { MeshRenderer } from "./MeshRenderer";
+/**
+ * Add and play animations from an existing mesh.
+ *
+ * This mostly works with glTF models that have animations embedded into the model.
+ *
+ * @noInheritDoc
+ */
 var Animation = /** @class */ (function (_super) {
     __extends(Animation, _super);
     function Animation() {

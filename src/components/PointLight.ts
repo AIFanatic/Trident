@@ -1,6 +1,11 @@
 import { Component } from "./Component";
 import { PointLight as PointLightTHREE, PointLightHelper } from "three";
 
+/**
+ * A point light.
+ * 
+ * @noInheritDoc
+ */
 export class PointLight extends Component {
     private light: PointLightTHREE;
     private helper: PointLightHelper;

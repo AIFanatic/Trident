@@ -13,6 +13,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import { Component } from "./Component";
 import { PointLight as PointLightTHREE, PointLightHelper } from "three";
+/**
+ * A point light.
+ *
+ * @noInheritDoc
+ */
 var PointLight = /** @class */ (function (_super) {
     __extends(PointLight, _super);
     function PointLight() {

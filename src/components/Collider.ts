@@ -7,6 +7,11 @@ import { PhysicsRigidbody } from "../physics/PhysicsRigidbody";
 import { LayerMask } from "../enums/LayerMask";
 import { Mathf } from "../utils/Mathf";
 
+/**
+ * Base collider class that all colliders extend.
+ * 
+ * @noInheritDoc
+ */
 export class Collider extends Component {
     public body: PhysicsRigidbody;
 

@@ -7,11 +7,17 @@ import { PhysicsRigidbody } from '../physics/PhysicsRigidbody';
 import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
 import { PhysicsBody } from "../physics/PhysicsBody";
-import { BufferGeometry, TriangleStripDrawMode } from 'three';
+import { BufferGeometry } from 'three';
 
 import { ConvertGeometryToIndexed, TrianglesModeEnum } from '../utils/ConvertGeometryToIndexed';
-import { LayerMask } from '../enums/LayerMask';
 
+/**
+ * Adds a static mesh collider to the GameObject.
+ * 
+ * A MeshCollider can either be convex or a trimesh.
+ * 
+ * @noInheritDoc
+ */
 export class MeshCollider extends Collider {
 
     private physxPhysics: PhysX.PxPhysics;

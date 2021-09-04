@@ -6,6 +6,11 @@ import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
 import { PhysicsBody } from "../physics/PhysicsBody";
 
+/**
+ * Adds a static sphere collider to the GameObject.
+ * 
+ * @noInheritDoc
+ */
 export class SphereCollider extends Collider {
     private physxPhysics: PhysX.PxPhysics;
     private physxScene: PhysX.PxScene;

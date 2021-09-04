@@ -1,4 +1,9 @@
 import { Component } from "./Component";
+/**
+ * A rectangle area light.
+ *
+ * @noInheritDoc
+ */
 export declare class AreaLight extends Component {
     private light;
     private helper;

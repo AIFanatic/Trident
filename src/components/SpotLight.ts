@@ -1,6 +1,11 @@
 import { Component } from "./Component";
 import { MathUtils, SpotLight as SpotLightTHREE, SpotLightHelper } from "three";
 
+/**
+ * A spot light.
+ * 
+ * @noInheritDoc
+ */
 export class SpotLight extends Component {
     private light: SpotLightTHREE;
     private helper: SpotLightHelper;

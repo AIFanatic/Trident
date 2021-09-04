@@ -285,6 +285,13 @@ var JointTypePrismatic = /** @class */ (function (_super) {
     });
     return JointTypePrismatic;
 }(JointTypeBase));
+/**
+ * An ArticulationBody is a joint chain that obbeys physics.
+ *
+ * Joint links can be FIXED, PRISMATIC, REVOLUTE and SPHERICAL.
+ *
+ * @noInheritDoc
+ */
 var ArticulationBody = /** @class */ (function (_super) {
     __extends(ArticulationBody, _super);
     function ArticulationBody() {
