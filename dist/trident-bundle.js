@@ -57979,253 +57979,6 @@ var trident = (() => {
     }
   };
 
-  // src/Scene.ts
-  var Scene2 = class {
-    constructor(rendererConfig, physicsConfig) {
-      this.currentFrame = 0;
-      this.gameObjects = [];
-      this.OnLoaded = () => {
-      };
-      this.renderer = this.InitializeRenderer(rendererConfig);
-      this.physics = this.InitializePhysics(physicsConfig);
-      this.input = new Input(this);
-      const cameraGameObject = new GameObject(this);
-      this.camera = cameraGameObject.AddComponent(Camera2);
-      requestAnimationFrame((now2) => {
-        this.Update();
-      });
-    }
-    InitializeRenderer(rendererConfig) {
-      return new Renderer(rendererConfig, () => {
-        this.rendererLoaded = true;
-        this.CheckLoaded();
-      });
-    }
-    InitializePhysics(physicsConfig) {
-      return new Physics(this, physicsConfig, () => {
-        this.physicsLoaded = true;
-        this.CheckLoaded();
-      });
-    }
-    CheckLoaded() {
-      if (this.rendererLoaded && this.physicsLoaded) {
-        if (typeof this.OnLoaded == "function") {
-          this.OnLoaded();
-        }
-      }
-    }
-    GetRenderer() {
-      return this.renderer;
-    }
-    GetPhysics() {
-      return this.physics;
-    }
-    GetInput() {
-      return this.input;
-    }
-    GetActiveCamera() {
-      return this.camera;
-    }
-    SetActiveCamera(camera) {
-      this.camera = camera;
-    }
-    EnableGizmos() {
-      if (!this.gizmosEnabled) {
-        for (let gameObject of this.gameObjects) {
-          gameObject.OnGizmosEnabled();
-        }
-        this.gizmosEnabled = true;
-      }
-    }
-    DisableGizmos() {
-      if (this.gizmosEnabled) {
-        for (let gameObject of this.gameObjects) {
-          gameObject.OnGizmosDisabled();
-        }
-        this.gizmosEnabled = false;
-      }
-    }
-    HasGizmosEnabled() {
-      return this.gizmosEnabled;
-    }
-    AddGameObject(gameObject) {
-      this.gameObjects.push(gameObject);
-      return true;
-    }
-    RemoveGameObject(gameObject) {
-      if (gameObject instanceof GameObject == false) {
-        console.error(`Invalid GameObject ${gameObject}`);
-        return false;
-      }
-      const gameObjectIndex = this.gameObjects.indexOf(gameObject);
-      if (gameObjectIndex == -1) {
-        console.warn(`Tried to remove GameObject ${gameObject} but it wasn't found in ${this}`);
-        return false;
-      }
-      this.gameObjects.splice(gameObjectIndex, 1);
-      return true;
-    }
-    FixedUpdate() {
-      for (let gameObject of this.gameObjects) {
-        gameObject.FixedUpdate();
-      }
-    }
-    Update() {
-      if (this.isPlaying) {
-        this.physics.Update();
-        for (let gameObject of this.gameObjects) {
-          gameObject.Update();
-          if (this.gizmosEnabled) {
-            gameObject.OnDrawGizmos();
-          }
-        }
-      }
-      if (this.camera) {
-        this.renderer.Tick(this.camera.GetCamera());
-      }
-      for (let gameObject of this.gameObjects) {
-        gameObject.LateUpdate();
-      }
-      this.input.Tick();
-      this.currentFrame++;
-      requestAnimationFrame(() => {
-        this.Update();
-      });
-    }
-    Start() {
-      this.isPlaying = true;
-      for (let gameObject of this.gameObjects) {
-        gameObject.Start();
-      }
-    }
-    Stop() {
-      this.isPlaying = false;
-      for (let gameObject of this.gameObjects) {
-        gameObject.Stop();
-      }
-    }
-  };
-
-  // src/enums/KeyCodes.ts
-  var KeyCodes;
-  (function(KeyCodes2) {
-    KeyCodes2[KeyCodes2["CANCEL"] = 3] = "CANCEL";
-    KeyCodes2[KeyCodes2["HELP"] = 6] = "HELP";
-    KeyCodes2[KeyCodes2["BACK_SPACE"] = 8] = "BACK_SPACE";
-    KeyCodes2[KeyCodes2["TAB"] = 9] = "TAB";
-    KeyCodes2[KeyCodes2["CLEAR"] = 12] = "CLEAR";
-    KeyCodes2[KeyCodes2["RETURN"] = 13] = "RETURN";
-    KeyCodes2[KeyCodes2["ENTER"] = 14] = "ENTER";
-    KeyCodes2[KeyCodes2["SHIFT"] = 16] = "SHIFT";
-    KeyCodes2[KeyCodes2["CONTROL"] = 17] = "CONTROL";
-    KeyCodes2[KeyCodes2["ALT"] = 18] = "ALT";
-    KeyCodes2[KeyCodes2["PAUSE"] = 19] = "PAUSE";
-    KeyCodes2[KeyCodes2["CAPS_LOCK"] = 20] = "CAPS_LOCK";
-    KeyCodes2[KeyCodes2["ESCAPE"] = 27] = "ESCAPE";
-    KeyCodes2[KeyCodes2["SPACE"] = 32] = "SPACE";
-    KeyCodes2[KeyCodes2["PAGE_UP"] = 33] = "PAGE_UP";
-    KeyCodes2[KeyCodes2["PAGE_DOWN"] = 34] = "PAGE_DOWN";
-    KeyCodes2[KeyCodes2["END"] = 35] = "END";
-    KeyCodes2[KeyCodes2["HOME"] = 36] = "HOME";
-    KeyCodes2[KeyCodes2["LEFT"] = 37] = "LEFT";
-    KeyCodes2[KeyCodes2["UP"] = 38] = "UP";
-    KeyCodes2[KeyCodes2["RIGHT"] = 39] = "RIGHT";
-    KeyCodes2[KeyCodes2["DOWN"] = 40] = "DOWN";
-    KeyCodes2[KeyCodes2["PRINTSCREEN"] = 44] = "PRINTSCREEN";
-    KeyCodes2[KeyCodes2["INSERT"] = 45] = "INSERT";
-    KeyCodes2[KeyCodes2["DELETE"] = 46] = "DELETE";
-    KeyCodes2[KeyCodes2["NUM_0"] = 48] = "NUM_0";
-    KeyCodes2[KeyCodes2["NUM_1"] = 49] = "NUM_1";
-    KeyCodes2[KeyCodes2["NUM_2"] = 50] = "NUM_2";
-    KeyCodes2[KeyCodes2["NUM_3"] = 51] = "NUM_3";
-    KeyCodes2[KeyCodes2["NUM_4"] = 52] = "NUM_4";
-    KeyCodes2[KeyCodes2["NUM_5"] = 53] = "NUM_5";
-    KeyCodes2[KeyCodes2["NUM_6"] = 54] = "NUM_6";
-    KeyCodes2[KeyCodes2["NUM_7"] = 55] = "NUM_7";
-    KeyCodes2[KeyCodes2["NUM_8"] = 56] = "NUM_8";
-    KeyCodes2[KeyCodes2["NUM_9"] = 57] = "NUM_9";
-    KeyCodes2[KeyCodes2["SEMICOLON"] = 59] = "SEMICOLON";
-    KeyCodes2[KeyCodes2["EQUALS"] = 61] = "EQUALS";
-    KeyCodes2[KeyCodes2["A"] = 65] = "A";
-    KeyCodes2[KeyCodes2["B"] = 66] = "B";
-    KeyCodes2[KeyCodes2["C"] = 67] = "C";
-    KeyCodes2[KeyCodes2["D"] = 68] = "D";
-    KeyCodes2[KeyCodes2["E"] = 69] = "E";
-    KeyCodes2[KeyCodes2["F"] = 70] = "F";
-    KeyCodes2[KeyCodes2["G"] = 71] = "G";
-    KeyCodes2[KeyCodes2["H"] = 72] = "H";
-    KeyCodes2[KeyCodes2["I"] = 73] = "I";
-    KeyCodes2[KeyCodes2["J"] = 74] = "J";
-    KeyCodes2[KeyCodes2["K"] = 75] = "K";
-    KeyCodes2[KeyCodes2["L"] = 76] = "L";
-    KeyCodes2[KeyCodes2["M"] = 77] = "M";
-    KeyCodes2[KeyCodes2["N"] = 78] = "N";
-    KeyCodes2[KeyCodes2["O"] = 79] = "O";
-    KeyCodes2[KeyCodes2["P"] = 80] = "P";
-    KeyCodes2[KeyCodes2["Q"] = 81] = "Q";
-    KeyCodes2[KeyCodes2["R"] = 82] = "R";
-    KeyCodes2[KeyCodes2["S"] = 83] = "S";
-    KeyCodes2[KeyCodes2["T"] = 84] = "T";
-    KeyCodes2[KeyCodes2["U"] = 85] = "U";
-    KeyCodes2[KeyCodes2["V"] = 86] = "V";
-    KeyCodes2[KeyCodes2["W"] = 87] = "W";
-    KeyCodes2[KeyCodes2["X"] = 88] = "X";
-    KeyCodes2[KeyCodes2["Y"] = 89] = "Y";
-    KeyCodes2[KeyCodes2["Z"] = 90] = "Z";
-    KeyCodes2[KeyCodes2["CONTEXT_MENU"] = 93] = "CONTEXT_MENU";
-    KeyCodes2[KeyCodes2["NUMPAD0"] = 96] = "NUMPAD0";
-    KeyCodes2[KeyCodes2["NUMPAD1"] = 97] = "NUMPAD1";
-    KeyCodes2[KeyCodes2["NUMPAD2"] = 98] = "NUMPAD2";
-    KeyCodes2[KeyCodes2["NUMPAD3"] = 99] = "NUMPAD3";
-    KeyCodes2[KeyCodes2["NUMPAD4"] = 100] = "NUMPAD4";
-    KeyCodes2[KeyCodes2["NUMPAD5"] = 101] = "NUMPAD5";
-    KeyCodes2[KeyCodes2["NUMPAD6"] = 102] = "NUMPAD6";
-    KeyCodes2[KeyCodes2["NUMPAD7"] = 103] = "NUMPAD7";
-    KeyCodes2[KeyCodes2["NUMPAD8"] = 104] = "NUMPAD8";
-    KeyCodes2[KeyCodes2["NUMPAD9"] = 105] = "NUMPAD9";
-    KeyCodes2[KeyCodes2["MULTIPLY"] = 106] = "MULTIPLY";
-    KeyCodes2[KeyCodes2["ADD"] = 107] = "ADD";
-    KeyCodes2[KeyCodes2["SEPARATOR"] = 108] = "SEPARATOR";
-    KeyCodes2[KeyCodes2["SUBTRACT"] = 109] = "SUBTRACT";
-    KeyCodes2[KeyCodes2["DECIMAL"] = 110] = "DECIMAL";
-    KeyCodes2[KeyCodes2["DIVIDE"] = 111] = "DIVIDE";
-    KeyCodes2[KeyCodes2["F1"] = 112] = "F1";
-    KeyCodes2[KeyCodes2["F2"] = 113] = "F2";
-    KeyCodes2[KeyCodes2["F3"] = 114] = "F3";
-    KeyCodes2[KeyCodes2["F4"] = 115] = "F4";
-    KeyCodes2[KeyCodes2["F5"] = 116] = "F5";
-    KeyCodes2[KeyCodes2["F6"] = 117] = "F6";
-    KeyCodes2[KeyCodes2["F7"] = 118] = "F7";
-    KeyCodes2[KeyCodes2["F8"] = 119] = "F8";
-    KeyCodes2[KeyCodes2["F9"] = 120] = "F9";
-    KeyCodes2[KeyCodes2["F10"] = 121] = "F10";
-    KeyCodes2[KeyCodes2["F11"] = 122] = "F11";
-    KeyCodes2[KeyCodes2["F12"] = 123] = "F12";
-    KeyCodes2[KeyCodes2["F13"] = 124] = "F13";
-    KeyCodes2[KeyCodes2["F14"] = 125] = "F14";
-    KeyCodes2[KeyCodes2["F15"] = 126] = "F15";
-    KeyCodes2[KeyCodes2["F16"] = 127] = "F16";
-    KeyCodes2[KeyCodes2["F17"] = 128] = "F17";
-    KeyCodes2[KeyCodes2["F18"] = 129] = "F18";
-    KeyCodes2[KeyCodes2["F19"] = 130] = "F19";
-    KeyCodes2[KeyCodes2["F20"] = 131] = "F20";
-    KeyCodes2[KeyCodes2["F21"] = 132] = "F21";
-    KeyCodes2[KeyCodes2["F22"] = 133] = "F22";
-    KeyCodes2[KeyCodes2["F23"] = 134] = "F23";
-    KeyCodes2[KeyCodes2["F24"] = 135] = "F24";
-    KeyCodes2[KeyCodes2["NUM_LOCK"] = 144] = "NUM_LOCK";
-    KeyCodes2[KeyCodes2["SCROLL_LOCK"] = 145] = "SCROLL_LOCK";
-    KeyCodes2[KeyCodes2["COMMA"] = 188] = "COMMA";
-    KeyCodes2[KeyCodes2["PERIOD"] = 190] = "PERIOD";
-    KeyCodes2[KeyCodes2["SLASH"] = 191] = "SLASH";
-    KeyCodes2[KeyCodes2["BACK_QUOTE"] = 192] = "BACK_QUOTE";
-    KeyCodes2[KeyCodes2["OPEN_BRACKET"] = 219] = "OPEN_BRACKET";
-    KeyCodes2[KeyCodes2["BACK_SLASH"] = 220] = "BACK_SLASH";
-    KeyCodes2[KeyCodes2["CLOSE_BRACKET"] = 221] = "CLOSE_BRACKET";
-    KeyCodes2[KeyCodes2["QUOTE"] = 222] = "QUOTE";
-    KeyCodes2[KeyCodes2["META"] = 224] = "META";
-  })(KeyCodes || (KeyCodes = {}));
-
   // src/components/index.ts
   var components_exports = {};
   __export(components_exports, {
@@ -58278,7 +58031,7 @@ var trident = (() => {
   // src/defaults/MeshRendererDefaults.ts
   var MeshRendererDefaults = class {
     static DefaultMaterial() {
-      return new MeshBasicMaterial();
+      return new MeshStandardMaterial();
     }
   };
 
@@ -58310,12 +58063,18 @@ var trident = (() => {
     }
     set castShadows(castShadows) {
       this.transform.group.castShadow = castShadows;
+      this.transform.group.traverse((object) => {
+        object.castShadow = castShadows;
+      });
     }
     get receiveShadows() {
       return this.transform.group.receiveShadow;
     }
     set receiveShadows(receiveShadows) {
       this.transform.group.receiveShadow = receiveShadows;
+      this.transform.group.traverse((object) => {
+        object.receiveShadow = receiveShadows;
+      });
     }
     OnEnable() {
       this.renderer = this.gameObject.scene.GetRenderer();
@@ -58338,6 +58097,8 @@ var trident = (() => {
       const geometry = this.GetMeshFromMeshFilter();
       if (geometry) {
         this.mesh = new Mesh(geometry, this.material);
+        this.castShadows = true;
+        this.receiveShadows = true;
       }
     }
     AddMeshToViewer(mesh) {
@@ -59915,5 +59676,261 @@ var trident = (() => {
       }
     }
   };
+
+  // src/Scene.ts
+  var Scene2 = class {
+    constructor(rendererConfig, physicsConfig) {
+      this.currentFrame = 0;
+      this.gameObjects = [];
+      this.OnLoaded = () => {
+      };
+      this.renderer = this.InitializeRenderer(rendererConfig);
+      this.physics = this.InitializePhysics(physicsConfig);
+      this.input = new Input(this);
+      const cameraGameObject = new GameObject(this);
+      this.camera = cameraGameObject.AddComponent(Camera2);
+      this.renderer.renderer.shadowMap.enabled = true;
+      const directionalLightGameObject = new GameObject(this);
+      directionalLightGameObject.transform.position.set(0, 3, 0);
+      directionalLightGameObject.transform.eulerAngles.set(50, 30, 0);
+      const directionalLight = directionalLightGameObject.AddComponent(DirectionalLight2);
+      directionalLight.intensity = 0.5;
+      directionalLight.shadows = true;
+      const ambientLight = new AmbientLight(16777215, 0.3);
+      this.renderer.scene.add(ambientLight);
+      requestAnimationFrame((now2) => {
+        this.Update();
+      });
+    }
+    InitializeRenderer(rendererConfig) {
+      return new Renderer(rendererConfig, () => {
+        this.rendererLoaded = true;
+        this.CheckLoaded();
+      });
+    }
+    InitializePhysics(physicsConfig) {
+      return new Physics(this, physicsConfig, () => {
+        this.physicsLoaded = true;
+        this.CheckLoaded();
+      });
+    }
+    CheckLoaded() {
+      if (this.rendererLoaded && this.physicsLoaded) {
+        if (typeof this.OnLoaded == "function") {
+          this.OnLoaded();
+        }
+      }
+    }
+    GetRenderer() {
+      return this.renderer;
+    }
+    GetPhysics() {
+      return this.physics;
+    }
+    GetInput() {
+      return this.input;
+    }
+    GetActiveCamera() {
+      return this.camera;
+    }
+    SetActiveCamera(camera) {
+      this.camera = camera;
+    }
+    EnableGizmos() {
+      if (!this.gizmosEnabled) {
+        for (let gameObject of this.gameObjects) {
+          gameObject.OnGizmosEnabled();
+        }
+        this.gizmosEnabled = true;
+      }
+    }
+    DisableGizmos() {
+      if (this.gizmosEnabled) {
+        for (let gameObject of this.gameObjects) {
+          gameObject.OnGizmosDisabled();
+        }
+        this.gizmosEnabled = false;
+      }
+    }
+    HasGizmosEnabled() {
+      return this.gizmosEnabled;
+    }
+    AddGameObject(gameObject) {
+      this.gameObjects.push(gameObject);
+      return true;
+    }
+    RemoveGameObject(gameObject) {
+      if (gameObject instanceof GameObject == false) {
+        console.error(`Invalid GameObject ${gameObject}`);
+        return false;
+      }
+      const gameObjectIndex = this.gameObjects.indexOf(gameObject);
+      if (gameObjectIndex == -1) {
+        console.warn(`Tried to remove GameObject ${gameObject} but it wasn't found in ${this}`);
+        return false;
+      }
+      this.gameObjects.splice(gameObjectIndex, 1);
+      return true;
+    }
+    FixedUpdate() {
+      for (let gameObject of this.gameObjects) {
+        gameObject.FixedUpdate();
+      }
+    }
+    Update() {
+      if (this.isPlaying) {
+        this.physics.Update();
+        for (let gameObject of this.gameObjects) {
+          gameObject.Update();
+          if (this.gizmosEnabled) {
+            gameObject.OnDrawGizmos();
+          }
+        }
+      }
+      if (this.camera) {
+        this.renderer.Tick(this.camera.GetCamera());
+      }
+      for (let gameObject of this.gameObjects) {
+        gameObject.LateUpdate();
+      }
+      this.input.Tick();
+      this.currentFrame++;
+      requestAnimationFrame(() => {
+        this.Update();
+      });
+    }
+    Start() {
+      this.isPlaying = true;
+      for (let gameObject of this.gameObjects) {
+        gameObject.Start();
+      }
+    }
+    Stop() {
+      this.isPlaying = false;
+      for (let gameObject of this.gameObjects) {
+        gameObject.Stop();
+      }
+    }
+  };
+
+  // src/enums/KeyCodes.ts
+  var KeyCodes;
+  (function(KeyCodes2) {
+    KeyCodes2[KeyCodes2["CANCEL"] = 3] = "CANCEL";
+    KeyCodes2[KeyCodes2["HELP"] = 6] = "HELP";
+    KeyCodes2[KeyCodes2["BACK_SPACE"] = 8] = "BACK_SPACE";
+    KeyCodes2[KeyCodes2["TAB"] = 9] = "TAB";
+    KeyCodes2[KeyCodes2["CLEAR"] = 12] = "CLEAR";
+    KeyCodes2[KeyCodes2["RETURN"] = 13] = "RETURN";
+    KeyCodes2[KeyCodes2["ENTER"] = 14] = "ENTER";
+    KeyCodes2[KeyCodes2["SHIFT"] = 16] = "SHIFT";
+    KeyCodes2[KeyCodes2["CONTROL"] = 17] = "CONTROL";
+    KeyCodes2[KeyCodes2["ALT"] = 18] = "ALT";
+    KeyCodes2[KeyCodes2["PAUSE"] = 19] = "PAUSE";
+    KeyCodes2[KeyCodes2["CAPS_LOCK"] = 20] = "CAPS_LOCK";
+    KeyCodes2[KeyCodes2["ESCAPE"] = 27] = "ESCAPE";
+    KeyCodes2[KeyCodes2["SPACE"] = 32] = "SPACE";
+    KeyCodes2[KeyCodes2["PAGE_UP"] = 33] = "PAGE_UP";
+    KeyCodes2[KeyCodes2["PAGE_DOWN"] = 34] = "PAGE_DOWN";
+    KeyCodes2[KeyCodes2["END"] = 35] = "END";
+    KeyCodes2[KeyCodes2["HOME"] = 36] = "HOME";
+    KeyCodes2[KeyCodes2["LEFT"] = 37] = "LEFT";
+    KeyCodes2[KeyCodes2["UP"] = 38] = "UP";
+    KeyCodes2[KeyCodes2["RIGHT"] = 39] = "RIGHT";
+    KeyCodes2[KeyCodes2["DOWN"] = 40] = "DOWN";
+    KeyCodes2[KeyCodes2["PRINTSCREEN"] = 44] = "PRINTSCREEN";
+    KeyCodes2[KeyCodes2["INSERT"] = 45] = "INSERT";
+    KeyCodes2[KeyCodes2["DELETE"] = 46] = "DELETE";
+    KeyCodes2[KeyCodes2["NUM_0"] = 48] = "NUM_0";
+    KeyCodes2[KeyCodes2["NUM_1"] = 49] = "NUM_1";
+    KeyCodes2[KeyCodes2["NUM_2"] = 50] = "NUM_2";
+    KeyCodes2[KeyCodes2["NUM_3"] = 51] = "NUM_3";
+    KeyCodes2[KeyCodes2["NUM_4"] = 52] = "NUM_4";
+    KeyCodes2[KeyCodes2["NUM_5"] = 53] = "NUM_5";
+    KeyCodes2[KeyCodes2["NUM_6"] = 54] = "NUM_6";
+    KeyCodes2[KeyCodes2["NUM_7"] = 55] = "NUM_7";
+    KeyCodes2[KeyCodes2["NUM_8"] = 56] = "NUM_8";
+    KeyCodes2[KeyCodes2["NUM_9"] = 57] = "NUM_9";
+    KeyCodes2[KeyCodes2["SEMICOLON"] = 59] = "SEMICOLON";
+    KeyCodes2[KeyCodes2["EQUALS"] = 61] = "EQUALS";
+    KeyCodes2[KeyCodes2["A"] = 65] = "A";
+    KeyCodes2[KeyCodes2["B"] = 66] = "B";
+    KeyCodes2[KeyCodes2["C"] = 67] = "C";
+    KeyCodes2[KeyCodes2["D"] = 68] = "D";
+    KeyCodes2[KeyCodes2["E"] = 69] = "E";
+    KeyCodes2[KeyCodes2["F"] = 70] = "F";
+    KeyCodes2[KeyCodes2["G"] = 71] = "G";
+    KeyCodes2[KeyCodes2["H"] = 72] = "H";
+    KeyCodes2[KeyCodes2["I"] = 73] = "I";
+    KeyCodes2[KeyCodes2["J"] = 74] = "J";
+    KeyCodes2[KeyCodes2["K"] = 75] = "K";
+    KeyCodes2[KeyCodes2["L"] = 76] = "L";
+    KeyCodes2[KeyCodes2["M"] = 77] = "M";
+    KeyCodes2[KeyCodes2["N"] = 78] = "N";
+    KeyCodes2[KeyCodes2["O"] = 79] = "O";
+    KeyCodes2[KeyCodes2["P"] = 80] = "P";
+    KeyCodes2[KeyCodes2["Q"] = 81] = "Q";
+    KeyCodes2[KeyCodes2["R"] = 82] = "R";
+    KeyCodes2[KeyCodes2["S"] = 83] = "S";
+    KeyCodes2[KeyCodes2["T"] = 84] = "T";
+    KeyCodes2[KeyCodes2["U"] = 85] = "U";
+    KeyCodes2[KeyCodes2["V"] = 86] = "V";
+    KeyCodes2[KeyCodes2["W"] = 87] = "W";
+    KeyCodes2[KeyCodes2["X"] = 88] = "X";
+    KeyCodes2[KeyCodes2["Y"] = 89] = "Y";
+    KeyCodes2[KeyCodes2["Z"] = 90] = "Z";
+    KeyCodes2[KeyCodes2["CONTEXT_MENU"] = 93] = "CONTEXT_MENU";
+    KeyCodes2[KeyCodes2["NUMPAD0"] = 96] = "NUMPAD0";
+    KeyCodes2[KeyCodes2["NUMPAD1"] = 97] = "NUMPAD1";
+    KeyCodes2[KeyCodes2["NUMPAD2"] = 98] = "NUMPAD2";
+    KeyCodes2[KeyCodes2["NUMPAD3"] = 99] = "NUMPAD3";
+    KeyCodes2[KeyCodes2["NUMPAD4"] = 100] = "NUMPAD4";
+    KeyCodes2[KeyCodes2["NUMPAD5"] = 101] = "NUMPAD5";
+    KeyCodes2[KeyCodes2["NUMPAD6"] = 102] = "NUMPAD6";
+    KeyCodes2[KeyCodes2["NUMPAD7"] = 103] = "NUMPAD7";
+    KeyCodes2[KeyCodes2["NUMPAD8"] = 104] = "NUMPAD8";
+    KeyCodes2[KeyCodes2["NUMPAD9"] = 105] = "NUMPAD9";
+    KeyCodes2[KeyCodes2["MULTIPLY"] = 106] = "MULTIPLY";
+    KeyCodes2[KeyCodes2["ADD"] = 107] = "ADD";
+    KeyCodes2[KeyCodes2["SEPARATOR"] = 108] = "SEPARATOR";
+    KeyCodes2[KeyCodes2["SUBTRACT"] = 109] = "SUBTRACT";
+    KeyCodes2[KeyCodes2["DECIMAL"] = 110] = "DECIMAL";
+    KeyCodes2[KeyCodes2["DIVIDE"] = 111] = "DIVIDE";
+    KeyCodes2[KeyCodes2["F1"] = 112] = "F1";
+    KeyCodes2[KeyCodes2["F2"] = 113] = "F2";
+    KeyCodes2[KeyCodes2["F3"] = 114] = "F3";
+    KeyCodes2[KeyCodes2["F4"] = 115] = "F4";
+    KeyCodes2[KeyCodes2["F5"] = 116] = "F5";
+    KeyCodes2[KeyCodes2["F6"] = 117] = "F6";
+    KeyCodes2[KeyCodes2["F7"] = 118] = "F7";
+    KeyCodes2[KeyCodes2["F8"] = 119] = "F8";
+    KeyCodes2[KeyCodes2["F9"] = 120] = "F9";
+    KeyCodes2[KeyCodes2["F10"] = 121] = "F10";
+    KeyCodes2[KeyCodes2["F11"] = 122] = "F11";
+    KeyCodes2[KeyCodes2["F12"] = 123] = "F12";
+    KeyCodes2[KeyCodes2["F13"] = 124] = "F13";
+    KeyCodes2[KeyCodes2["F14"] = 125] = "F14";
+    KeyCodes2[KeyCodes2["F15"] = 126] = "F15";
+    KeyCodes2[KeyCodes2["F16"] = 127] = "F16";
+    KeyCodes2[KeyCodes2["F17"] = 128] = "F17";
+    KeyCodes2[KeyCodes2["F18"] = 129] = "F18";
+    KeyCodes2[KeyCodes2["F19"] = 130] = "F19";
+    KeyCodes2[KeyCodes2["F20"] = 131] = "F20";
+    KeyCodes2[KeyCodes2["F21"] = 132] = "F21";
+    KeyCodes2[KeyCodes2["F22"] = 133] = "F22";
+    KeyCodes2[KeyCodes2["F23"] = 134] = "F23";
+    KeyCodes2[KeyCodes2["F24"] = 135] = "F24";
+    KeyCodes2[KeyCodes2["NUM_LOCK"] = 144] = "NUM_LOCK";
+    KeyCodes2[KeyCodes2["SCROLL_LOCK"] = 145] = "SCROLL_LOCK";
+    KeyCodes2[KeyCodes2["COMMA"] = 188] = "COMMA";
+    KeyCodes2[KeyCodes2["PERIOD"] = 190] = "PERIOD";
+    KeyCodes2[KeyCodes2["SLASH"] = 191] = "SLASH";
+    KeyCodes2[KeyCodes2["BACK_QUOTE"] = 192] = "BACK_QUOTE";
+    KeyCodes2[KeyCodes2["OPEN_BRACKET"] = 219] = "OPEN_BRACKET";
+    KeyCodes2[KeyCodes2["BACK_SLASH"] = 220] = "BACK_SLASH";
+    KeyCodes2[KeyCodes2["CLOSE_BRACKET"] = 221] = "CLOSE_BRACKET";
+    KeyCodes2[KeyCodes2["QUOTE"] = 222] = "QUOTE";
+    KeyCodes2[KeyCodes2["META"] = 224] = "META";
+  })(KeyCodes || (KeyCodes = {}));
   return src_exports;
 })();

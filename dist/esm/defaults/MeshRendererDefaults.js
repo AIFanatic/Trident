@@ -1,9 +1,9 @@
-import { MeshBasicMaterial } from "three";
+import { MeshStandardMaterial } from "three";
 var MeshRendererDefaults = /** @class */ (function () {
     function MeshRendererDefaults() {
     }
     MeshRendererDefaults.DefaultMaterial = function () {
-        return new MeshBasicMaterial();
+        return new MeshStandardMaterial();
     };
     return MeshRendererDefaults;
 }());

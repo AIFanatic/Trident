@@ -3,6 +3,8 @@ import { Renderer } from './Renderer';
 import { Physics } from './Physics';
 import { Input } from './Input';
 import { Camera } from "./components/Camera";
+import { DirectionalLight } from "./components";
+import { AmbientLight } from "three";
 /**
  * The scene that holds all GameObjects.
  */
@@ -22,6 +24,17 @@ var Scene = /** @class */ (function () {
         // When a scene is created a camera is created too
         var cameraGameObject = new GameObject(this);
         this.camera = cameraGameObject.AddComponent(Camera);
+        this.renderer.renderer.shadowMap.enabled = true;
+        // When a scene is created a light is created too
+        var directionalLightGameObject = new GameObject(this);
+        directionalLightGameObject.transform.position.set(0, 3, 0);
+        directionalLightGameObject.transform.eulerAngles.set(50, 30, 0);
+        var directionalLight = directionalLightGameObject.AddComponent(DirectionalLight);
+        directionalLight.intensity = 0.5;
+        directionalLight.shadows = true;
+        // TODO: Temporary
+        var ambientLight = new AmbientLight(0xffffff, 0.3);
+        this.renderer.scene.add(ambientLight);
         requestAnimationFrame(function (now) { _this.Update(); });
     }
     Scene.prototype.InitializeRenderer = function (rendererConfig) {

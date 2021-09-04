@@ -58,6 +58,9 @@ var MeshRenderer = /** @class */ (function (_super) {
         },
         set: function (castShadows) {
             this.transform.group.castShadow = castShadows;
+            this.transform.group.traverse(function (object) {
+                object.castShadow = castShadows;
+            });
         },
         enumerable: false,
         configurable: true
@@ -67,7 +70,11 @@ var MeshRenderer = /** @class */ (function (_super) {
             return this.transform.group.receiveShadow;
         },
         set: function (receiveShadows) {
+            // this.transform.group.receiveShadow = receiveShadows;
             this.transform.group.receiveShadow = receiveShadows;
+            this.transform.group.traverse(function (object) {
+                object.receiveShadow = receiveShadows;
+            });
         },
         enumerable: false,
         configurable: true
@@ -93,6 +100,8 @@ var MeshRenderer = /** @class */ (function (_super) {
         var geometry = this.GetMeshFromMeshFilter();
         if (geometry) {
             this.mesh = new Mesh(geometry, this.material);
+            this.castShadows = true;
+            this.receiveShadows = true;
         }
     };
     MeshRenderer.prototype.AddMeshToViewer = function (mesh) {
