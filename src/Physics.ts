@@ -13,7 +13,7 @@ const PhysicsConfigurationDefault: IPhysicsConfiguration = {
         y: -9.8,
         z: 0,
     },
-    framerate: 50,
+    framerate: 60,
     performanceCooking: false,
 }
 
@@ -143,6 +143,7 @@ export class Physics {
         let socket: WebSocket;
         let queue = [];
         let connected = false;
+        let closed = false;
     
         pvdTransport.connect = () => {
             socket = new WebSocket(`ws://${host}:${port}`, ['binary']);
@@ -160,10 +161,16 @@ export class Physics {
                 console.error("An error has occurred with the PhysX PVD debugger socket");
             };
     
+            socket.onclose = () => {
+                console.error("Websocket connection was closed");
+                connected = false;
+                closed = true;
+            }
             return true;
         };
 
         pvdTransport.send = (inBytes, inLength) => {
+            if (closed) return;
             const data = PhysX.HEAPU8.slice(inBytes, inBytes + inLength);
             if (!connected) {
                 queue.push(data);

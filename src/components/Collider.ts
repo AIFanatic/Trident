@@ -12,7 +12,7 @@ export class Collider extends Component {
 
     private position: Vector3 = new Vector3();
     private rotation: Quaternion = new Quaternion();
-    private localScale: Vector3 = new Vector3(1,1,1);
+    private localScale: Vector3 = new Vector3();
 
     private previousLayer: number = LayerMask.LAYER0;
 

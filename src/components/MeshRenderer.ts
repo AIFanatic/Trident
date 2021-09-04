@@ -75,7 +75,7 @@ export class MeshRenderer extends Component {
         const geometry: Geometry | BufferGeometry = this.GetMeshFromMeshFilter();
 
         if (geometry) {
-            this.mesh = new Mesh(geometry);
+            this.mesh = new Mesh(geometry, this.material);
         }
     }
 
