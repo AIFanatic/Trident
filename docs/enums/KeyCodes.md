@@ -130,7 +130,7 @@
 
 #### Defined in
 
-enums/KeyCodes.ts:39
+[enums/KeyCodes.ts:39](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L39)
 
 ___
 
@@ -140,7 +140,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:77
+[enums/KeyCodes.ts:77](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L77)
 
 ___
 
@@ -150,7 +150,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:11
+[enums/KeyCodes.ts:11](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L11)
 
 ___
 
@@ -160,7 +160,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:40
+[enums/KeyCodes.ts:40](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L40)
 
 ___
 
@@ -170,7 +170,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:111
+[enums/KeyCodes.ts:111](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L111)
 
 ___
 
@@ -180,7 +180,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:113
+[enums/KeyCodes.ts:113](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L113)
 
 ___
 
@@ -190,7 +190,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:4
+[enums/KeyCodes.ts:4](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L4)
 
 ___
 
@@ -200,7 +200,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:41
+[enums/KeyCodes.ts:41](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L41)
 
 ___
 
@@ -210,7 +210,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:2
+[enums/KeyCodes.ts:2](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L2)
 
 ___
 
@@ -220,7 +220,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:13
+[enums/KeyCodes.ts:13](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L13)
 
 ___
 
@@ -230,7 +230,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:6
+[enums/KeyCodes.ts:6](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L6)
 
 ___
 
@@ -240,7 +240,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:114
+[enums/KeyCodes.ts:114](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L114)
 
 ___
 
@@ -250,7 +250,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:108
+[enums/KeyCodes.ts:108](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L108)
 
 ___
 
@@ -260,7 +260,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:65
+[enums/KeyCodes.ts:65](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L65)
 
 ___
 
@@ -270,7 +270,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:10
+[enums/KeyCodes.ts:10](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L10)
 
 ___
 
@@ -280,7 +280,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:42
+[enums/KeyCodes.ts:42](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L42)
 
 ___
 
@@ -290,7 +290,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:80
+[enums/KeyCodes.ts:80](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L80)
 
 ___
 
@@ -300,7 +300,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:26
+[enums/KeyCodes.ts:26](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L26)
 
 ___
 
@@ -310,7 +310,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:81
+[enums/KeyCodes.ts:81](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L81)
 
 ___
 
@@ -320,7 +320,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:23
+[enums/KeyCodes.ts:23](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L23)
 
 ___
 
@@ -330,7 +330,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:43
+[enums/KeyCodes.ts:43](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L43)
 
 ___
 
@@ -340,7 +340,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:18
+[enums/KeyCodes.ts:18](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L18)
 
 ___
 
@@ -350,7 +350,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:8
+[enums/KeyCodes.ts:8](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L8)
 
 ___
 
@@ -360,7 +360,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:38
+[enums/KeyCodes.ts:38](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L38)
 
 ___
 
@@ -370,7 +370,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:14
+[enums/KeyCodes.ts:14](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L14)
 
 ___
 
@@ -380,7 +380,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:44
+[enums/KeyCodes.ts:44](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L44)
 
 ___
 
@@ -390,7 +390,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:82
+[enums/KeyCodes.ts:82](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L82)
 
 ___
 
@@ -400,7 +400,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:91
+[enums/KeyCodes.ts:91](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L91)
 
 ___
 
@@ -410,7 +410,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:92
+[enums/KeyCodes.ts:92](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L92)
 
 ___
 
@@ -420,7 +420,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:93
+[enums/KeyCodes.ts:93](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L93)
 
 ___
 
@@ -430,7 +430,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:94
+[enums/KeyCodes.ts:94](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L94)
 
 ___
 
@@ -440,7 +440,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:95
+[enums/KeyCodes.ts:95](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L95)
 
 ___
 
@@ -450,7 +450,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:96
+[enums/KeyCodes.ts:96](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L96)
 
 ___
 
@@ -460,7 +460,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:97
+[enums/KeyCodes.ts:97](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L97)
 
 ___
 
@@ -470,7 +470,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:98
+[enums/KeyCodes.ts:98](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L98)
 
 ___
 
@@ -480,7 +480,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:99
+[enums/KeyCodes.ts:99](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L99)
 
 ___
 
@@ -490,7 +490,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:100
+[enums/KeyCodes.ts:100](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L100)
 
 ___
 
@@ -500,7 +500,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:83
+[enums/KeyCodes.ts:83](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L83)
 
 ___
 
@@ -510,7 +510,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:101
+[enums/KeyCodes.ts:101](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L101)
 
 ___
 
@@ -520,7 +520,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:102
+[enums/KeyCodes.ts:102](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L102)
 
 ___
 
@@ -530,7 +530,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:103
+[enums/KeyCodes.ts:103](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L103)
 
 ___
 
@@ -540,7 +540,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:104
+[enums/KeyCodes.ts:104](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L104)
 
 ___
 
@@ -550,7 +550,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:105
+[enums/KeyCodes.ts:105](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L105)
 
 ___
 
@@ -560,7 +560,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:84
+[enums/KeyCodes.ts:84](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L84)
 
 ___
 
@@ -570,7 +570,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:85
+[enums/KeyCodes.ts:85](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L85)
 
 ___
 
@@ -580,7 +580,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:86
+[enums/KeyCodes.ts:86](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L86)
 
 ___
 
@@ -590,7 +590,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:87
+[enums/KeyCodes.ts:87](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L87)
 
 ___
 
@@ -600,7 +600,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:88
+[enums/KeyCodes.ts:88](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L88)
 
 ___
 
@@ -610,7 +610,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:89
+[enums/KeyCodes.ts:89](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L89)
 
 ___
 
@@ -620,7 +620,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:90
+[enums/KeyCodes.ts:90](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L90)
 
 ___
 
@@ -630,7 +630,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:45
+[enums/KeyCodes.ts:45](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L45)
 
 ___
 
@@ -640,7 +640,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:46
+[enums/KeyCodes.ts:46](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L46)
 
 ___
 
@@ -650,7 +650,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:3
+[enums/KeyCodes.ts:3](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L3)
 
 ___
 
@@ -660,7 +660,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:19
+[enums/KeyCodes.ts:19](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L19)
 
 ___
 
@@ -670,7 +670,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:47
+[enums/KeyCodes.ts:47](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L47)
 
 ___
 
@@ -680,7 +680,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:25
+[enums/KeyCodes.ts:25](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L25)
 
 ___
 
@@ -690,7 +690,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:48
+[enums/KeyCodes.ts:48](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L48)
 
 ___
 
@@ -700,7 +700,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:49
+[enums/KeyCodes.ts:49](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L49)
 
 ___
 
@@ -710,7 +710,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:50
+[enums/KeyCodes.ts:50](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L50)
 
 ___
 
@@ -720,7 +720,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:20
+[enums/KeyCodes.ts:20](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L20)
 
 ___
 
@@ -730,7 +730,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:51
+[enums/KeyCodes.ts:51](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L51)
 
 ___
 
@@ -740,7 +740,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:116
+[enums/KeyCodes.ts:116](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L116)
 
 ___
 
@@ -750,7 +750,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:76
+[enums/KeyCodes.ts:76](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L76)
 
 ___
 
@@ -760,7 +760,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:52
+[enums/KeyCodes.ts:52](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L52)
 
 ___
 
@@ -770,7 +770,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:66
+[enums/KeyCodes.ts:66](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L66)
 
 ___
 
@@ -780,7 +780,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:67
+[enums/KeyCodes.ts:67](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L67)
 
 ___
 
@@ -790,7 +790,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:68
+[enums/KeyCodes.ts:68](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L68)
 
 ___
 
@@ -800,7 +800,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:69
+[enums/KeyCodes.ts:69](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L69)
 
 ___
 
@@ -810,7 +810,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:70
+[enums/KeyCodes.ts:70](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L70)
 
 ___
 
@@ -820,7 +820,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:71
+[enums/KeyCodes.ts:71](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L71)
 
 ___
 
@@ -830,7 +830,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:72
+[enums/KeyCodes.ts:72](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L72)
 
 ___
 
@@ -840,7 +840,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:73
+[enums/KeyCodes.ts:73](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L73)
 
 ___
 
@@ -850,7 +850,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:74
+[enums/KeyCodes.ts:74](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L74)
 
 ___
 
@@ -860,7 +860,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:75
+[enums/KeyCodes.ts:75](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L75)
 
 ___
 
@@ -870,7 +870,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:27
+[enums/KeyCodes.ts:27](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L27)
 
 ___
 
@@ -880,7 +880,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:28
+[enums/KeyCodes.ts:28](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L28)
 
 ___
 
@@ -890,7 +890,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:29
+[enums/KeyCodes.ts:29](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L29)
 
 ___
 
@@ -900,7 +900,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:30
+[enums/KeyCodes.ts:30](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L30)
 
 ___
 
@@ -910,7 +910,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:31
+[enums/KeyCodes.ts:31](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L31)
 
 ___
 
@@ -920,7 +920,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:32
+[enums/KeyCodes.ts:32](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L32)
 
 ___
 
@@ -930,7 +930,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:33
+[enums/KeyCodes.ts:33](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L33)
 
 ___
 
@@ -940,7 +940,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:34
+[enums/KeyCodes.ts:34](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L34)
 
 ___
 
@@ -950,7 +950,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:35
+[enums/KeyCodes.ts:35](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L35)
 
 ___
 
@@ -960,7 +960,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:36
+[enums/KeyCodes.ts:36](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L36)
 
 ___
 
@@ -970,7 +970,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:106
+[enums/KeyCodes.ts:106](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L106)
 
 ___
 
@@ -980,7 +980,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:53
+[enums/KeyCodes.ts:53](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L53)
 
 ___
 
@@ -990,7 +990,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:112
+[enums/KeyCodes.ts:112](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L112)
 
 ___
 
@@ -1000,7 +1000,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:54
+[enums/KeyCodes.ts:54](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L54)
 
 ___
 
@@ -1010,7 +1010,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:17
+[enums/KeyCodes.ts:17](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L17)
 
 ___
 
@@ -1020,7 +1020,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:16
+[enums/KeyCodes.ts:16](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L16)
 
 ___
 
@@ -1030,7 +1030,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:12
+[enums/KeyCodes.ts:12](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L12)
 
 ___
 
@@ -1040,7 +1040,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:109
+[enums/KeyCodes.ts:109](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L109)
 
 ___
 
@@ -1050,7 +1050,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:24
+[enums/KeyCodes.ts:24](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L24)
 
 ___
 
@@ -1060,7 +1060,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:55
+[enums/KeyCodes.ts:55](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L55)
 
 ___
 
@@ -1070,7 +1070,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:115
+[enums/KeyCodes.ts:115](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L115)
 
 ___
 
@@ -1080,7 +1080,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:56
+[enums/KeyCodes.ts:56](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L56)
 
 ___
 
@@ -1090,7 +1090,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:7
+[enums/KeyCodes.ts:7](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L7)
 
 ___
 
@@ -1100,7 +1100,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:22
+[enums/KeyCodes.ts:22](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L22)
 
 ___
 
@@ -1110,7 +1110,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:57
+[enums/KeyCodes.ts:57](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L57)
 
 ___
 
@@ -1120,7 +1120,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:107
+[enums/KeyCodes.ts:107](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L107)
 
 ___
 
@@ -1130,7 +1130,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:37
+[enums/KeyCodes.ts:37](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L37)
 
 ___
 
@@ -1140,7 +1140,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:78
+[enums/KeyCodes.ts:78](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L78)
 
 ___
 
@@ -1150,7 +1150,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:9
+[enums/KeyCodes.ts:9](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L9)
 
 ___
 
@@ -1160,7 +1160,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:110
+[enums/KeyCodes.ts:110](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L110)
 
 ___
 
@@ -1170,7 +1170,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:15
+[enums/KeyCodes.ts:15](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L15)
 
 ___
 
@@ -1180,7 +1180,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:79
+[enums/KeyCodes.ts:79](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L79)
 
 ___
 
@@ -1190,7 +1190,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:58
+[enums/KeyCodes.ts:58](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L58)
 
 ___
 
@@ -1200,7 +1200,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:5
+[enums/KeyCodes.ts:5](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L5)
 
 ___
 
@@ -1210,7 +1210,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:59
+[enums/KeyCodes.ts:59](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L59)
 
 ___
 
@@ -1220,7 +1220,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:21
+[enums/KeyCodes.ts:21](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L21)
 
 ___
 
@@ -1230,7 +1230,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:60
+[enums/KeyCodes.ts:60](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L60)
 
 ___
 
@@ -1240,7 +1240,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:61
+[enums/KeyCodes.ts:61](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L61)
 
 ___
 
@@ -1250,7 +1250,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:62
+[enums/KeyCodes.ts:62](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L62)
 
 ___
 
@@ -1260,7 +1260,7 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:63
+[enums/KeyCodes.ts:63](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L63)
 
 ___
 
@@ -1270,4 +1270,4 @@ ___
 
 #### Defined in
 
-enums/KeyCodes.ts:64
+[enums/KeyCodes.ts:64](https://github.com/AIFanatic/Trident/blob/e986bc9/src/enums/KeyCodes.ts#L64)

@@ -3,6 +3,9 @@
 
 |Category|Example|Description|
 |-|-|-|
+|ArticulationBody|[ArticulationBody.Prismatic](https://aifanatic.github.io/Trident/dist-examples/ArticulationBody.Prismatic.html)| Create and move a Prismatic joint.|
+|ArticulationBody|[ArticulationBody.Revolute](https://aifanatic.github.io/Trident/dist-examples/ArticulationBody.Revolute.html)| Create and rotate a Revolute joint.|
+|ArticulationBody|[ArticulationBody.Spherical](https://aifanatic.github.io/Trident/dist-examples/ArticulationBody.Spherical.html)| Create and rotate a Spherical joint.|
 |Camera|[Camera.Simple](https://aifanatic.github.io/Trident/dist-examples/Camera.Simple.html)| Adding a new camera to the scene.|
 |Components|[Components.Custom](https://aifanatic.github.io/Trident/dist-examples/Components.Custom.html)| Custom component creation.|
 |Light|[Light.AreaLight](https://aifanatic.github.io/Trident/dist-examples/Light.AreaLight.html)| A rectangular area light.|

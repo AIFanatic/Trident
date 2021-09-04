@@ -64,7 +64,7 @@ Collider.constructor
 
 #### Defined in
 
-components/Component.ts:57
+[components/Component.ts:57](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L57)
 
 ## Properties
 
@@ -78,7 +78,7 @@ Collider.body
 
 #### Defined in
 
-components/Collider.ts:11
+[components/Collider.ts:11](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Collider.ts#L11)
 
 ___
 
@@ -94,7 +94,7 @@ Collider.classname
 
 #### Defined in
 
-components/Component.ts:35
+[components/Component.ts:35](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L35)
 
 ___
 
@@ -110,7 +110,7 @@ Collider.classtype
 
 #### Defined in
 
-components/Component.ts:30
+[components/Component.ts:30](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L30)
 
 ___
 
@@ -126,7 +126,7 @@ Collider.gameObject
 
 #### Defined in
 
-components/Component.ts:45
+[components/Component.ts:45](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L45)
 
 ___
 
@@ -142,7 +142,7 @@ Collider.hasStarted
 
 #### Defined in
 
-components/Component.ts:55
+[components/Component.ts:55](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L55)
 
 ___
 
@@ -158,7 +158,7 @@ Collider.name
 
 #### Defined in
 
-components/Component.ts:40
+[components/Component.ts:40](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L40)
 
 ___
 
@@ -174,7 +174,7 @@ Collider.transform
 
 #### Defined in
 
-components/Component.ts:50
+[components/Component.ts:50](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L50)
 
 ___
 
@@ -190,7 +190,7 @@ Collider.uuid
 
 #### Defined in
 
-components/Component.ts:25
+[components/Component.ts:25](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L25)
 
 ## Accessors
 
@@ -204,7 +204,7 @@ components/Component.ts:25
 
 #### Defined in
 
-components/MeshCollider.ts:23
+[components/MeshCollider.ts:23](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/MeshCollider.ts#L23)
 
 • `set` **isConvex**(`isConvex`): `void`
 
@@ -220,7 +220,7 @@ components/MeshCollider.ts:23
 
 #### Defined in
 
-components/MeshCollider.ts:27
+[components/MeshCollider.ts:27](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/MeshCollider.ts#L27)
 
 ## Methods
 
@@ -238,7 +238,7 @@ Collider.Destroy
 
 #### Defined in
 
-components/Collider.ts:74
+[components/Collider.ts:74](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Collider.ts#L74)
 
 ___
 
@@ -256,7 +256,7 @@ Collider.FixedUpdate
 
 #### Defined in
 
-components/Collider.ts:56
+[components/Collider.ts:56](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Collider.ts#L56)
 
 ___
 
@@ -276,7 +276,7 @@ Collider.LateUpdate
 
 #### Defined in
 
-components/Component.ts:101
+[components/Component.ts:101](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L101)
 
 ___
 
@@ -294,7 +294,7 @@ Collider.OnDisable
 
 #### Defined in
 
-components/Component.ts:71
+[components/Component.ts:71](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L71)
 
 ___
 
@@ -314,7 +314,7 @@ Collider.OnDrawGizmos
 
 #### Defined in
 
-components/Component.ts:120
+[components/Component.ts:120](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L120)
 
 ___
 
@@ -332,7 +332,7 @@ Collider.OnEnable
 
 #### Defined in
 
-components/MeshCollider.ts:38
+[components/MeshCollider.ts:38](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/MeshCollider.ts#L38)
 
 ___
 
@@ -352,7 +352,7 @@ Collider.OnGizmosDisabled
 
 #### Defined in
 
-components/Component.ts:114
+[components/Component.ts:114](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L114)
 
 ___
 
@@ -373,7 +373,7 @@ Collider.OnGizmosEnabled
 
 #### Defined in
 
-components/Component.ts:108
+[components/Component.ts:108](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L108)
 
 ___
 
@@ -391,7 +391,7 @@ Collider.Start
 
 #### Defined in
 
-components/Collider.ts:43
+[components/Collider.ts:43](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Collider.ts#L43)
 
 ___
 
@@ -411,7 +411,7 @@ Collider.Stop
 
 #### Defined in
 
-components/Component.ts:83
+[components/Component.ts:83](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L83)
 
 ___
 
@@ -431,4 +431,4 @@ Collider.Update
 
 #### Defined in
 
-components/Component.ts:95
+[components/Component.ts:95](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L95)

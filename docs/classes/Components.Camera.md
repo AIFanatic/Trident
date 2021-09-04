@@ -66,7 +66,7 @@
 
 #### Defined in
 
-components/Component.ts:57
+[components/Component.ts:57](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L57)
 
 ## Properties
 
@@ -82,7 +82,7 @@ Used to identify the class name of individual components.
 
 #### Defined in
 
-components/Component.ts:35
+[components/Component.ts:35](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L35)
 
 ___
 
@@ -98,7 +98,7 @@ Used to detect valid components.
 
 #### Defined in
 
-components/Component.ts:30
+[components/Component.ts:30](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L30)
 
 ___
 
@@ -114,7 +114,7 @@ GameObject the this component is attached to.
 
 #### Defined in
 
-components/Component.ts:45
+[components/Component.ts:45](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L45)
 
 ___
 
@@ -130,7 +130,7 @@ ___
 
 #### Defined in
 
-components/Component.ts:55
+[components/Component.ts:55](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L55)
 
 ___
 
@@ -146,7 +146,7 @@ Name of the component.
 
 #### Defined in
 
-components/Component.ts:40
+[components/Component.ts:40](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L40)
 
 ___
 
@@ -162,7 +162,7 @@ Transform that this component is attached to.
 
 #### Defined in
 
-components/Component.ts:50
+[components/Component.ts:50](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L50)
 
 ___
 
@@ -178,7 +178,7 @@ UUID of the component. Generated randomly.
 
 #### Defined in
 
-components/Component.ts:25
+[components/Component.ts:25](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L25)
 
 ## Accessors
 
@@ -192,7 +192,7 @@ components/Component.ts:25
 
 #### Defined in
 
-components/Camera.ts:25
+[components/Camera.ts:25](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Camera.ts#L25)
 
 • `set` **far**(`far`): `void`
 
@@ -208,7 +208,7 @@ components/Camera.ts:25
 
 #### Defined in
 
-components/Camera.ts:29
+[components/Camera.ts:29](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Camera.ts#L29)
 
 ___
 
@@ -222,7 +222,7 @@ ___
 
 #### Defined in
 
-components/Camera.ts:43
+[components/Camera.ts:43](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Camera.ts#L43)
 
 • `set` **fieldOfView**(`fieldOfView`): `void`
 
@@ -238,7 +238,7 @@ components/Camera.ts:43
 
 #### Defined in
 
-components/Camera.ts:47
+[components/Camera.ts:47](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Camera.ts#L47)
 
 ___
 
@@ -252,7 +252,7 @@ ___
 
 #### Defined in
 
-components/Camera.ts:34
+[components/Camera.ts:34](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Camera.ts#L34)
 
 • `set` **near**(`near`): `void`
 
@@ -268,7 +268,7 @@ components/Camera.ts:34
 
 #### Defined in
 
-components/Camera.ts:38
+[components/Camera.ts:38](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Camera.ts#L38)
 
 ## Methods
 
@@ -288,7 +288,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-components/Camera.ts:91
+[components/Camera.ts:91](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Camera.ts#L91)
 
 ___
 
@@ -308,7 +308,7 @@ Called before every Physics update.
 
 #### Defined in
 
-components/Component.ts:89
+[components/Component.ts:89](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L89)
 
 ___
 
@@ -322,7 +322,7 @@ ___
 
 #### Defined in
 
-components/Camera.ts:67
+[components/Camera.ts:67](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Camera.ts#L67)
 
 ___
 
@@ -342,7 +342,7 @@ Called after every Renderer update.
 
 #### Defined in
 
-components/Component.ts:101
+[components/Component.ts:101](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L101)
 
 ___
 
@@ -360,7 +360,7 @@ ___
 
 #### Defined in
 
-components/Component.ts:71
+[components/Component.ts:71](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L71)
 
 ___
 
@@ -380,7 +380,7 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-components/Camera.ts:78
+[components/Camera.ts:78](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Camera.ts#L78)
 
 ___
 
@@ -400,7 +400,7 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-components/Camera.ts:52
+[components/Camera.ts:52](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Camera.ts#L52)
 
 ___
 
@@ -420,7 +420,7 @@ Called once when Gizmos are disabled.
 
 #### Defined in
 
-components/Camera.ts:84
+[components/Camera.ts:84](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Camera.ts#L84)
 
 ___
 
@@ -441,7 +441,7 @@ If Gizmos are enabled before the component is created this method is called once
 
 #### Defined in
 
-components/Camera.ts:71
+[components/Camera.ts:71](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Camera.ts#L71)
 
 ___
 
@@ -461,7 +461,7 @@ Called once after the scene is started.
 
 #### Defined in
 
-components/Component.ts:77
+[components/Component.ts:77](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L77)
 
 ___
 
@@ -481,7 +481,7 @@ Called once after the scene is stopped.
 
 #### Defined in
 
-components/Component.ts:83
+[components/Component.ts:83](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L83)
 
 ___
 
@@ -501,4 +501,4 @@ Called before every Renderer update.
 
 #### Defined in
 
-components/Component.ts:95
+[components/Component.ts:95](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L95)

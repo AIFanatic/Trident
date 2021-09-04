@@ -1,55 +1,59 @@
-[trident](../README.md) / [Exports](../modules.md) / [Components](../modules/Components.md) / MeshFilter
+[trident](../README.md) / [Exports](../modules.md) / [Components](../modules/Components.md) / ArticulationBody
 
-# Class: MeshFilter
+# Class: ArticulationBody
 
-[Components](../modules/Components.md).MeshFilter
+[Components](../modules/Components.md).ArticulationBody
 
 ## Hierarchy
 
 - [`Component`](Components.Component.md)
 
-  ↳ **`MeshFilter`**
+  ↳ **`ArticulationBody`**
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](Components.MeshFilter.md#constructor)
+- [constructor](Components.ArticulationBody.md#constructor)
 
 ### Properties
 
-- [\_mesh](Components.MeshFilter.md#_mesh)
-- [classname](Components.MeshFilter.md#classname)
-- [classtype](Components.MeshFilter.md#classtype)
-- [gameObject](Components.MeshFilter.md#gameobject)
-- [hasStarted](Components.MeshFilter.md#hasstarted)
-- [name](Components.MeshFilter.md#name)
-- [transform](Components.MeshFilter.md#transform)
-- [uuid](Components.MeshFilter.md#uuid)
+- [articulation](Components.ArticulationBody.md#articulation)
+- [classname](Components.ArticulationBody.md#classname)
+- [classtype](Components.ArticulationBody.md#classtype)
+- [gameObject](Components.ArticulationBody.md#gameobject)
+- [hasStarted](Components.ArticulationBody.md#hasstarted)
+- [joint](Components.ArticulationBody.md#joint)
+- [jointType](Components.ArticulationBody.md#jointtype)
+- [link](Components.ArticulationBody.md#link)
+- [name](Components.ArticulationBody.md#name)
+- [transform](Components.ArticulationBody.md#transform)
+- [uuid](Components.ArticulationBody.md#uuid)
 
 ### Accessors
 
-- [mesh](Components.MeshFilter.md#mesh)
+- [articulationJointType](Components.ArticulationBody.md#articulationjointtype)
+- [immovable](Components.ArticulationBody.md#immovable)
 
 ### Methods
 
-- [Destroy](Components.MeshFilter.md#destroy)
-- [FixedUpdate](Components.MeshFilter.md#fixedupdate)
-- [LateUpdate](Components.MeshFilter.md#lateupdate)
-- [OnDisable](Components.MeshFilter.md#ondisable)
-- [OnDrawGizmos](Components.MeshFilter.md#ondrawgizmos)
-- [OnEnable](Components.MeshFilter.md#onenable)
-- [OnGizmosDisabled](Components.MeshFilter.md#ongizmosdisabled)
-- [OnGizmosEnabled](Components.MeshFilter.md#ongizmosenabled)
-- [Start](Components.MeshFilter.md#start)
-- [Stop](Components.MeshFilter.md#stop)
-- [Update](Components.MeshFilter.md#update)
+- [Destroy](Components.ArticulationBody.md#destroy)
+- [FixedUpdate](Components.ArticulationBody.md#fixedupdate)
+- [LateUpdate](Components.ArticulationBody.md#lateupdate)
+- [OnDisable](Components.ArticulationBody.md#ondisable)
+- [OnDrawGizmos](Components.ArticulationBody.md#ondrawgizmos)
+- [OnEnable](Components.ArticulationBody.md#onenable)
+- [OnGizmosDisabled](Components.ArticulationBody.md#ongizmosdisabled)
+- [OnGizmosEnabled](Components.ArticulationBody.md#ongizmosenabled)
+- [Start](Components.ArticulationBody.md#start)
+- [Stop](Components.ArticulationBody.md#stop)
+- [Update](Components.ArticulationBody.md#update)
 
 ## Constructors
 
 ### constructor
 
-• **new MeshFilter**(`gameObject`, `transform`)
+• **new ArticulationBody**(`gameObject`, `transform`)
 
 #### Parameters
 
@@ -68,13 +72,13 @@
 
 ## Properties
 
-### \_mesh
+### articulation
 
-• **\_mesh**: `Geometry` \| `BufferGeometry`
+• **articulation**: `PxArticulationReducedCoordinate`
 
 #### Defined in
 
-[components/MeshFilter.ts:6](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/MeshFilter.ts#L6)
+components/ArticulationBody.ts:263
 
 ___
 
@@ -142,6 +146,36 @@ ___
 
 ___
 
+### joint
+
+• **joint**: `PxArticulationJointReducedCoordinate`
+
+#### Defined in
+
+components/ArticulationBody.ts:265
+
+___
+
+### jointType
+
+• **jointType**: `JointTypeFixed` \| `JointTypePrismatic` \| `JointTypeRevolute` \| `JointTypeSpherical`
+
+#### Defined in
+
+components/ArticulationBody.ts:271
+
+___
+
+### link
+
+• **link**: `PxArticulationLink`
+
+#### Defined in
+
+components/ArticulationBody.ts:264
+
+___
+
 ### name
 
 • **name**: `string`
@@ -190,25 +224,25 @@ UUID of the component. Generated randomly.
 
 ## Accessors
 
-### mesh
+### articulationJointType
 
-• `get` **mesh**(): `Geometry` \| `BufferGeometry`
+• `get` **articulationJointType**(): [`ArticulationJointType`](../enums/ArticulationJointType.md)
 
 #### Returns
 
-`Geometry` \| `BufferGeometry`
+[`ArticulationJointType`](../enums/ArticulationJointType.md)
 
 #### Defined in
 
-[components/MeshFilter.ts:11](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/MeshFilter.ts#L11)
+components/ArticulationBody.ts:284
 
-• `set` **mesh**(`mesh`): `void`
+• `set` **articulationJointType**(`articulationJointType`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `mesh` | `Geometry` \| `BufferGeometry` |
+| `articulationJointType` | [`ArticulationJointType`](../enums/ArticulationJointType.md) |
 
 #### Returns
 
@@ -216,7 +250,37 @@ UUID of the component. Generated randomly.
 
 #### Defined in
 
-[components/MeshFilter.ts:15](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/MeshFilter.ts#L15)
+components/ArticulationBody.ts:289
+
+___
+
+### immovable
+
+• `get` **immovable**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+components/ArticulationBody.ts:273
+
+• `set` **immovable**(`immovable`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `immovable` | `boolean` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+components/ArticulationBody.ts:279
 
 ## Methods
 
@@ -230,13 +294,13 @@ Called when the component is destroyed.
 
 `void`
 
-#### Overrides
+#### Inherited from
 
 [Component](Components.Component.md).[Destroy](Components.Component.md#destroy)
 
 #### Defined in
 
-[components/MeshFilter.ts:21](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/MeshFilter.ts#L21)
+[components/Component.ts:126](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L126)
 
 ___
 
@@ -250,13 +314,13 @@ Called before every Physics update.
 
 `void`
 
-#### Inherited from
+#### Overrides
 
 [Component](Components.Component.md).[FixedUpdate](Components.Component.md#fixedupdate)
 
 #### Defined in
 
-[components/Component.ts:89](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L89)
+components/ArticulationBody.ts:348
 
 ___
 
@@ -334,7 +398,7 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/MeshFilter.ts:8](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/MeshFilter.ts#L8)
+components/ArticulationBody.ts:306
 
 ___
 

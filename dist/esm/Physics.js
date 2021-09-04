@@ -7,7 +7,7 @@ var PhysicsConfigurationDefault = {
         y: -9.8,
         z: 0,
     },
-    framerate: 50,
+    framerate: 60,
     performanceCooking: false,
 };
 var Physics = /** @class */ (function () {
@@ -97,6 +97,7 @@ var Physics = /** @class */ (function () {
         var socket;
         var queue = [];
         var connected = false;
+        var closed = false;
         pvdTransport.connect = function () {
             socket = new WebSocket("ws://" + host + ":" + port, ['binary']);
             socket.onopen = function () {
@@ -109,9 +110,16 @@ var Physics = /** @class */ (function () {
             socket.onerror = function () {
                 console.error("An error has occurred with the PhysX PVD debugger socket");
             };
+            socket.onclose = function () {
+                console.error("Websocket connection was closed");
+                connected = false;
+                closed = true;
+            };
             return true;
         };
         pvdTransport.send = function (inBytes, inLength) {
+            if (closed)
+                return;
             var data = PhysX.HEAPU8.slice(inBytes, inBytes + inLength);
             if (!connected) {
                 queue.push(data);

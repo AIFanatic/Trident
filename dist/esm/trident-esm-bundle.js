@@ -57657,7 +57657,7 @@ var PhysicsConfigurationDefault = {
     y: -9.8,
     z: 0
   },
-  framerate: 50,
+  framerate: 60,
   performanceCooking: false
 };
 var Physics = class {
@@ -57721,6 +57721,7 @@ var Physics = class {
     let socket;
     let queue = [];
     let connected = false;
+    let closed = false;
     pvdTransport.connect = () => {
       socket = new WebSocket(`ws://${host}:${port}`, ["binary"]);
       socket.onopen = () => {
@@ -57732,9 +57733,16 @@ var Physics = class {
       socket.onerror = () => {
         console.error("An error has occurred with the PhysX PVD debugger socket");
       };
+      socket.onclose = () => {
+        console.error("Websocket connection was closed");
+        connected = false;
+        closed = true;
+      };
       return true;
     };
     pvdTransport.send = (inBytes, inLength) => {
+      if (closed)
+        return;
       const data = import_trident_physx_js_webidl2.default.HEAPU8.slice(inBytes, inBytes + inLength);
       if (!connected) {
         queue.push(data);
@@ -58254,7 +58262,7 @@ var MeshFilter = class extends Component {
 // src/defaults/MeshRendererDefaults.ts
 var MeshRendererDefaults = class {
   static DefaultMaterial() {
-    return new MeshBasicMaterial({ color: 65280 });
+    return new MeshBasicMaterial();
   }
 };
 
@@ -58313,7 +58321,7 @@ var MeshRenderer = class extends Component {
   AddMeshFromMeshFilter() {
     const geometry = this.GetMeshFromMeshFilter();
     if (geometry) {
-      this.mesh = new Mesh(geometry);
+      this.mesh = new Mesh(geometry, this.material);
     }
   }
   AddMeshToViewer(mesh) {
@@ -58345,7 +58353,7 @@ var Collider = class extends Component {
     super(...arguments);
     this.position = new Vector3();
     this.rotation = new Quaternion();
-    this.localScale = new Vector3(1, 1, 1);
+    this.localScale = new Vector3();
     this.previousLayer = LayerMask.LAYER0;
   }
   Start() {
@@ -59635,52 +59643,266 @@ var AreaLight = class extends Component {
 
 // src/components/ArticulationBody.ts
 var import_trident_physx_js_webidl9 = __toModule(require_trident_physx_js_webidl_wasm());
+
+// src/enums/ArticulationAxis.ts
+var ArticulationAxis;
+(function(ArticulationAxis2) {
+  ArticulationAxis2[ArticulationAxis2["TWIST"] = 0] = "TWIST";
+  ArticulationAxis2[ArticulationAxis2["SWING1"] = 1] = "SWING1";
+  ArticulationAxis2[ArticulationAxis2["SWING2"] = 2] = "SWING2";
+  ArticulationAxis2[ArticulationAxis2["X"] = 3] = "X";
+  ArticulationAxis2[ArticulationAxis2["Y"] = 4] = "Y";
+  ArticulationAxis2[ArticulationAxis2["Z"] = 5] = "Z";
+  ArticulationAxis2[ArticulationAxis2["COUNT"] = 6] = "COUNT";
+})(ArticulationAxis || (ArticulationAxis = {}));
+
+// src/enums/ArticulationJointType.ts
+var ArticulationJointType;
+(function(ArticulationJointType2) {
+  ArticulationJointType2[ArticulationJointType2["FIXED"] = 0] = "FIXED";
+  ArticulationJointType2[ArticulationJointType2["PRISMATIC"] = 1] = "PRISMATIC";
+  ArticulationJointType2[ArticulationJointType2["REVOLUTE"] = 2] = "REVOLUTE";
+  ArticulationJointType2[ArticulationJointType2["SPHERICAL"] = 3] = "SPHERICAL";
+})(ArticulationJointType || (ArticulationJointType = {}));
+
+// src/enums/ArticulationMotion.ts
+var ArticulationMotion;
+(function(ArticulationMotion2) {
+  ArticulationMotion2[ArticulationMotion2["LOCKED"] = 0] = "LOCKED";
+  ArticulationMotion2[ArticulationMotion2["LIMITED"] = 1] = "LIMITED";
+  ArticulationMotion2[ArticulationMotion2["FREE"] = 2] = "FREE";
+})(ArticulationMotion || (ArticulationMotion = {}));
+
+// src/components/ArticulationBody.ts
+var JointDriver = class {
+  constructor(joint, axis) {
+    this._stiffness = 0;
+    this._damping = 0;
+    this._forceLimit = 1e3;
+    this._lowerLimit = 0;
+    this._upperLimit = 0;
+    this.joint = joint;
+    this.axis = axis;
+  }
+  get axis() {
+    return this._axis;
+  }
+  set axis(axis) {
+    this._axis = axis;
+  }
+  get lowerLimit() {
+    return this._lowerLimit;
+  }
+  set lowerLimit(lowerLimit) {
+    this.lowerLimit = lowerLimit;
+    this.joint.setLimit(this.axis, this.lowerLimit, this.upperLimit);
+  }
+  get upperLimit() {
+    return this._upperLimit;
+  }
+  set upperLimit(upperLimit) {
+    this._upperLimit = upperLimit;
+    this.joint.setLimit(this.axis, this.lowerLimit, this.upperLimit);
+  }
+  get stiffness() {
+    return this._stiffness;
+  }
+  set stiffness(stiffness) {
+    this._stiffness = stiffness;
+    this.joint.setDrive(this.axis, this._stiffness, this._damping, this._forceLimit);
+  }
+  get damping() {
+    return this._damping;
+  }
+  set damping(damping) {
+    this._damping = damping;
+    this.joint.setDrive(this.axis, this._stiffness, this._damping, this._forceLimit);
+  }
+  get forceLimit() {
+    return this._forceLimit;
+  }
+  set forceLimit(forceLimit) {
+    this._forceLimit = forceLimit;
+    this.joint.setDrive(this.axis, this._stiffness, this._damping, this._forceLimit);
+  }
+  get target() {
+    return this.joint.getDriveTarget(this.axis);
+  }
+  set target(target) {
+    this.joint.setDriveTarget(this.axis, target);
+  }
+  get targetVelocity() {
+    return this.joint.getDriveVelocity(this.axis);
+  }
+  set targetVelocity(targetVelocity) {
+    this.joint.setDriveVelocity(this.axis, targetVelocity);
+  }
+};
+var JointTypeBase = class {
+};
+var JointTypeFixed = class extends JointTypeBase {
+  constructor(joint) {
+    super();
+    this.joint = joint;
+    joint.setJointType(ArticulationJointType.FIXED);
+  }
+};
+var JointTypeRevolute = class extends JointTypeBase {
+  get motion() {
+    return this.joint.getMotion(ArticulationAxis.SWING2);
+  }
+  set motion(motion) {
+    this.joint.setMotion(ArticulationAxis.SWING2, motion);
+  }
+  constructor(joint) {
+    super();
+    this.joint = joint;
+    this.xDrive = new JointDriver(joint, ArticulationAxis.SWING2);
+    joint.setJointType(ArticulationJointType.REVOLUTE);
+    joint.setMotion(ArticulationAxis.SWING2, ArticulationMotion.FREE);
+  }
+};
+var JointTypeSpherical = class extends JointTypeBase {
+  get swingY() {
+    return this.joint.getMotion(ArticulationAxis.SWING1);
+  }
+  set swingY(swingY) {
+    return this.joint.setMotion(ArticulationAxis.SWING1, swingY);
+  }
+  get swingZ() {
+    return this.joint.getMotion(ArticulationAxis.SWING2);
+  }
+  set swingZ(swingZ) {
+    return this.joint.setMotion(ArticulationAxis.SWING2, swingZ);
+  }
+  get twist() {
+    return this.joint.getMotion(ArticulationAxis.TWIST);
+  }
+  set twist(twist) {
+    return this.joint.setMotion(ArticulationAxis.TWIST, twist);
+  }
+  constructor(joint) {
+    super();
+    this.joint = joint;
+    this.xDrive = new JointDriver(joint, ArticulationAxis.SWING1);
+    this.yDrive = new JointDriver(joint, ArticulationAxis.SWING2);
+    this.zDrive = new JointDriver(joint, ArticulationAxis.TWIST);
+    joint.setJointType(ArticulationJointType.SPHERICAL);
+    joint.setMotion(ArticulationAxis.SWING1, ArticulationMotion.FREE);
+    joint.setMotion(ArticulationAxis.SWING2, ArticulationMotion.FREE);
+    joint.setMotion(ArticulationAxis.TWIST, ArticulationMotion.FREE);
+  }
+};
+var JointTypePrismatic = class extends JointTypeBase {
+  get motion() {
+    return this.joint.getMotion(this._axis);
+  }
+  set motion(motion) {
+    this.joint.setMotion(this._axis, motion);
+  }
+  get axis() {
+    return this._axis;
+  }
+  set axis(axis) {
+    if (this._axis == axis)
+      return;
+    this.physicsScene.removeArticulation(this.articulation);
+    this.xDrive = void 0;
+    this.yDrive = void 0;
+    this.zDrive = void 0;
+    this.joint.setMotion(this._axis, ArticulationMotion.LOCKED);
+    this.joint.setMotion(axis, ArticulationMotion.FREE);
+    if (axis == ArticulationAxis.X) {
+      this.drive.axis = ArticulationAxis.X;
+      this.xDrive = this.drive;
+    } else if (axis == ArticulationAxis.Y) {
+      this.drive.axis = ArticulationAxis.Y;
+      this.yDrive = this.drive;
+    } else if (axis == ArticulationAxis.Z) {
+      this.drive.axis = ArticulationAxis.Z;
+      this.zDrive = this.drive;
+    }
+    this.physicsScene.addArticulation(this.articulation);
+    this._axis = axis;
+  }
+  constructor(physicsScene, articulation, joint) {
+    super();
+    this.physicsScene = physicsScene;
+    this.articulation = articulation;
+    this.joint = joint;
+    this.drive = new JointDriver(joint, ArticulationAxis.X);
+    joint.setJointType(ArticulationJointType.PRISMATIC);
+    joint.setMotion(ArticulationAxis.X, ArticulationMotion.FREE);
+    this.xDrive = this.drive;
+    this._axis = ArticulationAxis.X;
+  }
+};
 var ArticulationBody = class extends Component {
   get immovable() {
     const flags = this.articulation.getArticulationFlags();
     return flags.isSet(import_trident_physx_js_webidl9.default.eFIX_BASE);
   }
   set immovable(immovable) {
+    this.articulation.setArticulationFlag(import_trident_physx_js_webidl9.default.eFIX_BASE, immovable);
+  }
+  get articulationJointType() {
+    return this.joint.getJointType();
+  }
+  set articulationJointType(articulationJointType) {
+    if (this.joint) {
+      if (articulationJointType == ArticulationJointType.FIXED) {
+        this.jointType = new JointTypeFixed(this.joint);
+      } else if (articulationJointType == ArticulationJointType.PRISMATIC) {
+        this.jointType = new JointTypePrismatic(this.gameObject.scene.GetPhysics().GetScene(), this.articulation, this.joint);
+      } else if (articulationJointType == ArticulationJointType.REVOLUTE) {
+        this.jointType = new JointTypeRevolute(this.joint);
+      } else if (articulationJointType == ArticulationJointType.SPHERICAL) {
+        this.jointType = new JointTypeSpherical(this.joint);
+      }
+    }
   }
   OnEnable() {
     this.physics = this.gameObject.scene.GetPhysics().GetPhysics();
     this.physicsScene = this.gameObject.scene.GetPhysics().GetScene();
-    const position = new import_trident_physx_js_webidl9.default.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-    const rotation = new import_trident_physx_js_webidl9.default.PxQuat(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z, this.transform.rotation.w);
+    const position = new import_trident_physx_js_webidl9.default.PxVec3(this.transform.localPosition.x, this.transform.localPosition.y, this.transform.localPosition.z);
+    const rotation = new import_trident_physx_js_webidl9.default.PxQuat(this.transform.localRotation.x, this.transform.localRotation.y, this.transform.localRotation.z, this.transform.localRotation.w);
     const pose = new import_trident_physx_js_webidl9.default.PxTransform(position, rotation);
     if (this.transform.parent) {
       const parentArticulation = this.transform.parent.gameObject.GetComponent(ArticulationBody);
       if (parentArticulation) {
         this.articulation = parentArticulation.articulation;
+        this.physicsScene.removeArticulation(this.articulation);
         this.link = this.articulation.createLink(parentArticulation.link, pose);
-        console.log("adding child", this.link);
+        const collider = this.gameObject.GetComponent(Collider);
+        if (collider) {
+          collider.body.rigidbody.detachShape(collider.body.shape);
+          this.link.attachShape(collider.body.shape);
+          import_trident_physx_js_webidl9.default.PxRigidBodyExt.prototype.updateMassAndInertia(this.link, 1);
+        }
+        const inboundJoint = this.link.getInboundJoint();
+        this.joint = import_trident_physx_js_webidl9.default.castObject(inboundJoint, import_trident_physx_js_webidl9.default.PxArticulationJointReducedCoordinate);
+        this.articulationJointType = ArticulationJointType.FIXED;
+        this.physicsScene.addArticulation(this.articulation);
       }
     } else {
       this.articulation = this.physics.createArticulationReducedCoordinate();
       this.link = this.articulation.createLink(null, pose);
       this.physicsScene.addArticulation(this.articulation);
-      console.log("adding parent", this.link);
     }
-    const inboundJoint = this.link.getInboundJoint();
-    if (inboundJoint.ptr != 0) {
-      this.joint = import_trident_physx_js_webidl9.default.castObject(inboundJoint, import_trident_physx_js_webidl9.default.PxArticulationJointReducedCoordinate);
-      console.log(this.joint);
-      this.joint.setJointType(import_trident_physx_js_webidl9.default.eREVOLUTE);
-    }
-    setInterval(() => {
-      if (this.link) {
-        const pose2 = this.link.getGlobalPose();
-        console.log(pose2.p.x, pose2.p.y, pose2.p.z);
-      }
-    }, 1e3);
   }
   FixedUpdate() {
     const pose = this.link.getGlobalPose();
     this.transform.position.set(pose.p.x, pose.p.y, pose.p.z);
     this.transform.rotation.set(pose.q.x, pose.q.y, pose.q.z, pose.q.w);
+    if (this.articulation) {
+      this.articulation.wakeUp();
+    }
   }
 };
 export {
+  ArticulationAxis,
+  ArticulationJointType,
+  ArticulationMotion,
   components_exports as Components,
   GameObject,
   Input,

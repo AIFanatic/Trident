@@ -87,7 +87,7 @@ var MeshRenderer = /** @class */ (function (_super) {
     MeshRenderer.prototype.AddMeshFromMeshFilter = function () {
         var geometry = this.GetMeshFromMeshFilter();
         if (geometry) {
-            this.mesh = new Mesh(geometry);
+            this.mesh = new Mesh(geometry, this.material);
         }
     };
     MeshRenderer.prototype.AddMeshToViewer = function (mesh) {

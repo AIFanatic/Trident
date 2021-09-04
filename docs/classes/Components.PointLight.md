@@ -66,7 +66,7 @@
 
 #### Defined in
 
-components/Component.ts:57
+[components/Component.ts:57](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L57)
 
 ## Properties
 
@@ -82,7 +82,7 @@ Used to identify the class name of individual components.
 
 #### Defined in
 
-components/Component.ts:35
+[components/Component.ts:35](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L35)
 
 ___
 
@@ -98,7 +98,7 @@ Used to detect valid components.
 
 #### Defined in
 
-components/Component.ts:30
+[components/Component.ts:30](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L30)
 
 ___
 
@@ -114,7 +114,7 @@ GameObject the this component is attached to.
 
 #### Defined in
 
-components/Component.ts:45
+[components/Component.ts:45](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L45)
 
 ___
 
@@ -130,7 +130,7 @@ ___
 
 #### Defined in
 
-components/Component.ts:55
+[components/Component.ts:55](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L55)
 
 ___
 
@@ -146,7 +146,7 @@ Name of the component.
 
 #### Defined in
 
-components/Component.ts:40
+[components/Component.ts:40](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L40)
 
 ___
 
@@ -162,7 +162,7 @@ Transform that this component is attached to.
 
 #### Defined in
 
-components/Component.ts:50
+[components/Component.ts:50](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L50)
 
 ___
 
@@ -178,7 +178,7 @@ UUID of the component. Generated randomly.
 
 #### Defined in
 
-components/Component.ts:25
+[components/Component.ts:25](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L25)
 
 ## Accessors
 
@@ -192,7 +192,7 @@ components/Component.ts:25
 
 #### Defined in
 
-components/PointLight.ts:16
+[components/PointLight.ts:16](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/PointLight.ts#L16)
 
 • `set` **color**(`color`): `void`
 
@@ -208,7 +208,7 @@ components/PointLight.ts:16
 
 #### Defined in
 
-components/PointLight.ts:20
+[components/PointLight.ts:20](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/PointLight.ts#L20)
 
 ___
 
@@ -222,7 +222,7 @@ ___
 
 #### Defined in
 
-components/PointLight.ts:24
+[components/PointLight.ts:24](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/PointLight.ts#L24)
 
 • `set` **intensity**(`intensity`): `void`
 
@@ -238,7 +238,7 @@ components/PointLight.ts:24
 
 #### Defined in
 
-components/PointLight.ts:28
+[components/PointLight.ts:28](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/PointLight.ts#L28)
 
 ___
 
@@ -252,7 +252,7 @@ ___
 
 #### Defined in
 
-components/PointLight.ts:8
+[components/PointLight.ts:8](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/PointLight.ts#L8)
 
 • `set` **range**(`range`): `void`
 
@@ -268,7 +268,7 @@ components/PointLight.ts:8
 
 #### Defined in
 
-components/PointLight.ts:12
+[components/PointLight.ts:12](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/PointLight.ts#L12)
 
 ___
 
@@ -282,7 +282,7 @@ ___
 
 #### Defined in
 
-components/PointLight.ts:32
+[components/PointLight.ts:32](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/PointLight.ts#L32)
 
 • `set` **shadows**(`shadows`): `void`
 
@@ -298,7 +298,7 @@ components/PointLight.ts:32
 
 #### Defined in
 
-components/PointLight.ts:36
+[components/PointLight.ts:36](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/PointLight.ts#L36)
 
 ## Methods
 
@@ -318,7 +318,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-components/PointLight.ts:67
+[components/PointLight.ts:67](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/PointLight.ts#L67)
 
 ___
 
@@ -338,7 +338,7 @@ Called before every Physics update.
 
 #### Defined in
 
-components/Component.ts:89
+[components/Component.ts:89](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L89)
 
 ___
 
@@ -358,7 +358,7 @@ Called after every Renderer update.
 
 #### Defined in
 
-components/Component.ts:101
+[components/Component.ts:101](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L101)
 
 ___
 
@@ -376,7 +376,7 @@ ___
 
 #### Defined in
 
-components/Component.ts:71
+[components/Component.ts:71](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L71)
 
 ___
 
@@ -396,7 +396,7 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-components/PointLight.ts:53
+[components/PointLight.ts:53](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/PointLight.ts#L53)
 
 ___
 
@@ -416,7 +416,7 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-components/PointLight.ts:40
+[components/PointLight.ts:40](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/PointLight.ts#L40)
 
 ___
 
@@ -436,7 +436,7 @@ Called once when Gizmos are disabled.
 
 #### Defined in
 
-components/PointLight.ts:59
+[components/PointLight.ts:59](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/PointLight.ts#L59)
 
 ___
 
@@ -457,7 +457,7 @@ If Gizmos are enabled before the component is created this method is called once
 
 #### Defined in
 
-components/PointLight.ts:46
+[components/PointLight.ts:46](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/PointLight.ts#L46)
 
 ___
 
@@ -477,7 +477,7 @@ Called once after the scene is started.
 
 #### Defined in
 
-components/Component.ts:77
+[components/Component.ts:77](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L77)
 
 ___
 
@@ -497,7 +497,7 @@ Called once after the scene is stopped.
 
 #### Defined in
 
-components/Component.ts:83
+[components/Component.ts:83](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L83)
 
 ___
 
@@ -517,4 +517,4 @@ Called before every Renderer update.
 
 #### Defined in
 
-components/Component.ts:95
+[components/Component.ts:95](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L95)

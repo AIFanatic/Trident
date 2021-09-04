@@ -3,7 +3,7 @@ var MeshRendererDefaults = /** @class */ (function () {
     function MeshRendererDefaults() {
     }
     MeshRendererDefaults.DefaultMaterial = function () {
-        return new MeshBasicMaterial({ color: 0x00ff00 });
+        return new MeshBasicMaterial();
     };
     return MeshRendererDefaults;
 }());

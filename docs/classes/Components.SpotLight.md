@@ -67,7 +67,7 @@
 
 #### Defined in
 
-components/Component.ts:57
+[components/Component.ts:57](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L57)
 
 ## Properties
 
@@ -83,7 +83,7 @@ Used to identify the class name of individual components.
 
 #### Defined in
 
-components/Component.ts:35
+[components/Component.ts:35](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L35)
 
 ___
 
@@ -99,7 +99,7 @@ Used to detect valid components.
 
 #### Defined in
 
-components/Component.ts:30
+[components/Component.ts:30](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L30)
 
 ___
 
@@ -115,7 +115,7 @@ GameObject the this component is attached to.
 
 #### Defined in
 
-components/Component.ts:45
+[components/Component.ts:45](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L45)
 
 ___
 
@@ -131,7 +131,7 @@ ___
 
 #### Defined in
 
-components/Component.ts:55
+[components/Component.ts:55](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L55)
 
 ___
 
@@ -147,7 +147,7 @@ Name of the component.
 
 #### Defined in
 
-components/Component.ts:40
+[components/Component.ts:40](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L40)
 
 ___
 
@@ -163,7 +163,7 @@ Transform that this component is attached to.
 
 #### Defined in
 
-components/Component.ts:50
+[components/Component.ts:50](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L50)
 
 ___
 
@@ -179,7 +179,7 @@ UUID of the component. Generated randomly.
 
 #### Defined in
 
-components/Component.ts:25
+[components/Component.ts:25](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L25)
 
 ## Accessors
 
@@ -193,7 +193,7 @@ components/Component.ts:25
 
 #### Defined in
 
-components/SpotLight.ts:24
+[components/SpotLight.ts:24](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L24)
 
 • `set` **color**(`color`): `void`
 
@@ -209,7 +209,7 @@ components/SpotLight.ts:24
 
 #### Defined in
 
-components/SpotLight.ts:28
+[components/SpotLight.ts:28](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L28)
 
 ___
 
@@ -223,7 +223,7 @@ ___
 
 #### Defined in
 
-components/SpotLight.ts:32
+[components/SpotLight.ts:32](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L32)
 
 • `set` **intensity**(`intensity`): `void`
 
@@ -239,7 +239,7 @@ components/SpotLight.ts:32
 
 #### Defined in
 
-components/SpotLight.ts:36
+[components/SpotLight.ts:36](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L36)
 
 ___
 
@@ -253,7 +253,7 @@ ___
 
 #### Defined in
 
-components/SpotLight.ts:16
+[components/SpotLight.ts:16](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L16)
 
 • `set` **range**(`range`): `void`
 
@@ -269,7 +269,7 @@ components/SpotLight.ts:16
 
 #### Defined in
 
-components/SpotLight.ts:20
+[components/SpotLight.ts:20](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L20)
 
 ___
 
@@ -283,7 +283,7 @@ ___
 
 #### Defined in
 
-components/SpotLight.ts:40
+[components/SpotLight.ts:40](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L40)
 
 • `set` **shadows**(`shadows`): `void`
 
@@ -299,7 +299,7 @@ components/SpotLight.ts:40
 
 #### Defined in
 
-components/SpotLight.ts:44
+[components/SpotLight.ts:44](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L44)
 
 ___
 
@@ -313,7 +313,7 @@ ___
 
 #### Defined in
 
-components/SpotLight.ts:8
+[components/SpotLight.ts:8](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L8)
 
 • `set` **spotAngle**(`spotAngle`): `void`
 
@@ -329,7 +329,7 @@ components/SpotLight.ts:8
 
 #### Defined in
 
-components/SpotLight.ts:12
+[components/SpotLight.ts:12](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L12)
 
 ## Methods
 
@@ -349,7 +349,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-components/SpotLight.ts:75
+[components/SpotLight.ts:75](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L75)
 
 ___
 
@@ -369,7 +369,7 @@ Called before every Physics update.
 
 #### Defined in
 
-components/Component.ts:89
+[components/Component.ts:89](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L89)
 
 ___
 
@@ -389,7 +389,7 @@ Called after every Renderer update.
 
 #### Defined in
 
-components/Component.ts:101
+[components/Component.ts:101](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L101)
 
 ___
 
@@ -407,7 +407,7 @@ ___
 
 #### Defined in
 
-components/Component.ts:71
+[components/Component.ts:71](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L71)
 
 ___
 
@@ -427,7 +427,7 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-components/SpotLight.ts:61
+[components/SpotLight.ts:61](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L61)
 
 ___
 
@@ -447,7 +447,7 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-components/SpotLight.ts:48
+[components/SpotLight.ts:48](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L48)
 
 ___
 
@@ -467,7 +467,7 @@ Called once when Gizmos are disabled.
 
 #### Defined in
 
-components/SpotLight.ts:67
+[components/SpotLight.ts:67](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L67)
 
 ___
 
@@ -488,7 +488,7 @@ If Gizmos are enabled before the component is created this method is called once
 
 #### Defined in
 
-components/SpotLight.ts:54
+[components/SpotLight.ts:54](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/SpotLight.ts#L54)
 
 ___
 
@@ -508,7 +508,7 @@ Called once after the scene is started.
 
 #### Defined in
 
-components/Component.ts:77
+[components/Component.ts:77](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L77)
 
 ___
 
@@ -528,7 +528,7 @@ Called once after the scene is stopped.
 
 #### Defined in
 
-components/Component.ts:83
+[components/Component.ts:83](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L83)
 
 ___
 
@@ -548,4 +548,4 @@ Called before every Renderer update.
 
 #### Defined in
 
-components/Component.ts:95
+[components/Component.ts:95](https://github.com/AIFanatic/Trident/blob/e986bc9/src/components/Component.ts#L95)

@@ -12,6 +12,7 @@
 
 - [Animation](../classes/Components.Animation.md)
 - [AreaLight](../classes/Components.AreaLight.md)
+- [ArticulationBody](../classes/Components.ArticulationBody.md)
 - [BoxCollider](../classes/Components.BoxCollider.md)
 - [Camera](../classes/Components.Camera.md)
 - [Capsule](../classes/Components.Capsule.md)

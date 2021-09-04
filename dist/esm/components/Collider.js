@@ -22,7 +22,7 @@ var Collider = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.position = new Vector3();
         _this.rotation = new Quaternion();
-        _this.localScale = new Vector3(1, 1, 1);
+        _this.localScale = new Vector3();
         _this.previousLayer = LayerMask.LAYER0;
         return _this;
     }
