@@ -39,7 +39,7 @@ Renders a geometry from MeshFilter into the scene.
 
 #### Defined in
 
-[components/MeshRenderer.ts:41](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshRenderer.ts#L41)
+[components/MeshRenderer.ts:41](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshRenderer.ts#L41)
 
 • `set` **castShadows**(`castShadows`): `void`
 
@@ -55,7 +55,7 @@ Renders a geometry from MeshFilter into the scene.
 
 #### Defined in
 
-[components/MeshRenderer.ts:45](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshRenderer.ts#L45)
+[components/MeshRenderer.ts:45](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshRenderer.ts#L45)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[components/MeshRenderer.ts:29](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshRenderer.ts#L29)
+[components/MeshRenderer.ts:29](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshRenderer.ts#L29)
 
 • `set` **material**(`material`): `void`
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[components/MeshRenderer.ts:33](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshRenderer.ts#L33)
+[components/MeshRenderer.ts:33](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshRenderer.ts#L33)
 
 ___
 
@@ -99,7 +99,7 @@ ___
 
 #### Defined in
 
-[components/MeshRenderer.ts:18](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshRenderer.ts#L18)
+[components/MeshRenderer.ts:18](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshRenderer.ts#L18)
 
 • `set` **mesh**(`mesh`): `void`
 
@@ -115,7 +115,7 @@ ___
 
 #### Defined in
 
-[components/MeshRenderer.ts:22](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshRenderer.ts#L22)
+[components/MeshRenderer.ts:22](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshRenderer.ts#L22)
 
 ___
 
@@ -129,7 +129,7 @@ ___
 
 #### Defined in
 
-[components/MeshRenderer.ts:49](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshRenderer.ts#L49)
+[components/MeshRenderer.ts:52](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshRenderer.ts#L52)
 
 • `set` **receiveShadows**(`receiveShadows`): `void`
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[components/MeshRenderer.ts:53](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshRenderer.ts#L53)
+[components/MeshRenderer.ts:56](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshRenderer.ts#L56)
 
 ## Methods
 
@@ -165,7 +165,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/MeshRenderer.ts:104](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshRenderer.ts#L104)
+[components/MeshRenderer.ts:113](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshRenderer.ts#L113)
 
 ___
 
@@ -185,7 +185,7 @@ ___
 
 #### Defined in
 
-[components/MeshRenderer.ts:62](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshRenderer.ts#L62)
+[components/MeshRenderer.ts:69](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshRenderer.ts#L69)
 
 ___
 
@@ -205,4 +205,4 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/MeshRenderer.ts:57](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshRenderer.ts#L57)
+[components/MeshRenderer.ts:64](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshRenderer.ts#L64)

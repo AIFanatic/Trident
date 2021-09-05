@@ -3,6 +3,7 @@
 
 |Category|Example|Description|
 |-|-|-|
+|ArticulationBody|[ArticulationBody.Chain](https://aifanatic.github.io/Trident/dist-examples/ArticulationBody.Chain.html)| Create a chain of Spherical joints.|
 |ArticulationBody|[ArticulationBody.Prismatic](https://aifanatic.github.io/Trident/dist-examples/ArticulationBody.Prismatic.html)| Create and move a Prismatic joint.|
 |ArticulationBody|[ArticulationBody.Revolute](https://aifanatic.github.io/Trident/dist-examples/ArticulationBody.Revolute.html)| Create and rotate a Revolute joint.|
 |ArticulationBody|[ArticulationBody.Spherical](https://aifanatic.github.io/Trident/dist-examples/ArticulationBody.Spherical.html)| Create and rotate a Spherical joint.|

@@ -6,47 +6,47 @@
 
 ### Enumeration members
 
-- [FIXED](ArticulationJointType.md#fixed)
-- [PRISMATIC](ArticulationJointType.md#prismatic)
-- [REVOLUTE](ArticulationJointType.md#revolute)
-- [SPHERICAL](ArticulationJointType.md#spherical)
+- [FixedJoint](ArticulationJointType.md#fixedjoint)
+- [PrismaticJoint](ArticulationJointType.md#prismaticjoint)
+- [RevoluteJoint](ArticulationJointType.md#revolutejoint)
+- [SphericalJoint](ArticulationJointType.md#sphericaljoint)
 
 ## Enumeration members
 
-### FIXED
+### FixedJoint
 
-• **FIXED** = `0`
+• **FixedJoint** = `0`
 
 #### Defined in
 
-[enums/ArticulationJointType.ts:3](https://github.com/AIFanatic/Trident/blob/8a19b43/src/enums/ArticulationJointType.ts#L3)
+[enums/ArticulationJointType.ts:3](https://github.com/AIFanatic/Trident/blob/de3c278/src/enums/ArticulationJointType.ts#L3)
 
 ___
 
-### PRISMATIC
+### PrismaticJoint
 
-• **PRISMATIC** = `1`
+• **PrismaticJoint** = `1`
 
 #### Defined in
 
-[enums/ArticulationJointType.ts:4](https://github.com/AIFanatic/Trident/blob/8a19b43/src/enums/ArticulationJointType.ts#L4)
+[enums/ArticulationJointType.ts:4](https://github.com/AIFanatic/Trident/blob/de3c278/src/enums/ArticulationJointType.ts#L4)
 
 ___
 
-### REVOLUTE
+### RevoluteJoint
 
-• **REVOLUTE** = `2`
+• **RevoluteJoint** = `2`
 
 #### Defined in
 
-[enums/ArticulationJointType.ts:5](https://github.com/AIFanatic/Trident/blob/8a19b43/src/enums/ArticulationJointType.ts#L5)
+[enums/ArticulationJointType.ts:5](https://github.com/AIFanatic/Trident/blob/de3c278/src/enums/ArticulationJointType.ts#L5)
 
 ___
 
-### SPHERICAL
+### SphericalJoint
 
-• **SPHERICAL** = `3`
+• **SphericalJoint** = `3`
 
 #### Defined in
 
-[enums/ArticulationJointType.ts:6](https://github.com/AIFanatic/Trident/blob/8a19b43/src/enums/ArticulationJointType.ts#L6)
+[enums/ArticulationJointType.ts:6](https://github.com/AIFanatic/Trident/blob/de3c278/src/enums/ArticulationJointType.ts#L6)

@@ -42,7 +42,7 @@ A rectangle area light.
 
 #### Defined in
 
-[components/AreaLight.ts:32](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L32)
+[components/AreaLight.ts:32](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L32)
 
 • `set` **color**(`color`): `void`
 
@@ -58,7 +58,7 @@ A rectangle area light.
 
 #### Defined in
 
-[components/AreaLight.ts:36](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L36)
+[components/AreaLight.ts:36](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L36)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:24](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L24)
+[components/AreaLight.ts:24](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L24)
 
 • `set` **height**(`height`): `void`
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:28](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L28)
+[components/AreaLight.ts:28](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L28)
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:40](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L40)
+[components/AreaLight.ts:40](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L40)
 
 • `set` **intensity**(`intensity`): `void`
 
@@ -118,7 +118,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:44](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L44)
+[components/AreaLight.ts:44](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L44)
 
 ___
 
@@ -132,7 +132,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:48](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L48)
+[components/AreaLight.ts:48](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L48)
 
 • `set` **shadows**(`shadows`): `void`
 
@@ -148,7 +148,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:52](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L52)
+[components/AreaLight.ts:52](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L52)
 
 ___
 
@@ -162,7 +162,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:16](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L16)
+[components/AreaLight.ts:16](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L16)
 
 • `set` **width**(`width`): `void`
 
@@ -178,7 +178,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:20](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L20)
+[components/AreaLight.ts:20](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L20)
 
 ## Methods
 
@@ -198,7 +198,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/AreaLight.ts:86](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L86)
+[components/AreaLight.ts:86](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L86)
 
 ___
 
@@ -218,7 +218,7 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-[components/AreaLight.ts:72](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L72)
+[components/AreaLight.ts:72](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L72)
 
 ___
 
@@ -238,7 +238,7 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/AreaLight.ts:56](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L56)
+[components/AreaLight.ts:56](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L56)
 
 ___
 
@@ -258,7 +258,7 @@ Called once when Gizmos are disabled.
 
 #### Defined in
 
-[components/AreaLight.ts:78](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L78)
+[components/AreaLight.ts:78](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L78)
 
 ___
 
@@ -279,4 +279,4 @@ If Gizmos are enabled before the component is created this method is called once
 
 #### Defined in
 
-[components/AreaLight.ts:65](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/AreaLight.ts#L65)
+[components/AreaLight.ts:65](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/AreaLight.ts#L65)

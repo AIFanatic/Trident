@@ -8,6 +8,5 @@ export { GameObject } from './components/GameObject';
 import * as Components_1 from './components';
 export { Components_1 as Components };
 export { ArticulationJointType } from './enums/ArticulationJointType';
-export { ArticulationMotion } from './enums/ArticulationMotion';
-export { ArticulationAxis } from './enums/ArticulationAxis';
+export { ArticulationDofLock } from './enums/ArticulationDofLock';
 //# sourceMappingURL=index.js.map

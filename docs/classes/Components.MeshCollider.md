@@ -36,7 +36,7 @@ A MeshCollider can either be convex or a trimesh.
 
 #### Defined in
 
-[components/MeshCollider.ts:29](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshCollider.ts#L29)
+[components/MeshCollider.ts:29](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshCollider.ts#L29)
 
 • `set` **isConvex**(`isConvex`): `void`
 
@@ -52,7 +52,7 @@ A MeshCollider can either be convex or a trimesh.
 
 #### Defined in
 
-[components/MeshCollider.ts:33](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshCollider.ts#L33)
+[components/MeshCollider.ts:33](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshCollider.ts#L33)
 
 ## Methods
 
@@ -70,4 +70,4 @@ Collider.OnEnable
 
 #### Defined in
 
-[components/MeshCollider.ts:44](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/MeshCollider.ts#L44)
+[components/MeshCollider.ts:44](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshCollider.ts#L44)

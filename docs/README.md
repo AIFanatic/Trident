@@ -10,9 +10,8 @@
 
 ### Enumerations
 
-- [ArticulationAxis](enums/ArticulationAxis.md)
+- [ArticulationDofLock](enums/ArticulationDofLock.md)
 - [ArticulationJointType](enums/ArticulationJointType.md)
-- [ArticulationMotion](enums/ArticulationMotion.md)
 - [KeyCodes](enums/KeyCodes.md)
 - [LayerMask](enums/LayerMask.md)
 

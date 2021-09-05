@@ -36,4 +36,4 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/Capsule.ts:13](https://github.com/AIFanatic/Trident/blob/8a19b43/src/components/Capsule.ts#L13)
+[components/Capsule.ts:13](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/Capsule.ts#L13)
