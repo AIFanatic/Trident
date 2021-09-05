@@ -9,5 +9,4 @@ export { GameObject } from './components/GameObject';
 export * as Components from './components';
 
 export { ArticulationJointType } from './enums/ArticulationJointType';
-export { ArticulationMotion } from './enums/ArticulationMotion';
-export { ArticulationAxis } from './enums/ArticulationAxis';
+export { ArticulationDofLock } from './enums/ArticulationDofLock';

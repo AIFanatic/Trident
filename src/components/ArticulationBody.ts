@@ -1,27 +1,19 @@
 import PhysX from "trident-physx-js-webidl";
 import { ArticulationAxis } from "../enums/ArticulationAxis";
 import { ArticulationJointType } from "../enums/ArticulationJointType";
-import { ArticulationMotion } from "../enums/ArticulationMotion";
+import { ArticulationDofLock } from "../enums/ArticulationDofLock";
 import { Collider } from "./Collider";
 import { Component } from "./Component";
 
 class JointDriver {
     private joint: PhysX.PxArticulationJointReducedCoordinate;
-    private _axis: ArticulationAxis;
+    private axis: ArticulationAxis;
 
     private _stiffness = 0;
     private _damping = 0;
     private _forceLimit = 1000;
     private _lowerLimit = 0;
     private _upperLimit = 0;
-
-    public get axis(): ArticulationAxis {
-        return this._axis;
-    }
-
-    public set axis(axis: ArticulationAxis) {
-        this._axis = axis;
-    }
 
     public get lowerLimit(): number {
         return this._lowerLimit;
@@ -95,167 +87,7 @@ class JointDriver {
 
     constructor(joint: PhysX.PxArticulationJointReducedCoordinate, axis: ArticulationAxis) {
         this.joint = joint;
-        // @ts-ignore
         this.axis = axis;
-    }
-}
-
-class JointTypeBase {
-    public xDrive: JointDriver;
-    public yDrive: JointDriver;
-    public zDrive: JointDriver;
-    protected joint: PhysX.PxArticulationJointReducedCoordinate;
-}
-
-class JointTypeFixed extends JointTypeBase {
-    constructor(joint: PhysX.PxArticulationJointReducedCoordinate) {
-        super();
-        this.joint = joint;
-        // @ts-ignore
-        joint.setJointType(ArticulationJointType.FIXED);
-    }
-}
-
-class JointTypeRevolute extends JointTypeBase {
-
-    public get motion(): ArticulationMotion.FREE | ArticulationMotion.LIMITED {
-        // @ts-ignore
-        return this.joint.getMotion(ArticulationAxis.SWING2);
-    }
-
-    public set motion(motion: ArticulationMotion.FREE | ArticulationMotion.LIMITED) {
-        // @ts-ignore
-        this.joint.setMotion(ArticulationAxis.SWING2, motion);
-    }
-
-    constructor(joint: PhysX.PxArticulationJointReducedCoordinate) {
-        super();
-        this.joint = joint;
-        this.xDrive = new JointDriver(joint, ArticulationAxis.SWING2);
-
-        // @ts-ignore
-        joint.setJointType(ArticulationJointType.REVOLUTE);
-        // @ts-ignore
-        joint.setMotion(ArticulationAxis.SWING2, ArticulationMotion.FREE);
-    }
-}
-
-class JointTypeSpherical extends JointTypeBase {
-    public get swingY(): ArticulationMotion {
-        // @ts-ignore
-        return this.joint.getMotion(ArticulationAxis.SWING1);
-    }
-    
-    public set swingY(swingY: ArticulationMotion) {
-        // @ts-ignore
-        return this.joint.setMotion(ArticulationAxis.SWING1, swingY);
-    }
-
-    public get swingZ(): ArticulationMotion {
-        // @ts-ignore
-        return this.joint.getMotion(ArticulationAxis.SWING2);
-    }
-    
-    public set swingZ(swingZ: ArticulationMotion) {
-        // @ts-ignore
-        return this.joint.setMotion(ArticulationAxis.SWING2, swingZ);
-    }
-
-    public get twist(): ArticulationMotion {
-        // @ts-ignore
-        return this.joint.getMotion(ArticulationAxis.TWIST);
-    }
-    
-    public set twist(twist: ArticulationMotion) {
-        // @ts-ignore
-        return this.joint.setMotion(ArticulationAxis.TWIST, twist);
-    }
-
-    constructor(joint: PhysX.PxArticulationJointReducedCoordinate) {
-        super();
-        this.joint = joint;
-        this.xDrive = new JointDriver(joint, ArticulationAxis.SWING1);
-        this.yDrive = new JointDriver(joint, ArticulationAxis.SWING2);
-        this.zDrive = new JointDriver(joint, ArticulationAxis.TWIST);
-
-        // @ts-ignore
-        joint.setJointType(ArticulationJointType.SPHERICAL);
-        // @ts-ignore
-        joint.setMotion(ArticulationAxis.SWING1, ArticulationMotion.FREE);
-        // @ts-ignore
-        joint.setMotion(ArticulationAxis.SWING2, ArticulationMotion.FREE);
-        // @ts-ignore
-        joint.setMotion(ArticulationAxis.TWIST, ArticulationMotion.FREE);
-    }
-}
-
-class JointTypePrismatic  extends JointTypeBase {
-    private physicsScene: PhysX.PxScene;
-    private articulation: PhysX.PxArticulationReducedCoordinate;
-    private _axis: ArticulationAxis.X | ArticulationAxis.Y | ArticulationAxis.Z;
-    private drive: JointDriver;
-
-    public get motion(): ArticulationMotion.FREE | ArticulationMotion.LIMITED {
-        // @ts-ignore
-        return this.joint.getMotion(this._axis);
-    }
-
-    public set motion(motion: ArticulationMotion.FREE | ArticulationMotion.LIMITED) {
-        // @ts-ignore
-        this.joint.setMotion(this._axis, motion);
-    }
-
-    public get axis() {
-        return this._axis;
-    }
-
-    public set axis(axis: ArticulationAxis.X | ArticulationAxis.Y | ArticulationAxis.Z) {
-        if (this._axis == axis) return;
-
-        this.physicsScene.removeArticulation(this.articulation);
-
-        this.xDrive = undefined;
-        this.yDrive = undefined;
-        this.zDrive = undefined;
-
-        // @ts-ignore
-        this.joint.setMotion(this._axis, ArticulationMotion.LOCKED);
-        // @ts-ignore
-        this.joint.setMotion(axis, ArticulationMotion.FREE);
-
-        if (axis == ArticulationAxis.X) {
-            this.drive.axis = ArticulationAxis.X;
-            this.xDrive = this.drive;
-        }
-        else if (axis == ArticulationAxis.Y) {
-            this.drive.axis = ArticulationAxis.Y;
-            this.yDrive = this.drive;
-        }
-        else if (axis == ArticulationAxis.Z) {
-            this.drive.axis = ArticulationAxis.Z;
-            this.zDrive = this.drive;
-        }
-
-        this.physicsScene.addArticulation(this.articulation);
-
-        this._axis = axis;
-    }
-
-    constructor(physicsScene: PhysX.PxScene, articulation: PhysX.PxArticulationReducedCoordinate, joint: PhysX.PxArticulationJointReducedCoordinate) {
-        super();
-        this.physicsScene = physicsScene;
-        this.articulation = articulation;
-        this.joint = joint;
-
-        this.drive = new JointDriver(joint, ArticulationAxis.X);
-        
-        // @ts-ignore
-        joint.setJointType(ArticulationJointType.PRISMATIC);
-        // @ts-ignore
-        joint.setMotion(ArticulationAxis.X, ArticulationMotion.FREE);
-
-        this.xDrive = this.drive;
-        this._axis = ArticulationAxis.X;
     }
 }
 
@@ -267,7 +99,9 @@ class JointTypePrismatic  extends JointTypeBase {
  * @noInheritDoc
  */
 export class ArticulationBody extends Component {
-    public joint: JointTypeFixed | JointTypePrismatic | JointTypeRevolute | JointTypeSpherical;
+    public xDrive: JointDriver;
+    public yDrive: JointDriver;
+    public zDrive: JointDriver;
 
     private articulation: PhysX.PxArticulationReducedCoordinate;
     private link: PhysX.PxArticulationLink;
@@ -275,7 +109,6 @@ export class ArticulationBody extends Component {
     
     private physics: PhysX.PxPhysics;
     private physicsScene: PhysX.PxScene;
-
 
     public get immovable(): boolean {
         const flags = this.articulation.getArticulationFlags();
@@ -288,79 +121,238 @@ export class ArticulationBody extends Component {
         this.articulation.setArticulationFlag(PhysX.eFIX_BASE, immovable);
     }
 
-    public get articulationJointType(): ArticulationJointType {
+    public get jointType(): ArticulationJointType {
         // @ts-ignore
         return this.inboundJoint.getJointType();
     }
 
-    public set articulationJointType(articulationJointType: ArticulationJointType) {
+    public set jointType(jointType: ArticulationJointType) {
         if (this.inboundJoint) {
-            if (articulationJointType == ArticulationJointType.FIXED) {
-                this.joint = new JointTypeFixed(this.inboundJoint);
+            if (jointType == ArticulationJointType.FixedJoint) {
+                // @ts-ignore
+                this.inboundJoint.setJointType(ArticulationJointType.FixedJoint);
             }
-            else if (articulationJointType == ArticulationJointType.PRISMATIC) {
-                this.joint = new JointTypePrismatic(this.gameObject.scene.GetPhysics().GetScene(), this.articulation, this.inboundJoint);
+            else if (jointType == ArticulationJointType.PrismaticJoint) {
+                // @ts-ignore
+                this.inboundJoint.setJointType(ArticulationJointType.PrismaticJoint);
+                this.xDrive = new JointDriver(this.inboundJoint, ArticulationAxis.X);
+                this.yDrive = new JointDriver(this.inboundJoint, ArticulationAxis.Y);
+                this.zDrive = new JointDriver(this.inboundJoint, ArticulationAxis.Z);
+                
+                this.linearLockX = ArticulationDofLock.FreeMotion;
             }
-            else if (articulationJointType == ArticulationJointType.REVOLUTE) {
-                this.joint = new JointTypeRevolute(this.inboundJoint);
+            else if (jointType == ArticulationJointType.RevoluteJoint) {
+                // @ts-ignore
+                this.inboundJoint.setJointType(ArticulationJointType.RevoluteJoint);
+                this.xDrive = new JointDriver(this.inboundJoint, ArticulationAxis.SWING1);
+                this.yDrive = undefined;
+                this.zDrive = undefined;
+                
+                this.swingZLock = ArticulationDofLock.FreeMotion;
             }
-            else if (articulationJointType == ArticulationJointType.SPHERICAL) {
-                this.joint = new JointTypeSpherical(this.inboundJoint);
+            else if (jointType == ArticulationJointType.SphericalJoint) {
+                // @ts-ignore
+                this.inboundJoint.setJointType(ArticulationJointType.SphericalJoint);
+                this.xDrive = new JointDriver(this.inboundJoint, ArticulationAxis.TWIST);
+                this.yDrive = new JointDriver(this.inboundJoint, ArticulationAxis.SWING2);
+                this.zDrive = new JointDriver(this.inboundJoint, ArticulationAxis.SWING1);
+                
+                this.twistLock = ArticulationDofLock.FreeMotion;
+                this.swingYLock = ArticulationDofLock.FreeMotion;
+                this.swingZLock = ArticulationDofLock.FreeMotion;
             }
         }
+    }
+
+    // TOOD: Why does the articulation need to be re-added? May have to do with existing forces
+    private setLinearLock(axis: ArticulationAxis, motion: ArticulationDofLock) {
+        // A Prismatic joint can only have one active axis and the articulation needs to be re-added to the scene.
+        if (this.jointType == ArticulationJointType.PrismaticJoint) {
+            this.physicsScene.removeArticulation(this.articulation);
+            // @ts-ignore
+            this.inboundJoint.setMotion(ArticulationAxis.X, ArticulationDofLock.LockedMotion);
+            // @ts-ignore
+            this.inboundJoint.setMotion(ArticulationAxis.Y, ArticulationDofLock.LockedMotion);
+            // @ts-ignore
+            this.inboundJoint.setMotion(ArticulationAxis.Z, ArticulationDofLock.LockedMotion);
+            // @ts-ignore
+            this.inboundJoint.setMotion(axis, motion);
+
+            this.physicsScene.addArticulation(this.articulation);
+            return;
+        }
+
+        // @ts-ignore
+        this.inboundJoint.setMotion(axis, motion);
+    }
+
+    public get linearLockX(): ArticulationDofLock {
+        // @ts-ignore
+        return this.inboundJoint.getMotion(ArticulationAxis.X);
+    }
+
+    public set linearLockX(linearLockX: ArticulationDofLock) {
+        this.setLinearLock(ArticulationAxis.X, linearLockX);
+    }
+
+    public get linearLockY(): ArticulationDofLock {
+        // @ts-ignore
+        return this.inboundJoint.getMotion(ArticulationAxis.Y);
+    }
+
+    public set linearLockY(linearLockY: ArticulationDofLock) {
+        this.setLinearLock(ArticulationAxis.Y, linearLockY);
+    }
+
+    public get linearLockZ(): ArticulationDofLock {
+        // @ts-ignore
+        return this.inboundJoint.getMotion(ArticulationAxis.Z);
+    }
+
+    public set linearLockZ(linearLockZ: ArticulationDofLock) {
+        this.setLinearLock(ArticulationAxis.Z, linearLockZ);
+    }
+
+    // TOOD: Why does the articulation need to be re-added? May have to do with existing forces
+    private setSwingLock(axis: ArticulationAxis, motion: ArticulationDofLock) {
+        // A Spherical joint needs to be re-added to the scene.
+        if (this.jointType == ArticulationJointType.SphericalJoint) {
+            this.physicsScene.removeArticulation(this.articulation);
+            // @ts-ignore
+            this.inboundJoint.setMotion(axis, motion);
+
+            this.physicsScene.addArticulation(this.articulation);
+            return;
+        }
+
+        // @ts-ignore
+        this.inboundJoint.setMotion(axis, motion);
+    }
+
+    public get swingYLock(): ArticulationDofLock {
+        // @ts-ignore
+        return this.inboundJoint.getMotion(ArticulationAxis.SWING2);
+    }
+
+    public set swingYLock(swingYLock: ArticulationDofLock) {
+        this.setSwingLock(ArticulationAxis.SWING2, swingYLock);
+    }
+
+    public get swingZLock(): ArticulationDofLock {
+        // @ts-ignore
+        return this.inboundJoint.getMotion(ArticulationAxis.SWING1);
+    }
+
+    public set swingZLock(swingZLock: ArticulationDofLock) {
+        this.setSwingLock(ArticulationAxis.SWING1, swingZLock);
+    }
+
+    public get twistLock(): ArticulationDofLock {
+        // @ts-ignore
+        return this.inboundJoint.getMotion(ArticulationAxis.TWIST);
+    }
+
+    public set twistLock(twistLock: ArticulationDofLock) {
+        this.setSwingLock(ArticulationAxis.TWIST, twistLock);
+    }
+
+    public get mass(): number {
+        return this.link.getMass();
+    }
+
+    public set mass(mass: number) {
+        this.link.setMass(mass);
     }
 
     public OnEnable() {
         this.physics = this.gameObject.scene.GetPhysics().GetPhysics();
         this.physicsScene = this.gameObject.scene.GetPhysics().GetScene();
         
-        const position = new PhysX.PxVec3(this.transform.localPosition.x, this.transform.localPosition.y, this.transform.localPosition.z);
-        const rotation = new PhysX.PxQuat(this.transform.localRotation.x, this.transform.localRotation.y, this.transform.localRotation.z, this.transform.localRotation.w);
-        const pose = new PhysX.PxTransform(position, rotation);
-        
-        if (this.transform.parent) {
-            const parentArticulation = this.transform.parent.gameObject.GetComponent(ArticulationBody) as ArticulationBody;
+        const parentArticulation: ArticulationBody = this.transform.parent ? this.transform.parent.gameObject.GetComponent(ArticulationBody) : null;
 
-            if (parentArticulation) {
-                
-                this.articulation = parentArticulation.articulation;
-                // Articulation needs to be removed and added to the scene
-                this.physicsScene.removeArticulation(this.articulation);
-                this.link = this.articulation.createLink(parentArticulation.link, pose);
-                
-                const collider = this.gameObject.GetComponent(Collider) as Collider;
-                if (collider) {
-                    collider.body.rigidbody.detachShape(collider.body.shape);
-                    this.link.attachShape(collider.body.shape);
-                    // @ts-ignore
-                    PhysX.PxRigidBodyExt.prototype.updateMassAndInertia(this.link, 1);
-                }
-
-                const inboundJoint = this.link.getInboundJoint();
-                // @ts-ignore
-                this.inboundJoint = PhysX.castObject(inboundJoint, PhysX.PxArticulationJointReducedCoordinate);
-
-                this.articulationJointType = ArticulationJointType.FIXED;
-
-                this.physicsScene.addArticulation(this.articulation);
+        if (parentArticulation) {
+            const position = new PhysX.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+            const rotation = new PhysX.PxQuat(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z, this.transform.rotation.w);
+            const pose = new PhysX.PxTransform(position, rotation);
+            
+            this.articulation = parentArticulation.articulation;
+            this.physicsScene.removeArticulation(this.articulation);
+            this.link = this.articulation.createLink(parentArticulation.link, pose);
+            
+            const collider = this.gameObject.GetComponent(Collider) as Collider;
+            if (collider) {
+                collider.body.rigidbody.detachShape(collider.body.shape);
+                this.link.attachShape(collider.body.shape);
             }
+
+            const inboundJoint = this.link.getInboundJoint();
+            // @ts-ignore
+            this.inboundJoint = PhysX.castObject(inboundJoint, PhysX.PxArticulationJointReducedCoordinate);
+
+
+            const p = this.transform.position.clone().sub(this.transform.parent.position);
+            const localPosition = new PhysX.PxVec3(p.x, p.y, p.z);
+            const localRotation = new PhysX.PxQuat(this.transform.localRotation.x, this.transform.localRotation.y, this.transform.localRotation.z, this.transform.localRotation.w);
+            const localPose = new PhysX.PxTransform(localPosition, localRotation);
+            
+            this.inboundJoint.setParentPose(localPose);
+
+            this.jointType = ArticulationJointType.FixedJoint;
+
+            this.physicsScene.addArticulation(this.articulation);
         }
         else {
+            const position = new PhysX.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+            const rotation = new PhysX.PxQuat(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z, this.transform.rotation.w);
+            const pose = new PhysX.PxTransform(position, rotation);
+
             this.articulation = this.physics.createArticulationReducedCoordinate();
             this.link = this.articulation.createLink(null, pose);
             this.physicsScene.addArticulation(this.articulation);
         }
+
+        this.link.setLinearDamping(0.05);
+        this.link.setAngularDamping(0.05);
+        if (this.inboundJoint) {
+            this.inboundJoint.setFrictionCoefficient(0.05);
+        }
+        this.mass = 1;
+
+        // @ts-ignore
+        PhysX.PxRigidBodyExt.prototype.updateMassAndInertia(this.link, 1);
     }
 
     public FixedUpdate() {
+        if (!this.link) return;
+        if (!this.inboundJoint) return;
+
         const pose = this.link.getGlobalPose();
 
-        this.transform.position.set(pose.p.x, pose.p.y, pose.p.z);
+        // Prismatic joints move the position while spherical and revolute joints move the rotation.
+        // Positions are updated by THREE since they are grouped/parented.
+        if (this.inboundJoint && this.jointType && this.jointType == ArticulationJointType.PrismaticJoint) {
+            this.transform.position.set(pose.p.x, pose.p.y, pose.p.z);
+        }
         this.transform.rotation.set(pose.q.x, pose.q.y, pose.q.z, pose.q.w);
 
         // No lazy articulations
         if (this.articulation) {
             this.articulation.wakeUp();
         }
+    }
+
+    public Destroy() {
+        // TODO: Check if link is leaf
+        if (this.link) {
+            const collider = this.gameObject.GetComponent(Collider) as Collider;
+            if (collider) {
+                this.link.detachShape(collider.body.shape);
+                collider.body.rigidbody.attachShape(collider.body.shape);
+            }
+            this.link.release();
+            this.link = undefined;
+            this.inboundJoint = undefined;
+        }
+        this.gameObject.RemoveComponent(this);
     }
 }
