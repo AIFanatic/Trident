@@ -24,6 +24,15 @@ var __reExport = (target, module, desc) => {
 var __toModule = (module) => {
   return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", module && module.__esModule && "default" in module ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
 };
+var __decorateClass = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc(target, key) : target;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp(target, key, result);
+  return result;
+};
 
 // node_modules/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.js
 var require_trident_physx_js_webidl_wasm = __commonJS({
@@ -57311,6 +57320,40 @@ var Object3DExtended = class extends Object3D {
   }
 };
 
+// src/utils/SerializeField.ts
+var SerializableTypes = class {
+  constructor() {
+    this.types = new Map();
+  }
+  has(classname, property) {
+    return this.types.has(classname + "-" + property);
+  }
+  get(classname, property) {
+    return this.types.get(classname + "-" + property);
+  }
+  set(classname, property, type) {
+    this.types.set(classname + "-" + property, type);
+  }
+  size() {
+    return this.types.size;
+  }
+};
+var SerializableTypesInstance = new SerializableTypes();
+function SerializeField(type, propertyKey, descriptor) {
+  if (descriptor) {
+    descriptor.enumerable = true;
+    return;
+  }
+  function _SerializeField(target, propertyKey2, descriptor2) {
+    const classname = target.constructor.name;
+    if (!SerializableTypesInstance.has(classname, propertyKey2)) {
+      SerializableTypesInstance.set(classname, propertyKey2, type);
+      descriptor2.enumerable = true;
+    }
+  }
+  return _SerializeField;
+}
+
 // src/components/Transform.ts
 var Transform = class {
   constructor(gameObject) {
@@ -57419,6 +57462,15 @@ var Transform = class {
     this.group.clear();
   }
 };
+__decorateClass([
+  SerializeField
+], Transform.prototype, "localPosition", 1);
+__decorateClass([
+  SerializeField
+], Transform.prototype, "localEulerAngles", 1);
+__decorateClass([
+  SerializeField
+], Transform.prototype, "localScale", 1);
 
 // src/enums/LayerMask.ts
 var LayerMask;
@@ -57448,6 +57500,7 @@ var GameObject = class {
     }
     this.scene = scene;
     this.transform = new Transform(this);
+    this.name = "GameObject";
     this.scene.AddGameObject(this);
   }
   IsValidComponent(object) {
@@ -57578,11 +57631,24 @@ var GameObject = class {
     for (let component of componentsCopy) {
       component.Destroy();
     }
+    for (let potentialChild of this.scene.gameObjects) {
+      if (potentialChild.transform.parent === this.transform) {
+        potentialChild.Destroy();
+      }
+    }
     this.scene.RemoveGameObject(this);
   }
 };
 
 // src/Renderer.ts
+var RendererConfigurationDefaults = {
+  containerId: null,
+  targetFrameRate: 60,
+  antialias: true,
+  logarithmicDepthBuffer: false,
+  pixelRatio: 1,
+  physicallyCorrectLights: false
+};
 var Renderer = class {
   constructor(config, loadedCb) {
     this.now = 0;
@@ -57593,9 +57659,12 @@ var Renderer = class {
     this.frameCount = 0;
     this.currentFps = 0;
     const scene = new Scene();
-    this.canvas = document.getElementById(config.containerId);
-    const renderer = new WebGLRenderer({ canvas: this.canvas, logarithmicDepthBuffer: true });
+    const _config = Object.assign({}, RendererConfigurationDefaults, config);
+    this.canvas = document.getElementById(_config.containerId);
+    const renderer = new WebGLRenderer({ canvas: this.canvas, logarithmicDepthBuffer: _config.logarithmicDepthBuffer, antialias: _config.antialias });
+    renderer.physicallyCorrectLights = _config.physicallyCorrectLights;
     renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
+    renderer.setPixelRatio(window.devicePixelRatio * _config.pixelRatio);
     this.scene = scene;
     this.renderer = renderer;
     this.fpsInterval = 1e3 / config.targetFrameRate;
@@ -57962,6 +58031,15 @@ var Camera2 = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__decorateClass([
+  SerializeField
+], Camera2.prototype, "far", 1);
+__decorateClass([
+  SerializeField
+], Camera2.prototype, "near", 1);
+__decorateClass([
+  SerializeField
+], Camera2.prototype, "fieldOfView", 1);
 
 // src/components/index.ts
 var components_exports = {};
@@ -58011,6 +58089,9 @@ var MeshFilter = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__decorateClass([
+  SerializeField
+], MeshFilter.prototype, "mesh", 1);
 
 // src/defaults/MeshRendererDefaults.ts
 var MeshRendererDefaults = class {
@@ -58081,6 +58162,7 @@ var MeshRenderer = class extends Component {
     const geometry = this.GetMeshFromMeshFilter();
     if (geometry) {
       this.mesh = new Mesh(geometry, this.material);
+      this.mesh.userData.transform = this.transform;
       this.castShadows = true;
       this.receiveShadows = true;
     }
@@ -58103,6 +58185,15 @@ var MeshRenderer = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__decorateClass([
+  SerializeField
+], MeshRenderer.prototype, "material", 1);
+__decorateClass([
+  SerializeField
+], MeshRenderer.prototype, "castShadows", 1);
+__decorateClass([
+  SerializeField
+], MeshRenderer.prototype, "receiveShadows", 1);
 
 // src/components/Rigidbody.ts
 var import_trident_physx_js_webidl8 = __toModule(require_trident_physx_js_webidl_wasm());
@@ -58589,6 +58680,18 @@ var Rigidbody = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__decorateClass([
+  SerializeField
+], Rigidbody.prototype, "isKinematic", 1);
+__decorateClass([
+  SerializeField
+], Rigidbody.prototype, "mass", 1);
+__decorateClass([
+  SerializeField
+], Rigidbody.prototype, "drag", 1);
+__decorateClass([
+  SerializeField
+], Rigidbody.prototype, "angularDrag", 1);
 
 // src/components/BoxCollider.ts
 var BoxCollider = class extends Collider {
@@ -59140,10 +59243,10 @@ var PointLight2 = class extends Component {
     this.light.distance = range;
   }
   get color() {
-    return this.light.color.getHex();
+    return this.light.color;
   }
   set color(color) {
-    this.light.color.setHex(color);
+    this.light.color.copy(color);
   }
   get intensity() {
     return this.light.intensity;
@@ -59186,14 +59289,26 @@ var PointLight2 = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__decorateClass([
+  SerializeField
+], PointLight2.prototype, "range", 1);
+__decorateClass([
+  SerializeField
+], PointLight2.prototype, "color", 1);
+__decorateClass([
+  SerializeField
+], PointLight2.prototype, "intensity", 1);
+__decorateClass([
+  SerializeField
+], PointLight2.prototype, "shadows", 1);
 
 // src/components/DirectionalLight.ts
 var DirectionalLight2 = class extends Component {
   get color() {
-    return this.light.color.getHex();
+    return this.light.color;
   }
   set color(color) {
-    this.light.color.setHex(color);
+    this.light.color.copy(color);
   }
   get intensity() {
     return this.light.intensity;
@@ -59236,6 +59351,15 @@ var DirectionalLight2 = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__decorateClass([
+  SerializeField
+], DirectionalLight2.prototype, "color", 1);
+__decorateClass([
+  SerializeField
+], DirectionalLight2.prototype, "intensity", 1);
+__decorateClass([
+  SerializeField
+], DirectionalLight2.prototype, "shadows", 1);
 
 // src/components/SpotLight.ts
 var SpotLight2 = class extends Component {
@@ -59252,10 +59376,10 @@ var SpotLight2 = class extends Component {
     this.light.distance = range;
   }
   get color() {
-    return this.light.color.getHex();
+    return this.light.color;
   }
   set color(color) {
-    this.light.color.setHex(color);
+    this.light.color.copy(color);
   }
   get intensity() {
     return this.light.intensity;
@@ -59298,6 +59422,21 @@ var SpotLight2 = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__decorateClass([
+  SerializeField
+], SpotLight2.prototype, "spotAngle", 1);
+__decorateClass([
+  SerializeField
+], SpotLight2.prototype, "range", 1);
+__decorateClass([
+  SerializeField
+], SpotLight2.prototype, "color", 1);
+__decorateClass([
+  SerializeField
+], SpotLight2.prototype, "intensity", 1);
+__decorateClass([
+  SerializeField
+], SpotLight2.prototype, "shadows", 1);
 
 // node_modules/three/examples/jsm/helpers/RectAreaLightHelper.js
 function RectAreaLightHelper(light, color) {
@@ -59355,10 +59494,10 @@ var AreaLight = class extends Component {
     this.light.height = height;
   }
   get color() {
-    return this.light.color.getHex();
+    return this.light.color;
   }
   set color(color) {
-    this.light.color.setHex(color);
+    this.light.color.copy(color);
   }
   get intensity() {
     return this.light.intensity;
@@ -59401,6 +59540,21 @@ var AreaLight = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__decorateClass([
+  SerializeField
+], AreaLight.prototype, "width", 1);
+__decorateClass([
+  SerializeField
+], AreaLight.prototype, "height", 1);
+__decorateClass([
+  SerializeField
+], AreaLight.prototype, "color", 1);
+__decorateClass([
+  SerializeField
+], AreaLight.prototype, "intensity", 1);
+__decorateClass([
+  SerializeField
+], AreaLight.prototype, "shadows", 1);
 
 // src/components/ArticulationBody.ts
 var import_trident_physx_js_webidl9 = __toModule(require_trident_physx_js_webidl_wasm());
@@ -59493,7 +59647,7 @@ var JointDriver = class {
     this.joint.setDriveVelocity(this.axis, targetVelocity);
   }
 };
-var ArticulationBody = class extends Component {
+var _ArticulationBody = class extends Component {
   get immovable() {
     const flags = this.articulation.getArticulationFlags();
     return flags.isSet(import_trident_physx_js_webidl9.default.eFIX_BASE);
@@ -59597,7 +59751,7 @@ var ArticulationBody = class extends Component {
   OnEnable() {
     this.physics = this.gameObject.scene.GetPhysics().GetPhysics();
     this.physicsScene = this.gameObject.scene.GetPhysics().GetScene();
-    const parentArticulation = this.transform.parent ? this.transform.parent.gameObject.GetComponent(ArticulationBody) : null;
+    const parentArticulation = this.transform.parent ? this.transform.parent.gameObject.GetComponent(_ArticulationBody) : null;
     if (parentArticulation) {
       const position = new import_trident_physx_js_webidl9.default.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
       const rotation = new import_trident_physx_js_webidl9.default.PxQuat(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z, this.transform.rotation.w);
@@ -59663,6 +59817,34 @@ var ArticulationBody = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+var ArticulationBody = _ArticulationBody;
+__decorateClass([
+  SerializeField
+], ArticulationBody.prototype, "immovable", 1);
+__decorateClass([
+  SerializeField(ArticulationJointType)
+], ArticulationBody.prototype, "jointType", 1);
+__decorateClass([
+  SerializeField(ArticulationDofLock)
+], ArticulationBody.prototype, "linearLockX", 1);
+__decorateClass([
+  SerializeField(ArticulationDofLock)
+], ArticulationBody.prototype, "linearLockY", 1);
+__decorateClass([
+  SerializeField(ArticulationDofLock)
+], ArticulationBody.prototype, "linearLockZ", 1);
+__decorateClass([
+  SerializeField(ArticulationDofLock)
+], ArticulationBody.prototype, "swingYLock", 1);
+__decorateClass([
+  SerializeField(ArticulationDofLock)
+], ArticulationBody.prototype, "swingZLock", 1);
+__decorateClass([
+  SerializeField(ArticulationDofLock)
+], ArticulationBody.prototype, "twistLock", 1);
+__decorateClass([
+  SerializeField
+], ArticulationBody.prototype, "mass", 1);
 
 // src/Scene.ts
 var Scene2 = class {
@@ -59675,9 +59857,11 @@ var Scene2 = class {
     this.physics = this.InitializePhysics(physicsConfig);
     this.input = new Input(this);
     const cameraGameObject = new GameObject(this);
+    cameraGameObject.name = "SceneCamera";
     this.camera = cameraGameObject.AddComponent(Camera2);
     this.renderer.renderer.shadowMap.enabled = true;
     const directionalLightGameObject = new GameObject(this);
+    directionalLightGameObject.name = "DirectionalLight";
     directionalLightGameObject.transform.position.set(0, 3, 0);
     directionalLightGameObject.transform.eulerAngles.set(50, 30, 0);
     const directionalLight = directionalLightGameObject.AddComponent(DirectionalLight2);

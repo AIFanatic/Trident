@@ -1,4 +1,5 @@
 import { Component } from "./Component";
+import { Color } from "three";
 /**
  * A rectangle area light.
  *
@@ -11,8 +12,8 @@ export declare class AreaLight extends Component {
     set width(width: number);
     get height(): number;
     set height(height: number);
-    get color(): number;
-    set color(color: number);
+    get color(): Color;
+    set color(color: Color);
     get intensity(): number;
     set intensity(intensity: number);
     get shadows(): boolean;

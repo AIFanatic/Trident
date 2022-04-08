@@ -28,10 +28,6 @@ export declare class Component implements IComponent {
      */
     classname: string;
     /**
-     * Name of the component.
-     */
-    name: string;
-    /**
      * GameObject the this component is attached to.
      */
     gameObject: GameObject;

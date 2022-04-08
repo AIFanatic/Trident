@@ -1,9 +1,16 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 import { TransformDefaults } from '../defaults/TransformDefaults';
 import { ComponentsEnum } from '../enums/ComponentsEnum';
 import { Quaternion } from 'three';
 import { UUID } from '../utils/UUID';
 import { Mathf } from '../utils/Mathf';
 import { Object3DExtended } from '../utils/Object3DExtended';
+import { SerializeField } from '../utils/SerializeField';
 /**
  * Every GameObject has a Transform.
  *
@@ -238,6 +245,15 @@ var Transform = /** @class */ (function () {
         }
         this.group.clear();
     };
+    __decorate([
+        SerializeField
+    ], Transform.prototype, "localPosition", null);
+    __decorate([
+        SerializeField
+    ], Transform.prototype, "localEulerAngles", null);
+    __decorate([
+        SerializeField
+    ], Transform.prototype, "localScale", null);
     return Transform;
 }());
 export { Transform };

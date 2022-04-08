@@ -11,12 +11,19 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 import PhysX from "trident-physx-js-webidl";
 import { ArticulationAxis } from "../enums/ArticulationAxis";
 import { ArticulationJointType } from "../enums/ArticulationJointType";
 import { ArticulationDofLock } from "../enums/ArticulationDofLock";
 import { Collider } from "./Collider";
 import { Component } from "./Component";
+import { SerializeField } from "../utils/SerializeField";
 var JointDriver = /** @class */ (function () {
     function JointDriver(joint, axis) {
         this._stiffness = 0;
@@ -262,6 +269,7 @@ var ArticulationBody = /** @class */ (function (_super) {
             return this.inboundJoint.getMotion(ArticulationAxis.SWING1);
         },
         set: function (swingZLock) {
+            // @ts-ignore
             this.setSwingLock(ArticulationAxis.SWING1, swingZLock);
         },
         enumerable: false,
@@ -363,6 +371,33 @@ var ArticulationBody = /** @class */ (function (_super) {
         }
         this.gameObject.RemoveComponent(this);
     };
+    __decorate([
+        SerializeField
+    ], ArticulationBody.prototype, "immovable", null);
+    __decorate([
+        SerializeField(ArticulationJointType)
+    ], ArticulationBody.prototype, "jointType", null);
+    __decorate([
+        SerializeField(ArticulationDofLock)
+    ], ArticulationBody.prototype, "linearLockX", null);
+    __decorate([
+        SerializeField(ArticulationDofLock)
+    ], ArticulationBody.prototype, "linearLockY", null);
+    __decorate([
+        SerializeField(ArticulationDofLock)
+    ], ArticulationBody.prototype, "linearLockZ", null);
+    __decorate([
+        SerializeField(ArticulationDofLock)
+    ], ArticulationBody.prototype, "swingYLock", null);
+    __decorate([
+        SerializeField(ArticulationDofLock)
+    ], ArticulationBody.prototype, "swingZLock", null);
+    __decorate([
+        SerializeField(ArticulationDofLock)
+    ], ArticulationBody.prototype, "twistLock", null);
+    __decorate([
+        SerializeField
+    ], ArticulationBody.prototype, "mass", null);
     return ArticulationBody;
 }(Component));
 export { ArticulationBody };

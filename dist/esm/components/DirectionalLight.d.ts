@@ -1,4 +1,5 @@
 import { Component } from "./Component";
+import { Color } from "three";
 /**
  * A directional light.
  *
@@ -7,8 +8,8 @@ import { Component } from "./Component";
 export declare class DirectionalLight extends Component {
     private light;
     private helper;
-    get color(): number;
-    set color(color: number);
+    get color(): Color;
+    set color(color: Color);
     get intensity(): number;
     set intensity(intensity: number);
     get shadows(): boolean;

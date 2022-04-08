@@ -1,4 +1,12 @@
 import { Scene, WebGLRenderer } from 'three';
+var RendererConfigurationDefaults = {
+    containerId: null,
+    targetFrameRate: 60,
+    antialias: true,
+    logarithmicDepthBuffer: false,
+    pixelRatio: 1,
+    physicallyCorrectLights: false
+};
 var Renderer = /** @class */ (function () {
     function Renderer(config, loadedCb) {
         var _this = this;
@@ -10,9 +18,12 @@ var Renderer = /** @class */ (function () {
         this.frameCount = 0;
         this.currentFps = 0;
         var scene = new Scene();
-        this.canvas = document.getElementById(config.containerId);
-        var renderer = new WebGLRenderer({ canvas: this.canvas, logarithmicDepthBuffer: true });
+        var _config = Object.assign({}, RendererConfigurationDefaults, config);
+        this.canvas = document.getElementById(_config.containerId);
+        var renderer = new WebGLRenderer({ canvas: this.canvas, logarithmicDepthBuffer: _config.logarithmicDepthBuffer, antialias: _config.antialias });
+        renderer.physicallyCorrectLights = _config.physicallyCorrectLights;
         renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
+        renderer.setPixelRatio(window.devicePixelRatio * _config.pixelRatio);
         this.scene = scene;
         // this.camera = camera;
         this.renderer = renderer;

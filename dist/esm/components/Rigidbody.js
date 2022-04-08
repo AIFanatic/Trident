@@ -11,6 +11,12 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 import PhysX from 'trident-physx-js-webidl';
 import { Quaternion, Vector3 } from 'three';
 import { Component } from "./Component";
@@ -23,6 +29,7 @@ import { RigidbodyConstraints } from '../enums/RigidbodyConstraints';
 import { RigidBodyFlags } from '../enums/RigidbodyFlags';
 import { LayerMask } from '../enums/LayerMask';
 import { Mathf } from '../utils/Mathf';
+import { SerializeField } from '../utils/SerializeField';
 /**
  * RigidBody adds physics properties to an object.
  *
@@ -242,6 +249,18 @@ var Rigidbody = /** @class */ (function (_super) {
         }
         this.gameObject.RemoveComponent(this);
     };
+    __decorate([
+        SerializeField
+    ], Rigidbody.prototype, "isKinematic", null);
+    __decorate([
+        SerializeField
+    ], Rigidbody.prototype, "mass", null);
+    __decorate([
+        SerializeField
+    ], Rigidbody.prototype, "drag", null);
+    __decorate([
+        SerializeField
+    ], Rigidbody.prototype, "angularDrag", null);
     return Rigidbody;
 }(Component));
 export { Rigidbody };

@@ -21,6 +21,7 @@ var GameObject = /** @class */ (function () {
         }
         this.scene = scene;
         this.transform = new Transform(this);
+        this.name = "GameObject";
         this.scene.AddGameObject(this);
     }
     GameObject.prototype.IsValidComponent = function (object) {
@@ -210,6 +211,12 @@ var GameObject = /** @class */ (function () {
         for (var _i = 0, componentsCopy_1 = componentsCopy; _i < componentsCopy_1.length; _i++) {
             var component = componentsCopy_1[_i];
             component.Destroy();
+        }
+        for (var _a = 0, _b = this.scene.gameObjects; _a < _b.length; _a++) {
+            var potentialChild = _b[_a];
+            if (potentialChild.transform.parent === this.transform) {
+                potentialChild.Destroy();
+            }
         }
         this.scene.RemoveGameObject(this);
     };

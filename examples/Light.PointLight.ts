@@ -41,7 +41,7 @@ scene.OnLoaded = () => {
 
     setInterval(() => {
         const color = Math.random() * 0xffffff;
-        lightComponent.color = color;
+        lightComponent.color.setHex(color);
         lightSphereMaterial.color.setHex(color);
     }, 3000);
 

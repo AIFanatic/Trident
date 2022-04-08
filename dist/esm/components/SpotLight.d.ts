@@ -1,4 +1,5 @@
 import { Component } from "./Component";
+import { Color } from "three";
 /**
  * A spot light.
  *
@@ -11,8 +12,8 @@ export declare class SpotLight extends Component {
     set spotAngle(spotAngle: number);
     get range(): number;
     set range(range: number);
-    get color(): number;
-    set color(color: number);
+    get color(): Color;
+    set color(color: Color);
     get intensity(): number;
     set intensity(intensity: number);
     get shadows(): boolean;

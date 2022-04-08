@@ -1,4 +1,5 @@
 import { Component } from "./Component";
+import { Color } from "three";
 /**
  * A point light.
  *
@@ -9,8 +10,8 @@ export declare class PointLight extends Component {
     private helper;
     get range(): number;
     set range(range: number);
-    get color(): number;
-    set color(color: number);
+    get color(): Color;
+    set color(color: Color);
     get intensity(): number;
     set intensity(intensity: number);
     get shadows(): boolean;

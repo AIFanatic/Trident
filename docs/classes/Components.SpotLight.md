@@ -34,15 +34,15 @@ A spot light.
 
 ### color
 
-• `get` **color**(): `number`
+• `get` **color**(): `Color`
 
 #### Returns
 
-`number`
+`Color`
 
 #### Defined in
 
-[components/SpotLight.ts:29](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L29)
+[components/SpotLight.ts:33](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L33)
 
 • `set` **color**(`color`): `void`
 
@@ -50,7 +50,7 @@ A spot light.
 
 | Name | Type |
 | :------ | :------ |
-| `color` | `number` |
+| `color` | `Color` |
 
 #### Returns
 
@@ -58,7 +58,7 @@ A spot light.
 
 #### Defined in
 
-[components/SpotLight.ts:33](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L33)
+[components/SpotLight.ts:37](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L37)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:37](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L37)
+[components/SpotLight.ts:42](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L42)
 
 • `set` **intensity**(`intensity`): `void`
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:41](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L41)
+[components/SpotLight.ts:46](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L46)
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:21](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L21)
+[components/SpotLight.ts:24](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L24)
 
 • `set` **range**(`range`): `void`
 
@@ -118,7 +118,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:25](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L25)
+[components/SpotLight.ts:28](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L28)
 
 ___
 
@@ -132,7 +132,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:45](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L45)
+[components/SpotLight.ts:51](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L51)
 
 • `set` **shadows**(`shadows`): `void`
 
@@ -148,7 +148,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:49](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L49)
+[components/SpotLight.ts:55](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L55)
 
 ___
 
@@ -162,7 +162,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:13](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L13)
+[components/SpotLight.ts:15](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L15)
 
 • `set` **spotAngle**(`spotAngle`): `void`
 
@@ -178,7 +178,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:17](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L17)
+[components/SpotLight.ts:19](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L19)
 
 ## Methods
 
@@ -198,7 +198,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/SpotLight.ts:80](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L80)
+[components/SpotLight.ts:86](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L86)
 
 ___
 
@@ -218,7 +218,7 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-[components/SpotLight.ts:66](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L66)
+[components/SpotLight.ts:72](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L72)
 
 ___
 
@@ -238,7 +238,7 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/SpotLight.ts:53](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L53)
+[components/SpotLight.ts:59](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L59)
 
 ___
 
@@ -258,7 +258,7 @@ Called once when Gizmos are disabled.
 
 #### Defined in
 
-[components/SpotLight.ts:72](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L72)
+[components/SpotLight.ts:78](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L78)
 
 ___
 
@@ -279,4 +279,4 @@ If Gizmos are enabled before the component is created this method is called once
 
 #### Defined in
 
-[components/SpotLight.ts:59](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/SpotLight.ts#L59)
+[components/SpotLight.ts:65](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/SpotLight.ts#L65)

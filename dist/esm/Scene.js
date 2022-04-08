@@ -23,10 +23,12 @@ var Scene = /** @class */ (function () {
         this.input = new Input(this);
         // When a scene is created a camera is created too
         var cameraGameObject = new GameObject(this);
+        cameraGameObject.name = "SceneCamera";
         this.camera = cameraGameObject.AddComponent(Camera);
         this.renderer.renderer.shadowMap.enabled = true;
         // When a scene is created a light is created too
         var directionalLightGameObject = new GameObject(this);
+        directionalLightGameObject.name = "DirectionalLight";
         directionalLightGameObject.transform.position.set(0, 3, 0);
         directionalLightGameObject.transform.eulerAngles.set(50, 30, 0);
         var directionalLight = directionalLightGameObject.AddComponent(DirectionalLight);

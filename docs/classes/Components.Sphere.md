@@ -36,4 +36,4 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/Sphere.ts:11](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/Sphere.ts#L11)
+[components/Sphere.ts:11](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/Sphere.ts#L11)

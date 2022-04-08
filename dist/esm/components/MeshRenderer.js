@@ -11,10 +11,17 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 import { MeshFilter } from "./MeshFilter";
 import { Component } from "./Component";
 import { MeshRendererDefaults } from "../defaults/MeshRendererDefaults";
 import { Mesh } from "three";
+import { SerializeField } from "../utils/SerializeField";
 /**
  * Renders a geometry from MeshFilter into the scene.
  *
@@ -100,6 +107,7 @@ var MeshRenderer = /** @class */ (function (_super) {
         var geometry = this.GetMeshFromMeshFilter();
         if (geometry) {
             this.mesh = new Mesh(geometry, this.material);
+            this.mesh.userData.transform = this.transform;
             this.castShadows = true;
             this.receiveShadows = true;
         }
@@ -121,6 +129,15 @@ var MeshRenderer = /** @class */ (function (_super) {
         this.RemoveMesh();
         this.gameObject.RemoveComponent(this);
     };
+    __decorate([
+        SerializeField
+    ], MeshRenderer.prototype, "material", null);
+    __decorate([
+        SerializeField
+    ], MeshRenderer.prototype, "castShadows", null);
+    __decorate([
+        SerializeField
+    ], MeshRenderer.prototype, "receiveShadows", null);
     return MeshRenderer;
 }(Component));
 export { MeshRenderer };

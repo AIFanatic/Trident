@@ -35,7 +35,7 @@ Stores a geometry that later can be rendered to the scene.
 
 #### Defined in
 
-[components/MeshFilter.ts:11](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshFilter.ts#L11)
+[components/MeshFilter.ts:12](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/MeshFilter.ts#L12)
 
 ## Accessors
 
@@ -49,7 +49,7 @@ Stores a geometry that later can be rendered to the scene.
 
 #### Defined in
 
-[components/MeshFilter.ts:16](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshFilter.ts#L16)
+[components/MeshFilter.ts:18](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/MeshFilter.ts#L18)
 
 • `set` **mesh**(`mesh`): `void`
 
@@ -65,7 +65,7 @@ Stores a geometry that later can be rendered to the scene.
 
 #### Defined in
 
-[components/MeshFilter.ts:20](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshFilter.ts#L20)
+[components/MeshFilter.ts:22](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/MeshFilter.ts#L22)
 
 ## Methods
 
@@ -85,7 +85,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/MeshFilter.ts:26](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshFilter.ts#L26)
+[components/MeshFilter.ts:28](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/MeshFilter.ts#L28)
 
 ___
 
@@ -105,4 +105,4 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/MeshFilter.ts:13](https://github.com/AIFanatic/Trident/blob/de3c278/src/components/MeshFilter.ts#L13)
+[components/MeshFilter.ts:14](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/MeshFilter.ts#L14)
