@@ -15,11 +15,6 @@ export * from "./LineRenderer";
 
 export * from "./Gizmo";
 
-export * from "./Cube";
-export * from "./Sphere";
-export * from "./Capsule";
-export * from "./Plane";
-
 export * from "./PointLight";
 export * from "./DirectionalLight";
 export * from "./SpotLight";

@@ -7,6 +7,7 @@ import { ComponentsEnum } from "../enums/ComponentsEnum";
 
 import { UUID } from '../utils/UUID';
 import { LayerMask } from "../enums/LayerMask";
+import { PrimitiveType } from "../PrimitiveType";
 
 /**
  * The main component of the entity component system.
@@ -51,6 +52,17 @@ export class GameObject implements IComponent {
         }
 
         return false;
+    }
+
+    /**
+    * Attaches a primitive mesh renderer and appropriate collider to this GameObject.
+    * 
+    * @param {PrimitiveType} primitive - The type of primitive object to create.
+    * @returns {GameObject} - Returns the GameObject.
+    */
+    public CreatePrimitive(primitive: typeof PrimitiveType.Cube): GameObject {
+        primitive(this);
+        return this;
     }
 
     /**
