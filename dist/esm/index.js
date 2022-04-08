@@ -9,5 +9,5 @@ import * as Components_1 from './components';
 export { Components_1 as Components };
 export { ArticulationJointType } from './enums/ArticulationJointType';
 export { ArticulationDofLock } from './enums/ArticulationDofLock';
-export { PrimitiveType } from './PrimitiveType';
+export { PrimitiveType } from './enums/PrimitiveType';
 //# sourceMappingURL=index.js.map

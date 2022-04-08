@@ -62,7 +62,7 @@ GameObjects can have any number of components added to them.
 
 #### Defined in
 
-[components/GameObject.ts:30](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L30)
+[components/GameObject.ts:32](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L32)
 
 ## Properties
 
@@ -72,7 +72,7 @@ GameObjects can have any number of components added to them.
 
 #### Defined in
 
-[components/GameObject.ts:21](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L21)
+[components/GameObject.ts:23](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L23)
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:26](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L26)
+[components/GameObject.ts:28](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L28)
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:28](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L28)
+[components/GameObject.ts:30](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L30)
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:22](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L22)
+[components/GameObject.ts:24](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L24)
 
 ___
 
@@ -112,7 +112,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:24](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L24)
+[components/GameObject.ts:26](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L26)
 
 ___
 
@@ -122,7 +122,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:25](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L25)
+[components/GameObject.ts:27](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L27)
 
 ___
 
@@ -136,7 +136,7 @@ IComponent.uuid
 
 #### Defined in
 
-[components/GameObject.ts:20](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L20)
+[components/GameObject.ts:22](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L22)
 
 ## Methods
 
@@ -172,7 +172,7 @@ const customComponent = gameObject.AddComponent(CustomComponent) as CustomCompon
 
 #### Defined in
 
-[components/GameObject.ts:84](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L84)
+[components/GameObject.ts:100](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L100)
 
 ___
 
@@ -195,7 +195,7 @@ Call a method on any attached component that implements it.
 
 #### Defined in
 
-[components/GameObject.ts:117](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L117)
+[components/GameObject.ts:133](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L133)
 
 ___
 
@@ -209,7 +209,7 @@ Attaches a primitive mesh renderer and appropriate collider to this GameObject.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `primitive` | (`gameObject`: [`GameObject`](GameObject.md)) => `void` | The type of primitive object to create. |
+| `primitive` | [`PrimitiveType`](../enums/PrimitiveType.md) | The type of primitive object to create. |
 
 #### Returns
 
@@ -219,7 +219,7 @@ Attaches a primitive mesh renderer and appropriate collider to this GameObject.
 
 #### Defined in
 
-[components/GameObject.ts:63](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L63)
+[components/GameObject.ts:65](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L65)
 
 ___
 
@@ -235,7 +235,7 @@ Remove the GameObject from the scene and all of its components.
 
 #### Defined in
 
-[components/GameObject.ts:252](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L252)
+[components/GameObject.ts:268](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L268)
 
 ___
 
@@ -249,7 +249,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:188](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L188)
+[components/GameObject.ts:204](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L204)
 
 ___
 
@@ -273,7 +273,7 @@ Get the instance of a component with the specified type.
 
 #### Defined in
 
-[components/GameObject.ts:163](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L163)
+[components/GameObject.ts:179](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L179)
 
 ___
 
@@ -297,7 +297,7 @@ Get a list of instances of a component with the specified type.
 
 #### Defined in
 
-[components/GameObject.ts:178](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L178)
+[components/GameObject.ts:194](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L194)
 
 ___
 
@@ -311,7 +311,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:209](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L209)
+[components/GameObject.ts:225](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L225)
 
 ___
 
@@ -325,7 +325,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:131](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L131)
+[components/GameObject.ts:147](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L147)
 
 ___
 
@@ -339,7 +339,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:243](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L243)
+[components/GameObject.ts:259](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L259)
 
 ___
 
@@ -353,7 +353,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:125](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L125)
+[components/GameObject.ts:141](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L141)
 
 ___
 
@@ -367,7 +367,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:237](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L237)
+[components/GameObject.ts:253](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L253)
 
 ___
 
@@ -381,7 +381,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:231](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L231)
+[components/GameObject.ts:247](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L247)
 
 ___
 
@@ -405,7 +405,7 @@ Removes a component from the GameObject.
 
 #### Defined in
 
-[components/GameObject.ts:139](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L139)
+[components/GameObject.ts:155](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L155)
 
 ___
 
@@ -419,7 +419,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:216](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L216)
+[components/GameObject.ts:232](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L232)
 
 ___
 
@@ -433,7 +433,7 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:224](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L224)
+[components/GameObject.ts:240](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L240)
 
 ___
 
@@ -447,4 +447,4 @@ ___
 
 #### Defined in
 
-[components/GameObject.ts:195](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/GameObject.ts#L195)
+[components/GameObject.ts:211](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/GameObject.ts#L211)

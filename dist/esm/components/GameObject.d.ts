@@ -4,7 +4,7 @@ import { Component } from "./Component";
 import { IComponent } from "../interfaces/IComponent";
 import { ComponentsEnum } from "../enums/ComponentsEnum";
 import { LayerMask } from "../enums/LayerMask";
-import { PrimitiveType } from "../PrimitiveType";
+import { PrimitiveType } from "../enums/PrimitiveType";
 /**
  * The main component of the entity component system.
  *
@@ -28,7 +28,7 @@ export declare class GameObject implements IComponent {
     * @param {PrimitiveType} primitive - The type of primitive object to create.
     * @returns {GameObject} - Returns the GameObject.
     */
-    CreatePrimitive(primitive: typeof PrimitiveType.Cube): GameObject;
+    CreatePrimitive(primitive: PrimitiveType): GameObject;
     /**
     * Add a new component to this GameObject.
     *

@@ -2,6 +2,8 @@ import { Transform } from "./Transform";
 import { ComponentsEnum } from "../enums/ComponentsEnum";
 import { UUID } from '../utils/UUID';
 import { LayerMask } from "../enums/LayerMask";
+import { PrimitiveType } from "../enums/PrimitiveType";
+import { Cube, Capsule, Plane, Sphere, Cylinder } from "../primitives";
 /**
  * The main component of the entity component system.
  *
@@ -40,7 +42,21 @@ var GameObject = /** @class */ (function () {
     * @returns {GameObject} - Returns the GameObject.
     */
     GameObject.prototype.CreatePrimitive = function (primitive) {
-        primitive(this);
+        if (primitive == PrimitiveType.Cube) {
+            Cube.Create(this);
+        }
+        else if (primitive == PrimitiveType.Capsule) {
+            Capsule.Create(this);
+        }
+        else if (primitive == PrimitiveType.Plane) {
+            Plane.Create(this);
+        }
+        else if (primitive == PrimitiveType.Sphere) {
+            Sphere.Create(this);
+        }
+        else if (primitive == PrimitiveType.Cylinder) {
+            Cylinder.Create(this);
+        }
         return this;
     };
     /**

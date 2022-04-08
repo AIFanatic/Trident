@@ -34,4 +34,4 @@ Collider.OnEnable
 
 #### Defined in
 
-[components/CapsuleCollider.ts:14](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/CapsuleCollider.ts#L14)
+[components/CapsuleCollider.ts:14](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/CapsuleCollider.ts#L14)

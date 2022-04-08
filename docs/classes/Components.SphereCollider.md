@@ -34,4 +34,4 @@ Collider.OnEnable
 
 #### Defined in
 
-[components/SphereCollider.ts:18](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/SphereCollider.ts#L18)
+[components/SphereCollider.ts:18](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/SphereCollider.ts#L18)

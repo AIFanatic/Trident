@@ -14,10 +14,10 @@
 - [ArticulationJointType](enums/ArticulationJointType.md)
 - [KeyCodes](enums/KeyCodes.md)
 - [LayerMask](enums/LayerMask.md)
+- [PrimitiveType](enums/PrimitiveType.md)
 
 ### Classes
 
 - [GameObject](classes/GameObject.md)
 - [Input](classes/Input.md)
-- [PrimitiveType](classes/PrimitiveType.md)
 - [Scene](classes/Scene.md)
