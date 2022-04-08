@@ -2,6 +2,15 @@ import { IRendererConfiguration } from './interfaces/IRendererConfiguration';
 
 import {PerspectiveCamera, Scene, WebGLRenderer} from 'three';
 
+const RendererConfigurationDefaults: IRendererConfiguration = {
+    containerId: null,
+    targetFrameRate: 60,
+    antialias: true,
+    logarithmicDepthBuffer: false,
+    pixelRatio: 1,
+    physicallyCorrectLights: false
+}
+
 export class Renderer {
     public scene: Scene;
     // public camera: PerspectiveCamera;
@@ -20,10 +29,14 @@ export class Renderer {
     constructor(config: IRendererConfiguration, loadedCb?:() => void) {
         const scene = new Scene();
 
-        this.canvas = document.getElementById(config.containerId) as HTMLCanvasElement;
-        const renderer = new WebGLRenderer({canvas: this.canvas, logarithmicDepthBuffer: true});
+        const _config = Object.assign({}, RendererConfigurationDefaults, config);
 
+        this.canvas = document.getElementById(_config.containerId) as HTMLCanvasElement;
+        const renderer = new WebGLRenderer({canvas: this.canvas, logarithmicDepthBuffer: _config.logarithmicDepthBuffer, antialias: _config.antialias});
+
+        renderer.physicallyCorrectLights = _config.physicallyCorrectLights;
         renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
+        renderer.setPixelRatio(window.devicePixelRatio * _config.pixelRatio);
 
         this.scene = scene;
         // this.camera = camera;
