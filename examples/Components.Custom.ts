@@ -1,18 +1,16 @@
 /**
  * @description Custom component creation.
  */
-import { Scene, GameObject, Components } from '../dist/esm/trident-esm-bundle.js';
+import { Scene, GameObject, Components, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
 import { IPhysicsConfiguration } from '../dist/esm/interfaces/IPhysicsConfiguration.js';
 
 class CustomComponent extends Components.Component {
-    private cube: Components.Cube;
-
     public Start() {
-        this.cube = this.gameObject.AddComponent(Components.Cube);
+        this.gameObject.CreatePrimitive(PrimitiveType.Cube);
     }
 
     public Update() {
-        this.cube.transform.eulerAngles.x += 1;
+        this.transform.eulerAngles.x += 1;
     }
 }
 

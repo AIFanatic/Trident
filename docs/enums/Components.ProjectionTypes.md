@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[components/Camera.ts:7](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/Camera.ts#L7)
+[components/Camera.ts:7](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/Camera.ts#L7)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[components/Camera.ts:6](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/Camera.ts#L6)
+[components/Camera.ts:6](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/Camera.ts#L6)

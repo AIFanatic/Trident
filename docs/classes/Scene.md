@@ -49,7 +49,7 @@ The scene that holds all GameObjects.
 
 #### Defined in
 
-[Scene.ts:37](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L37)
+[Scene.ts:37](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L37)
 
 ## Properties
 
@@ -67,7 +67,7 @@ The scene that holds all GameObjects.
 
 #### Defined in
 
-[Scene.ts:27](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L27)
+[Scene.ts:27](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L27)
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:23](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L23)
+[Scene.ts:23](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L23)
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:25](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L25)
+[Scene.ts:25](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L25)
 
 ___
 
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:22](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L22)
+[Scene.ts:22](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L22)
 
 ## Methods
 
@@ -119,7 +119,7 @@ Adds a new GameObject to the scene.
 
 #### Defined in
 
-[Scene.ts:166](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L166)
+[Scene.ts:166](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L166)
 
 ___
 
@@ -135,7 +135,7 @@ Disables Gizmos from being visible in the scene.
 
 #### Defined in
 
-[Scene.ts:144](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L144)
+[Scene.ts:144](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L144)
 
 ___
 
@@ -152,7 +152,7 @@ Gizmos are helpful to visualize and debug components (eg: Camera and Lights).
 
 #### Defined in
 
-[Scene.ts:132](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L132)
+[Scene.ts:132](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L132)
 
 ___
 
@@ -169,7 +169,7 @@ Calls FixedUpdate on all attached components.
 
 #### Defined in
 
-[Scene.ts:200](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L200)
+[Scene.ts:200](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L200)
 
 ___
 
@@ -188,7 +188,7 @@ The main camera is the camera that the client is viewing the scene from.
 
 #### Defined in
 
-[Scene.ts:115](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L115)
+[Scene.ts:115](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L115)
 
 ___
 
@@ -206,7 +206,7 @@ Get the input for this scene.
 
 #### Defined in
 
-[Scene.ts:106](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L106)
+[Scene.ts:106](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L106)
 
 ___
 
@@ -224,7 +224,7 @@ Get the physics for this scene.
 
 #### Defined in
 
-[Scene.ts:98](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L98)
+[Scene.ts:98](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L98)
 
 ___
 
@@ -242,7 +242,7 @@ Renderer attached to this scene.
 
 #### Defined in
 
-[Scene.ts:90](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L90)
+[Scene.ts:90](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L90)
 
 ___
 
@@ -260,7 +260,7 @@ Check if Gizmos are enabled.
 
 #### Defined in
 
-[Scene.ts:157](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L157)
+[Scene.ts:157](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L157)
 
 ___
 
@@ -284,7 +284,7 @@ Remove a GameObject from the scene
 
 #### Defined in
 
-[Scene.ts:180](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L180)
+[Scene.ts:180](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L180)
 
 ___
 
@@ -307,7 +307,7 @@ The main camera is the camera that the client is viewing the scene from.
 
 #### Defined in
 
-[Scene.ts:124](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L124)
+[Scene.ts:124](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L124)
 
 ___
 
@@ -324,7 +324,7 @@ Calls Start on all attached components.
 
 #### Defined in
 
-[Scene.ts:243](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L243)
+[Scene.ts:243](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L243)
 
 ___
 
@@ -341,7 +341,7 @@ Calls Stop on all attached components.
 
 #### Defined in
 
-[Scene.ts:255](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L255)
+[Scene.ts:255](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L255)
 
 ___
 
@@ -358,4 +358,4 @@ Calls Update on all attached components.
 
 #### Defined in
 
-[Scene.ts:210](https://github.com/AIFanatic/Trident/blob/c17be51/src/Scene.ts#L210)
+[Scene.ts:210](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/Scene.ts#L210)

@@ -34,6 +34,16 @@ var GameObject = /** @class */ (function () {
         return false;
     };
     /**
+    * Attaches a primitive mesh renderer and appropriate collider to this GameObject.
+    *
+    * @param {PrimitiveType} primitive - The type of primitive object to create.
+    * @returns {GameObject} - Returns the GameObject.
+    */
+    GameObject.prototype.CreatePrimitive = function (primitive) {
+        primitive(this);
+        return this;
+    };
+    /**
     * Add a new component to this GameObject.
     *
     * The added component must extend the class Component.

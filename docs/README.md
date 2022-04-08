@@ -19,4 +19,5 @@
 
 - [GameObject](classes/GameObject.md)
 - [Input](classes/Input.md)
+- [PrimitiveType](classes/PrimitiveType.md)
 - [Scene](classes/Scene.md)

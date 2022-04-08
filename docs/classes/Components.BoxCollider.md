@@ -34,4 +34,4 @@ Collider.OnEnable
 
 #### Defined in
 
-[components/BoxCollider.ts:14](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/BoxCollider.ts#L14)
+[components/BoxCollider.ts:14](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/BoxCollider.ts#L14)

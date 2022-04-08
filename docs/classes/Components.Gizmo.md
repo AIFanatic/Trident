@@ -33,7 +33,7 @@ Allows to visualize the local axis of a Transform.
 
 #### Defined in
 
-[components/Gizmo.ts:16](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/Gizmo.ts#L16)
+[components/Gizmo.ts:16](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/Gizmo.ts#L16)
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 #### Defined in
 
-[components/Gizmo.ts:18](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/Gizmo.ts#L18)
+[components/Gizmo.ts:18](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/Gizmo.ts#L18)
 
 ## Methods
 
@@ -63,7 +63,7 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/Gizmo.ts:20](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/Gizmo.ts#L20)
+[components/Gizmo.ts:20](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/Gizmo.ts#L20)
 
 ___
 
@@ -83,7 +83,7 @@ Called once after the scene is started.
 
 #### Defined in
 
-[components/Gizmo.ts:30](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/Gizmo.ts#L30)
+[components/Gizmo.ts:30](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/Gizmo.ts#L30)
 
 ___
 
@@ -103,4 +103,4 @@ Called before every Renderer update.
 
 #### Defined in
 
-[components/Gizmo.ts:36](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/Gizmo.ts#L36)
+[components/Gizmo.ts:36](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/Gizmo.ts#L36)

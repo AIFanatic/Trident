@@ -1,7 +1,7 @@
 /**
  * @description Manipulate child Transform with parent.
  */
-import { Scene, Components, THREE } from '../dist/esm/trident-esm-bundle.js';
+import { Scene, Components, PrimitiveType, THREE } from '../dist/esm/trident-esm-bundle.js';
 
 const rendererConfig = {
     containerId: 'canvasContainer',
@@ -18,11 +18,11 @@ cameraComponent.transform.position.z = 40;
 
 scene.OnLoaded = () => {
     const cube = new Components.GameObject(scene);
-    const cubeTest = cube.AddComponent(Components.Cube);
+    cube.CreatePrimitive(PrimitiveType.Cube);
     cube.transform.position.y = 0;
 
     const cube1 = new Components.GameObject(scene);
-    const cubeTest1 = cube1.AddComponent(Components.Cube);
+    cube1.CreatePrimitive(PrimitiveType.Cube);
     cube1.transform.parent = cube.transform;
     cube1.transform.position.y = 2;
 

@@ -37,7 +37,7 @@ Collider.OnEnable
 
 #### Defined in
 
-[components/PlaneCollider.ts:16](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/PlaneCollider.ts#L16)
+[components/PlaneCollider.ts:16](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/PlaneCollider.ts#L16)
 
 ___
 
@@ -55,4 +55,4 @@ Collider.Update
 
 #### Defined in
 
-[components/PlaneCollider.ts:43](https://github.com/AIFanatic/Trident/blob/c17be51/src/components/PlaneCollider.ts#L43)
+[components/PlaneCollider.ts:43](https://github.com/AIFanatic/Trident/blob/3ffcf38/src/components/PlaneCollider.ts#L43)

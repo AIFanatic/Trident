@@ -1,10 +1,10 @@
 /**
  * @description Rigidbody custom mesh (trimesh).
  */
-import { Scene, GameObject, Components } from '../dist/esm/trident-esm-bundle.js';
+import { Scene, GameObject, Components, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
 
 // @ts-ignore
-import { STLLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/STLLoader.js';
+import { STLLoader } from 'https://cdn.skypack.dev/three@v0.136.0/examples/jsm/loaders/STLLoader.js';
 
 class Spaceship extends Components.Component {
     OnEnable() {
@@ -34,7 +34,7 @@ cameraComponent.transform.position.z = 40;
 
 scene.OnLoaded = () => {
     const floorGameObject = new GameObject(scene);
-    const floor = floorGameObject.AddComponent(Components.Cube);
+    floorGameObject.CreatePrimitive(PrimitiveType.Cube);
     floorGameObject.transform.localScale.set(50, 1, 50);
     floorGameObject.transform.position.y = -10;
 

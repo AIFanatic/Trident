@@ -57512,6 +57512,10 @@ var GameObject = class {
     }
     return false;
   }
+  CreatePrimitive(primitive) {
+    primitive(this);
+    return this;
+  }
   AddComponent(component) {
     if (component == Object) {
       return null;
@@ -58049,10 +58053,8 @@ __export(components_exports, {
   ArticulationBody: () => ArticulationBody,
   BoxCollider: () => BoxCollider,
   Camera: () => Camera2,
-  Capsule: () => Capsule,
   CapsuleCollider: () => CapsuleCollider,
   Component: () => Component,
-  Cube: () => Cube,
   DirectionalLight: () => DirectionalLight2,
   GameObject: () => GameObject,
   Gizmo: () => Gizmo,
@@ -58060,12 +58062,10 @@ __export(components_exports, {
   MeshCollider: () => MeshCollider,
   MeshFilter: () => MeshFilter,
   MeshRenderer: () => MeshRenderer,
-  Plane: () => Plane2,
   PlaneCollider: () => PlaneCollider,
   PointLight: () => PointLight2,
   ProjectionTypes: () => ProjectionTypes,
   Rigidbody: () => Rigidbody,
-  Sphere: () => Sphere2,
   SphereCollider: () => SphereCollider,
   SpotLight: () => SpotLight2,
   Transform: () => Transform
@@ -59048,192 +59048,6 @@ var Gizmo = class extends Component {
   }
 };
 
-// src/components/Cube.ts
-var Cube = class extends Component {
-  OnEnable() {
-    const geometry = new BoxGeometry(this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
-    const meshFilter = this.gameObject.AddComponent(MeshFilter);
-    meshFilter.mesh = geometry;
-    const meshRenderer = this.gameObject.AddComponent(MeshRenderer);
-    const colllider = this.gameObject.AddComponent(BoxCollider);
-  }
-};
-
-// src/components/Sphere.ts
-var Sphere2 = class extends Component {
-  OnEnable() {
-    const geometry = new SphereGeometry(this.transform.localScale.length(), 32, 32);
-    const meshFilter = this.gameObject.AddComponent(MeshFilter);
-    meshFilter.mesh = geometry;
-    const meshRenderer = this.gameObject.AddComponent(MeshRenderer);
-    const colllider = this.gameObject.AddComponent(SphereCollider);
-  }
-};
-
-// src/utils/CapsuleGeometry.ts
-function CapsuleBufferGeometry(radiusTop, radiusBottom, height, radialSegments, heightSegments, capsTopSegments, capsBottomSegments, thetaStart, thetaLength) {
-  const bufferGeometry = new BufferGeometry();
-  radiusTop = radiusTop !== void 0 ? radiusTop : 1;
-  radiusBottom = radiusBottom !== void 0 ? radiusBottom : 1;
-  height = height !== void 0 ? height : 2;
-  radialSegments = Math.floor(radialSegments) || 8;
-  heightSegments = Math.floor(heightSegments) || 1;
-  capsTopSegments = Math.floor(capsTopSegments) || 2;
-  capsBottomSegments = Math.floor(capsBottomSegments) || 2;
-  thetaStart = thetaStart !== void 0 ? thetaStart : 0;
-  thetaLength = thetaLength !== void 0 ? thetaLength : 2 * Math.PI;
-  var alpha = Math.acos((radiusBottom - radiusTop) / height);
-  var eqRadii = radiusTop - radiusBottom === 0;
-  var vertexCount = calculateVertexCount();
-  var indexCount = calculateIndexCount();
-  var indices = new BufferAttribute(new (indexCount > 65535 ? Uint32Array : Uint16Array)(indexCount), 1);
-  var vertices = new BufferAttribute(new Float32Array(vertexCount * 3), 3);
-  var normals = new BufferAttribute(new Float32Array(vertexCount * 3), 3);
-  var uvs = new BufferAttribute(new Float32Array(vertexCount * 2), 2);
-  var index = 0, indexOffset = 0, indexArray = [], halfHeight = height / 2;
-  generateTorso();
-  bufferGeometry.setIndex(indices);
-  bufferGeometry.setAttribute("position", vertices);
-  bufferGeometry.setAttribute("normal", normals);
-  bufferGeometry.setAttribute("uv", uvs);
-  function calculateVertexCount() {
-    var count = (radialSegments + 1) * (heightSegments + 1 + capsBottomSegments + capsTopSegments);
-    return count;
-  }
-  function calculateIndexCount() {
-    var count = radialSegments * (heightSegments + capsBottomSegments + capsTopSegments) * 2 * 3;
-    return count;
-  }
-  function generateTorso() {
-    var x, y;
-    var normal = new Vector3();
-    var vertex = new Vector3();
-    var cosAlpha = Math.cos(alpha);
-    var sinAlpha = Math.sin(alpha);
-    var cone_length = new Vector2(radiusTop * sinAlpha, halfHeight + radiusTop * cosAlpha).sub(new Vector2(radiusBottom * sinAlpha, -halfHeight + radiusBottom * cosAlpha)).length();
-    var vl = radiusTop * alpha + cone_length + radiusBottom * (Math.PI / 2 - alpha);
-    var groupCount = 0;
-    var v = 0;
-    for (y = 0; y <= capsTopSegments; y++) {
-      var indexRow = [];
-      var a = Math.PI / 2 - alpha * (y / capsTopSegments);
-      v += radiusTop * alpha / capsTopSegments;
-      var cosA = Math.cos(a);
-      var sinA = Math.sin(a);
-      var radius = cosA * radiusTop;
-      for (x = 0; x <= radialSegments; x++) {
-        var u = x / radialSegments;
-        var theta = u * thetaLength + thetaStart;
-        var sinTheta = Math.sin(theta);
-        var cosTheta = Math.cos(theta);
-        vertex.x = radius * sinTheta;
-        vertex.y = halfHeight + sinA * radiusTop;
-        vertex.z = radius * cosTheta;
-        vertices.setXYZ(index, vertex.x, vertex.y, vertex.z);
-        normal.set(cosA * sinTheta, sinA, cosA * cosTheta);
-        normals.setXYZ(index, normal.x, normal.y, normal.z);
-        uvs.setXY(index, u, 1 - v / vl);
-        indexRow.push(index);
-        index++;
-      }
-      indexArray.push(indexRow);
-    }
-    var cone_height = height + cosAlpha * radiusTop - cosAlpha * radiusBottom;
-    var slope = sinAlpha * (radiusBottom - radiusTop) / cone_height;
-    for (y = 1; y <= heightSegments; y++) {
-      var indexRow = [];
-      v += cone_length / heightSegments;
-      var radius = sinAlpha * (y * (radiusBottom - radiusTop) / heightSegments + radiusTop);
-      for (x = 0; x <= radialSegments; x++) {
-        var u = x / radialSegments;
-        var theta = u * thetaLength + thetaStart;
-        var sinTheta = Math.sin(theta);
-        var cosTheta = Math.cos(theta);
-        vertex.x = radius * sinTheta;
-        vertex.y = halfHeight + cosAlpha * radiusTop - y * cone_height / heightSegments;
-        vertex.z = radius * cosTheta;
-        vertices.setXYZ(index, vertex.x, vertex.y, vertex.z);
-        normal.set(sinTheta, slope, cosTheta).normalize();
-        normals.setXYZ(index, normal.x, normal.y, normal.z);
-        uvs.setXY(index, u, 1 - v / vl);
-        indexRow.push(index);
-        index++;
-      }
-      indexArray.push(indexRow);
-    }
-    for (y = 1; y <= capsBottomSegments; y++) {
-      var indexRow = [];
-      var a = Math.PI / 2 - alpha - (Math.PI - alpha) * (y / capsBottomSegments);
-      v += radiusBottom * alpha / capsBottomSegments;
-      var cosA = Math.cos(a);
-      var sinA = Math.sin(a);
-      var radius = cosA * radiusBottom;
-      for (x = 0; x <= radialSegments; x++) {
-        var u = x / radialSegments;
-        var theta = u * thetaLength + thetaStart;
-        var sinTheta = Math.sin(theta);
-        var cosTheta = Math.cos(theta);
-        vertex.x = radius * sinTheta;
-        vertex.y = -halfHeight + sinA * radiusBottom;
-        ;
-        vertex.z = radius * cosTheta;
-        vertices.setXYZ(index, vertex.x, vertex.y, vertex.z);
-        normal.set(cosA * sinTheta, sinA, cosA * cosTheta);
-        normals.setXYZ(index, normal.x, normal.y, normal.z);
-        uvs.setXY(index, u, 1 - v / vl);
-        indexRow.push(index);
-        index++;
-      }
-      indexArray.push(indexRow);
-    }
-    for (x = 0; x < radialSegments; x++) {
-      for (y = 0; y < capsTopSegments + heightSegments + capsBottomSegments; y++) {
-        var i1 = indexArray[y][x];
-        var i2 = indexArray[y + 1][x];
-        var i3 = indexArray[y + 1][x + 1];
-        var i4 = indexArray[y][x + 1];
-        indices.setX(indexOffset, i1);
-        indexOffset++;
-        indices.setX(indexOffset, i2);
-        indexOffset++;
-        indices.setX(indexOffset, i4);
-        indexOffset++;
-        indices.setX(indexOffset, i2);
-        indexOffset++;
-        indices.setX(indexOffset, i3);
-        indexOffset++;
-        indices.setX(indexOffset, i4);
-        indexOffset++;
-      }
-    }
-  }
-  return bufferGeometry;
-}
-
-// src/components/Capsule.ts
-var Capsule = class extends Component {
-  OnEnable() {
-    const geometry = CapsuleBufferGeometry(1, 1, 2, 16, 1, 4, 4, 0, 2 * Math.PI);
-    geometry.rotateZ(Math.PI / 2);
-    const meshFilter = this.gameObject.AddComponent(MeshFilter);
-    meshFilter.mesh = geometry;
-    const meshRenderer = this.gameObject.AddComponent(MeshRenderer);
-    const colllider = this.gameObject.AddComponent(CapsuleCollider);
-  }
-};
-
-// src/components/Plane.ts
-var Plane2 = class extends Component {
-  OnEnable() {
-    const geometry = new PlaneGeometry(this.transform.localScale.x, this.transform.localScale.z);
-    geometry.rotateX(-Math.PI / 2);
-    const meshFilter = this.gameObject.AddComponent(MeshFilter);
-    meshFilter.mesh = geometry;
-    const meshRenderer = this.gameObject.AddComponent(MeshRenderer);
-    const colllider = this.gameObject.AddComponent(PlaneCollider);
-  }
-};
-
 // src/components/PointLight.ts
 var PointLight2 = class extends Component {
   get range() {
@@ -60103,6 +59917,187 @@ var KeyCodes;
   KeyCodes2[KeyCodes2["QUOTE"] = 222] = "QUOTE";
   KeyCodes2[KeyCodes2["META"] = 224] = "META";
 })(KeyCodes || (KeyCodes = {}));
+
+// src/utils/CapsuleGeometry.ts
+function CapsuleBufferGeometry(radiusTop, radiusBottom, height, radialSegments, heightSegments, capsTopSegments, capsBottomSegments, thetaStart, thetaLength) {
+  const bufferGeometry = new BufferGeometry();
+  radiusTop = radiusTop !== void 0 ? radiusTop : 1;
+  radiusBottom = radiusBottom !== void 0 ? radiusBottom : 1;
+  height = height !== void 0 ? height : 2;
+  radialSegments = Math.floor(radialSegments) || 8;
+  heightSegments = Math.floor(heightSegments) || 1;
+  capsTopSegments = Math.floor(capsTopSegments) || 2;
+  capsBottomSegments = Math.floor(capsBottomSegments) || 2;
+  thetaStart = thetaStart !== void 0 ? thetaStart : 0;
+  thetaLength = thetaLength !== void 0 ? thetaLength : 2 * Math.PI;
+  var alpha = Math.acos((radiusBottom - radiusTop) / height);
+  var eqRadii = radiusTop - radiusBottom === 0;
+  var vertexCount = calculateVertexCount();
+  var indexCount = calculateIndexCount();
+  var indices = new BufferAttribute(new (indexCount > 65535 ? Uint32Array : Uint16Array)(indexCount), 1);
+  var vertices = new BufferAttribute(new Float32Array(vertexCount * 3), 3);
+  var normals = new BufferAttribute(new Float32Array(vertexCount * 3), 3);
+  var uvs = new BufferAttribute(new Float32Array(vertexCount * 2), 2);
+  var index = 0, indexOffset = 0, indexArray = [], halfHeight = height / 2;
+  generateTorso();
+  bufferGeometry.setIndex(indices);
+  bufferGeometry.setAttribute("position", vertices);
+  bufferGeometry.setAttribute("normal", normals);
+  bufferGeometry.setAttribute("uv", uvs);
+  function calculateVertexCount() {
+    var count = (radialSegments + 1) * (heightSegments + 1 + capsBottomSegments + capsTopSegments);
+    return count;
+  }
+  function calculateIndexCount() {
+    var count = radialSegments * (heightSegments + capsBottomSegments + capsTopSegments) * 2 * 3;
+    return count;
+  }
+  function generateTorso() {
+    var x, y;
+    var normal = new Vector3();
+    var vertex = new Vector3();
+    var cosAlpha = Math.cos(alpha);
+    var sinAlpha = Math.sin(alpha);
+    var cone_length = new Vector2(radiusTop * sinAlpha, halfHeight + radiusTop * cosAlpha).sub(new Vector2(radiusBottom * sinAlpha, -halfHeight + radiusBottom * cosAlpha)).length();
+    var vl = radiusTop * alpha + cone_length + radiusBottom * (Math.PI / 2 - alpha);
+    var groupCount = 0;
+    var v = 0;
+    for (y = 0; y <= capsTopSegments; y++) {
+      var indexRow = [];
+      var a = Math.PI / 2 - alpha * (y / capsTopSegments);
+      v += radiusTop * alpha / capsTopSegments;
+      var cosA = Math.cos(a);
+      var sinA = Math.sin(a);
+      var radius = cosA * radiusTop;
+      for (x = 0; x <= radialSegments; x++) {
+        var u = x / radialSegments;
+        var theta = u * thetaLength + thetaStart;
+        var sinTheta = Math.sin(theta);
+        var cosTheta = Math.cos(theta);
+        vertex.x = radius * sinTheta;
+        vertex.y = halfHeight + sinA * radiusTop;
+        vertex.z = radius * cosTheta;
+        vertices.setXYZ(index, vertex.x, vertex.y, vertex.z);
+        normal.set(cosA * sinTheta, sinA, cosA * cosTheta);
+        normals.setXYZ(index, normal.x, normal.y, normal.z);
+        uvs.setXY(index, u, 1 - v / vl);
+        indexRow.push(index);
+        index++;
+      }
+      indexArray.push(indexRow);
+    }
+    var cone_height = height + cosAlpha * radiusTop - cosAlpha * radiusBottom;
+    var slope = sinAlpha * (radiusBottom - radiusTop) / cone_height;
+    for (y = 1; y <= heightSegments; y++) {
+      var indexRow = [];
+      v += cone_length / heightSegments;
+      var radius = sinAlpha * (y * (radiusBottom - radiusTop) / heightSegments + radiusTop);
+      for (x = 0; x <= radialSegments; x++) {
+        var u = x / radialSegments;
+        var theta = u * thetaLength + thetaStart;
+        var sinTheta = Math.sin(theta);
+        var cosTheta = Math.cos(theta);
+        vertex.x = radius * sinTheta;
+        vertex.y = halfHeight + cosAlpha * radiusTop - y * cone_height / heightSegments;
+        vertex.z = radius * cosTheta;
+        vertices.setXYZ(index, vertex.x, vertex.y, vertex.z);
+        normal.set(sinTheta, slope, cosTheta).normalize();
+        normals.setXYZ(index, normal.x, normal.y, normal.z);
+        uvs.setXY(index, u, 1 - v / vl);
+        indexRow.push(index);
+        index++;
+      }
+      indexArray.push(indexRow);
+    }
+    for (y = 1; y <= capsBottomSegments; y++) {
+      var indexRow = [];
+      var a = Math.PI / 2 - alpha - (Math.PI - alpha) * (y / capsBottomSegments);
+      v += radiusBottom * alpha / capsBottomSegments;
+      var cosA = Math.cos(a);
+      var sinA = Math.sin(a);
+      var radius = cosA * radiusBottom;
+      for (x = 0; x <= radialSegments; x++) {
+        var u = x / radialSegments;
+        var theta = u * thetaLength + thetaStart;
+        var sinTheta = Math.sin(theta);
+        var cosTheta = Math.cos(theta);
+        vertex.x = radius * sinTheta;
+        vertex.y = -halfHeight + sinA * radiusBottom;
+        ;
+        vertex.z = radius * cosTheta;
+        vertices.setXYZ(index, vertex.x, vertex.y, vertex.z);
+        normal.set(cosA * sinTheta, sinA, cosA * cosTheta);
+        normals.setXYZ(index, normal.x, normal.y, normal.z);
+        uvs.setXY(index, u, 1 - v / vl);
+        indexRow.push(index);
+        index++;
+      }
+      indexArray.push(indexRow);
+    }
+    for (x = 0; x < radialSegments; x++) {
+      for (y = 0; y < capsTopSegments + heightSegments + capsBottomSegments; y++) {
+        var i1 = indexArray[y][x];
+        var i2 = indexArray[y + 1][x];
+        var i3 = indexArray[y + 1][x + 1];
+        var i4 = indexArray[y][x + 1];
+        indices.setX(indexOffset, i1);
+        indexOffset++;
+        indices.setX(indexOffset, i2);
+        indexOffset++;
+        indices.setX(indexOffset, i4);
+        indexOffset++;
+        indices.setX(indexOffset, i2);
+        indexOffset++;
+        indices.setX(indexOffset, i3);
+        indexOffset++;
+        indices.setX(indexOffset, i4);
+        indexOffset++;
+      }
+    }
+  }
+  return bufferGeometry;
+}
+
+// src/PrimitiveType.ts
+var PrimitiveType = class {
+  static Cube(gameObject) {
+    const geometry = new BoxGeometry(gameObject.transform.localScale.x, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+    const meshFilter = gameObject.AddComponent(MeshFilter);
+    meshFilter.mesh = geometry;
+    const meshRenderer = gameObject.AddComponent(MeshRenderer);
+    const colllider = gameObject.AddComponent(BoxCollider);
+  }
+  static Capsule(gameObject) {
+    const geometry = CapsuleBufferGeometry(1, 1, 2, 16, 1, 8, 8, 0, 2 * Math.PI);
+    geometry.rotateZ(Math.PI / 2);
+    const meshFilter = gameObject.AddComponent(MeshFilter);
+    meshFilter.mesh = geometry;
+    const meshRenderer = gameObject.AddComponent(MeshRenderer);
+    const colllider = gameObject.AddComponent(CapsuleCollider);
+  }
+  static Plane(gameObject) {
+    const geometry = new PlaneGeometry(gameObject.transform.localScale.x, gameObject.transform.localScale.z);
+    geometry.rotateX(-Math.PI / 2);
+    const meshFilter = gameObject.AddComponent(MeshFilter);
+    meshFilter.mesh = geometry;
+    const meshRenderer = gameObject.AddComponent(MeshRenderer);
+    const colllider = gameObject.AddComponent(PlaneCollider);
+  }
+  static Sphere(gameObject) {
+    const geometry = new SphereGeometry(gameObject.transform.localScale.length(), 32, 32);
+    const meshFilter = gameObject.AddComponent(MeshFilter);
+    meshFilter.mesh = geometry;
+    const meshRenderer = gameObject.AddComponent(MeshRenderer);
+    const colllider = gameObject.AddComponent(SphereCollider);
+  }
+  static Cylinder(gameObject) {
+    const geometry = new CylinderGeometry(gameObject.transform.localScale.length(), gameObject.transform.localScale.length(), gameObject.transform.localScale.y, 32, 32);
+    const meshFilter = gameObject.AddComponent(MeshFilter);
+    meshFilter.mesh = geometry;
+    const meshRenderer = gameObject.AddComponent(MeshRenderer);
+    const colllider = gameObject.AddComponent(CapsuleCollider);
+  }
+};
 export {
   ArticulationDofLock,
   ArticulationJointType,
@@ -60111,6 +60106,7 @@ export {
   Input,
   KeyCodes,
   LayerMask,
+  PrimitiveType,
   Scene2 as Scene,
   three_module_exports as THREE
 };

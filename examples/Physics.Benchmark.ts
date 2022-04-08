@@ -1,7 +1,7 @@
 /**
  * @description Creating 3000 cubes with physics.
  */
-import { Scene, GameObject, Components, THREE } from '../dist/esm/trident-esm-bundle.js';
+import { Scene, GameObject, Components, PrimitiveType, THREE } from '../dist/esm/trident-esm-bundle.js';
 
 const rendererConfig = {
     containerId: "canvasContainer",
@@ -17,7 +17,7 @@ scene.OnLoaded = () => {
     const cameraComponent = scene.GetActiveCamera();
     cameraComponent.transform.position.z = 100;
     const floorGameObject = new GameObject(scene);
-    const floor = floorGameObject.AddComponent(Components.Cube);
+    floorGameObject.CreatePrimitive(PrimitiveType.Cube);
     const floorMeshRenderer = floorGameObject.GetComponent(Components.MeshRenderer);
     floorMeshRenderer.material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
     floorGameObject.transform.localScale.set(50, 1, 50);
@@ -30,7 +30,7 @@ scene.OnLoaded = () => {
 
     for (let i = 0; i < num; i++) {
         const cube = new Components.GameObject(scene);
-        const cubeTest = cube.AddComponent(Components.Cube);
+        cube.CreatePrimitive(PrimitiveType.Cube);
         const cubeRb = cube.AddComponent(Components.Rigidbody);
         const cubeMeshRenderer = cube.GetComponent(Components.MeshRenderer);
         cubeMeshRenderer.material = material;
