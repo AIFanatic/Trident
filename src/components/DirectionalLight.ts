@@ -1,5 +1,6 @@
 import { Component } from "./Component";
-import { DirectionalLight as DirectionalLightTHREE, DirectionalLightHelper } from "three";
+import { Color, DirectionalLight as DirectionalLightTHREE, DirectionalLightHelper } from "three";
+import { SerializeField } from "../utils/SerializeField";
 
 /**
  * A directional light.
@@ -10,14 +11,16 @@ export class DirectionalLight extends Component {
     private light: DirectionalLightTHREE;
     private helper: DirectionalLightHelper;
     
-    public get color(): number {
-        return this.light.color.getHex();
+    @SerializeField
+    public get color(): Color {
+        return this.light.color;
     }
 
-    public set color(color: number) {
-        this.light.color.setHex(color);
+    public set color(color: Color) {
+        this.light.color.copy(color);
     }
 
+    @SerializeField
     public get intensity(): number {
         return this.light.intensity;
     }
@@ -26,6 +29,7 @@ export class DirectionalLight extends Component {
         this.light.intensity = intensity;
     }
 
+    @SerializeField
     public get shadows(): boolean {
         return this.light.castShadow;
     }

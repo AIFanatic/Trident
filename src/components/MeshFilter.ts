@@ -1,6 +1,7 @@
 import { Component } from "./Component";
 
 import { BufferGeometry, Geometry } from "three";
+import { SerializeField } from "../utils/SerializeField";
 
 /**
  * Stores a geometry that later can be rendered to the scene.
@@ -13,6 +14,7 @@ export class MeshFilter extends Component {
     public OnEnable() {
     }
 
+    @SerializeField
     public get mesh(): Geometry | BufferGeometry {
         return this._mesh;
     }

@@ -41,11 +41,13 @@ export class Scene {
 
         // When a scene is created a camera is created too
         const cameraGameObject = new GameObject(this);
+        cameraGameObject.name = "SceneCamera";
         this.camera = cameraGameObject.AddComponent(Camera);
         this.renderer.renderer.shadowMap.enabled = true;
         
         // When a scene is created a light is created too
         const directionalLightGameObject = new GameObject(this);
+        directionalLightGameObject.name = "DirectionalLight";
         directionalLightGameObject.transform.position.set(0, 3, 0);
         directionalLightGameObject.transform.eulerAngles.set(50, 30, 0);
         const directionalLight = directionalLightGameObject.AddComponent(DirectionalLight) as DirectionalLight;

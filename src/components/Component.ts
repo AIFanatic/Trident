@@ -35,11 +35,6 @@ export class Component implements IComponent {
     public classname: string;
     
     /**
-     * Name of the component.
-     */
-    public name: string;
-
-    /**
      * GameObject the this component is attached to.
      */
     public gameObject: GameObject;

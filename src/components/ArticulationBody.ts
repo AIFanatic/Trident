@@ -4,6 +4,7 @@ import { ArticulationJointType } from "../enums/ArticulationJointType";
 import { ArticulationDofLock } from "../enums/ArticulationDofLock";
 import { Collider } from "./Collider";
 import { Component } from "./Component";
+import { SerializeField } from "../utils/SerializeField";
 
 class JointDriver {
     private joint: PhysX.PxArticulationJointReducedCoordinate;
@@ -110,6 +111,7 @@ export class ArticulationBody extends Component {
     private physics: PhysX.PxPhysics;
     private physicsScene: PhysX.PxScene;
 
+    @SerializeField
     public get immovable(): boolean {
         const flags = this.articulation.getArticulationFlags();
         // @ts-ignore
@@ -121,6 +123,7 @@ export class ArticulationBody extends Component {
         this.articulation.setArticulationFlag(PhysX.eFIX_BASE, immovable);
     }
 
+    @SerializeField(ArticulationJointType)
     public get jointType(): ArticulationJointType {
         // @ts-ignore
         return this.inboundJoint.getJointType();
@@ -186,6 +189,7 @@ export class ArticulationBody extends Component {
         this.inboundJoint.setMotion(axis, motion);
     }
 
+    @SerializeField(ArticulationDofLock)
     public get linearLockX(): ArticulationDofLock {
         // @ts-ignore
         return this.inboundJoint.getMotion(ArticulationAxis.X);
@@ -195,6 +199,7 @@ export class ArticulationBody extends Component {
         this.setLinearLock(ArticulationAxis.X, linearLockX);
     }
 
+    @SerializeField(ArticulationDofLock)
     public get linearLockY(): ArticulationDofLock {
         // @ts-ignore
         return this.inboundJoint.getMotion(ArticulationAxis.Y);
@@ -204,6 +209,7 @@ export class ArticulationBody extends Component {
         this.setLinearLock(ArticulationAxis.Y, linearLockY);
     }
 
+    @SerializeField(ArticulationDofLock)
     public get linearLockZ(): ArticulationDofLock {
         // @ts-ignore
         return this.inboundJoint.getMotion(ArticulationAxis.Z);
@@ -229,6 +235,7 @@ export class ArticulationBody extends Component {
         this.inboundJoint.setMotion(axis, motion);
     }
 
+    @SerializeField(ArticulationDofLock)
     public get swingYLock(): ArticulationDofLock {
         // @ts-ignore
         return this.inboundJoint.getMotion(ArticulationAxis.SWING2);
@@ -238,15 +245,18 @@ export class ArticulationBody extends Component {
         this.setSwingLock(ArticulationAxis.SWING2, swingYLock);
     }
 
+    @SerializeField(ArticulationDofLock)
     public get swingZLock(): ArticulationDofLock {
         // @ts-ignore
         return this.inboundJoint.getMotion(ArticulationAxis.SWING1);
     }
 
     public set swingZLock(swingZLock: ArticulationDofLock) {
+        // @ts-ignore
         this.setSwingLock(ArticulationAxis.SWING1, swingZLock);
     }
 
+    @SerializeField(ArticulationDofLock)
     public get twistLock(): ArticulationDofLock {
         // @ts-ignore
         return this.inboundJoint.getMotion(ArticulationAxis.TWIST);
@@ -256,6 +266,7 @@ export class ArticulationBody extends Component {
         this.setSwingLock(ArticulationAxis.TWIST, twistLock);
     }
 
+    @SerializeField
     public get mass(): number {
         return this.link.getMass();
     }

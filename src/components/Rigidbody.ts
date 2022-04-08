@@ -13,6 +13,7 @@ import { RigidbodyConstraints } from '../enums/RigidbodyConstraints';
 import { RigidBodyFlags } from '../enums/RigidbodyFlags';
 import { LayerMask } from '../enums/LayerMask';
 import { Mathf } from '../utils/Mathf';
+import { SerializeField } from '../utils/SerializeField';
 
 /**
  * RigidBody adds physics properties to an object.
@@ -71,6 +72,7 @@ export class Rigidbody extends Component {
      *
      * @returns True if the object is kinematic, false otherwise
      */
+    @SerializeField
     public get isKinematic(): boolean {
         const flags = this.rigidbody.getRigidBodyFlags();
         return flags.isSet(RigidBodyFlags.KINEMATIC.valueOf());
@@ -80,6 +82,7 @@ export class Rigidbody extends Component {
         this.rigidbody.setRigidBodyFlag(RigidBodyFlags.KINEMATIC.valueOf(), kinematic);
     }
 
+    @SerializeField
     public get mass(): number {
         return this.rigidbody.getMass();
     }
@@ -107,7 +110,7 @@ export class Rigidbody extends Component {
         const pxVec3 = new PhysX.PxVec3(angularVelocity.x, angularVelocity.y, angularVelocity.z);
         this.rigidbody.setAngularVelocity(pxVec3);
     }
-
+    @SerializeField
     public get drag(): number {
         return this.rigidbody.getLinearDamping();
     }
@@ -116,6 +119,7 @@ export class Rigidbody extends Component {
         this.rigidbody.setLinearDamping(drag);
     }
 
+    @SerializeField
     public get angularDrag(): number {
         return this.rigidbody.getAngularDamping();
     }

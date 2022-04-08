@@ -4,6 +4,7 @@ import { Component } from "./Component";
 import { Renderer } from "../Renderer";
 import { MeshRendererDefaults } from "../defaults/MeshRendererDefaults";
 import { BufferGeometry, Geometry, Material, Mesh } from "three";
+import { SerializeField } from "../utils/SerializeField";
 
 /**
  * Renders a geometry from MeshFilter into the scene.
@@ -26,6 +27,7 @@ export class MeshRenderer extends Component {
         this._mesh = mesh;
     }
 
+    @SerializeField
     public get material(): Material {
         return this._material;
     }
@@ -38,6 +40,7 @@ export class MeshRenderer extends Component {
         }
     }
 
+    @SerializeField
     public get castShadows(): boolean {
         return this.transform.group.castShadow;
     }
@@ -49,6 +52,7 @@ export class MeshRenderer extends Component {
         })
     }
 
+    @SerializeField
     public get receiveShadows(): boolean {
         return this.transform.group.receiveShadow;
     }
@@ -88,6 +92,7 @@ export class MeshRenderer extends Component {
 
         if (geometry) {
             this.mesh = new Mesh(geometry, this.material);
+            this.mesh.userData.transform = this.transform;
             this.castShadows = true;
             this.receiveShadows = true;
         }

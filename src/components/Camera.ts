@@ -1,4 +1,5 @@
 import { PerspectiveCamera, Vector3, CameraHelper } from "three";
+import { SerializeField } from "../utils/SerializeField";
 import { Component } from "./Component";
 
 export enum ProjectionTypes {
@@ -30,6 +31,7 @@ export class Camera extends Component {
         
     // }
 
+    @SerializeField
     public get far(): number {
         return this.camera.far;
     }
@@ -39,6 +41,7 @@ export class Camera extends Component {
         this.camera.updateProjectionMatrix();
     }
 
+    @SerializeField
     public get near(): number {
         return this.camera.near;
     }
@@ -48,6 +51,7 @@ export class Camera extends Component {
         this.camera.updateProjectionMatrix();
     }
 
+    @SerializeField
     public get fieldOfView(): number {
         return this.camera.fov;
     }

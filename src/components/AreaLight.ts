@@ -1,8 +1,9 @@
 import { Component } from "./Component";
-import { RectAreaLight as RectAreaLightTHREE } from "three";
+import { Color, RectAreaLight as RectAreaLightTHREE } from "three";
 
 import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js';
 import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib.js';
+import { SerializeField } from "../utils/SerializeField";
 
 /**
  * A rectangle area light.
@@ -13,6 +14,7 @@ export class AreaLight extends Component {
     private light: RectAreaLightTHREE;
     private helper: RectAreaLightHelper;
 
+    @SerializeField
     public get width(): number {
         return this.light.width;
     }
@@ -21,6 +23,7 @@ export class AreaLight extends Component {
         this.light.width = width;
     }
 
+    @SerializeField
     public get height(): number {
         return this.light.height;
     }
@@ -29,14 +32,16 @@ export class AreaLight extends Component {
         this.light.height = height;
     }
 
-    public get color(): number {
-        return this.light.color.getHex();
+    @SerializeField
+    public get color(): Color {
+        return this.light.color;
     }
 
-    public set color(color: number) {
-        this.light.color.setHex(color);
+    public set color(color: Color) {
+        this.light.color.copy(color);
     }
 
+    @SerializeField
     public get intensity(): number {
         return this.light.intensity;
     }
@@ -45,6 +50,7 @@ export class AreaLight extends Component {
         this.light.intensity = intensity;
     }
 
+    @SerializeField
     public get shadows(): boolean {
         return this.light.castShadow;
     }

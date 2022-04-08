@@ -9,6 +9,7 @@ import { Vector3, Quaternion } from 'three';
 import { UUID } from '../utils/UUID';
 import { Mathf } from '../utils/Mathf';
 import { Object3DExtended } from '../utils/Object3DExtended';
+import { SerializeField } from '../utils/SerializeField';
 
 /**
  * Every GameObject has a Transform.
@@ -66,6 +67,7 @@ export class Transform implements IComponent {
     * Get the local position of this transform.
     * @returns {Vector3} The transform local position.
     */
+    @SerializeField
     public get localPosition(): Vector3 {
         return this.group.position;
     }
@@ -133,6 +135,7 @@ export class Transform implements IComponent {
     * The euler angles are in degrees.
     * @returns {Vector3} The transform local euler angles.
     */
+    @SerializeField
     public get localEulerAngles(): Vector3 {
         return this.group.euler;
     }
@@ -150,6 +153,7 @@ export class Transform implements IComponent {
     * Get the local scale of this transform.
     * @returns {Vector3} The transform local scale.
     */
+    @SerializeField
     public get localScale(): Vector3 {
         return this.group.scale;
     }

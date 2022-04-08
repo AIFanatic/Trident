@@ -1,5 +1,6 @@
 import { Component } from "./Component";
-import { MathUtils, SpotLight as SpotLightTHREE, SpotLightHelper } from "three";
+import { Color, MathUtils, SpotLight as SpotLightTHREE, SpotLightHelper } from "three";
+import { SerializeField } from "../utils/SerializeField";
 
 /**
  * A spot light.
@@ -10,6 +11,7 @@ export class SpotLight extends Component {
     private light: SpotLightTHREE;
     private helper: SpotLightHelper;
 
+    @SerializeField
     public get spotAngle(): number {
         return this.light.angle * MathUtils.RAD2DEG;
     }
@@ -18,6 +20,7 @@ export class SpotLight extends Component {
         this.light.angle = spotAngle * MathUtils.DEG2RAD;
     }
 
+    @SerializeField
     public get range(): number {
         return this.light.distance;
     }
@@ -26,14 +29,16 @@ export class SpotLight extends Component {
         this.light.distance = range;
     }
 
-    public get color(): number {
-        return this.light.color.getHex();
+    @SerializeField
+    public get color(): Color {
+        return this.light.color;
     }
 
-    public set color(color: number) {
-        this.light.color.setHex(color);
+    public set color(color: Color) {
+        this.light.color.copy(color);
     }
 
+    @SerializeField
     public get intensity(): number {
         return this.light.intensity;
     }
@@ -42,6 +47,7 @@ export class SpotLight extends Component {
         this.light.intensity = intensity;
     }
 
+    @SerializeField
     public get shadows(): boolean {
         return this.light.castShadow;
     }

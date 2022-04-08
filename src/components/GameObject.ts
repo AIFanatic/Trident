@@ -35,6 +35,8 @@ export class GameObject implements IComponent {
         this.scene = scene;
 
         this.transform = new Transform(this);
+
+        this.name = "GameObject";
         
         this.scene.AddGameObject(this);
     }
@@ -241,6 +243,12 @@ export class GameObject implements IComponent {
         const componentsCopy = this.components.slice();
         for(let component of componentsCopy) {
             component.Destroy();
+        }
+
+        for (let potentialChild of this.scene.gameObjects) {
+            if (potentialChild.transform.parent === this.transform) {
+                potentialChild.Destroy();
+            }
         }
 
         this.scene.RemoveGameObject(this);

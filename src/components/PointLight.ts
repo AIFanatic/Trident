@@ -1,5 +1,6 @@
 import { Component } from "./Component";
-import { PointLight as PointLightTHREE, PointLightHelper } from "three";
+import { Color, PointLight as PointLightTHREE, PointLightHelper } from "three";
+import { SerializeField } from "../utils/SerializeField";
 
 /**
  * A point light.
@@ -10,6 +11,7 @@ export class PointLight extends Component {
     private light: PointLightTHREE;
     private helper: PointLightHelper;
     
+    @SerializeField
     public get range(): number {
         return this.light.distance;
     }
@@ -18,14 +20,16 @@ export class PointLight extends Component {
         this.light.distance = range;
     }
 
-    public get color(): number {
-        return this.light.color.getHex();
+    @SerializeField
+    public get color(): Color {
+        return this.light.color;
     }
 
-    public set color(color: number) {
-        this.light.color.setHex(color);
+    public set color(color: Color) {
+        this.light.color.copy(color);
     }
 
+    @SerializeField
     public get intensity(): number {
         return this.light.intensity;
     }
@@ -34,6 +38,7 @@ export class PointLight extends Component {
         this.light.intensity = intensity;
     }
 
+    @SerializeField
     public get shadows(): boolean {
         return this.light.castShadow;
     }
