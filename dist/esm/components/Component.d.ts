@@ -38,17 +38,19 @@ export declare class Component implements IComponent {
     /**
      * @todo Indicates that this component has started.
      */
-    hasStarted: boolean;
+    isStarted: boolean;
+    isAwake: boolean;
+    runInEditMode: boolean;
     constructor(gameObject: GameObject, transform: Transform);
     /**
      * Called once when the component is first added to a GameObject.
      */
-    OnEnable(): void;
+    Awake(): void;
     OnDisable(): void;
     /**
      * Called once after the scene is started.
      */
-    Start(): void;
+    Start(): any;
     /**
      * Called once after the scene is stopped.
      */

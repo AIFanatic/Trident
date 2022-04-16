@@ -11,7 +11,7 @@ export declare class Gizmo extends Component {
     private forwardLine;
     length: number;
     target: Transform;
-    OnEnable(): void;
+    Awake(): void;
     Start(): void;
     Update(): void;
 }

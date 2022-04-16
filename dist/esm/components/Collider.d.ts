@@ -1,4 +1,5 @@
 import { Component } from "./Component";
+import PhysX from "trident-physx-js-webidl";
 import { PhysicsRigidbody } from "../physics/PhysicsRigidbody";
 /**
  * Base collider class that all colliders extend.
@@ -7,6 +8,8 @@ import { PhysicsRigidbody } from "../physics/PhysicsRigidbody";
  */
 export declare class Collider extends Component {
     body: PhysicsRigidbody;
+    protected physxPhysics: PhysX.PxPhysics;
+    protected physxScene: PhysX.PxScene;
     private position;
     private rotation;
     private localScale;

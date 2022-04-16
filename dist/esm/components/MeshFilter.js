@@ -27,10 +27,10 @@ import { SerializeField } from "../utils/SerializeField";
 var MeshFilter = /** @class */ (function (_super) {
     __extends(MeshFilter, _super);
     function MeshFilter() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.runInEditMode = true;
+        return _this;
     }
-    MeshFilter.prototype.OnEnable = function () {
-    };
     Object.defineProperty(MeshFilter.prototype, "mesh", {
         get: function () {
             return this._mesh;

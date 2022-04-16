@@ -29,7 +29,9 @@ import { SerializeField } from "../utils/SerializeField";
 var AreaLight = /** @class */ (function (_super) {
     __extends(AreaLight, _super);
     function AreaLight() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.light = new RectAreaLightTHREE(0xffffff, 1, 1, 1);
+        return _this;
     }
     Object.defineProperty(AreaLight.prototype, "width", {
         get: function () {
@@ -81,33 +83,25 @@ var AreaLight = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
-    AreaLight.prototype.OnEnable = function () {
-        this.light = new RectAreaLightTHREE(0xffffff, 1, 1, 1);
+    AreaLight.prototype.Awake = function () {
         this.transform.group.add(this.light);
         this.light.parent = this.transform.group;
         // Probably need this but no effect on examples and 300kb file
         // RectAreaLightUniformsLib.init();
     };
-    AreaLight.prototype.OnGizmosEnabled = function () {
+    AreaLight.prototype.OnDrawGizmos = function () {
         if (!this.helper) {
             this.helper = new RectAreaLightHelper(this.light);
             this.transform.group.add(this.helper);
         }
+        this.helper.update();
     };
-    AreaLight.prototype.OnDrawGizmos = function () {
-        if (this.helper) {
-            this.helper.update();
-        }
-    };
-    AreaLight.prototype.OnGizmosDisabled = function () {
+    AreaLight.prototype.Destroy = function () {
         if (this.helper) {
             this.transform.group.remove(this.helper);
             this.helper.dispose();
             this.helper = undefined;
         }
-    };
-    AreaLight.prototype.Destroy = function () {
-        this.OnGizmosDisabled();
         this.transform.group.remove(this.light);
         this.gameObject.RemoveComponent(this);
     };

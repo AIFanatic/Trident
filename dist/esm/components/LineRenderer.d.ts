@@ -14,7 +14,7 @@ export declare class LineRenderer extends Component {
     private material;
     private geometry;
     private line;
-    OnEnable(): void;
+    Awake(): void;
     Update(): void;
     Destroy(): void;
 }

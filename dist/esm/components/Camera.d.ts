@@ -14,18 +14,15 @@ export declare enum ProjectionTypes {
 export declare class Camera extends Component {
     private camera;
     private helper;
-    private previousTransformPosition;
-    private previousCameraPosition;
     get far(): number;
     set far(far: number);
     get near(): number;
     set near(near: number);
     get fieldOfView(): number;
     set fieldOfView(fieldOfView: number);
-    OnEnable(): void;
+    Awake(): void;
     GetCamera(): PerspectiveCamera;
-    OnGizmosEnabled(): void;
+    OnResize(): void;
     OnDrawGizmos(): void;
-    OnGizmosDisabled(): void;
     Destroy(): void;
 }

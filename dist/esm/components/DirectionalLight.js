@@ -28,7 +28,9 @@ import { SerializeField } from "../utils/SerializeField";
 var DirectionalLight = /** @class */ (function (_super) {
     __extends(DirectionalLight, _super);
     function DirectionalLight() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.light = new DirectionalLightTHREE(0xffffff, 1);
+        return _this;
     }
     Object.defineProperty(DirectionalLight.prototype, "color", {
         get: function () {
@@ -60,31 +62,23 @@ var DirectionalLight = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
-    DirectionalLight.prototype.OnEnable = function () {
-        this.light = new DirectionalLightTHREE(0xffffff, 1);
+    DirectionalLight.prototype.Awake = function () {
         this.transform.group.add(this.light);
         this.light.parent = this.transform.group;
     };
-    DirectionalLight.prototype.OnGizmosEnabled = function () {
+    DirectionalLight.prototype.OnDrawGizmos = function () {
         if (!this.helper) {
             this.helper = new DirectionalLightHelper(this.light);
             this.transform.group.add(this.helper);
         }
+        this.helper.update();
     };
-    DirectionalLight.prototype.OnDrawGizmos = function () {
-        if (this.helper) {
-            this.helper.update();
-        }
-    };
-    DirectionalLight.prototype.OnGizmosDisabled = function () {
+    DirectionalLight.prototype.Destroy = function () {
         if (this.helper) {
             this.transform.group.remove(this.helper);
             this.helper.dispose();
             this.helper = undefined;
         }
-    };
-    DirectionalLight.prototype.Destroy = function () {
-        this.OnGizmosDisabled();
         this.transform.group.remove(this.light);
         this.gameObject.RemoveComponent(this);
     };

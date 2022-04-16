@@ -1,29 +1,19 @@
 /**
  * @description A rectangular area light.
  */
-import { Scene, GameObject, Components, PrimitiveType, THREE } from '../dist/esm/trident-esm-bundle.js';
+ import { SceneHelper } from './assets/SceneHelper.js';
+ import { GameObject, Components, PrimitiveType, THREE } from '../dist/esm/trident-esm-bundle.js';
+ 
+ const scene = SceneHelper.CreateScene();
+ scene.gizmosEnabled = true;
+ scene.OnInitialized = () => {
+    const camera = SceneHelper.CreateCamera(scene);
+    camera.transform.position.set(-8, 0, 7);
+    camera.transform.eulerAngles.set(-15, -50, -10);
 
-const rendererConfig = {
-    containerId: "canvasContainer",
-    targetFrameRate: 60,
-};
-const physicsConfig = {
-    physxWasmURL: "../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-};
-
-const scene = new Scene(rendererConfig, physicsConfig);
-scene.EnableGizmos();
-
-const camera = scene.GetActiveCamera();
-camera.transform.position.set(-8, 0, 7);
-camera.transform.eulerAngles.set(-15, -50, -10);
-
-scene.OnLoaded = () => {
     const cubeGameobject = new GameObject(scene);
     cubeGameobject.transform.localScale.set(10, 1, 10);
     cubeGameobject.CreatePrimitive(PrimitiveType.Cube);
-    const cubeMeshRenderer = cubeGameobject.GetComponent(Components.MeshRenderer);
-    cubeMeshRenderer.material = new THREE.MeshStandardMaterial();
     cubeGameobject.transform.position.set(0, -2, 0);
     
     const lightGameobject = new GameObject(scene);
@@ -33,7 +23,8 @@ scene.OnLoaded = () => {
     lightComponent.height = 5.5;
     lightComponent.intensity = 5;
 
-    scene.Start();
+    scene.Load();
+    scene.Play();
     
     setInterval(() => {
         const color = Math.random() * 0xffffff;

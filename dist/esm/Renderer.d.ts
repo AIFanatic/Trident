@@ -11,6 +11,7 @@ export declare class Renderer {
     private startTime;
     private frameCount;
     private currentFps;
+    private ambientLight;
     constructor(config: IRendererConfiguration, loadedCb?: () => void);
     Tick(camera: PerspectiveCamera): void;
 }

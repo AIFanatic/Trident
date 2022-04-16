@@ -16,13 +16,13 @@ Adds a static sphere collider to the GameObject.
 
 ### Methods
 
-- [OnEnable](Components.SphereCollider.md#onenable)
+- [Awake](Components.SphereCollider.md#awake)
 
 ## Methods
 
-### OnEnable
+### Awake
 
-▸ **OnEnable**(): `void`
+▸ **Awake**(): `void`
 
 #### Returns
 
@@ -30,8 +30,8 @@ Adds a static sphere collider to the GameObject.
 
 #### Overrides
 
-Collider.OnEnable
+Collider.Awake
 
 #### Defined in
 
-[components/SphereCollider.ts:18](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/SphereCollider.ts#L18)
+[components/SphereCollider.ts:15](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/SphereCollider.ts#L15)

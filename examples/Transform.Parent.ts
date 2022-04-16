@@ -1,22 +1,14 @@
 /**
  * @description Manipulate child Transform with parent.
  */
-import { Scene, Components, PrimitiveType, THREE } from '../dist/esm/trident-esm-bundle.js';
+import { SceneHelper } from './assets/SceneHelper.js';
+import { Components, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
 
-const rendererConfig = {
-    containerId: 'canvasContainer',
-    targetFrameRate: 60,
-};
-
-const physicsConfig = {
-    physxWasmURL: "../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm"
-};
-
-const scene = new Scene(rendererConfig, physicsConfig);
-const cameraComponent = scene.GetActiveCamera();
-cameraComponent.transform.position.z = 40;
-
-scene.OnLoaded = () => {
+const scene = SceneHelper.CreateScene();
+scene.OnInitialized = () => {
+    SceneHelper.CreateCamera(scene, 0, 0, 20);
+    SceneHelper.CreateSunlight(scene);
+    
     const cube = new Components.GameObject(scene);
     cube.CreatePrimitive(PrimitiveType.Cube);
     cube.transform.position.y = 0;
@@ -45,5 +37,6 @@ scene.OnLoaded = () => {
     setInterval(() => {
         goingUp = !goingUp;
     }, 5000);
-    scene.Start();
+    scene.Load();
+    scene.Play();
 };

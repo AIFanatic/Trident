@@ -18,14 +18,14 @@ Note that a plane should extend to infinity, but in this case it's just a box wi
 
 ### Methods
 
-- [OnEnable](Components.PlaneCollider.md#onenable)
+- [Awake](Components.PlaneCollider.md#awake)
 - [Update](Components.PlaneCollider.md#update)
 
 ## Methods
 
-### OnEnable
+### Awake
 
-▸ **OnEnable**(): `void`
+▸ **Awake**(): `void`
 
 #### Returns
 
@@ -33,11 +33,11 @@ Note that a plane should extend to infinity, but in this case it's just a box wi
 
 #### Overrides
 
-Collider.OnEnable
+Collider.Awake
 
 #### Defined in
 
-[components/PlaneCollider.ts:16](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PlaneCollider.ts#L16)
+[components/PlaneCollider.ts:16](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PlaneCollider.ts#L16)
 
 ___
 
@@ -55,4 +55,4 @@ Collider.Update
 
 #### Defined in
 
-[components/PlaneCollider.ts:43](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PlaneCollider.ts#L43)
+[components/PlaneCollider.ts:43](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PlaneCollider.ts#L43)

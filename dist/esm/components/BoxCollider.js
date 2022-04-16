@@ -12,7 +12,6 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { Collider } from "./Collider";
-import { Rigidbody } from './Rigidbody';
 import { PhysicsRigidbody } from '../physics/PhysicsRigidbody';
 import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
@@ -26,26 +25,23 @@ var BoxCollider = /** @class */ (function (_super) {
     function BoxCollider() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    BoxCollider.prototype.OnEnable = function () {
-        var physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-        var physxScene = this.gameObject.scene.GetPhysics().GetScene();
-        var rigidbodyComponent = this.gameObject.GetComponent(Rigidbody);
-        var shape = PhysicsShape.CreateBox(physxPhysics, this.transform.localScale);
-        if (rigidbodyComponent) {
-            this.body = rigidbodyComponent.body;
-            this.body.UpdateShape(shape);
-        }
-        else {
-            var geometry = shape.getGeometry().box();
-            var transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-            var rigidbody = physxPhysics.createRigidStatic(transform);
-            var physicsBody = {
-                rigidbody: rigidbody,
-                geometry: geometry,
-                shape: shape
-            };
-            this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
-        }
+    BoxCollider.prototype.Awake = function () {
+        this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
+        this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
+        this.CreateCollider();
+    };
+    BoxCollider.prototype.CreateCollider = function () {
+        var shape = PhysicsShape.CreateBox(this.physxPhysics, this.transform.localScale);
+        var geometry = shape.getGeometry().box();
+        var transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+        var rigidbody = this.physxPhysics.createRigidStatic(transform);
+        var physicsBody = {
+            rigidbody: rigidbody,
+            geometry: geometry,
+            shape: shape
+        };
+        this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+        this.gameObject.BroadcastMessage("CreatedCollider", this.body);
     };
     return BoxCollider;
 }(Collider));

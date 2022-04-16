@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[enums/ArticulationDofLock.ts:4](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/enums/ArticulationDofLock.ts#L4)
+[enums/ArticulationDofLock.ts:4](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/enums/ArticulationDofLock.ts#L4)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[enums/ArticulationDofLock.ts:3](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/enums/ArticulationDofLock.ts#L3)
+[enums/ArticulationDofLock.ts:3](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/enums/ArticulationDofLock.ts#L3)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[enums/ArticulationDofLock.ts:2](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/enums/ArticulationDofLock.ts#L2)
+[enums/ArticulationDofLock.ts:2](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/enums/ArticulationDofLock.ts#L2)

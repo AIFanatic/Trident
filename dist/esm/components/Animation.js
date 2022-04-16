@@ -26,7 +26,7 @@ var Animation = /** @class */ (function (_super) {
     function Animation() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Animation.prototype.OnEnable = function () {
+    Animation.prototype.Awake = function () {
         this.animations = new Map();
         this.clock = new Clock(true);
         this.OnMeshChanged();

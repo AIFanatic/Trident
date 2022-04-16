@@ -20,4 +20,5 @@
 
 - [GameObject](classes/GameObject.md)
 - [Input](classes/Input.md)
+- [Resources](classes/Resources.md)
 - [Scene](classes/Scene.md)

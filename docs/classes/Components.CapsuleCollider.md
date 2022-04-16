@@ -16,13 +16,13 @@ Adds a static capsule collider to the GameObject.
 
 ### Methods
 
-- [OnEnable](Components.CapsuleCollider.md#onenable)
+- [Awake](Components.CapsuleCollider.md#awake)
 
 ## Methods
 
-### OnEnable
+### Awake
 
-▸ **OnEnable**(): `void`
+▸ **Awake**(): `void`
 
 #### Returns
 
@@ -30,8 +30,8 @@ Adds a static capsule collider to the GameObject.
 
 #### Overrides
 
-Collider.OnEnable
+Collider.Awake
 
 #### Defined in
 
-[components/CapsuleCollider.ts:14](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/CapsuleCollider.ts#L14)
+[components/CapsuleCollider.ts:14](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/CapsuleCollider.ts#L14)

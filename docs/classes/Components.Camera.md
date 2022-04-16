@@ -24,12 +24,11 @@ Use scene.SetActiveCamera(camera) to set it as the main camera.
 
 ### Methods
 
+- [Awake](Components.Camera.md#awake)
 - [Destroy](Components.Camera.md#destroy)
 - [GetCamera](Components.Camera.md#getcamera)
 - [OnDrawGizmos](Components.Camera.md#ondrawgizmos)
-- [OnEnable](Components.Camera.md#onenable)
-- [OnGizmosDisabled](Components.Camera.md#ongizmosdisabled)
-- [OnGizmosEnabled](Components.Camera.md#ongizmosenabled)
+- [OnResize](Components.Camera.md#onresize)
 
 ## Accessors
 
@@ -43,7 +42,7 @@ Use scene.SetActiveCamera(camera) to set it as the main camera.
 
 #### Defined in
 
-[components/Camera.ts:35](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Camera.ts#L35)
+[components/Camera.ts:22](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Camera.ts#L22)
 
 • `set` **far**(`far`): `void`
 
@@ -59,7 +58,7 @@ Use scene.SetActiveCamera(camera) to set it as the main camera.
 
 #### Defined in
 
-[components/Camera.ts:39](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Camera.ts#L39)
+[components/Camera.ts:26](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Camera.ts#L26)
 
 ___
 
@@ -73,7 +72,7 @@ ___
 
 #### Defined in
 
-[components/Camera.ts:55](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Camera.ts#L55)
+[components/Camera.ts:42](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Camera.ts#L42)
 
 • `set` **fieldOfView**(`fieldOfView`): `void`
 
@@ -89,7 +88,7 @@ ___
 
 #### Defined in
 
-[components/Camera.ts:59](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Camera.ts#L59)
+[components/Camera.ts:46](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Camera.ts#L46)
 
 ___
 
@@ -103,7 +102,7 @@ ___
 
 #### Defined in
 
-[components/Camera.ts:45](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Camera.ts#L45)
+[components/Camera.ts:32](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Camera.ts#L32)
 
 • `set` **near**(`near`): `void`
 
@@ -119,9 +118,29 @@ ___
 
 #### Defined in
 
-[components/Camera.ts:49](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Camera.ts#L49)
+[components/Camera.ts:36](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Camera.ts#L36)
 
 ## Methods
+
+### Awake
+
+▸ **Awake**(): `void`
+
+Called once when the component is first added to a GameObject.
+
+#### Returns
+
+`void`
+
+#### Overrides
+
+[Component](Components.Component.md).[Awake](Components.Component.md#awake)
+
+#### Defined in
+
+[components/Camera.ts:51](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Camera.ts#L51)
+
+___
 
 ### Destroy
 
@@ -139,7 +158,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/Camera.ts:103](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Camera.ts#L103)
+[components/Camera.ts:79](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Camera.ts#L79)
 
 ___
 
@@ -153,7 +172,7 @@ ___
 
 #### Defined in
 
-[components/Camera.ts:79](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Camera.ts#L79)
+[components/Camera.ts:60](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Camera.ts#L60)
 
 ___
 
@@ -173,65 +192,18 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-[components/Camera.ts:90](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Camera.ts#L90)
+[components/Camera.ts:70](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Camera.ts#L70)
 
 ___
 
-### OnEnable
+### OnResize
 
-▸ **OnEnable**(): `void`
-
-Called once when the component is first added to a GameObject.
+▸ **OnResize**(): `void`
 
 #### Returns
 
 `void`
 
-#### Overrides
-
-[Component](Components.Component.md).[OnEnable](Components.Component.md#onenable)
-
 #### Defined in
 
-[components/Camera.ts:64](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Camera.ts#L64)
-
-___
-
-### OnGizmosDisabled
-
-▸ **OnGizmosDisabled**(): `void`
-
-Called once when Gizmos are disabled.
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[Component](Components.Component.md).[OnGizmosDisabled](Components.Component.md#ongizmosdisabled)
-
-#### Defined in
-
-[components/Camera.ts:96](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Camera.ts#L96)
-
-___
-
-### OnGizmosEnabled
-
-▸ **OnGizmosEnabled**(): `void`
-
-Called once when Gizmos are enabled.
-If Gizmos are enabled before the component is created this method is called once after Start.
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[Component](Components.Component.md).[OnGizmosEnabled](Components.Component.md#ongizmosenabled)
-
-#### Defined in
-
-[components/Camera.ts:83](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Camera.ts#L83)
+[components/Camera.ts:64](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Camera.ts#L64)

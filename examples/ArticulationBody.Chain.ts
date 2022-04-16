@@ -1,18 +1,21 @@
 /**
  * @description Create a chain of Spherical joints.
  */
-import { Scene, GameObject, Components, ArticulationJointType, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
-const rendererConfig = {
-    containerId: "canvasContainer",
-    targetFrameRate: 60,
-};
-const physicsConfig = {
-    physxWasmURL: "../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-};
-const scene = new Scene(rendererConfig, physicsConfig);
-const camera = scene.GetActiveCamera();
-camera.transform.position.set(0, 0, 30);
-scene.OnLoaded = () => {
+import { SceneHelper } from './assets/SceneHelper.js';
+import { Scene, GameObject, Components, ArticulationJointType, ArticulationDofLock, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
+
+class BlockerCube extends Components.Component {
+    public Awake() {
+        this.gameObject.CreatePrimitive(PrimitiveType.Cube);
+        this.transform.localScale.set(0.5, 0.5, 0.5);
+    }
+}
+
+const scene = SceneHelper.CreateScene();
+scene.OnInitialized = () => {
+    const camera = SceneHelper.CreateCamera(scene);
+    camera.transform.position.set(0, 0, 30);
+    SceneHelper.CreateSunlight(scene);
 
     const blockerCubeGameobjectX = new GameObject(scene);
     blockerCubeGameobjectX.CreatePrimitive(PrimitiveType.Cube);
@@ -24,7 +27,7 @@ scene.OnLoaded = () => {
     const rootArticulation = rootArticulationGameobject.AddComponent(Components.ArticulationBody);
     rootArticulation.immovable = true;
 
-    let parentGameobject = rootArticulation;
+    let parentGameobject = rootArticulationGameobject;
     for (let x = 2; x < 10; x+=2) {
         const articulationGameobject = new GameObject(scene);
         articulationGameobject.transform.position.set(x, 0, 0);
@@ -33,12 +36,12 @@ scene.OnLoaded = () => {
         const articulation = articulationGameobject.AddComponent(Components.ArticulationBody);
         articulation.jointType = ArticulationJointType.SphericalJoint;
         articulation.mass = (1/x)*10
-        articulation.xDrive.stiffness = 100;
-        articulation.yDrive.stiffness = 100;
-        articulation.zDrive.stiffness = 100;
-
+        articulation.xDrive.stiffness = 10;
+        articulation.yDrive.stiffness = 10;
+        articulation.zDrive.stiffness = 10;
         parentGameobject = articulationGameobject
     }
 
-    scene.Start();
+    scene.Load();
+    scene.Play();
 };

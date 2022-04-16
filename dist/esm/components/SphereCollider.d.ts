@@ -5,7 +5,5 @@ import { Collider } from "./Collider";
  * @noInheritDoc
  */
 export declare class SphereCollider extends Collider {
-    private physxPhysics;
-    private physxScene;
-    OnEnable(): void;
+    Awake(): void;
 }

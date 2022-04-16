@@ -29,7 +29,7 @@ var LineRenderer = /** @class */ (function (_super) {
         _this.previousTo = new Vector3();
         return _this;
     }
-    LineRenderer.prototype.OnEnable = function () {
+    LineRenderer.prototype.Awake = function () {
         this.material = new LineBasicMaterial({ color: this.color });
         this.geometry = new BufferGeometry().setFromPoints([this.from, this.to]);
         var line = new Line(this.geometry, this.material);

@@ -1,20 +1,14 @@
 /**
  * @description Rigidbody change transform properties.
  */
-import { Scene, GameObject, Components, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
+import { SceneHelper } from './assets/SceneHelper.js';
+import { GameObject, Components, PrimitiveType, THREE } from '../dist/esm/trident-esm-bundle.js';
 
-const rendererConfig = {
-    containerId: "canvasContainer",
-    targetFrameRate: 60,
-};
-const physicsConfig = {
-    physxWasmURL: "../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-};
-const scene = new Scene(rendererConfig, physicsConfig);
-const cameraComponent = scene.GetActiveCamera();
-cameraComponent.transform.position.z = 40;
+const scene = SceneHelper.CreateScene();
+scene.OnInitialized = () => {
+    SceneHelper.CreateCamera(scene, 0, 0, 40);
+    SceneHelper.CreateSunlight(scene);
 
-scene.OnLoaded = () => {
     const floorGameObject = new GameObject(scene);
     floorGameObject.CreatePrimitive(PrimitiveType.Cube);
     floorGameObject.transform.localScale.set(50, 1, 50);
@@ -55,5 +49,6 @@ scene.OnLoaded = () => {
         }, 500);
     }
     
-    scene.Start();
+    scene.Load();
+    scene.Play();
 };

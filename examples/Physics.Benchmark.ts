@@ -1,21 +1,14 @@
 /**
  * @description Creating 3000 cubes with physics.
  */
-import { Scene, GameObject, Components, PrimitiveType, THREE } from '../dist/esm/trident-esm-bundle.js';
+import { SceneHelper } from './assets/SceneHelper.js';
+import { GameObject, Components, PrimitiveType, THREE } from '../dist/esm/trident-esm-bundle.js';
 
-const rendererConfig = {
-    containerId: "canvasContainer",
-    targetFrameRate: 60,
-};
+const scene = SceneHelper.CreateScene();
+scene.OnInitialized = () => {
+    SceneHelper.CreateCamera(scene, 0, 0, 100);
+    SceneHelper.CreateSunlight(scene);
 
-const physicsConfig = {
-    physxWasmURL: "../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-};
-
-const scene = new Scene(rendererConfig, physicsConfig);
-scene.OnLoaded = () => {
-    const cameraComponent = scene.GetActiveCamera();
-    cameraComponent.transform.position.z = 100;
     const floorGameObject = new GameObject(scene);
     floorGameObject.CreatePrimitive(PrimitiveType.Cube);
     const floorMeshRenderer = floorGameObject.GetComponent(Components.MeshRenderer);
@@ -36,5 +29,6 @@ scene.OnLoaded = () => {
         cubeMeshRenderer.material = material;
         cube.transform.position.set(Math.random() * (max - min) + min, Math.random() * (max - 0) + 0, Math.random() * (max - min) + min);
     }
-    scene.Start();
+    scene.Load();
+    scene.Play();
 };

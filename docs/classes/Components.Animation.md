@@ -19,7 +19,7 @@ This mostly works with glTF models that have animations embedded into the model.
 ### Methods
 
 - [AddClip](Components.Animation.md#addclip)
-- [OnEnable](Components.Animation.md#onenable)
+- [Awake](Components.Animation.md#awake)
 - [Play](Components.Animation.md#play)
 - [Stop](Components.Animation.md#stop)
 - [Update](Components.Animation.md#update)
@@ -43,13 +43,13 @@ This mostly works with glTF models that have animations embedded into the model.
 
 #### Defined in
 
-[components/Animation.ts:35](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Animation.ts#L35)
+[components/Animation.ts:35](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Animation.ts#L35)
 
 ___
 
-### OnEnable
+### Awake
 
-▸ **OnEnable**(): `void`
+▸ **Awake**(): `void`
 
 Called once when the component is first added to a GameObject.
 
@@ -59,11 +59,11 @@ Called once when the component is first added to a GameObject.
 
 #### Overrides
 
-[Component](Components.Component.md).[OnEnable](Components.Component.md#onenable)
+[Component](Components.Component.md).[Awake](Components.Component.md#awake)
 
 #### Defined in
 
-[components/Animation.ts:19](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Animation.ts#L19)
+[components/Animation.ts:19](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Animation.ts#L19)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[components/Animation.ts:39](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Animation.ts#L39)
+[components/Animation.ts:39](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Animation.ts#L39)
 
 ___
 
@@ -103,7 +103,7 @@ Called once after the scene is stopped.
 
 #### Defined in
 
-[components/Animation.ts:53](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Animation.ts#L53)
+[components/Animation.ts:53](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Animation.ts#L53)
 
 ___
 
@@ -123,4 +123,4 @@ Called before every Renderer update.
 
 #### Defined in
 
-[components/Animation.ts:58](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Animation.ts#L58)
+[components/Animation.ts:58](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Animation.ts#L58)

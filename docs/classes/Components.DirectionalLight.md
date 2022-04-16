@@ -22,11 +22,9 @@ A directional light.
 
 ### Methods
 
+- [Awake](Components.DirectionalLight.md#awake)
 - [Destroy](Components.DirectionalLight.md#destroy)
 - [OnDrawGizmos](Components.DirectionalLight.md#ondrawgizmos)
-- [OnEnable](Components.DirectionalLight.md#onenable)
-- [OnGizmosDisabled](Components.DirectionalLight.md#ongizmosdisabled)
-- [OnGizmosEnabled](Components.DirectionalLight.md#ongizmosenabled)
 
 ## Accessors
 
@@ -40,7 +38,7 @@ A directional light.
 
 #### Defined in
 
-[components/DirectionalLight.ts:15](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/DirectionalLight.ts#L15)
+[components/DirectionalLight.ts:15](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/DirectionalLight.ts#L15)
 
 • `set` **color**(`color`): `void`
 
@@ -56,7 +54,7 @@ A directional light.
 
 #### Defined in
 
-[components/DirectionalLight.ts:19](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/DirectionalLight.ts#L19)
+[components/DirectionalLight.ts:19](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/DirectionalLight.ts#L19)
 
 ___
 
@@ -70,7 +68,7 @@ ___
 
 #### Defined in
 
-[components/DirectionalLight.ts:24](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/DirectionalLight.ts#L24)
+[components/DirectionalLight.ts:24](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/DirectionalLight.ts#L24)
 
 • `set` **intensity**(`intensity`): `void`
 
@@ -86,7 +84,7 @@ ___
 
 #### Defined in
 
-[components/DirectionalLight.ts:28](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/DirectionalLight.ts#L28)
+[components/DirectionalLight.ts:28](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/DirectionalLight.ts#L28)
 
 ___
 
@@ -100,7 +98,7 @@ ___
 
 #### Defined in
 
-[components/DirectionalLight.ts:33](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/DirectionalLight.ts#L33)
+[components/DirectionalLight.ts:33](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/DirectionalLight.ts#L33)
 
 • `set` **shadows**(`shadows`): `void`
 
@@ -116,9 +114,29 @@ ___
 
 #### Defined in
 
-[components/DirectionalLight.ts:37](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/DirectionalLight.ts#L37)
+[components/DirectionalLight.ts:37](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/DirectionalLight.ts#L37)
 
 ## Methods
+
+### Awake
+
+▸ **Awake**(): `void`
+
+Called once when the component is first added to a GameObject.
+
+#### Returns
+
+`void`
+
+#### Overrides
+
+[Component](Components.Component.md).[Awake](Components.Component.md#awake)
+
+#### Defined in
+
+[components/DirectionalLight.ts:41](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/DirectionalLight.ts#L41)
+
+___
 
 ### Destroy
 
@@ -136,7 +154,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/DirectionalLight.ts:68](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/DirectionalLight.ts#L68)
+[components/DirectionalLight.ts:55](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/DirectionalLight.ts#L55)
 
 ___
 
@@ -156,65 +174,4 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-[components/DirectionalLight.ts:54](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/DirectionalLight.ts#L54)
-
-___
-
-### OnEnable
-
-▸ **OnEnable**(): `void`
-
-Called once when the component is first added to a GameObject.
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[Component](Components.Component.md).[OnEnable](Components.Component.md#onenable)
-
-#### Defined in
-
-[components/DirectionalLight.ts:41](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/DirectionalLight.ts#L41)
-
-___
-
-### OnGizmosDisabled
-
-▸ **OnGizmosDisabled**(): `void`
-
-Called once when Gizmos are disabled.
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[Component](Components.Component.md).[OnGizmosDisabled](Components.Component.md#ongizmosdisabled)
-
-#### Defined in
-
-[components/DirectionalLight.ts:60](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/DirectionalLight.ts#L60)
-
-___
-
-### OnGizmosEnabled
-
-▸ **OnGizmosEnabled**(): `void`
-
-Called once when Gizmos are enabled.
-If Gizmos are enabled before the component is created this method is called once after Start.
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[Component](Components.Component.md).[OnGizmosEnabled](Components.Component.md#ongizmosenabled)
-
-#### Defined in
-
-[components/DirectionalLight.ts:47](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/DirectionalLight.ts#L47)
+[components/DirectionalLight.ts:46](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/DirectionalLight.ts#L46)

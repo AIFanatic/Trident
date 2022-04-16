@@ -25,7 +25,7 @@ var Gizmo = /** @class */ (function (_super) {
         _this.length = 20;
         return _this;
     }
-    Gizmo.prototype.OnEnable = function () {
+    Gizmo.prototype.Awake = function () {
         this.upLine = this.gameObject.AddComponent(LineRenderer);
         this.rightLine = this.gameObject.AddComponent(LineRenderer);
         this.forwardLine = this.gameObject.AddComponent(LineRenderer);

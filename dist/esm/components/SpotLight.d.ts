@@ -18,9 +18,8 @@ export declare class SpotLight extends Component {
     set intensity(intensity: number);
     get shadows(): boolean;
     set shadows(shadows: boolean);
-    OnEnable(): void;
+    Awake(): void;
     OnGizmosEnabled(): void;
     OnDrawGizmos(): void;
-    OnGizmosDisabled(): void;
     Destroy(): void;
 }

@@ -25,7 +25,7 @@
 
 #### Defined in
 
-[enums/LayerMask.ts:2](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/enums/LayerMask.ts#L2)
+[enums/LayerMask.ts:2](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/enums/LayerMask.ts#L2)
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 #### Defined in
 
-[enums/LayerMask.ts:3](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/enums/LayerMask.ts#L3)
+[enums/LayerMask.ts:3](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/enums/LayerMask.ts#L3)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 #### Defined in
 
-[enums/LayerMask.ts:4](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/enums/LayerMask.ts#L4)
+[enums/LayerMask.ts:4](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/enums/LayerMask.ts#L4)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 #### Defined in
 
-[enums/LayerMask.ts:5](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/enums/LayerMask.ts#L5)
+[enums/LayerMask.ts:5](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/enums/LayerMask.ts#L5)
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 #### Defined in
 
-[enums/LayerMask.ts:6](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/enums/LayerMask.ts#L6)
+[enums/LayerMask.ts:6](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/enums/LayerMask.ts#L6)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-[enums/LayerMask.ts:7](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/enums/LayerMask.ts#L7)
+[enums/LayerMask.ts:7](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/enums/LayerMask.ts#L7)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[enums/LayerMask.ts:8](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/enums/LayerMask.ts#L8)
+[enums/LayerMask.ts:8](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/enums/LayerMask.ts#L8)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[enums/LayerMask.ts:9](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/enums/LayerMask.ts#L9)
+[enums/LayerMask.ts:9](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/enums/LayerMask.ts#L9)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[enums/LayerMask.ts:10](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/enums/LayerMask.ts#L10)
+[enums/LayerMask.ts:10](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/enums/LayerMask.ts#L10)
 
 ___
 
@@ -115,4 +115,4 @@ ___
 
 #### Defined in
 
-[enums/LayerMask.ts:11](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/enums/LayerMask.ts#L11)
+[enums/LayerMask.ts:11](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/enums/LayerMask.ts#L11)

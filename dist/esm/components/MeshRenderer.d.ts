@@ -17,7 +17,7 @@ export declare class MeshRenderer extends Component {
     set castShadows(castShadows: boolean);
     get receiveShadows(): boolean;
     set receiveShadows(receiveShadows: boolean);
-    OnEnable(): void;
+    Awake(): void;
     MeshFilterModelChanged(mesh: Geometry | BufferGeometry): void;
     private RemoveMesh;
     private AddMeshFromMeshFilter;

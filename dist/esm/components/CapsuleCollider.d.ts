@@ -5,5 +5,5 @@ import { Collider } from "./Collider";
  * @noInheritDoc
  */
 export declare class CapsuleCollider extends Collider {
-    OnEnable(): void;
+    Awake(): void;
 }

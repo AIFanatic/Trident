@@ -1,8 +1,8 @@
 /**
  * @description Custom component creation.
  */
-import { Scene, GameObject, Components, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
-import { IPhysicsConfiguration } from '../dist/esm/interfaces/IPhysicsConfiguration.js';
+import { SceneHelper } from './assets/SceneHelper.js';
+import { GameObject, Components, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
 
 class CustomComponent extends Components.Component {
     public Start() {
@@ -14,20 +14,15 @@ class CustomComponent extends Components.Component {
     }
 }
 
-const rendererConfig = {
-    containerId: "canvasContainer",
-    targetFrameRate: 60,
-}
-
-const physicsConfig: IPhysicsConfiguration = {
-    physxWasmURL: "../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-}
-
-const scene = new Scene(rendererConfig, physicsConfig);
-scene.OnLoaded = () => {
+const scene = SceneHelper.CreateScene();
+scene.OnInitialized = () => {
+    SceneHelper.CreateCamera(scene);
+    SceneHelper.CreateSunlight(scene);
+    
     const cubeGameobject = new GameObject(scene);
-    const cubeComponent = cubeGameobject.AddComponent(CustomComponent) as CustomComponent;
+    const cubeComponent = cubeGameobject.AddComponent(CustomComponent);
     cubeComponent.transform.position.set(0, -2, -10);
     
-    scene.Start()
+    scene.Load();
+    scene.Play();
 };

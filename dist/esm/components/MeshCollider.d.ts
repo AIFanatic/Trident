@@ -1,4 +1,5 @@
 import { Collider } from "./Collider";
+import { BufferGeometry } from 'three';
 /**
  * Adds a static mesh collider to the GameObject.
  *
@@ -7,16 +8,11 @@ import { Collider } from "./Collider";
  * @noInheritDoc
  */
 export declare class MeshCollider extends Collider {
-    private physxPhysics;
-    private physxScene;
     private physxCooking;
-    private _isConvex;
-    get isConvex(): boolean;
-    set isConvex(isConvex: boolean);
-    OnEnable(): void;
-    private GetGeometryFromMeshFilter;
-    private CreateConvexShape;
+    private isConvex;
+    Awake(): void;
+    MeshFilterModelChanged(mesh: BufferGeometry): void;
+    CreateCollider(): void;
     private CreateConvexCollider;
-    private CreateTrimeshShape;
     private CreateTrimeshCollider;
 }

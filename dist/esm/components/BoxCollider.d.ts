@@ -5,5 +5,6 @@ import { Collider } from "./Collider";
  * @noInheritDoc
  */
 export declare class BoxCollider extends Collider {
-    OnEnable(): void;
+    Awake(): void;
+    private CreateCollider;
 }

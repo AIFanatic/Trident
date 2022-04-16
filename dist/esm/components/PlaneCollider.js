@@ -28,7 +28,7 @@ var PlaneCollider = /** @class */ (function (_super) {
     function PlaneCollider() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    PlaneCollider.prototype.OnEnable = function () {
+    PlaneCollider.prototype.Awake = function () {
         var physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
         var physxScene = this.gameObject.scene.GetPhysics().GetScene();
         var rigidbodyComponent = this.gameObject.GetComponent(Rigidbody);

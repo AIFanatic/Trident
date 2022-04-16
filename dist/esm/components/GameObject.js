@@ -4,6 +4,7 @@ import { UUID } from '../utils/UUID';
 import { LayerMask } from "../enums/LayerMask";
 import { PrimitiveType } from "../enums/PrimitiveType";
 import { Cube, Capsule, Plane, Sphere, Cylinder } from "../primitives";
+import { InstantiationPool } from "../InstantiationPool";
 /**
  * The main component of the entity component system.
  *
@@ -76,25 +77,20 @@ var GameObject = /** @class */ (function () {
     * @returns {Component} - If successful it returns an instance of the passed component, null otherwise.
     */
     GameObject.prototype.AddComponent = function (component) {
-        if (component == Object) {
-            return null;
+        try {
+            var componentObject = new component(this, this.transform);
+            if (!this.IsValidComponent(componentObject)) {
+                console.error("Invalid Component " + componentObject);
+                return null;
+            }
+            this.components.push(componentObject);
+            InstantiationPool.add(componentObject);
+            return componentObject;
         }
-        // try {
-        var componentObject = new component(this, this.transform);
-        if (!this.IsValidComponent(componentObject)) {
-            console.error("Invalid Component " + componentObject);
-            return null;
+        catch (error) {
+            console.error(error);
+            console.error("Invalid component " + component);
         }
-        this.components.push(componentObject);
-        componentObject.OnEnable();
-        if (this.scene.HasGizmosEnabled()) {
-            componentObject.OnGizmosEnabled();
-        }
-        return componentObject;
-        // } catch (error) {
-        //     console.error(error)
-        //     console.error(`Invalid component ${component}`)
-        // }
         return null;
     };
     /**
@@ -102,6 +98,7 @@ var GameObject = /** @class */ (function () {
     * @param {string} methodName - The name of the method to be called.
     * @param {any} parameter - Parameters to be called with the method.
     */
+    // TODO: Non Awake or non Start components should not receive messages
     GameObject.prototype.BroadcastMessage = function (methodName, parameter) {
         for (var _i = 0, _a = this.components; _i < _a.length; _i++) {
             var component = _a[_i];
@@ -109,14 +106,6 @@ var GameObject = /** @class */ (function () {
                 component[methodName](parameter);
             }
         }
-    };
-    GameObject.prototype.OnEnable = function () {
-        for (var _i = 0, _a = this.components; _i < _a.length; _i++) {
-            var component = _a[_i];
-            component.OnEnable();
-        }
-    };
-    GameObject.prototype.OnDisable = function () {
     };
     /**
     * Removes a component from the GameObject.
@@ -146,7 +135,6 @@ var GameObject = /** @class */ (function () {
     GameObject.prototype.GetComponent = function (type) {
         for (var _i = 0, _a = this.components; _i < _a.length; _i++) {
             var component = _a[_i];
-            // if (component.classname == type.name) {
             if (component instanceof type) {
                 return component;
             }
@@ -180,11 +168,9 @@ var GameObject = /** @class */ (function () {
         if (this.scene.isPlaying) {
             for (var _i = 0, _a = this.components; _i < _a.length; _i++) {
                 var component = _a[_i];
-                if (!component.hasStarted) {
-                    component.Start();
-                    component.hasStarted = true;
+                if (component.isAwake && component.isStarted) {
+                    component.Update();
                 }
-                component.Update();
             }
         }
     };
@@ -193,33 +179,6 @@ var GameObject = /** @class */ (function () {
         for (var _i = 0, _a = this.components; _i < _a.length; _i++) {
             var component = _a[_i];
             component.LateUpdate();
-        }
-    };
-    GameObject.prototype.Start = function () {
-        this.transform.Start();
-        for (var _i = 0, _a = this.components; _i < _a.length; _i++) {
-            var component = _a[_i];
-            component.Start();
-            component.hasStarted = true;
-        }
-    };
-    GameObject.prototype.Stop = function () {
-        this.transform.Stop();
-        for (var _i = 0, _a = this.components; _i < _a.length; _i++) {
-            var component = _a[_i];
-            component.Stop();
-        }
-    };
-    GameObject.prototype.OnGizmosEnabled = function () {
-        for (var _i = 0, _a = this.components; _i < _a.length; _i++) {
-            var component = _a[_i];
-            component.OnGizmosEnabled();
-        }
-    };
-    GameObject.prototype.OnGizmosDisabled = function () {
-        for (var _i = 0, _a = this.components; _i < _a.length; _i++) {
-            var component = _a[_i];
-            component.OnGizmosDisabled();
         }
     };
     GameObject.prototype.OnDrawGizmos = function () {

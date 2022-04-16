@@ -22,8 +22,8 @@ Creates a line from point A (from) to point B (to).
 
 ### Methods
 
+- [Awake](Components.LineRenderer.md#awake)
 - [Destroy](Components.LineRenderer.md#destroy)
-- [OnEnable](Components.LineRenderer.md#onenable)
 - [Update](Components.LineRenderer.md#update)
 
 ## Properties
@@ -34,7 +34,7 @@ Creates a line from point A (from) to point B (to).
 
 #### Defined in
 
-[components/LineRenderer.ts:12](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/LineRenderer.ts#L12)
+[components/LineRenderer.ts:12](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/LineRenderer.ts#L12)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[components/LineRenderer.ts:10](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/LineRenderer.ts#L10)
+[components/LineRenderer.ts:10](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/LineRenderer.ts#L10)
 
 ___
 
@@ -54,9 +54,29 @@ ___
 
 #### Defined in
 
-[components/LineRenderer.ts:11](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/LineRenderer.ts#L11)
+[components/LineRenderer.ts:11](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/LineRenderer.ts#L11)
 
 ## Methods
+
+### Awake
+
+▸ **Awake**(): `void`
+
+Called once when the component is first added to a GameObject.
+
+#### Returns
+
+`void`
+
+#### Overrides
+
+[Component](Components.Component.md).[Awake](Components.Component.md#awake)
+
+#### Defined in
+
+[components/LineRenderer.ts:21](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/LineRenderer.ts#L21)
+
+___
 
 ### Destroy
 
@@ -74,27 +94,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/LineRenderer.ts:47](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/LineRenderer.ts#L47)
-
-___
-
-### OnEnable
-
-▸ **OnEnable**(): `void`
-
-Called once when the component is first added to a GameObject.
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[Component](Components.Component.md).[OnEnable](Components.Component.md#onenable)
-
-#### Defined in
-
-[components/LineRenderer.ts:21](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/LineRenderer.ts#L21)
+[components/LineRenderer.ts:47](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/LineRenderer.ts#L47)
 
 ___
 
@@ -114,4 +114,4 @@ Called before every Renderer update.
 
 #### Defined in
 
-[components/LineRenderer.ts:31](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/LineRenderer.ts#L31)
+[components/LineRenderer.ts:31](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/LineRenderer.ts#L31)

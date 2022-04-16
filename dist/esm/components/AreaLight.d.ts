@@ -18,9 +18,7 @@ export declare class AreaLight extends Component {
     set intensity(intensity: number);
     get shadows(): boolean;
     set shadows(shadows: boolean);
-    OnEnable(): void;
-    OnGizmosEnabled(): void;
+    Awake(): void;
     OnDrawGizmos(): void;
-    OnGizmosDisabled(): void;
     Destroy(): void;
 }

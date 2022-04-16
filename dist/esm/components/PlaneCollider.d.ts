@@ -7,6 +7,6 @@ import { Collider } from "./Collider";
  * @noInheritDoc
  */
 export declare class PlaneCollider extends Collider {
-    OnEnable(): void;
+    Awake(): void;
     Update(): void;
 }

@@ -16,13 +16,13 @@ Adds a static box collider to the GameObject.
 
 ### Methods
 
-- [OnEnable](Components.BoxCollider.md#onenable)
+- [Awake](Components.BoxCollider.md#awake)
 
 ## Methods
 
-### OnEnable
+### Awake
 
-▸ **OnEnable**(): `void`
+▸ **Awake**(): `void`
 
 #### Returns
 
@@ -30,8 +30,8 @@ Adds a static box collider to the GameObject.
 
 #### Overrides
 
-Collider.OnEnable
+Collider.Awake
 
 #### Defined in
 
-[components/BoxCollider.ts:14](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/BoxCollider.ts#L14)
+[components/BoxCollider.ts:14](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/BoxCollider.ts#L14)

@@ -34,6 +34,26 @@ var trident = (() => {
       __defProp(target, key, result);
     return result;
   };
+  var __async = (__this, __arguments, generator) => {
+    return new Promise((resolve, reject) => {
+      var fulfilled = (value) => {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var rejected = (value) => {
+        try {
+          step(generator.throw(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+      step((generator = generator.apply(__this, __arguments)).next());
+    });
+  };
 
   // node_modules/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.js
   var require_trident_physx_js_webidl_wasm = __commonJS({
@@ -27727,6 +27747,7 @@ var trident = (() => {
     KeyCodes: () => KeyCodes,
     LayerMask: () => LayerMask,
     PrimitiveType: () => PrimitiveType,
+    Resources: () => Resources,
     Scene: () => Scene2,
     THREE: () => three_module_exports
   });
@@ -57544,15 +57565,20 @@ var trident = (() => {
     constructor(gameObject, transform) {
       this.uuid = UUID.v4();
       this.classtype = "Component";
+      this.isStarted = false;
+      this.isAwake = false;
+      this.runInEditMode = false;
       this.gameObject = gameObject;
       this.transform = transform;
       this.classname = this.constructor.name;
     }
-    OnEnable() {
+    Awake() {
     }
     OnDisable() {
     }
     Start() {
+      return __async(this, null, function* () {
+      });
     }
     Stop() {
     }
@@ -57582,8 +57608,7 @@ var trident = (() => {
   var Camera2 = class extends Component {
     constructor() {
       super(...arguments);
-      this.previousTransformPosition = new Vector3();
-      this.previousCameraPosition = new Vector3();
+      this.camera = new PerspectiveCamera(60, 1, 0.1, 1e3);
     }
     get far() {
       return this.camera.far;
@@ -57606,40 +57631,33 @@ var trident = (() => {
       this.camera.fov = fieldOfView;
       this.camera.updateProjectionMatrix();
     }
-    OnEnable() {
-      const canvas = this.gameObject.scene.GetRenderer().renderer.domElement;
-      this.camera = new PerspectiveCamera(59, canvas.offsetWidth / canvas.offsetHeight, 0.1, 1e3);
+    Awake() {
       this.transform.group.add(this.camera);
-      this.previousTransformPosition.copy(this.transform.localPosition);
-      this.previousCameraPosition.copy(this.transform.localPosition);
       window.addEventListener("resize", (event) => {
-        const canvas2 = this.gameObject.scene.GetRenderer().renderer.domElement;
-        this.camera.aspect = canvas2.parentElement.offsetWidth / canvas2.parentElement.offsetHeight;
-        this.camera.updateProjectionMatrix();
+        this.OnResize();
       });
+      this.OnResize();
     }
     GetCamera() {
       return this.camera;
     }
-    OnGizmosEnabled() {
+    OnResize() {
+      const canvas = this.gameObject.scene.GetRenderer().renderer.domElement;
+      this.camera.aspect = canvas.parentElement.offsetWidth / canvas.parentElement.offsetHeight;
+      this.camera.updateProjectionMatrix();
+    }
+    OnDrawGizmos() {
       if (!this.helper) {
         this.helper = new CameraHelper(this.camera);
         this.transform.group.add(this.helper);
       }
+      this.helper.update();
     }
-    OnDrawGizmos() {
-      if (this.helper) {
-        this.helper.update();
-      }
-    }
-    OnGizmosDisabled() {
+    Destroy() {
       if (this.helper) {
         this.transform.group.remove(this.helper);
         this.helper = void 0;
       }
-    }
-    Destroy() {
-      this.OnGizmosDisabled();
       this.transform.group.remove(this.camera);
       this.gameObject.RemoveComponent(this);
     }
@@ -57656,7 +57674,9 @@ var trident = (() => {
 
   // src/components/MeshFilter.ts
   var MeshFilter = class extends Component {
-    OnEnable() {
+    constructor() {
+      super(...arguments);
+      this.runInEditMode = true;
     }
     get mesh() {
       return this._mesh;
@@ -57676,18 +57696,12 @@ var trident = (() => {
     SerializeField
   ], MeshFilter.prototype, "mesh", 1);
 
-  // src/defaults/MeshRendererDefaults.ts
-  var MeshRendererDefaults = class {
-    static DefaultMaterial() {
-      return new MeshStandardMaterial();
-    }
-  };
-
   // src/components/MeshRenderer.ts
+  var DefaultMaterial = new MeshStandardMaterial();
   var MeshRenderer = class extends Component {
     constructor() {
       super(...arguments);
-      this._material = MeshRendererDefaults.DefaultMaterial();
+      this._material = DefaultMaterial;
     }
     get mesh() {
       return this._mesh;
@@ -57724,7 +57738,7 @@ var trident = (() => {
         object.receiveShadow = receiveShadows;
       });
     }
-    OnEnable() {
+    Awake() {
       this.renderer = this.gameObject.scene.GetRenderer();
       this.AddMeshFromMeshFilter();
     }
@@ -58121,29 +58135,6 @@ var trident = (() => {
       this.localScale = new Vector3();
       this.previousLayer = LayerMask.LAYER0;
     }
-    OnEnable() {
-      this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-      this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
-      const collider = this.gameObject.GetComponent(Collider);
-      if (collider) {
-        this.body = collider.body;
-        this.body.ConvertToDynamic();
-        this.body.UpdatePose(this.transform.position, this.transform.rotation, this.transform.localScale);
-        this.rigidbody = this.body.rigidbody;
-      } else {
-        const shape = PhysicsShape.CreateBox(this.physxPhysics, new Vector3(1, 1, 1));
-        const geometry = shape.getGeometry().box();
-        const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-        const rigidbody = this.physxPhysics.createRigidDynamic(transform);
-        const physicsBody = {
-          rigidbody,
-          geometry,
-          shape
-        };
-        this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
-        this.rigidbody = rigidbody;
-      }
-    }
     get isKinematic() {
       const flags = this.rigidbody.getRigidBodyFlags();
       return flags.isSet(RigidBodyFlags.KINEMATIC.valueOf());
@@ -58214,7 +58205,32 @@ var trident = (() => {
       this.velocity = new Vector3(0, 0, 0);
       this.AddForce(force);
     }
-    Start() {
+    Awake() {
+      this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
+      this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
+      const shape = PhysicsShape.CreateBox(this.physxPhysics, new Vector3(1, 1, 1));
+      const geometry = shape.getGeometry().box();
+      const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+      const rigidbody = this.physxPhysics.createRigidDynamic(transform);
+      const physicsBody = {
+        rigidbody,
+        geometry,
+        shape
+      };
+      this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+      this.rigidbody = rigidbody;
+    }
+    CreatedCollider(body) {
+      if (this.body) {
+        this.body.rigidbody.detachShape(this.body.shape);
+        this.body.shape.release();
+        this.body.rigidbody.release();
+        this.body = null;
+      }
+      this.body = body;
+      this.body.ConvertToDynamic();
+      this.body.UpdatePose(this.transform.position, this.transform.rotation, this.transform.localScale);
+      this.rigidbody = this.body.rigidbody;
     }
     HandleTransformChanges() {
       if (this.transform.position.distanceToSquared(this.position) > Number.EPSILON) {
@@ -58228,23 +58244,23 @@ var trident = (() => {
       }
     }
     FixedUpdate() {
+      if (!this.body)
+        return;
       this.HandleTransformChanges();
-      if (this.body) {
-        const body = this.body.rigidbody;
-        if (body.isSleeping())
-          return;
-        const transform = body.getGlobalPose();
-        this.transform.position.set(transform.p.x, transform.p.y, transform.p.z);
-        this.transform.rotation.set(transform.q.x, transform.q.y, transform.q.z, transform.q.w);
-        this.position.copy(this.transform.position);
-        this.rotation.copy(this.transform.rotation);
-        this.localScale.set(this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
-        if (this.previousLayer != this.gameObject.layer) {
-          const filterData = new import_trident_physx_js_webidl6.default.PxFilterData();
-          filterData.word2 = this.gameObject.layer;
-          this.body.shape.setQueryFilterData(filterData);
-          this.previousLayer = this.gameObject.layer;
-        }
+      const body = this.body.rigidbody;
+      if (body.isSleeping())
+        return;
+      const transform = body.getGlobalPose();
+      this.transform.position.set(transform.p.x, transform.p.y, transform.p.z);
+      this.transform.rotation.set(transform.q.x, transform.q.y, transform.q.z, transform.q.w);
+      this.position.copy(this.transform.position);
+      this.rotation.copy(this.transform.rotation);
+      this.localScale.set(this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
+      if (this.previousLayer != this.gameObject.layer) {
+        const filterData = new import_trident_physx_js_webidl6.default.PxFilterData();
+        filterData.word2 = this.gameObject.layer;
+        this.body.shape.setQueryFilterData(filterData);
+        this.previousLayer = this.gameObject.layer;
       }
     }
     Destroy() {
@@ -58278,31 +58294,29 @@ var trident = (() => {
 
   // src/components/BoxCollider.ts
   var BoxCollider = class extends Collider {
-    OnEnable() {
-      const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-      const physxScene = this.gameObject.scene.GetPhysics().GetScene();
-      const rigidbodyComponent = this.gameObject.GetComponent(Rigidbody);
-      const shape = PhysicsShape.CreateBox(physxPhysics, this.transform.localScale);
-      if (rigidbodyComponent) {
-        this.body = rigidbodyComponent.body;
-        this.body.UpdateShape(shape);
-      } else {
-        const geometry = shape.getGeometry().box();
-        const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-        const rigidbody = physxPhysics.createRigidStatic(transform);
-        const physicsBody = {
-          rigidbody,
-          geometry,
-          shape
-        };
-        this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
-      }
+    Awake() {
+      this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
+      this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
+      this.CreateCollider();
+    }
+    CreateCollider() {
+      const shape = PhysicsShape.CreateBox(this.physxPhysics, this.transform.localScale);
+      const geometry = shape.getGeometry().box();
+      const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+      const rigidbody = this.physxPhysics.createRigidStatic(transform);
+      const physicsBody = {
+        rigidbody,
+        geometry,
+        shape
+      };
+      this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+      this.gameObject.BroadcastMessage("CreatedCollider", this.body);
     }
   };
 
   // src/components/SphereCollider.ts
   var SphereCollider = class extends Collider {
-    OnEnable() {
+    Awake() {
       this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
       this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
       const rigidbodyComponent = this.gameObject.GetComponent(Rigidbody);
@@ -58327,7 +58341,7 @@ var trident = (() => {
 
   // src/components/CapsuleCollider.ts
   var CapsuleCollider = class extends Collider {
-    OnEnable() {
+    Awake() {
       const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
       const physxScene = this.gameObject.scene.GetPhysics().GetScene();
       const rigidbodyComponent = this.gameObject.GetComponent(Rigidbody);
@@ -58351,7 +58365,7 @@ var trident = (() => {
 
   // src/components/PlaneCollider.ts
   var PlaneCollider = class extends Collider {
-    OnEnable() {
+    Awake() {
       const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
       const physxScene = this.gameObject.scene.GetPhysics().GetScene();
       const rigidbodyComponent = this.gameObject.GetComponent(Rigidbody);
@@ -58440,96 +58454,73 @@ var trident = (() => {
 
   // src/components/MeshCollider.ts
   var MeshCollider = class extends Collider {
-    get isConvex() {
-      return this._isConvex;
-    }
-    set isConvex(isConvex) {
-      if (isConvex) {
-        this.CreateConvexCollider();
-      } else {
-        this.CreateTrimeshCollider();
-      }
-      this._isConvex = isConvex;
-    }
-    OnEnable() {
+    Awake() {
       this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
       this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
       this.physxCooking = this.gameObject.scene.GetPhysics().GetCooking();
-      const rigidbodyComponent = this.gameObject.GetComponent(Rigidbody);
-      if (rigidbodyComponent) {
-        const shape = this.CreateTrimeshShape();
-        this.body = rigidbodyComponent.body;
-        this.body.UpdateShape(shape);
-      } else {
-        this.CreateTrimeshCollider();
-      }
+      this.CreateCollider();
     }
-    GetGeometryFromMeshFilter() {
+    MeshFilterModelChanged(mesh) {
+      this.CreateCollider();
+    }
+    CreateCollider() {
       const meshFilter = this.gameObject.GetComponent(MeshFilter);
-      const mesh = meshFilter.mesh;
-      return mesh;
-    }
-    CreateConvexShape() {
-      const bufferGeometry = this.GetGeometryFromMeshFilter();
-      if (bufferGeometry) {
-        const vertices = bufferGeometry.getAttribute("position").array;
-        const shape = PhysicsShape.CreateConvex(this.physxPhysics, this.physxCooking, vertices);
-        return shape;
+      const bufferGeometry = meshFilter.mesh;
+      if (!bufferGeometry)
+        return;
+      let createdCollider = false;
+      if (this.isConvex) {
+        createdCollider = this.CreateConvexCollider(bufferGeometry);
+      } else {
+        createdCollider = this.CreateTrimeshCollider(bufferGeometry);
       }
-      return null;
-    }
-    CreateConvexCollider() {
-      const shape = this.CreateConvexShape();
-      if (shape) {
-        if (this.body) {
-          this.body.UpdateShape(shape);
-          return;
-        }
-        const geometry = shape.getGeometry().convexMesh();
-        const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-        const rigidbody = this.physxPhysics.createRigidStatic(transform);
-        const physicsBody = {
-          rigidbody,
-          geometry,
-          shape
-        };
-        this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+      if (createdCollider) {
+        this.gameObject.BroadcastMessage("CreatedCollider", this.body);
       }
     }
-    CreateTrimeshShape() {
-      const bufferGeometry = this.GetGeometryFromMeshFilter();
-      if (bufferGeometry) {
-        const indexedBufferGeometry = bufferGeometry.index !== null ? bufferGeometry : ConvertGeometryToIndexed(bufferGeometry, TrianglesModeEnum.TriangleStripDrawMode);
-        const vertices = indexedBufferGeometry.getAttribute("position").array;
-        const indices = indexedBufferGeometry.getIndex().array;
-        const shape = PhysicsShape.CreateTrimesh(this.physxPhysics, this.physxCooking, vertices, indices);
-        return shape;
+    CreateConvexCollider(bufferGeometry) {
+      const vertices = bufferGeometry.getAttribute("position").array;
+      const shape = PhysicsShape.CreateConvex(this.physxPhysics, this.physxCooking, vertices);
+      if (this.body) {
+        this.body.UpdateShape(shape);
+        return true;
       }
-      return null;
+      const geometry = shape.getGeometry().convexMesh();
+      const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+      const rigidbody = this.physxPhysics.createRigidStatic(transform);
+      const physicsBody = {
+        rigidbody,
+        geometry,
+        shape
+      };
+      this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+      return true;
     }
-    CreateTrimeshCollider() {
-      const shape = this.CreateTrimeshShape();
-      if (shape) {
-        if (this.body) {
-          this.body.UpdateShape(shape);
-          return;
-        }
-        const geometry = shape.getGeometry().triangleMesh();
-        const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-        const rigidbody = this.physxPhysics.createRigidStatic(transform);
-        const physicsBody = {
-          rigidbody,
-          geometry,
-          shape
-        };
-        this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+    CreateTrimeshCollider(bufferGeometry) {
+      const indexedBufferGeometry = bufferGeometry.index !== null ? bufferGeometry : ConvertGeometryToIndexed(bufferGeometry, TrianglesModeEnum.TriangleStripDrawMode);
+      const vertices = indexedBufferGeometry.getAttribute("position").array;
+      const indices = indexedBufferGeometry.getIndex().array;
+      const shape = PhysicsShape.CreateTrimesh(this.physxPhysics, this.physxCooking, vertices, indices);
+      if (this.body) {
+        this.body.UpdateShape(shape);
+        return true;
       }
+      const geometry = shape.getGeometry().triangleMesh();
+      const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+      const rigidbody = this.physxPhysics.createRigidStatic(transform);
+      const physicsBody = {
+        rigidbody,
+        geometry,
+        shape
+      };
+      this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+      return true;
     }
   };
 
   // src/components/Animation.ts
   var Animation = class extends Component {
-    OnEnable() {
+    Awake() {
       this.animations = new Map();
       this.clock = new Clock(true);
       this.OnMeshChanged();
@@ -58576,7 +58567,7 @@ var trident = (() => {
       this.previousFrom = new Vector3();
       this.previousTo = new Vector3();
     }
-    OnEnable() {
+    Awake() {
       this.material = new LineBasicMaterial({ color: this.color });
       this.geometry = new BufferGeometry().setFromPoints([this.from, this.to]);
       const line = new Line(this.geometry, this.material);
@@ -58608,7 +58599,7 @@ var trident = (() => {
       super(...arguments);
       this.length = 20;
     }
-    OnEnable() {
+    Awake() {
       this.upLine = this.gameObject.AddComponent(LineRenderer);
       this.rightLine = this.gameObject.AddComponent(LineRenderer);
       this.forwardLine = this.gameObject.AddComponent(LineRenderer);
@@ -58633,6 +58624,10 @@ var trident = (() => {
 
   // src/components/PointLight.ts
   var PointLight2 = class extends Component {
+    constructor() {
+      super(...arguments);
+      this.light = new PointLight(16777215, 1, 10);
+    }
     get range() {
       return this.light.distance;
     }
@@ -58657,31 +58652,23 @@ var trident = (() => {
     set shadows(shadows) {
       this.light.castShadow = shadows;
     }
-    OnEnable() {
-      this.light = new PointLight(16777215, 1, 10);
+    Awake() {
       this.transform.group.add(this.light);
       this.light.parent = this.transform.group;
     }
-    OnGizmosEnabled() {
+    OnDrawGizmos() {
       if (!this.helper) {
         this.helper = new PointLightHelper(this.light);
         this.transform.group.add(this.helper);
       }
+      this.helper.update();
     }
-    OnDrawGizmos() {
-      if (this.helper) {
-        this.helper.update();
-      }
-    }
-    OnGizmosDisabled() {
+    Destroy() {
       if (this.helper) {
         this.transform.group.remove(this.helper);
         this.helper.dispose();
         this.helper = void 0;
       }
-    }
-    Destroy() {
-      this.OnGizmosDisabled();
       this.transform.group.remove(this.light);
       this.gameObject.RemoveComponent(this);
     }
@@ -58701,6 +58688,10 @@ var trident = (() => {
 
   // src/components/DirectionalLight.ts
   var DirectionalLight2 = class extends Component {
+    constructor() {
+      super(...arguments);
+      this.light = new DirectionalLight(16777215, 1);
+    }
     get color() {
       return this.light.color;
     }
@@ -58719,31 +58710,23 @@ var trident = (() => {
     set shadows(shadows) {
       this.light.castShadow = shadows;
     }
-    OnEnable() {
-      this.light = new DirectionalLight(16777215, 1);
+    Awake() {
       this.transform.group.add(this.light);
       this.light.parent = this.transform.group;
     }
-    OnGizmosEnabled() {
+    OnDrawGizmos() {
       if (!this.helper) {
         this.helper = new DirectionalLightHelper(this.light);
         this.transform.group.add(this.helper);
       }
+      this.helper.update();
     }
-    OnDrawGizmos() {
-      if (this.helper) {
-        this.helper.update();
-      }
-    }
-    OnGizmosDisabled() {
+    Destroy() {
       if (this.helper) {
         this.transform.group.remove(this.helper);
         this.helper.dispose();
         this.helper = void 0;
       }
-    }
-    Destroy() {
-      this.OnGizmosDisabled();
       this.transform.group.remove(this.light);
       this.gameObject.RemoveComponent(this);
     }
@@ -58760,6 +58743,10 @@ var trident = (() => {
 
   // src/components/SpotLight.ts
   var SpotLight2 = class extends Component {
+    constructor() {
+      super(...arguments);
+      this.light = new SpotLight(16777215, 1, 10, 30 * MathUtils.DEG2RAD);
+    }
     get spotAngle() {
       return this.light.angle * MathUtils.RAD2DEG;
     }
@@ -58790,8 +58777,7 @@ var trident = (() => {
     set shadows(shadows) {
       this.light.castShadow = shadows;
     }
-    OnEnable() {
-      this.light = new SpotLight(16777215, 1, 10, 30 * MathUtils.DEG2RAD);
+    Awake() {
       this.transform.group.add(this.light);
       this.light.parent = this.transform.group;
     }
@@ -58802,19 +58788,18 @@ var trident = (() => {
       }
     }
     OnDrawGizmos() {
-      if (this.helper) {
-        this.helper.update();
+      if (!this.helper) {
+        this.helper = new SpotLightHelper(this.light);
+        this.transform.group.add(this.helper);
       }
+      this.helper.update();
     }
-    OnGizmosDisabled() {
+    Destroy() {
       if (this.helper) {
         this.transform.group.remove(this.helper);
         this.helper.dispose();
         this.helper = void 0;
       }
-    }
-    Destroy() {
-      this.OnGizmosDisabled();
       this.transform.group.remove(this.light);
       this.gameObject.RemoveComponent(this);
     }
@@ -58878,6 +58863,10 @@ var trident = (() => {
 
   // src/components/AreaLight.ts
   var AreaLight = class extends Component {
+    constructor() {
+      super(...arguments);
+      this.light = new RectAreaLight(16777215, 1, 1, 1);
+    }
     get width() {
       return this.light.width;
     }
@@ -58908,31 +58897,23 @@ var trident = (() => {
     set shadows(shadows) {
       this.light.castShadow = shadows;
     }
-    OnEnable() {
-      this.light = new RectAreaLight(16777215, 1, 1, 1);
+    Awake() {
       this.transform.group.add(this.light);
       this.light.parent = this.transform.group;
     }
-    OnGizmosEnabled() {
+    OnDrawGizmos() {
       if (!this.helper) {
         this.helper = new RectAreaLightHelper(this.light);
         this.transform.group.add(this.helper);
       }
+      this.helper.update();
     }
-    OnDrawGizmos() {
-      if (this.helper) {
-        this.helper.update();
-      }
-    }
-    OnGizmosDisabled() {
+    Destroy() {
       if (this.helper) {
         this.transform.group.remove(this.helper);
         this.helper.dispose();
         this.helper = void 0;
       }
-    }
-    Destroy() {
-      this.OnGizmosDisabled();
       this.transform.group.remove(this.light);
       this.gameObject.RemoveComponent(this);
     }
@@ -59045,6 +59026,46 @@ var trident = (() => {
     }
   };
   var _ArticulationBody = class extends Component {
+    constructor(gameObject, transform) {
+      super(gameObject, transform);
+      this.runInEditMode = true;
+      this.hasAttachedShape = false;
+      this.physics = this.gameObject.scene.GetPhysics().GetPhysics();
+      this.physicsScene = this.gameObject.scene.GetPhysics().GetScene();
+      const parentArticulation = this.transform.parent ? this.transform.parent.gameObject.GetComponent(_ArticulationBody) : null;
+      if (parentArticulation) {
+        const position = new import_trident_physx_js_webidl7.default.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+        const rotation = new import_trident_physx_js_webidl7.default.PxQuat(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z, this.transform.rotation.w);
+        const pose = new import_trident_physx_js_webidl7.default.PxTransform(position, rotation);
+        this.articulation = parentArticulation.articulation;
+        this.physicsScene.removeArticulation(this.articulation);
+        this.link = this.articulation.createLink(parentArticulation.link, pose);
+        this.collider = this.gameObject.GetComponent(Collider);
+        const inboundJoint = this.link.getInboundJoint();
+        this.inboundJoint = import_trident_physx_js_webidl7.default.castObject(inboundJoint, import_trident_physx_js_webidl7.default.PxArticulationJointReducedCoordinate);
+        const p = this.transform.position.clone().sub(this.transform.parent.position);
+        const localPosition = new import_trident_physx_js_webidl7.default.PxVec3(p.x, p.y, p.z);
+        const localRotation = new import_trident_physx_js_webidl7.default.PxQuat(this.transform.localRotation.x, this.transform.localRotation.y, this.transform.localRotation.z, this.transform.localRotation.w);
+        const localPose = new import_trident_physx_js_webidl7.default.PxTransform(localPosition, localRotation);
+        this.inboundJoint.setParentPose(localPose);
+        this.jointType = ArticulationJointType.FixedJoint;
+        this.physicsScene.addArticulation(this.articulation);
+      } else {
+        const position = new import_trident_physx_js_webidl7.default.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+        const rotation = new import_trident_physx_js_webidl7.default.PxQuat(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z, this.transform.rotation.w);
+        const pose = new import_trident_physx_js_webidl7.default.PxTransform(position, rotation);
+        this.articulation = this.physics.createArticulationReducedCoordinate();
+        this.link = this.articulation.createLink(null, pose);
+        this.physicsScene.addArticulation(this.articulation);
+      }
+      this.link.setLinearDamping(0.05);
+      this.link.setAngularDamping(0.05);
+      if (this.inboundJoint) {
+        this.inboundJoint.setFrictionCoefficient(0.05);
+      }
+      this.mass = 1;
+      import_trident_physx_js_webidl7.default.PxRigidBodyExt.prototype.updateMassAndInertia(this.link, 1);
+    }
     get immovable() {
       const flags = this.articulation.getArticulationFlags();
       return flags.isSet(import_trident_physx_js_webidl7.default.eFIX_BASE);
@@ -59145,52 +59166,31 @@ var trident = (() => {
     set mass(mass) {
       this.link.setMass(mass);
     }
-    OnEnable() {
-      this.physics = this.gameObject.scene.GetPhysics().GetPhysics();
-      this.physicsScene = this.gameObject.scene.GetPhysics().GetScene();
-      const parentArticulation = this.transform.parent ? this.transform.parent.gameObject.GetComponent(_ArticulationBody) : null;
-      if (parentArticulation) {
-        const position = new import_trident_physx_js_webidl7.default.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-        const rotation = new import_trident_physx_js_webidl7.default.PxQuat(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z, this.transform.rotation.w);
-        const pose = new import_trident_physx_js_webidl7.default.PxTransform(position, rotation);
-        this.articulation = parentArticulation.articulation;
-        this.physicsScene.removeArticulation(this.articulation);
-        this.link = this.articulation.createLink(parentArticulation.link, pose);
-        const collider = this.gameObject.GetComponent(Collider);
-        if (collider) {
-          collider.body.rigidbody.detachShape(collider.body.shape);
-          this.link.attachShape(collider.body.shape);
-        }
-        const inboundJoint = this.link.getInboundJoint();
-        this.inboundJoint = import_trident_physx_js_webidl7.default.castObject(inboundJoint, import_trident_physx_js_webidl7.default.PxArticulationJointReducedCoordinate);
-        const p = this.transform.position.clone().sub(this.transform.parent.position);
-        const localPosition = new import_trident_physx_js_webidl7.default.PxVec3(p.x, p.y, p.z);
-        const localRotation = new import_trident_physx_js_webidl7.default.PxQuat(this.transform.localRotation.x, this.transform.localRotation.y, this.transform.localRotation.z, this.transform.localRotation.w);
-        const localPose = new import_trident_physx_js_webidl7.default.PxTransform(localPosition, localRotation);
-        this.inboundJoint.setParentPose(localPose);
-        this.jointType = ArticulationJointType.FixedJoint;
-        this.physicsScene.addArticulation(this.articulation);
-      } else {
-        const position = new import_trident_physx_js_webidl7.default.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-        const rotation = new import_trident_physx_js_webidl7.default.PxQuat(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z, this.transform.rotation.w);
-        const pose = new import_trident_physx_js_webidl7.default.PxTransform(position, rotation);
-        this.articulation = this.physics.createArticulationReducedCoordinate();
-        this.link = this.articulation.createLink(null, pose);
-        this.physicsScene.addArticulation(this.articulation);
-      }
-      this.link.setLinearDamping(0.05);
-      this.link.setAngularDamping(0.05);
-      if (this.inboundJoint) {
-        this.inboundJoint.setFrictionCoefficient(0.05);
-      }
-      this.mass = 1;
-      import_trident_physx_js_webidl7.default.PxRigidBodyExt.prototype.updateMassAndInertia(this.link, 1);
+    get linearDamping() {
+      return this.link.getLinearDamping();
+    }
+    set linearDamping(linearDamping) {
+      this.link.setLinearDamping(linearDamping);
+    }
+    get angularDamping() {
+      return this.link.getAngularDamping();
+    }
+    set angularDamping(angularDamping) {
+      this.link.setAngularDamping(angularDamping);
+    }
+    Awake() {
     }
     FixedUpdate() {
       if (!this.link)
         return;
       if (!this.inboundJoint)
         return;
+      if (this.collider && !this.hasAttachedShape) {
+        this.collider.body.rigidbody.detachShape(this.collider.body.shape);
+        this.link.attachShape(this.collider.body.shape);
+        import_trident_physx_js_webidl7.default.PxRigidBodyExt.prototype.updateMassAndInertia(this.link, 1);
+        this.hasAttachedShape = true;
+      }
       const pose = this.link.getGlobalPose();
       if (this.inboundJoint && this.jointType && this.jointType == ArticulationJointType.PrismaticJoint) {
         this.transform.position.set(pose.p.x, pose.p.y, pose.p.z);
@@ -59242,6 +59242,12 @@ var trident = (() => {
   __decorateClass([
     SerializeField
   ], ArticulationBody.prototype, "mass", 1);
+  __decorateClass([
+    SerializeField
+  ], ArticulationBody.prototype, "linearDamping", 1);
+  __decorateClass([
+    SerializeField
+  ], ArticulationBody.prototype, "angularDamping", 1);
 
   // src/primitives/Cube.ts
   var Cube = class {
@@ -59440,6 +59446,40 @@ var trident = (() => {
     }
   };
 
+  // src/InstantiationPool.ts
+  var _InstantiationPool = class {
+    constructor() {
+      this.pendingAwakes = [];
+      this.pendingStarts = [];
+    }
+    add(component) {
+      this.pendingAwakes.push(component);
+      this.pendingStarts.push(component);
+    }
+    Load() {
+      for (let i = this.pendingAwakes.length; i > 0; i--) {
+        const component = this.pendingAwakes.pop();
+        component.Awake();
+        component.isAwake = true;
+      }
+      if (this.pendingAwakes.length > 0) {
+        this.Load();
+        return;
+      }
+      for (let i = this.pendingStarts.length; i > 0; i--) {
+        const component = this.pendingStarts.pop();
+        component.Start();
+        component.isStarted = true;
+        if (this.pendingAwakes.length != 0) {
+          this.Load();
+          break;
+        }
+      }
+      return true;
+    }
+  };
+  var InstantiationPool = new _InstantiationPool();
+
   // src/components/GameObject.ts
   var GameObject6 = class {
     constructor(scene) {
@@ -59480,20 +59520,19 @@ var trident = (() => {
       return this;
     }
     AddComponent(component) {
-      if (component == Object) {
-        return null;
+      try {
+        let componentObject = new component(this, this.transform);
+        if (!this.IsValidComponent(componentObject)) {
+          console.error(`Invalid Component ${componentObject}`);
+          return null;
+        }
+        this.components.push(componentObject);
+        InstantiationPool.add(componentObject);
+        return componentObject;
+      } catch (error) {
+        console.error(error);
+        console.error(`Invalid component ${component}`);
       }
-      let componentObject = new component(this, this.transform);
-      if (!this.IsValidComponent(componentObject)) {
-        console.error(`Invalid Component ${componentObject}`);
-        return null;
-      }
-      this.components.push(componentObject);
-      componentObject.OnEnable();
-      if (this.scene.HasGizmosEnabled()) {
-        componentObject.OnGizmosEnabled();
-      }
-      return componentObject;
       return null;
     }
     BroadcastMessage(methodName, parameter) {
@@ -59502,13 +59541,6 @@ var trident = (() => {
           component[methodName](parameter);
         }
       }
-    }
-    OnEnable() {
-      for (let component of this.components) {
-        component.OnEnable();
-      }
-    }
-    OnDisable() {
     }
     RemoveComponent(component) {
       if (!this.IsValidComponent(component)) {
@@ -59550,11 +59582,9 @@ var trident = (() => {
       this.transform.Update();
       if (this.scene.isPlaying) {
         for (let component of this.components) {
-          if (!component.hasStarted) {
-            component.Start();
-            component.hasStarted = true;
+          if (component.isAwake && component.isStarted) {
+            component.Update();
           }
-          component.Update();
         }
       }
     }
@@ -59562,29 +59592,6 @@ var trident = (() => {
       this.transform.LateUpdate();
       for (let component of this.components) {
         component.LateUpdate();
-      }
-    }
-    Start() {
-      this.transform.Start();
-      for (let component of this.components) {
-        component.Start();
-        component.hasStarted = true;
-      }
-    }
-    Stop() {
-      this.transform.Stop();
-      for (let component of this.components) {
-        component.Stop();
-      }
-    }
-    OnGizmosEnabled() {
-      for (let component of this.components) {
-        component.OnGizmosEnabled();
-      }
-    }
-    OnGizmosDisabled() {
-      for (let component of this.components) {
-        component.OnGizmosDisabled();
       }
     }
     OnDrawGizmos() {
@@ -59632,8 +59639,11 @@ var trident = (() => {
       renderer.physicallyCorrectLights = _config.physicallyCorrectLights;
       renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
       renderer.setPixelRatio(window.devicePixelRatio * _config.pixelRatio);
+      renderer.shadowMap.enabled = true;
       this.scene = scene;
       this.renderer = renderer;
+      this.ambientLight = new AmbientLight(16777215, 0.3);
+      this.scene.add(this.ambientLight);
       this.fpsInterval = 1e3 / config.targetFrameRate;
       this.then = Date.now();
       this.startTime = this.then;
@@ -59893,29 +59903,46 @@ var trident = (() => {
     }
   };
 
+  // src/defaults/ConfigurationDefaults.ts
+  var ConfigurationDefaults = {
+    renderer: {
+      containerId: null,
+      targetFrameRate: 60,
+      antialias: true,
+      logarithmicDepthBuffer: false,
+      pixelRatio: 1,
+      physicallyCorrectLights: false
+    },
+    physics: {
+      physxWasmURL: "./trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
+      gravity: {
+        x: 0,
+        y: -9.8,
+        z: 0
+      },
+      framerate: 60,
+      performanceCooking: false
+    },
+    application: {
+      rootPath: "./"
+    }
+  };
+
   // src/Scene.ts
   var Scene2 = class {
-    constructor(rendererConfig, physicsConfig) {
+    constructor(config) {
+      this.isPlaying = false;
       this.currentFrame = 0;
+      this.gizmosEnabled = false;
       this.gameObjects = [];
-      this.OnLoaded = () => {
+      this.config = {
+        renderer: Object.assign({}, ConfigurationDefaults.renderer, config.renderer),
+        physics: Object.assign({}, ConfigurationDefaults.physics, config.physics),
+        application: Object.assign({}, ConfigurationDefaults.application, config.application)
       };
-      this.renderer = this.InitializeRenderer(rendererConfig);
-      this.physics = this.InitializePhysics(physicsConfig);
+      this.renderer = this.InitializeRenderer(this.config.renderer);
+      this.physics = this.InitializePhysics(this.config.physics);
       this.input = new Input(this);
-      const cameraGameObject = new GameObject6(this);
-      cameraGameObject.name = "SceneCamera";
-      this.camera = cameraGameObject.AddComponent(Camera2);
-      this.renderer.renderer.shadowMap.enabled = true;
-      const directionalLightGameObject = new GameObject6(this);
-      directionalLightGameObject.name = "DirectionalLight";
-      directionalLightGameObject.transform.position.set(0, 3, 0);
-      directionalLightGameObject.transform.eulerAngles.set(50, 30, 0);
-      const directionalLight = directionalLightGameObject.AddComponent(DirectionalLight2);
-      directionalLight.intensity = 0.5;
-      directionalLight.shadows = true;
-      const ambientLight = new AmbientLight(16777215, 0.3);
-      this.renderer.scene.add(ambientLight);
       requestAnimationFrame((now2) => {
         this.Update();
       });
@@ -59923,19 +59950,19 @@ var trident = (() => {
     InitializeRenderer(rendererConfig) {
       return new Renderer(rendererConfig, () => {
         this.rendererLoaded = true;
-        this.CheckLoaded();
+        this.CheckInitialized();
       });
     }
     InitializePhysics(physicsConfig) {
       return new Physics(this, physicsConfig, () => {
         this.physicsLoaded = true;
-        this.CheckLoaded();
+        this.CheckInitialized();
       });
     }
-    CheckLoaded() {
+    CheckInitialized() {
       if (this.rendererLoaded && this.physicsLoaded) {
-        if (typeof this.OnLoaded == "function") {
-          this.OnLoaded();
+        if (this.OnInitialized) {
+          this.OnInitialized();
         }
       }
     }
@@ -59953,25 +59980,6 @@ var trident = (() => {
     }
     SetActiveCamera(camera) {
       this.camera = camera;
-    }
-    EnableGizmos() {
-      if (!this.gizmosEnabled) {
-        for (let gameObject of this.gameObjects) {
-          gameObject.OnGizmosEnabled();
-        }
-        this.gizmosEnabled = true;
-      }
-    }
-    DisableGizmos() {
-      if (this.gizmosEnabled) {
-        for (let gameObject of this.gameObjects) {
-          gameObject.OnGizmosDisabled();
-        }
-        this.gizmosEnabled = false;
-      }
-    }
-    HasGizmosEnabled() {
-      return this.gizmosEnabled;
     }
     AddGameObject(gameObject) {
       this.gameObjects.push(gameObject);
@@ -60017,17 +60025,14 @@ var trident = (() => {
         this.Update();
       });
     }
-    Start() {
+    Load() {
+      return InstantiationPool.Load();
+    }
+    Play() {
       this.isPlaying = true;
-      for (let gameObject of this.gameObjects) {
-        gameObject.Start();
-      }
     }
     Stop() {
       this.isPlaying = false;
-      for (let gameObject of this.gameObjects) {
-        gameObject.Stop();
-      }
     }
   };
 
@@ -60150,5 +60155,569 @@ var trident = (() => {
     KeyCodes2[KeyCodes2["QUOTE"] = 222] = "QUOTE";
     KeyCodes2[KeyCodes2["META"] = 224] = "META";
   })(KeyCodes || (KeyCodes = {}));
+
+  // node_modules/three/examples/jsm/loaders/OBJLoader.js
+  var OBJLoader = function() {
+    var object_pattern = /^[og]\s*(.+)?/;
+    var material_library_pattern = /^mtllib /;
+    var material_use_pattern = /^usemtl /;
+    var map_use_pattern = /^usemap /;
+    var vA = new Vector3();
+    var vB = new Vector3();
+    var vC = new Vector3();
+    var ab = new Vector3();
+    var cb = new Vector3();
+    function ParserState() {
+      var state = {
+        objects: [],
+        object: {},
+        vertices: [],
+        normals: [],
+        colors: [],
+        uvs: [],
+        materials: {},
+        materialLibraries: [],
+        startObject: function(name, fromDeclaration) {
+          if (this.object && this.object.fromDeclaration === false) {
+            this.object.name = name;
+            this.object.fromDeclaration = fromDeclaration !== false;
+            return;
+          }
+          var previousMaterial = this.object && typeof this.object.currentMaterial === "function" ? this.object.currentMaterial() : void 0;
+          if (this.object && typeof this.object._finalize === "function") {
+            this.object._finalize(true);
+          }
+          this.object = {
+            name: name || "",
+            fromDeclaration: fromDeclaration !== false,
+            geometry: {
+              vertices: [],
+              normals: [],
+              colors: [],
+              uvs: [],
+              hasUVIndices: false
+            },
+            materials: [],
+            smooth: true,
+            startMaterial: function(name2, libraries) {
+              var previous = this._finalize(false);
+              if (previous && (previous.inherited || previous.groupCount <= 0)) {
+                this.materials.splice(previous.index, 1);
+              }
+              var material = {
+                index: this.materials.length,
+                name: name2 || "",
+                mtllib: Array.isArray(libraries) && libraries.length > 0 ? libraries[libraries.length - 1] : "",
+                smooth: previous !== void 0 ? previous.smooth : this.smooth,
+                groupStart: previous !== void 0 ? previous.groupEnd : 0,
+                groupEnd: -1,
+                groupCount: -1,
+                inherited: false,
+                clone: function(index) {
+                  var cloned = {
+                    index: typeof index === "number" ? index : this.index,
+                    name: this.name,
+                    mtllib: this.mtllib,
+                    smooth: this.smooth,
+                    groupStart: 0,
+                    groupEnd: -1,
+                    groupCount: -1,
+                    inherited: false
+                  };
+                  cloned.clone = this.clone.bind(cloned);
+                  return cloned;
+                }
+              };
+              this.materials.push(material);
+              return material;
+            },
+            currentMaterial: function() {
+              if (this.materials.length > 0) {
+                return this.materials[this.materials.length - 1];
+              }
+              return void 0;
+            },
+            _finalize: function(end) {
+              var lastMultiMaterial = this.currentMaterial();
+              if (lastMultiMaterial && lastMultiMaterial.groupEnd === -1) {
+                lastMultiMaterial.groupEnd = this.geometry.vertices.length / 3;
+                lastMultiMaterial.groupCount = lastMultiMaterial.groupEnd - lastMultiMaterial.groupStart;
+                lastMultiMaterial.inherited = false;
+              }
+              if (end && this.materials.length > 1) {
+                for (var mi = this.materials.length - 1; mi >= 0; mi--) {
+                  if (this.materials[mi].groupCount <= 0) {
+                    this.materials.splice(mi, 1);
+                  }
+                }
+              }
+              if (end && this.materials.length === 0) {
+                this.materials.push({
+                  name: "",
+                  smooth: this.smooth
+                });
+              }
+              return lastMultiMaterial;
+            }
+          };
+          if (previousMaterial && previousMaterial.name && typeof previousMaterial.clone === "function") {
+            var declared = previousMaterial.clone(0);
+            declared.inherited = true;
+            this.object.materials.push(declared);
+          }
+          this.objects.push(this.object);
+        },
+        finalize: function() {
+          if (this.object && typeof this.object._finalize === "function") {
+            this.object._finalize(true);
+          }
+        },
+        parseVertexIndex: function(value, len) {
+          var index = parseInt(value, 10);
+          return (index >= 0 ? index - 1 : index + len / 3) * 3;
+        },
+        parseNormalIndex: function(value, len) {
+          var index = parseInt(value, 10);
+          return (index >= 0 ? index - 1 : index + len / 3) * 3;
+        },
+        parseUVIndex: function(value, len) {
+          var index = parseInt(value, 10);
+          return (index >= 0 ? index - 1 : index + len / 2) * 2;
+        },
+        addVertex: function(a, b, c) {
+          var src = this.vertices;
+          var dst = this.object.geometry.vertices;
+          dst.push(src[a + 0], src[a + 1], src[a + 2]);
+          dst.push(src[b + 0], src[b + 1], src[b + 2]);
+          dst.push(src[c + 0], src[c + 1], src[c + 2]);
+        },
+        addVertexPoint: function(a) {
+          var src = this.vertices;
+          var dst = this.object.geometry.vertices;
+          dst.push(src[a + 0], src[a + 1], src[a + 2]);
+        },
+        addVertexLine: function(a) {
+          var src = this.vertices;
+          var dst = this.object.geometry.vertices;
+          dst.push(src[a + 0], src[a + 1], src[a + 2]);
+        },
+        addNormal: function(a, b, c) {
+          var src = this.normals;
+          var dst = this.object.geometry.normals;
+          dst.push(src[a + 0], src[a + 1], src[a + 2]);
+          dst.push(src[b + 0], src[b + 1], src[b + 2]);
+          dst.push(src[c + 0], src[c + 1], src[c + 2]);
+        },
+        addFaceNormal: function(a, b, c) {
+          var src = this.vertices;
+          var dst = this.object.geometry.normals;
+          vA.fromArray(src, a);
+          vB.fromArray(src, b);
+          vC.fromArray(src, c);
+          cb.subVectors(vC, vB);
+          ab.subVectors(vA, vB);
+          cb.cross(ab);
+          cb.normalize();
+          dst.push(cb.x, cb.y, cb.z);
+          dst.push(cb.x, cb.y, cb.z);
+          dst.push(cb.x, cb.y, cb.z);
+        },
+        addColor: function(a, b, c) {
+          var src = this.colors;
+          var dst = this.object.geometry.colors;
+          if (src[a] !== void 0)
+            dst.push(src[a + 0], src[a + 1], src[a + 2]);
+          if (src[b] !== void 0)
+            dst.push(src[b + 0], src[b + 1], src[b + 2]);
+          if (src[c] !== void 0)
+            dst.push(src[c + 0], src[c + 1], src[c + 2]);
+        },
+        addUV: function(a, b, c) {
+          var src = this.uvs;
+          var dst = this.object.geometry.uvs;
+          dst.push(src[a + 0], src[a + 1]);
+          dst.push(src[b + 0], src[b + 1]);
+          dst.push(src[c + 0], src[c + 1]);
+        },
+        addDefaultUV: function() {
+          var dst = this.object.geometry.uvs;
+          dst.push(0, 0);
+          dst.push(0, 0);
+          dst.push(0, 0);
+        },
+        addUVLine: function(a) {
+          var src = this.uvs;
+          var dst = this.object.geometry.uvs;
+          dst.push(src[a + 0], src[a + 1]);
+        },
+        addFace: function(a, b, c, ua, ub, uc, na, nb, nc) {
+          var vLen = this.vertices.length;
+          var ia = this.parseVertexIndex(a, vLen);
+          var ib = this.parseVertexIndex(b, vLen);
+          var ic = this.parseVertexIndex(c, vLen);
+          this.addVertex(ia, ib, ic);
+          this.addColor(ia, ib, ic);
+          if (na !== void 0 && na !== "") {
+            var nLen = this.normals.length;
+            ia = this.parseNormalIndex(na, nLen);
+            ib = this.parseNormalIndex(nb, nLen);
+            ic = this.parseNormalIndex(nc, nLen);
+            this.addNormal(ia, ib, ic);
+          } else {
+            this.addFaceNormal(ia, ib, ic);
+          }
+          if (ua !== void 0 && ua !== "") {
+            var uvLen = this.uvs.length;
+            ia = this.parseUVIndex(ua, uvLen);
+            ib = this.parseUVIndex(ub, uvLen);
+            ic = this.parseUVIndex(uc, uvLen);
+            this.addUV(ia, ib, ic);
+            this.object.geometry.hasUVIndices = true;
+          } else {
+            this.addDefaultUV();
+          }
+        },
+        addPointGeometry: function(vertices) {
+          this.object.geometry.type = "Points";
+          var vLen = this.vertices.length;
+          for (var vi = 0, l = vertices.length; vi < l; vi++) {
+            var index = this.parseVertexIndex(vertices[vi], vLen);
+            this.addVertexPoint(index);
+            this.addColor(index);
+          }
+        },
+        addLineGeometry: function(vertices, uvs) {
+          this.object.geometry.type = "Line";
+          var vLen = this.vertices.length;
+          var uvLen = this.uvs.length;
+          for (var vi = 0, l = vertices.length; vi < l; vi++) {
+            this.addVertexLine(this.parseVertexIndex(vertices[vi], vLen));
+          }
+          for (var uvi = 0, l = uvs.length; uvi < l; uvi++) {
+            this.addUVLine(this.parseUVIndex(uvs[uvi], uvLen));
+          }
+        }
+      };
+      state.startObject("", false);
+      return state;
+    }
+    function OBJLoader2(manager) {
+      Loader.call(this, manager);
+      this.materials = null;
+    }
+    OBJLoader2.prototype = Object.assign(Object.create(Loader.prototype), {
+      constructor: OBJLoader2,
+      load: function(url, onLoad, onProgress, onError) {
+        var scope = this;
+        var loader = new FileLoader(this.manager);
+        loader.setPath(this.path);
+        loader.setRequestHeader(this.requestHeader);
+        loader.setWithCredentials(this.withCredentials);
+        loader.load(url, function(text) {
+          try {
+            onLoad(scope.parse(text));
+          } catch (e) {
+            if (onError) {
+              onError(e);
+            } else {
+              console.error(e);
+            }
+            scope.manager.itemError(url);
+          }
+        }, onProgress, onError);
+      },
+      setMaterials: function(materials) {
+        this.materials = materials;
+        return this;
+      },
+      parse: function(text) {
+        var state = new ParserState();
+        if (text.indexOf("\r\n") !== -1) {
+          text = text.replace(/\r\n/g, "\n");
+        }
+        if (text.indexOf("\\\n") !== -1) {
+          text = text.replace(/\\\n/g, "");
+        }
+        var lines = text.split("\n");
+        var line = "", lineFirstChar = "";
+        var lineLength = 0;
+        var result = [];
+        var trimLeft = typeof "".trimLeft === "function";
+        for (var i = 0, l = lines.length; i < l; i++) {
+          line = lines[i];
+          line = trimLeft ? line.trimLeft() : line.trim();
+          lineLength = line.length;
+          if (lineLength === 0)
+            continue;
+          lineFirstChar = line.charAt(0);
+          if (lineFirstChar === "#")
+            continue;
+          if (lineFirstChar === "v") {
+            var data = line.split(/\s+/);
+            switch (data[0]) {
+              case "v":
+                state.vertices.push(parseFloat(data[1]), parseFloat(data[2]), parseFloat(data[3]));
+                if (data.length >= 7) {
+                  state.colors.push(parseFloat(data[4]), parseFloat(data[5]), parseFloat(data[6]));
+                } else {
+                  state.colors.push(void 0, void 0, void 0);
+                }
+                break;
+              case "vn":
+                state.normals.push(parseFloat(data[1]), parseFloat(data[2]), parseFloat(data[3]));
+                break;
+              case "vt":
+                state.uvs.push(parseFloat(data[1]), parseFloat(data[2]));
+                break;
+            }
+          } else if (lineFirstChar === "f") {
+            var lineData = line.substr(1).trim();
+            var vertexData = lineData.split(/\s+/);
+            var faceVertices = [];
+            for (var j = 0, jl = vertexData.length; j < jl; j++) {
+              var vertex = vertexData[j];
+              if (vertex.length > 0) {
+                var vertexParts = vertex.split("/");
+                faceVertices.push(vertexParts);
+              }
+            }
+            var v1 = faceVertices[0];
+            for (var j = 1, jl = faceVertices.length - 1; j < jl; j++) {
+              var v2 = faceVertices[j];
+              var v3 = faceVertices[j + 1];
+              state.addFace(v1[0], v2[0], v3[0], v1[1], v2[1], v3[1], v1[2], v2[2], v3[2]);
+            }
+          } else if (lineFirstChar === "l") {
+            var lineParts = line.substring(1).trim().split(" ");
+            var lineVertices = [], lineUVs = [];
+            if (line.indexOf("/") === -1) {
+              lineVertices = lineParts;
+            } else {
+              for (var li = 0, llen = lineParts.length; li < llen; li++) {
+                var parts = lineParts[li].split("/");
+                if (parts[0] !== "")
+                  lineVertices.push(parts[0]);
+                if (parts[1] !== "")
+                  lineUVs.push(parts[1]);
+              }
+            }
+            state.addLineGeometry(lineVertices, lineUVs);
+          } else if (lineFirstChar === "p") {
+            var lineData = line.substr(1).trim();
+            var pointData = lineData.split(" ");
+            state.addPointGeometry(pointData);
+          } else if ((result = object_pattern.exec(line)) !== null) {
+            var name = (" " + result[0].substr(1).trim()).substr(1);
+            state.startObject(name);
+          } else if (material_use_pattern.test(line)) {
+            state.object.startMaterial(line.substring(7).trim(), state.materialLibraries);
+          } else if (material_library_pattern.test(line)) {
+            state.materialLibraries.push(line.substring(7).trim());
+          } else if (map_use_pattern.test(line)) {
+            console.warn('THREE.OBJLoader: Rendering identifier "usemap" not supported. Textures must be defined in MTL files.');
+          } else if (lineFirstChar === "s") {
+            result = line.split(" ");
+            if (result.length > 1) {
+              var value = result[1].trim().toLowerCase();
+              state.object.smooth = value !== "0" && value !== "off";
+            } else {
+              state.object.smooth = true;
+            }
+            var material = state.object.currentMaterial();
+            if (material)
+              material.smooth = state.object.smooth;
+          } else {
+            if (line === "\0")
+              continue;
+            console.warn('THREE.OBJLoader: Unexpected line: "' + line + '"');
+          }
+        }
+        state.finalize();
+        var container = new Group();
+        container.materialLibraries = [].concat(state.materialLibraries);
+        var hasPrimitives = !(state.objects.length === 1 && state.objects[0].geometry.vertices.length === 0);
+        if (hasPrimitives === true) {
+          for (var i = 0, l = state.objects.length; i < l; i++) {
+            var object = state.objects[i];
+            var geometry = object.geometry;
+            var materials = object.materials;
+            var isLine = geometry.type === "Line";
+            var isPoints = geometry.type === "Points";
+            var hasVertexColors = false;
+            if (geometry.vertices.length === 0)
+              continue;
+            var buffergeometry = new BufferGeometry();
+            buffergeometry.setAttribute("position", new Float32BufferAttribute(geometry.vertices, 3));
+            if (geometry.normals.length > 0) {
+              buffergeometry.setAttribute("normal", new Float32BufferAttribute(geometry.normals, 3));
+            }
+            if (geometry.colors.length > 0) {
+              hasVertexColors = true;
+              buffergeometry.setAttribute("color", new Float32BufferAttribute(geometry.colors, 3));
+            }
+            if (geometry.hasUVIndices === true) {
+              buffergeometry.setAttribute("uv", new Float32BufferAttribute(geometry.uvs, 2));
+            }
+            var createdMaterials = [];
+            for (var mi = 0, miLen = materials.length; mi < miLen; mi++) {
+              var sourceMaterial = materials[mi];
+              var materialHash = sourceMaterial.name + "_" + sourceMaterial.smooth + "_" + hasVertexColors;
+              var material = state.materials[materialHash];
+              if (this.materials !== null) {
+                material = this.materials.create(sourceMaterial.name);
+                if (isLine && material && !(material instanceof LineBasicMaterial)) {
+                  var materialLine = new LineBasicMaterial();
+                  Material.prototype.copy.call(materialLine, material);
+                  materialLine.color.copy(material.color);
+                  material = materialLine;
+                } else if (isPoints && material && !(material instanceof PointsMaterial)) {
+                  var materialPoints = new PointsMaterial({ size: 10, sizeAttenuation: false });
+                  Material.prototype.copy.call(materialPoints, material);
+                  materialPoints.color.copy(material.color);
+                  materialPoints.map = material.map;
+                  material = materialPoints;
+                }
+              }
+              if (material === void 0) {
+                if (isLine) {
+                  material = new LineBasicMaterial();
+                } else if (isPoints) {
+                  material = new PointsMaterial({ size: 1, sizeAttenuation: false });
+                } else {
+                  material = new MeshPhongMaterial();
+                }
+                material.name = sourceMaterial.name;
+                material.flatShading = sourceMaterial.smooth ? false : true;
+                material.vertexColors = hasVertexColors;
+                state.materials[materialHash] = material;
+              }
+              createdMaterials.push(material);
+            }
+            var mesh;
+            if (createdMaterials.length > 1) {
+              for (var mi = 0, miLen = materials.length; mi < miLen; mi++) {
+                var sourceMaterial = materials[mi];
+                buffergeometry.addGroup(sourceMaterial.groupStart, sourceMaterial.groupCount, mi);
+              }
+              if (isLine) {
+                mesh = new LineSegments(buffergeometry, createdMaterials);
+              } else if (isPoints) {
+                mesh = new Points(buffergeometry, createdMaterials);
+              } else {
+                mesh = new Mesh(buffergeometry, createdMaterials);
+              }
+            } else {
+              if (isLine) {
+                mesh = new LineSegments(buffergeometry, createdMaterials[0]);
+              } else if (isPoints) {
+                mesh = new Points(buffergeometry, createdMaterials[0]);
+              } else {
+                mesh = new Mesh(buffergeometry, createdMaterials[0]);
+              }
+            }
+            mesh.name = object.name;
+            container.add(mesh);
+          }
+        } else {
+          if (state.vertices.length > 0) {
+            var material = new PointsMaterial({ size: 1, sizeAttenuation: false });
+            var buffergeometry = new BufferGeometry();
+            buffergeometry.setAttribute("position", new Float32BufferAttribute(state.vertices, 3));
+            if (state.colors.length > 0) {
+              buffergeometry.setAttribute("color", new Float32BufferAttribute(state.colors, 3));
+              material.vertexColors = true;
+            }
+            var points = new Points(buffergeometry, material);
+            container.add(points);
+          }
+        }
+        return container;
+      }
+    });
+    return OBJLoader2;
+  }();
+
+  // src/Resources.ts
+  var ResourcesCache = class {
+    constructor() {
+      this.cache = new Map();
+    }
+    get(name) {
+      return this.cache.get(name);
+    }
+    set(name, value) {
+      console.log("set", name);
+      this.cache.set(name, value);
+    }
+    has(name) {
+      return this.cache.has(name);
+    }
+    remove(name) {
+      this.cache.delete(name);
+    }
+    size() {
+      return this.cache.size;
+    }
+    clear() {
+      this.cache.clear();
+    }
+  };
+  var FilesCache = new ResourcesCache();
+  console.warn(`[FilesCache] Removal of files not implemented, deque?`);
+  console.warn("[ArticulationBody] Articulation needs to be rethough of, maybe separate into multiple individual components (REVOLUTE, PRISMATIC, SPHERICAL");
+  console.warn("[RigidBody] RigidBody and Colliders need to be reactive, ie: when one gets changed the other may want to react.");
+  var ResourceExtensions;
+  (function(ResourceExtensions2) {
+    ResourceExtensions2["MATERIAL"] = "MAT";
+    ResourceExtensions2["MESH_OBJ"] = "OBJ";
+  })(ResourceExtensions || (ResourceExtensions = {}));
+  var Resources = class {
+    static LoadMeshAsync(path, type) {
+      if (type == ResourceExtensions.MESH_OBJ) {
+        const loader = new OBJLoader();
+        const promise = new Promise((resolve, reject) => {
+          loader.load(path, (group) => {
+            if (group.children.length > 0) {
+              const mesh = group.children[0];
+              if (mesh instanceof Mesh) {
+                resolve(mesh.geometry);
+              }
+            }
+          }, (xhr) => {
+          }, (err) => {
+            reject(err);
+          });
+        });
+        FilesCache.set(path, promise);
+        return promise;
+      }
+    }
+    static LoadMaterialAsync(path) {
+      const loader = new MaterialLoader();
+      const promise = new Promise((resolve, reject) => {
+        loader.load(path, (material) => {
+          resolve(material);
+        }, (xhr) => {
+        }, (err) => {
+          reject(err);
+        });
+      });
+      FilesCache.set(path, promise);
+      return promise;
+    }
+    static LoadAsync(path) {
+      return __async(this, null, function* () {
+        if (FilesCache.has(path)) {
+          return FilesCache.get(path);
+        }
+        const extension = path.substr(path.lastIndexOf(".") + 1).toUpperCase();
+        if (extension == ResourceExtensions.MATERIAL) {
+          return Resources.LoadMaterialAsync(path);
+        } else if (extension == ResourceExtensions.MESH_OBJ) {
+          return Resources.LoadMeshAsync(path, ResourceExtensions.MESH_OBJ);
+        }
+      });
+    }
+  };
   return src_exports;
 })();

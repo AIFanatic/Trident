@@ -1,29 +1,29 @@
 /**
  * @description Create and move a Prismatic joint.
  */
+import { SceneHelper } from './assets/SceneHelper.js';
 import { Scene, GameObject, Components, ArticulationJointType, ArticulationDofLock, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
 
-const rendererConfig = {
-    containerId: "canvasContainer",
-    targetFrameRate: 60,
-};
-const physicsConfig = {
-    physxWasmURL: "../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-};
-const scene = new Scene(rendererConfig, physicsConfig);
-const camera = scene.GetActiveCamera();
-camera.transform.position.set(0, 0, 10);
+class BlockerCube extends Components.Component {
+    public Awake() {
+        this.gameObject.CreatePrimitive(PrimitiveType.Cube);
+        this.transform.localScale.set(0.5, 0.5, 0.5);
+    }
+}
 
-scene.OnLoaded = () => {
+const scene = SceneHelper.CreateScene();
+scene.OnInitialized = () => {
+    const camera = SceneHelper.CreateCamera(scene);
+    camera.transform.position.set(0, 0, 10);
+    SceneHelper.CreateSunlight(scene);
+    
     const blockerCubeGameobjectX = new GameObject(scene);
-    blockerCubeGameobjectX.CreatePrimitive(PrimitiveType.Cube);
+    blockerCubeGameobjectX.AddComponent(BlockerCube);
     blockerCubeGameobjectX.transform.position.set(3, -3, 0);
-    blockerCubeGameobjectX.transform.localScale.set(0.5, 0.5, 0.5);
 
     const blockerCubeGameobjectZ = new GameObject(scene);
-    blockerCubeGameobjectZ.CreatePrimitive(PrimitiveType.Cube);
+    blockerCubeGameobjectZ.AddComponent(BlockerCube);
     blockerCubeGameobjectZ.transform.position.set(0, -3, 3);
-    blockerCubeGameobjectZ.transform.localScale.set(0.5, 0.5, 0.5);
 
     const rootArticulationGameobject = new GameObject(scene);
     rootArticulationGameobject.CreatePrimitive(PrimitiveType.Cube);
@@ -35,7 +35,9 @@ scene.OnLoaded = () => {
     articulationGameobject1.transform.parent = rootArticulationGameobject.transform;
     articulationGameobject1.CreatePrimitive(PrimitiveType.Cube);
     articulationGameobject1.transform.localScale.set(3, 1, 1);
-    const articulation1 = articulationGameobject1.AddComponent(Components.ArticulationBody) as Components.ArticulationBody;
+    const articulation1 = articulationGameobject1.AddComponent(Components.ArticulationBody);
+
+    rootArticulation.immovable = true;
     articulation1.jointType = ArticulationJointType.PrismaticJoint;
     articulation1.xDrive.stiffness = 100;
     articulation1.xDrive.target = 1;
@@ -51,5 +53,7 @@ scene.OnLoaded = () => {
             articulation1.zDrive.target = 2;
         }, 3000);
     }, 3000);
-    scene.Start();
+    
+    scene.Load();
+    scene.Play();
 };

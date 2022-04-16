@@ -17,6 +17,7 @@ Stores a geometry that later can be rendered to the scene.
 ### Properties
 
 - [\_mesh](Components.MeshFilter.md#_mesh)
+- [runInEditMode](Components.MeshFilter.md#runineditmode)
 
 ### Accessors
 
@@ -25,7 +26,6 @@ Stores a geometry that later can be rendered to the scene.
 ### Methods
 
 - [Destroy](Components.MeshFilter.md#destroy)
-- [OnEnable](Components.MeshFilter.md#onenable)
 
 ## Properties
 
@@ -35,7 +35,21 @@ Stores a geometry that later can be rendered to the scene.
 
 #### Defined in
 
-[components/MeshFilter.ts:12](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/MeshFilter.ts#L12)
+[components/MeshFilter.ts:14](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/MeshFilter.ts#L14)
+
+___
+
+### runInEditMode
+
+• **runInEditMode**: `boolean` = `true`
+
+#### Overrides
+
+[Component](Components.Component.md).[runInEditMode](Components.Component.md#runineditmode)
+
+#### Defined in
+
+[components/MeshFilter.ts:12](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/MeshFilter.ts#L12)
 
 ## Accessors
 
@@ -49,7 +63,7 @@ Stores a geometry that later can be rendered to the scene.
 
 #### Defined in
 
-[components/MeshFilter.ts:18](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/MeshFilter.ts#L18)
+[components/MeshFilter.ts:17](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/MeshFilter.ts#L17)
 
 • `set` **mesh**(`mesh`): `void`
 
@@ -65,7 +79,7 @@ Stores a geometry that later can be rendered to the scene.
 
 #### Defined in
 
-[components/MeshFilter.ts:22](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/MeshFilter.ts#L22)
+[components/MeshFilter.ts:21](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/MeshFilter.ts#L21)
 
 ## Methods
 
@@ -85,24 +99,4 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/MeshFilter.ts:28](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/MeshFilter.ts#L28)
-
-___
-
-### OnEnable
-
-▸ **OnEnable**(): `void`
-
-Called once when the component is first added to a GameObject.
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[Component](Components.Component.md).[OnEnable](Components.Component.md#onenable)
-
-#### Defined in
-
-[components/MeshFilter.ts:14](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/MeshFilter.ts#L14)
+[components/MeshFilter.ts:27](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/MeshFilter.ts#L27)

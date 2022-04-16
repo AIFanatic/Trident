@@ -8,3 +8,4 @@ export * as Components from './components';
 export { ArticulationJointType } from './enums/ArticulationJointType';
 export { ArticulationDofLock } from './enums/ArticulationDofLock';
 export { PrimitiveType } from './enums/PrimitiveType';
+export { Resources } from './Resources';

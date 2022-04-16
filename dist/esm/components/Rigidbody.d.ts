@@ -22,7 +22,6 @@ export declare class Rigidbody extends Component {
     private rotation;
     private localScale;
     private previousLayer;
-    OnEnable(): void;
     /**
      * Set or get the kinematic propery of the rigid body.
      * Kinematic rigid bodies will not obey physics
@@ -45,7 +44,8 @@ export declare class Rigidbody extends Component {
     AddForce(force: Vector3, mode?: ForceMode): void;
     AddTorque(torque: Vector3, mode?: ForceMode): void;
     MovePosition(position: Vector3): void;
-    Start(): void;
+    Awake(): void;
+    CreatedCollider(body: PhysicsRigidbody): void;
     private HandleTransformChanges;
     FixedUpdate(): void;
     Destroy(): void;

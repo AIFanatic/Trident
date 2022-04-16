@@ -19,9 +19,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { MeshFilter } from "./MeshFilter";
 import { Component } from "./Component";
-import { MeshRendererDefaults } from "../defaults/MeshRendererDefaults";
-import { Mesh } from "three";
+import { Mesh, MeshStandardMaterial } from "three";
 import { SerializeField } from "../utils/SerializeField";
+var DefaultMaterial = new MeshStandardMaterial();
 /**
  * Renders a geometry from MeshFilter into the scene.
  *
@@ -31,7 +31,7 @@ var MeshRenderer = /** @class */ (function (_super) {
     __extends(MeshRenderer, _super);
     function MeshRenderer() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this._material = MeshRendererDefaults.DefaultMaterial();
+        _this._material = DefaultMaterial;
         return _this;
     }
     Object.defineProperty(MeshRenderer.prototype, "mesh", {
@@ -77,7 +77,6 @@ var MeshRenderer = /** @class */ (function (_super) {
             return this.transform.group.receiveShadow;
         },
         set: function (receiveShadows) {
-            // this.transform.group.receiveShadow = receiveShadows;
             this.transform.group.receiveShadow = receiveShadows;
             this.transform.group.traverse(function (object) {
                 object.receiveShadow = receiveShadows;
@@ -86,7 +85,7 @@ var MeshRenderer = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
-    MeshRenderer.prototype.OnEnable = function () {
+    MeshRenderer.prototype.Awake = function () {
         this.renderer = this.gameObject.scene.GetRenderer();
         this.AddMeshFromMeshFilter();
     };

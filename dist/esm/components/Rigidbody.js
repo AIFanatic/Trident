@@ -50,30 +50,6 @@ var Rigidbody = /** @class */ (function (_super) {
         _this.previousLayer = LayerMask.LAYER0;
         return _this;
     }
-    Rigidbody.prototype.OnEnable = function () {
-        this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-        this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
-        var collider = this.gameObject.GetComponent(Collider);
-        if (collider) {
-            this.body = collider.body;
-            this.body.ConvertToDynamic();
-            this.body.UpdatePose(this.transform.position, this.transform.rotation, this.transform.localScale);
-            this.rigidbody = this.body.rigidbody;
-        }
-        else {
-            var shape = PhysicsShape.CreateBox(this.physxPhysics, new Vector3(1, 1, 1));
-            var geometry = shape.getGeometry().box();
-            var transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-            var rigidbody = this.physxPhysics.createRigidDynamic(transform);
-            var physicsBody = {
-                rigidbody: rigidbody,
-                geometry: geometry,
-                shape: shape
-            };
-            this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
-            this.rigidbody = rigidbody;
-        }
-    };
     Object.defineProperty(Rigidbody.prototype, "isKinematic", {
         /**
          * Set or get the kinematic propery of the rigid body.
@@ -200,7 +176,32 @@ var Rigidbody = /** @class */ (function (_super) {
         this.velocity = new Vector3(0, 0, 0);
         this.AddForce(force);
     };
-    Rigidbody.prototype.Start = function () {
+    Rigidbody.prototype.Awake = function () {
+        this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
+        this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
+        var shape = PhysicsShape.CreateBox(this.physxPhysics, new Vector3(1, 1, 1));
+        var geometry = shape.getGeometry().box();
+        var transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+        var rigidbody = this.physxPhysics.createRigidDynamic(transform);
+        var physicsBody = {
+            rigidbody: rigidbody,
+            geometry: geometry,
+            shape: shape
+        };
+        this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+        this.rigidbody = rigidbody;
+    };
+    Rigidbody.prototype.CreatedCollider = function (body) {
+        if (this.body) {
+            this.body.rigidbody.detachShape(this.body.shape);
+            this.body.shape.release();
+            this.body.rigidbody.release();
+            this.body = null;
+        }
+        this.body = body;
+        this.body.ConvertToDynamic();
+        this.body.UpdatePose(this.transform.position, this.transform.rotation, this.transform.localScale);
+        this.rigidbody = this.body.rigidbody;
     };
     Rigidbody.prototype.HandleTransformChanges = function () {
         if (this.transform.position.distanceToSquared(this.position) > Number.EPSILON) {
@@ -214,23 +215,23 @@ var Rigidbody = /** @class */ (function (_super) {
         }
     };
     Rigidbody.prototype.FixedUpdate = function () {
+        if (!this.body)
+            return;
         this.HandleTransformChanges();
-        if (this.body) {
-            var body = this.body.rigidbody;
-            if (body.isSleeping())
-                return;
-            var transform = body.getGlobalPose();
-            this.transform.position.set(transform.p.x, transform.p.y, transform.p.z);
-            this.transform.rotation.set(transform.q.x, transform.q.y, transform.q.z, transform.q.w);
-            this.position.copy(this.transform.position);
-            this.rotation.copy(this.transform.rotation);
-            this.localScale.set(this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
-            if (this.previousLayer != this.gameObject.layer) {
-                var filterData = new PhysX.PxFilterData();
-                filterData.word2 = this.gameObject.layer;
-                this.body.shape.setQueryFilterData(filterData);
-                this.previousLayer = this.gameObject.layer;
-            }
+        var body = this.body.rigidbody;
+        if (body.isSleeping())
+            return;
+        var transform = body.getGlobalPose();
+        this.transform.position.set(transform.p.x, transform.p.y, transform.p.z);
+        this.transform.rotation.set(transform.q.x, transform.q.y, transform.q.z, transform.q.w);
+        this.position.copy(this.transform.position);
+        this.rotation.copy(this.transform.rotation);
+        this.localScale.set(this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
+        if (this.previousLayer != this.gameObject.layer) {
+            var filterData = new PhysX.PxFilterData();
+            filterData.word2 = this.gameObject.layer;
+            this.body.shape.setQueryFilterData(filterData);
+            this.previousLayer = this.gameObject.layer;
         }
     };
     Rigidbody.prototype.Destroy = function () {

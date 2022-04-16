@@ -28,7 +28,9 @@ import { SerializeField } from "../utils/SerializeField";
 var PointLight = /** @class */ (function (_super) {
     __extends(PointLight, _super);
     function PointLight() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.light = new PointLightTHREE(0xffffff, 1, 10);
+        return _this;
     }
     Object.defineProperty(PointLight.prototype, "range", {
         get: function () {
@@ -70,31 +72,23 @@ var PointLight = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
-    PointLight.prototype.OnEnable = function () {
-        this.light = new PointLightTHREE(0xffffff, 1, 10);
+    PointLight.prototype.Awake = function () {
         this.transform.group.add(this.light);
         this.light.parent = this.transform.group;
     };
-    PointLight.prototype.OnGizmosEnabled = function () {
+    PointLight.prototype.OnDrawGizmos = function () {
         if (!this.helper) {
             this.helper = new PointLightHelper(this.light);
             this.transform.group.add(this.helper);
         }
+        this.helper.update();
     };
-    PointLight.prototype.OnDrawGizmos = function () {
-        if (this.helper) {
-            this.helper.update();
-        }
-    };
-    PointLight.prototype.OnGizmosDisabled = function () {
+    PointLight.prototype.Destroy = function () {
         if (this.helper) {
             this.transform.group.remove(this.helper);
             this.helper.dispose();
             this.helper = undefined;
         }
-    };
-    PointLight.prototype.Destroy = function () {
-        this.OnGizmosDisabled();
         this.transform.group.remove(this.light);
         this.gameObject.RemoveComponent(this);
     };

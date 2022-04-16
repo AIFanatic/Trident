@@ -3,6 +3,7 @@ import { ArticulationAxis } from "../enums/ArticulationAxis";
 import { ArticulationJointType } from "../enums/ArticulationJointType";
 import { ArticulationDofLock } from "../enums/ArticulationDofLock";
 import { Component } from "./Component";
+import { GameObject, Transform } from ".";
 declare class JointDriver {
     private joint;
     private axis;
@@ -35,6 +36,7 @@ declare class JointDriver {
  * @noInheritDoc
  */
 export declare class ArticulationBody extends Component {
+    runInEditMode: boolean;
     xDrive: JointDriver;
     yDrive: JointDriver;
     zDrive: JointDriver;
@@ -63,7 +65,14 @@ export declare class ArticulationBody extends Component {
     set twistLock(twistLock: ArticulationDofLock);
     get mass(): number;
     set mass(mass: number);
-    OnEnable(): void;
+    get linearDamping(): number;
+    set linearDamping(linearDamping: number);
+    get angularDamping(): number;
+    set angularDamping(angularDamping: number);
+    private collider;
+    private hasAttachedShape;
+    constructor(gameObject: GameObject, transform: Transform);
+    Awake(): void;
     FixedUpdate(): void;
     Destroy(): void;
 }

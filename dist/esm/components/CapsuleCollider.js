@@ -26,7 +26,7 @@ var CapsuleCollider = /** @class */ (function (_super) {
     function CapsuleCollider() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    CapsuleCollider.prototype.OnEnable = function () {
+    CapsuleCollider.prototype.Awake = function () {
         var physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
         var physxScene = this.gameObject.scene.GetPhysics().GetScene();
         var rigidbodyComponent = this.gameObject.GetComponent(Rigidbody);

@@ -28,7 +28,9 @@ import { SerializeField } from "../utils/SerializeField";
 var SpotLight = /** @class */ (function (_super) {
     __extends(SpotLight, _super);
     function SpotLight() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.light = new SpotLightTHREE(0xffffff, 1, 10, 30 * MathUtils.DEG2RAD);
+        return _this;
     }
     Object.defineProperty(SpotLight.prototype, "spotAngle", {
         get: function () {
@@ -80,8 +82,7 @@ var SpotLight = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
-    SpotLight.prototype.OnEnable = function () {
-        this.light = new SpotLightTHREE(0xffffff, 1, 10, 30 * MathUtils.DEG2RAD);
+    SpotLight.prototype.Awake = function () {
         this.transform.group.add(this.light);
         this.light.parent = this.transform.group;
     };
@@ -92,19 +93,18 @@ var SpotLight = /** @class */ (function (_super) {
         }
     };
     SpotLight.prototype.OnDrawGizmos = function () {
-        if (this.helper) {
-            this.helper.update();
+        if (!this.helper) {
+            this.helper = new SpotLightHelper(this.light);
+            this.transform.group.add(this.helper);
         }
+        this.helper.update();
     };
-    SpotLight.prototype.OnGizmosDisabled = function () {
+    SpotLight.prototype.Destroy = function () {
         if (this.helper) {
             this.transform.group.remove(this.helper);
             this.helper.dispose();
             this.helper = undefined;
         }
-    };
-    SpotLight.prototype.Destroy = function () {
-        this.OnGizmosDisabled();
         this.transform.group.remove(this.light);
         this.gameObject.RemoveComponent(this);
     };

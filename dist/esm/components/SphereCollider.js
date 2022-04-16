@@ -26,7 +26,7 @@ var SphereCollider = /** @class */ (function (_super) {
     function SphereCollider() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    SphereCollider.prototype.OnEnable = function () {
+    SphereCollider.prototype.Awake = function () {
         this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
         this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
         var rigidbodyComponent = this.gameObject.GetComponent(Rigidbody);

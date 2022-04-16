@@ -18,7 +18,7 @@ export declare class GameObject implements IComponent {
     name: string;
     scene: Scene;
     transform: Transform;
-    components: any[];
+    components: Component[];
     layer: LayerMask;
     constructor(scene: Scene);
     private IsValidComponent;
@@ -45,15 +45,13 @@ export declare class GameObject implements IComponent {
     * @param {Component<T>} component - The component class to be attached to this GameObject.
     * @returns {Component} - If successful it returns an instance of the passed component, null otherwise.
     */
-    AddComponent(component: any): any;
+    AddComponent<T extends Component>(component: new (...args: any[]) => T): T;
     /**
     * Call a method on any attached component that implements it.
     * @param {string} methodName - The name of the method to be called.
     * @param {any} parameter - Parameters to be called with the method.
     */
     BroadcastMessage(methodName: string, parameter: any): void;
-    OnEnable(): void;
-    OnDisable(): void;
     /**
     * Removes a component from the GameObject.
     * @param {Component} component - The instance of the component to be removed.
@@ -65,20 +63,16 @@ export declare class GameObject implements IComponent {
     * @param {Component} type - The class of the component to search for.
     * @returns {Component|null} - If the component is found returns it, null otherwise.
     */
-    GetComponent(type: any): any;
+    GetComponent<T extends Component>(type: new (...args: any[]) => T): T;
     /**
     * Get a list of instances of a component with the specified type.
     * @param {Component} type - The class of the component to search for.
     * @returns {Component[]} - A list of the matched components, empty list otherwise.
     */
-    GetComponents(type: any): any[];
+    GetComponents<T extends Component>(type: new (...args: any[]) => T): T[];
     FixedUpdate(): void;
     Update(): void;
     LateUpdate(): void;
-    Start(): void;
-    Stop(): void;
-    OnGizmosEnabled(): void;
-    OnGizmosDisabled(): void;
     OnDrawGizmos(): void;
     /**
     * Remove the GameObject from the scene and all of its components.

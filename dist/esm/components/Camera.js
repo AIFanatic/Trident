@@ -17,7 +17,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { PerspectiveCamera, Vector3, CameraHelper } from "three";
+import { PerspectiveCamera, CameraHelper } from "three";
 import { SerializeField } from "../utils/SerializeField";
 import { Component } from "./Component";
 export var ProjectionTypes;
@@ -36,17 +36,10 @@ var Camera = /** @class */ (function (_super) {
     __extends(Camera, _super);
     function Camera() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.previousTransformPosition = new Vector3();
-        _this.previousCameraPosition = new Vector3();
+        _this.camera = new PerspectiveCamera(60, 1, 0.1, 1000);
         return _this;
     }
     Object.defineProperty(Camera.prototype, "far", {
-        // private _projection: ProjectionTypes;
-        // public get projection(): ProjectionTypes {
-        //     return this._projection;
-        // }
-        // public set projection(projection: ProjectionTypes) {
-        // }
         get: function () {
             return this.camera.far;
         },
@@ -79,41 +72,34 @@ var Camera = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
-    Camera.prototype.OnEnable = function () {
+    Camera.prototype.Awake = function () {
         var _this = this;
-        var canvas = this.gameObject.scene.GetRenderer().renderer.domElement;
-        this.camera = new PerspectiveCamera(59, canvas.offsetWidth / canvas.offsetHeight, 0.1, 1000);
         this.transform.group.add(this.camera);
-        this.previousTransformPosition.copy(this.transform.localPosition);
-        this.previousCameraPosition.copy(this.transform.localPosition);
         window.addEventListener("resize", function (event) {
-            var canvas = _this.gameObject.scene.GetRenderer().renderer.domElement;
-            _this.camera.aspect = canvas.parentElement.offsetWidth / canvas.parentElement.offsetHeight;
-            _this.camera.updateProjectionMatrix();
+            _this.OnResize();
         });
+        this.OnResize();
     };
     Camera.prototype.GetCamera = function () {
         return this.camera;
     };
-    Camera.prototype.OnGizmosEnabled = function () {
+    Camera.prototype.OnResize = function () {
+        var canvas = this.gameObject.scene.GetRenderer().renderer.domElement;
+        this.camera.aspect = canvas.parentElement.offsetWidth / canvas.parentElement.offsetHeight;
+        this.camera.updateProjectionMatrix();
+    };
+    Camera.prototype.OnDrawGizmos = function () {
         if (!this.helper) {
             this.helper = new CameraHelper(this.camera);
             this.transform.group.add(this.helper);
         }
+        this.helper.update();
     };
-    Camera.prototype.OnDrawGizmos = function () {
-        if (this.helper) {
-            this.helper.update();
-        }
-    };
-    Camera.prototype.OnGizmosDisabled = function () {
+    Camera.prototype.Destroy = function () {
         if (this.helper) {
             this.transform.group.remove(this.helper);
             this.helper = undefined;
         }
-    };
-    Camera.prototype.Destroy = function () {
-        this.OnGizmosDisabled();
         this.transform.group.remove(this.camera);
         this.gameObject.RemoveComponent(this);
     };

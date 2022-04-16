@@ -23,11 +23,9 @@ A point light.
 
 ### Methods
 
+- [Awake](Components.PointLight.md#awake)
 - [Destroy](Components.PointLight.md#destroy)
 - [OnDrawGizmos](Components.PointLight.md#ondrawgizmos)
-- [OnEnable](Components.PointLight.md#onenable)
-- [OnGizmosDisabled](Components.PointLight.md#ongizmosdisabled)
-- [OnGizmosEnabled](Components.PointLight.md#ongizmosenabled)
 
 ## Accessors
 
@@ -41,7 +39,7 @@ A point light.
 
 #### Defined in
 
-[components/PointLight.ts:24](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PointLight.ts#L24)
+[components/PointLight.ts:24](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PointLight.ts#L24)
 
 • `set` **color**(`color`): `void`
 
@@ -57,7 +55,7 @@ A point light.
 
 #### Defined in
 
-[components/PointLight.ts:28](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PointLight.ts#L28)
+[components/PointLight.ts:28](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PointLight.ts#L28)
 
 ___
 
@@ -71,7 +69,7 @@ ___
 
 #### Defined in
 
-[components/PointLight.ts:33](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PointLight.ts#L33)
+[components/PointLight.ts:33](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PointLight.ts#L33)
 
 • `set` **intensity**(`intensity`): `void`
 
@@ -87,7 +85,7 @@ ___
 
 #### Defined in
 
-[components/PointLight.ts:37](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PointLight.ts#L37)
+[components/PointLight.ts:37](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PointLight.ts#L37)
 
 ___
 
@@ -101,7 +99,7 @@ ___
 
 #### Defined in
 
-[components/PointLight.ts:15](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PointLight.ts#L15)
+[components/PointLight.ts:15](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PointLight.ts#L15)
 
 • `set` **range**(`range`): `void`
 
@@ -117,7 +115,7 @@ ___
 
 #### Defined in
 
-[components/PointLight.ts:19](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PointLight.ts#L19)
+[components/PointLight.ts:19](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PointLight.ts#L19)
 
 ___
 
@@ -131,7 +129,7 @@ ___
 
 #### Defined in
 
-[components/PointLight.ts:42](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PointLight.ts#L42)
+[components/PointLight.ts:42](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PointLight.ts#L42)
 
 • `set` **shadows**(`shadows`): `void`
 
@@ -147,9 +145,29 @@ ___
 
 #### Defined in
 
-[components/PointLight.ts:46](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PointLight.ts#L46)
+[components/PointLight.ts:46](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PointLight.ts#L46)
 
 ## Methods
+
+### Awake
+
+▸ **Awake**(): `void`
+
+Called once when the component is first added to a GameObject.
+
+#### Returns
+
+`void`
+
+#### Overrides
+
+[Component](Components.Component.md).[Awake](Components.Component.md#awake)
+
+#### Defined in
+
+[components/PointLight.ts:50](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PointLight.ts#L50)
+
+___
 
 ### Destroy
 
@@ -167,7 +185,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/PointLight.ts:77](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PointLight.ts#L77)
+[components/PointLight.ts:64](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PointLight.ts#L64)
 
 ___
 
@@ -187,65 +205,4 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-[components/PointLight.ts:63](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PointLight.ts#L63)
-
-___
-
-### OnEnable
-
-▸ **OnEnable**(): `void`
-
-Called once when the component is first added to a GameObject.
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[Component](Components.Component.md).[OnEnable](Components.Component.md#onenable)
-
-#### Defined in
-
-[components/PointLight.ts:50](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PointLight.ts#L50)
-
-___
-
-### OnGizmosDisabled
-
-▸ **OnGizmosDisabled**(): `void`
-
-Called once when Gizmos are disabled.
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[Component](Components.Component.md).[OnGizmosDisabled](Components.Component.md#ongizmosdisabled)
-
-#### Defined in
-
-[components/PointLight.ts:69](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PointLight.ts#L69)
-
-___
-
-### OnGizmosEnabled
-
-▸ **OnGizmosEnabled**(): `void`
-
-Called once when Gizmos are enabled.
-If Gizmos are enabled before the component is created this method is called once after Start.
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[Component](Components.Component.md).[OnGizmosEnabled](Components.Component.md#ongizmosenabled)
-
-#### Defined in
-
-[components/PointLight.ts:56](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/PointLight.ts#L56)
+[components/PointLight.ts:55](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PointLight.ts#L55)

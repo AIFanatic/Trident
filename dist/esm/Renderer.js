@@ -1,4 +1,4 @@
-import { Scene, WebGLRenderer } from 'three';
+import { AmbientLight, Scene, WebGLRenderer } from 'three';
 var RendererConfigurationDefaults = {
     containerId: null,
     targetFrameRate: 60,
@@ -24,9 +24,12 @@ var Renderer = /** @class */ (function () {
         renderer.physicallyCorrectLights = _config.physicallyCorrectLights;
         renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
         renderer.setPixelRatio(window.devicePixelRatio * _config.pixelRatio);
+        renderer.shadowMap.enabled = true;
         this.scene = scene;
-        // this.camera = camera;
         this.renderer = renderer;
+        // TODO: Clean renderer rendering settings (skybox, fog, ambient, etc)
+        this.ambientLight = new AmbientLight(0xffffff, 0.3);
+        this.scene.add(this.ambientLight);
         this.fpsInterval = 1000 / config.targetFrameRate;
         this.then = Date.now();
         this.startTime = this.then;

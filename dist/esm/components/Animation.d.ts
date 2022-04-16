@@ -12,7 +12,7 @@ export declare class Animation extends Component {
     private animations;
     private action;
     private clock;
-    OnEnable(): void;
+    Awake(): void;
     private OnMeshChanged;
     AddClip(clip: AnimationClip, name: string): void;
     Play(name: string): void;

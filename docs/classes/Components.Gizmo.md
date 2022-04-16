@@ -21,7 +21,7 @@ Allows to visualize the local axis of a Transform.
 
 ### Methods
 
-- [OnEnable](Components.Gizmo.md#onenable)
+- [Awake](Components.Gizmo.md#awake)
 - [Start](Components.Gizmo.md#start)
 - [Update](Components.Gizmo.md#update)
 
@@ -33,7 +33,7 @@ Allows to visualize the local axis of a Transform.
 
 #### Defined in
 
-[components/Gizmo.ts:16](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Gizmo.ts#L16)
+[components/Gizmo.ts:15](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Gizmo.ts#L15)
 
 ___
 
@@ -43,13 +43,13 @@ ___
 
 #### Defined in
 
-[components/Gizmo.ts:18](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Gizmo.ts#L18)
+[components/Gizmo.ts:17](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Gizmo.ts#L17)
 
 ## Methods
 
-### OnEnable
+### Awake
 
-▸ **OnEnable**(): `void`
+▸ **Awake**(): `void`
 
 Called once when the component is first added to a GameObject.
 
@@ -59,11 +59,11 @@ Called once when the component is first added to a GameObject.
 
 #### Overrides
 
-[Component](Components.Component.md).[OnEnable](Components.Component.md#onenable)
+[Component](Components.Component.md).[Awake](Components.Component.md#awake)
 
 #### Defined in
 
-[components/Gizmo.ts:20](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Gizmo.ts#L20)
+[components/Gizmo.ts:19](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Gizmo.ts#L19)
 
 ___
 
@@ -83,7 +83,7 @@ Called once after the scene is started.
 
 #### Defined in
 
-[components/Gizmo.ts:30](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Gizmo.ts#L30)
+[components/Gizmo.ts:29](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Gizmo.ts#L29)
 
 ___
 
@@ -103,4 +103,4 @@ Called before every Renderer update.
 
 #### Defined in
 
-[components/Gizmo.ts:36](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/components/Gizmo.ts#L36)
+[components/Gizmo.ts:35](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/Gizmo.ts#L35)

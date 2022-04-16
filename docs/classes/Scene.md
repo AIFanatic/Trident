@@ -12,25 +12,24 @@ The scene that holds all GameObjects.
 
 ### Properties
 
-- [OnLoaded](Scene.md#onloaded)
+- [OnInitialized](Scene.md#oninitialized)
 - [currentFrame](Scene.md#currentframe)
 - [gameObjects](Scene.md#gameobjects)
+- [gizmosEnabled](Scene.md#gizmosenabled)
 - [isPlaying](Scene.md#isplaying)
 
 ### Methods
 
 - [AddGameObject](Scene.md#addgameobject)
-- [DisableGizmos](Scene.md#disablegizmos)
-- [EnableGizmos](Scene.md#enablegizmos)
 - [FixedUpdate](Scene.md#fixedupdate)
 - [GetActiveCamera](Scene.md#getactivecamera)
 - [GetInput](Scene.md#getinput)
 - [GetPhysics](Scene.md#getphysics)
 - [GetRenderer](Scene.md#getrenderer)
-- [HasGizmosEnabled](Scene.md#hasgizmosenabled)
+- [Load](Scene.md#load)
+- [Play](Scene.md#play)
 - [RemoveGameObject](Scene.md#removegameobject)
 - [SetActiveCamera](Scene.md#setactivecamera)
-- [Start](Scene.md#start)
 - [Stop](Scene.md#stop)
 - [Update](Scene.md#update)
 
@@ -38,24 +37,23 @@ The scene that holds all GameObjects.
 
 ### constructor
 
-• **new Scene**(`rendererConfig`, `physicsConfig`)
+• **new Scene**(`config`)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `rendererConfig` | `IRendererConfiguration` | Renderer configuration. |
-| `physicsConfig` | `IPhysicsConfiguration` | Physics configuration. |
+| Name | Type |
+| :------ | :------ |
+| `config` | `IConfiguration` |
 
 #### Defined in
 
-[Scene.ts:37](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L37)
+[Scene.ts:38](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L38)
 
 ## Properties
 
-### OnLoaded
+### OnInitialized
 
-• **OnLoaded**: () => `void`
+• **OnInitialized**: () => `void`
 
 #### Type declaration
 
@@ -67,7 +65,7 @@ The scene that holds all GameObjects.
 
 #### Defined in
 
-[Scene.ts:27](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L27)
+[Scene.ts:30](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L30)
 
 ___
 
@@ -77,7 +75,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:23](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L23)
+[Scene.ts:25](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L25)
 
 ___
 
@@ -87,17 +85,27 @@ ___
 
 #### Defined in
 
-[Scene.ts:25](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L25)
+[Scene.ts:28](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L28)
+
+___
+
+### gizmosEnabled
+
+• **gizmosEnabled**: `boolean` = `false`
+
+#### Defined in
+
+[Scene.ts:26](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L26)
 
 ___
 
 ### isPlaying
 
-• **isPlaying**: `boolean`
+• **isPlaying**: `boolean` = `false`
 
 #### Defined in
 
-[Scene.ts:22](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L22)
+[Scene.ts:24](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L24)
 
 ## Methods
 
@@ -119,40 +127,7 @@ Adds a new GameObject to the scene.
 
 #### Defined in
 
-[Scene.ts:166](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L166)
-
-___
-
-### DisableGizmos
-
-▸ **DisableGizmos**(): `void`
-
-Disables Gizmos from being visible in the scene.
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[Scene.ts:144](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L144)
-
-___
-
-### EnableGizmos
-
-▸ **EnableGizmos**(): `void`
-
-Enables Gizmos to be visible in the scene.
-Gizmos are helpful to visualize and debug components (eg: Camera and Lights).
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[Scene.ts:132](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L132)
+[Scene.ts:120](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L120)
 
 ___
 
@@ -169,7 +144,7 @@ Calls FixedUpdate on all attached components.
 
 #### Defined in
 
-[Scene.ts:200](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L200)
+[Scene.ts:149](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L149)
 
 ___
 
@@ -188,7 +163,7 @@ The main camera is the camera that the client is viewing the scene from.
 
 #### Defined in
 
-[Scene.ts:115](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L115)
+[Scene.ts:103](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L103)
 
 ___
 
@@ -206,7 +181,7 @@ Get the input for this scene.
 
 #### Defined in
 
-[Scene.ts:106](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L106)
+[Scene.ts:94](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L94)
 
 ___
 
@@ -224,7 +199,7 @@ Get the physics for this scene.
 
 #### Defined in
 
-[Scene.ts:98](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L98)
+[Scene.ts:86](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L86)
 
 ___
 
@@ -242,25 +217,40 @@ Renderer attached to this scene.
 
 #### Defined in
 
-[Scene.ts:90](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L90)
+[Scene.ts:78](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L78)
 
 ___
 
-### HasGizmosEnabled
+### Load
 
-▸ **HasGizmosEnabled**(): `boolean`
+▸ **Load**(): `boolean`
 
-Check if Gizmos are enabled.
+Load the Scene.
+Instanciates all Components
 
 #### Returns
 
 `boolean`
 
-- If Gizmos are enabled.
+#### Defined in
+
+[Scene.ts:192](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L192)
+
+___
+
+### Play
+
+▸ **Play**(): `void`
+
+Called when the scene starts.
+
+#### Returns
+
+`void`
 
 #### Defined in
 
-[Scene.ts:157](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L157)
+[Scene.ts:199](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L199)
 
 ___
 
@@ -284,7 +274,7 @@ Remove a GameObject from the scene
 
 #### Defined in
 
-[Scene.ts:180](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L180)
+[Scene.ts:129](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L129)
 
 ___
 
@@ -307,24 +297,7 @@ The main camera is the camera that the client is viewing the scene from.
 
 #### Defined in
 
-[Scene.ts:124](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L124)
-
-___
-
-### Start
-
-▸ **Start**(): `void`
-
-Called when the scene starts.
-Calls Start on all attached components.
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[Scene.ts:243](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L243)
+[Scene.ts:112](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L112)
 
 ___
 
@@ -341,7 +314,7 @@ Calls Stop on all attached components.
 
 #### Defined in
 
-[Scene.ts:255](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L255)
+[Scene.ts:207](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L207)
 
 ___
 
@@ -358,4 +331,4 @@ Calls Update on all attached components.
 
 #### Defined in
 
-[Scene.ts:210](https://github.com/AIFanatic/Trident/blob/bbe6ccd/src/Scene.ts#L210)
+[Scene.ts:159](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/Scene.ts#L159)

@@ -8,7 +8,8 @@
             /**
              * @description Custom component creation.
              */
-            import { Scene, GameObject, Components, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
+            import { SceneHelper } from './assets/SceneHelper.js';
+            import { GameObject, Components, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
             class CustomComponent extends Components.Component {
                 Start() {
                     this.gameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -17,19 +18,15 @@
                     this.transform.eulerAngles.x += 1;
                 }
             }
-            const rendererConfig = {
-                containerId: "canvasContainer",
-                targetFrameRate: 60,
-            };
-            const physicsConfig = {
-                physxWasmURL: "../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-            };
-            const scene = new Scene(rendererConfig, physicsConfig);
-            scene.OnLoaded = () => {
+            const scene = SceneHelper.CreateScene();
+            scene.OnInitialized = () => {
+                SceneHelper.CreateCamera(scene);
+                SceneHelper.CreateSunlight(scene);
                 const cubeGameobject = new GameObject(scene);
                 const cubeComponent = cubeGameobject.AddComponent(CustomComponent);
                 cubeComponent.transform.position.set(0, -2, -10);
-                scene.Start();
+                scene.Load();
+                scene.Play();
             };
             
         </script>

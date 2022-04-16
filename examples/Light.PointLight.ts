@@ -1,23 +1,16 @@
 /**
  * @description A point light.
  */
-import { Scene, GameObject, Components, PrimitiveType, THREE } from '../dist/esm/trident-esm-bundle.js';
+import { SceneHelper } from './assets/SceneHelper.js';
+import { GameObject, Components, PrimitiveType, THREE } from '../dist/esm/trident-esm-bundle.js';
 
-const rendererConfig = {
-    containerId: "canvasContainer",
-    targetFrameRate: 60,
-};
-const physicsConfig = {
-    physxWasmURL: "../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-};
-const scene = new Scene(rendererConfig, physicsConfig);
-scene.EnableGizmos();
-
-const camera = scene.GetActiveCamera()
-camera.transform.position.set(-8, 0, 7);
-camera.transform.eulerAngles.set(-15, -50, -10);
-
-scene.OnLoaded = () => {
+const scene = SceneHelper.CreateScene();
+scene.gizmosEnabled = true;
+scene.OnInitialized = () => {
+    const camera = SceneHelper.CreateCamera(scene);
+    camera.transform.position.set(-8, 0, 7);
+    camera.transform.eulerAngles.set(-15, -50, -10);
+    
     const cubeGameobject = new GameObject(scene);
     cubeGameobject.CreatePrimitive(PrimitiveType.Cube);
     const cubeMeshRenderer = cubeGameobject.GetComponent(Components.MeshRenderer);
@@ -29,7 +22,7 @@ scene.OnLoaded = () => {
     lightGameobject.CreatePrimitive(PrimitiveType.Sphere);
     const lightComponent = lightGameobject.AddComponent(Components.PointLight);
 
-    const lightSphereMeshRenderer = lightGameobject.GetComponent(Components.MeshRenderer) as Components.MeshRenderer;
+    const lightSphereMeshRenderer = lightGameobject.GetComponent(Components.MeshRenderer);
     const lightSphereMaterial = new THREE.MeshBasicMaterial();
     lightSphereMeshRenderer.material = lightSphereMaterial;
 
@@ -45,5 +38,6 @@ scene.OnLoaded = () => {
         lightSphereMaterial.color.setHex(color);
     }, 3000);
 
-    scene.Start();
+    scene.Load();
+scene.Play();
 };

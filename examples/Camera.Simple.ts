@@ -1,24 +1,16 @@
 /**
  * @description Adding a new camera to the scene.
  */
-import { Scene, GameObject, Components } from '../dist/esm/trident-esm-bundle.js';
-
-const rendererConfig = {
-    containerId: "canvasContainer",
-    targetFrameRate: 60,
-};
-const physicsConfig = {
-    physxWasmURL: "../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-};
-
-const scene = new Scene(rendererConfig, physicsConfig);
-scene.EnableGizmos();
-
-const camera = scene.GetActiveCamera();
-camera.transform.position.z = 60;
+import { SceneHelper } from './assets/SceneHelper.js';
+import { GameObject, Components } from '../dist/esm/trident-esm-bundle.js';
 
 let farLimitReached = false;
-scene.OnLoaded = () => {
+const scene = SceneHelper.CreateScene();
+scene.gizmosEnabled = true;
+scene.OnInitialized = () => {
+    const camera = SceneHelper.CreateCamera(scene);
+    camera.transform.position.z = 60;
+
     const cameraGameObject = new GameObject(scene);
     const cameraComponent = cameraGameObject.AddComponent(Components.Camera);
     cameraComponent.far = 10;
@@ -34,5 +26,6 @@ scene.OnLoaded = () => {
         farLimitReached = !farLimitReached;
     }, 1000);
     
-    scene.Start();
+    scene.Load();
+    scene.Play();
 };
