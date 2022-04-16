@@ -47,7 +47,11 @@ export class Component implements IComponent {
     /**
      * @todo Indicates that this component has started.
      */
-    public hasStarted: boolean;
+    public isStarted: boolean = false;
+
+    public isAwake: boolean = false;
+
+    public runInEditMode: boolean = false;
 
     constructor(gameObject: GameObject, transform: Transform) {
         this.gameObject = gameObject;
@@ -60,8 +64,7 @@ export class Component implements IComponent {
     /**
      * Called once when the component is first added to a GameObject.
      */
-    public OnEnable() {
-    }
+    public Awake() {};
 
     public OnDisable() {
     }
@@ -69,8 +72,8 @@ export class Component implements IComponent {
     /**
      * Called once after the scene is started.
      */
-    public Start() {
-    }
+    public Start();
+    public async Start() {}
     
     /**
      * Called once after the scene is stopped.

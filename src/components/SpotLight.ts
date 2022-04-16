@@ -8,7 +8,7 @@ import { SerializeField } from "../utils/SerializeField";
  * @noInheritDoc
  */
 export class SpotLight extends Component {
-    private light: SpotLightTHREE;
+    private light: SpotLightTHREE = new SpotLightTHREE( 0xffffff, 1, 10, 30 * MathUtils.DEG2RAD );
     private helper: SpotLightHelper;
 
     @SerializeField
@@ -56,8 +56,7 @@ export class SpotLight extends Component {
         this.light.castShadow = shadows;
     }
 
-    public OnEnable() {
-        this.light = new SpotLightTHREE( 0xffffff, 1, 10, 30 * MathUtils.DEG2RAD );
+    public Awake() {
         this.transform.group.add(this.light);
         this.light.parent = this.transform.group;
     }
@@ -70,21 +69,20 @@ export class SpotLight extends Component {
     }
 
     public OnDrawGizmos() {
-        if (this.helper) {
-            this.helper.update();
+        if (!this.helper) {
+            this.helper = new SpotLightHelper(this.light);
+            this.transform.group.add(this.helper);
         }
+
+        this.helper.update();
     }
 
-    public OnGizmosDisabled() {
+    public Destroy() {
         if (this.helper) {
             this.transform.group.remove(this.helper);
             this.helper.dispose();
             this.helper = undefined;
         }
-    }
-
-    public Destroy() {
-        this.OnGizmosDisabled();
         this.transform.group.remove(this.light);
         this.gameObject.RemoveComponent(this);
     }

@@ -2,9 +2,10 @@ import { MeshFilter } from "./MeshFilter";
 
 import { Component } from "./Component";
 import { Renderer } from "../Renderer";
-import { MeshRendererDefaults } from "../defaults/MeshRendererDefaults";
-import { BufferGeometry, Geometry, Material, Mesh } from "three";
+import { BufferGeometry, Geometry, Material, Mesh, MeshStandardMaterial } from "three";
 import { SerializeField } from "../utils/SerializeField";
+
+const DefaultMaterial = new MeshStandardMaterial();
 
 /**
  * Renders a geometry from MeshFilter into the scene.
@@ -13,7 +14,7 @@ import { SerializeField } from "../utils/SerializeField";
  */
 export class MeshRenderer extends Component {
     private renderer: Renderer;
-    private _material: Material = MeshRendererDefaults.DefaultMaterial();
+    private _material: Material = DefaultMaterial;
     private _mesh: Mesh;
 
     public get mesh(): Mesh {
@@ -34,7 +35,7 @@ export class MeshRenderer extends Component {
 
     public set material(material: Material) {
         this._material = material;
-
+        
         if (this._mesh) {
             this._mesh.material = this._material;
         }
@@ -58,14 +59,13 @@ export class MeshRenderer extends Component {
     }
 
     public set receiveShadows(receiveShadows: boolean) {
-        // this.transform.group.receiveShadow = receiveShadows;
         this.transform.group.receiveShadow = receiveShadows;
         this.transform.group.traverse(object => {
             object.receiveShadow = receiveShadows;
         })
     }
 
-    public OnEnable() {
+    public Awake() {
         this.renderer = this.gameObject.scene.GetRenderer();
         this.AddMeshFromMeshFilter();
     }

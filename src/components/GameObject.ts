@@ -10,6 +10,7 @@ import { LayerMask } from "../enums/LayerMask";
 
 import { PrimitiveType } from "../enums/PrimitiveType";
 import { Cube, Capsule, Plane, Sphere, Cylinder } from "../primitives";
+import { InstantiationPool } from "../InstantiationPool";
 
 /**
  * The main component of the entity component system.
@@ -25,7 +26,7 @@ export class GameObject implements IComponent {
 
     public scene: Scene;
     public transform: Transform;
-    public components: any[] = [];
+    public components: Component[] = [];
 
     public layer: LayerMask = LayerMask.LAYER0;
 
@@ -97,13 +98,9 @@ export class GameObject implements IComponent {
     * @param {Component<T>} component - The component class to be attached to this GameObject.
     * @returns {Component} - If successful it returns an instance of the passed component, null otherwise.
     */
-    public AddComponent(component: any): any {
-        if (component == Object) {
-            return null;
-        }
-
-        // try {
-            let componentObject: any = new component(this, this.transform);
+    public AddComponent<T extends Component>(component: new(...args: any[]) => T): T {
+        try {
+            let componentObject = new component(this, this.transform);
 
             if (!this.IsValidComponent(componentObject)) {
                 console.error(`Invalid Component ${componentObject}`);
@@ -111,17 +108,15 @@ export class GameObject implements IComponent {
             }
 
             this.components.push(componentObject);
-            componentObject.OnEnable();
 
-            if (this.scene.HasGizmosEnabled()) {
-                componentObject.OnGizmosEnabled();
-            }
+            InstantiationPool.add(componentObject);
 
             return componentObject;
-        // } catch (error) {
-        //     console.error(error)
-        //     console.error(`Invalid component ${component}`)
-        // }
+            
+        } catch (error) {
+            console.error(error)
+            console.error(`Invalid component ${component}`)
+        }
         return null;
     }
 
@@ -130,21 +125,13 @@ export class GameObject implements IComponent {
     * @param {string} methodName - The name of the method to be called.
     * @param {any} parameter - Parameters to be called with the method.
     */
+    // TODO: Non Awake or non Start components should not receive messages
     public BroadcastMessage(methodName: string, parameter:any) {
         for(let component of this.components) {
             if (component[methodName] !== undefined && typeof component[methodName] === "function") {
                 component[methodName](parameter);
             }
         }
-    }
-
-    public OnEnable() {
-        for(let component of this.components) {
-            component.OnEnable();
-        }
-    }
-
-    public OnDisable() {
     }
 
     /**
@@ -176,9 +163,8 @@ export class GameObject implements IComponent {
     * @param {Component} type - The class of the component to search for.
     * @returns {Component|null} - If the component is found returns it, null otherwise.
     */
-    public GetComponent(type: any): any {
+    public GetComponent<T extends Component>(type: new(...args: any[]) => T): T {
         for(let component of this.components) {
-            // if (component.classname == type.name) {
             if (component instanceof type) {
                 return component;
             }
@@ -191,7 +177,7 @@ export class GameObject implements IComponent {
     * @param {Component} type - The class of the component to search for.
     * @returns {Component[]} - A list of the matched components, empty list otherwise.
     */
-    public GetComponents(type: any): any[] {
+    public GetComponents<T extends Component>(type: new(...args: any[]) => T): T[] {
         let matches = [];
         for(let component of this.components) {
             if (component.classname == type.name) {
@@ -213,11 +199,9 @@ export class GameObject implements IComponent {
 
         if (this.scene.isPlaying) {
             for(let component of this.components) {
-                if (!component.hasStarted) {
-                    component.Start();
-                    component.hasStarted = true;
+                if (component.isAwake && component.isStarted) {
+                    component.Update();
                 }
-                component.Update();
             }
         }
     }
@@ -226,33 +210,6 @@ export class GameObject implements IComponent {
         this.transform.LateUpdate();
         for(let component of this.components) {
             component.LateUpdate();
-        }
-    }
-
-    public Start() {
-        this.transform.Start();
-        for(let component of this.components) {
-            component.Start();
-            component.hasStarted = true;
-        }
-    }
-
-    public Stop() {
-        this.transform.Stop();
-        for(let component of this.components) {
-            component.Stop();
-        }
-    }
-
-    public OnGizmosEnabled() {
-        for(let component of this.components) {
-            component.OnGizmosEnabled();
-        }
-    }
-
-    public OnGizmosDisabled() {
-        for(let component of this.components) {
-            component.OnGizmosDisabled();
         }
     }
 

@@ -18,7 +18,7 @@ export class LineRenderer extends Component {
     private geometry: BufferGeometry;
     private line: Line;
 
-    public OnEnable() {
+    public Awake() {
         this.material = new LineBasicMaterial( { color: this.color } );
 
         this.geometry = new BufferGeometry().setFromPoints( [this.from, this.to] );

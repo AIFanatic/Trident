@@ -5,6 +5,7 @@ import { ArticulationDofLock } from "../enums/ArticulationDofLock";
 import { Collider } from "./Collider";
 import { Component } from "./Component";
 import { SerializeField } from "../utils/SerializeField";
+import { GameObject, Transform } from ".";
 
 class JointDriver {
     private joint: PhysX.PxArticulationJointReducedCoordinate;
@@ -100,6 +101,8 @@ class JointDriver {
  * @noInheritDoc
  */
 export class ArticulationBody extends Component {
+    public runInEditMode = true;
+    
     public xDrive: JointDriver;
     public yDrive: JointDriver;
     public zDrive: JointDriver;
@@ -275,10 +278,34 @@ export class ArticulationBody extends Component {
         this.link.setMass(mass);
     }
 
-    public OnEnable() {
+    @SerializeField
+    public get linearDamping(): number {
+        return this.link.getLinearDamping();
+    }
+
+    public set linearDamping(linearDamping: number) {
+        this.link.setLinearDamping(linearDamping);
+    }
+
+    @SerializeField
+    public get angularDamping(): number {
+        return this.link.getAngularDamping();
+    }
+
+    public set angularDamping(angularDamping: number) {
+        this.link.setAngularDamping(angularDamping);
+    }
+
+    private collider: Collider;
+    private hasAttachedShape: boolean = false;
+
+    // TODO: Articulation needs several parameters setup at constrcution time, clean.
+    constructor(gameObject: GameObject, transform: Transform) {
+        super(gameObject, transform);
+        
         this.physics = this.gameObject.scene.GetPhysics().GetPhysics();
         this.physicsScene = this.gameObject.scene.GetPhysics().GetScene();
-        
+
         const parentArticulation: ArticulationBody = this.transform.parent ? this.transform.parent.gameObject.GetComponent(ArticulationBody) : null;
 
         if (parentArticulation) {
@@ -290,11 +317,11 @@ export class ArticulationBody extends Component {
             this.physicsScene.removeArticulation(this.articulation);
             this.link = this.articulation.createLink(parentArticulation.link, pose);
             
-            const collider = this.gameObject.GetComponent(Collider) as Collider;
-            if (collider) {
-                collider.body.rigidbody.detachShape(collider.body.shape);
-                this.link.attachShape(collider.body.shape);
-            }
+            this.collider = this.gameObject.GetComponent(Collider);
+            // if (collider) {
+            //     collider.body.rigidbody.detachShape(collider.body.shape);
+            //     this.link.attachShape(collider.body.shape);
+            // }
 
             const inboundJoint = this.link.getInboundJoint();
             // @ts-ignore
@@ -333,9 +360,72 @@ export class ArticulationBody extends Component {
         PhysX.PxRigidBodyExt.prototype.updateMassAndInertia(this.link, 1);
     }
 
+    public Awake() {
+        // const parentArticulation: ArticulationBody = this.transform.parent ? this.transform.parent.gameObject.GetComponent(ArticulationBody) : null;
+
+        // if (parentArticulation) {
+        //     const position = new PhysX.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+        //     const rotation = new PhysX.PxQuat(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z, this.transform.rotation.w);
+        //     const pose = new PhysX.PxTransform(position, rotation);
+            
+        //     this.articulation = parentArticulation.articulation;
+        //     this.physicsScene.removeArticulation(this.articulation);
+        //     this.link = this.articulation.createLink(parentArticulation.link, pose);
+            
+        //     this.collider = this.gameObject.GetComponent(Collider);
+        //     // if (collider) {
+        //     //     collider.body.rigidbody.detachShape(collider.body.shape);
+        //     //     this.link.attachShape(collider.body.shape);
+        //     // }
+
+        //     const inboundJoint = this.link.getInboundJoint();
+        //     // @ts-ignore
+        //     this.inboundJoint = PhysX.castObject(inboundJoint, PhysX.PxArticulationJointReducedCoordinate);
+
+
+        //     const p = this.transform.position.clone().sub(this.transform.parent.position);
+        //     const localPosition = new PhysX.PxVec3(p.x, p.y, p.z);
+        //     const localRotation = new PhysX.PxQuat(this.transform.localRotation.x, this.transform.localRotation.y, this.transform.localRotation.z, this.transform.localRotation.w);
+        //     const localPose = new PhysX.PxTransform(localPosition, localRotation);
+            
+        //     this.inboundJoint.setParentPose(localPose);
+
+        //     this.jointType = ArticulationJointType.FixedJoint;
+
+        //     this.physicsScene.addArticulation(this.articulation);
+        // }
+        // else {
+        //     const position = new PhysX.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+        //     const rotation = new PhysX.PxQuat(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z, this.transform.rotation.w);
+        //     const pose = new PhysX.PxTransform(position, rotation);
+
+        //     this.articulation = this.physics.createArticulationReducedCoordinate();
+        //     this.link = this.articulation.createLink(null, pose);
+        //     this.physicsScene.addArticulation(this.articulation);
+        // }
+
+        // this.link.setLinearDamping(0.05);
+        // this.link.setAngularDamping(0.05);
+        // if (this.inboundJoint) {
+        //     this.inboundJoint.setFrictionCoefficient(0.05);
+        // }
+        // this.mass = 1;
+
+        // // @ts-ignore
+        // PhysX.PxRigidBodyExt.prototype.updateMassAndInertia(this.link, 1);
+    }
+
     public FixedUpdate() {
         if (!this.link) return;
         if (!this.inboundJoint) return;
+
+        if (this.collider && !this.hasAttachedShape) {
+            this.collider.body.rigidbody.detachShape(this.collider.body.shape);
+            this.link.attachShape(this.collider.body.shape);
+            // @ts-ignore
+            PhysX.PxRigidBodyExt.prototype.updateMassAndInertia(this.link, 1);
+            this.hasAttachedShape = true;
+        }
 
         const pose = this.link.getGlobalPose();
 

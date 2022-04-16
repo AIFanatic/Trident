@@ -1,5 +1,4 @@
 import { Collider } from "./Collider";
-import { Rigidbody } from './Rigidbody';
 import { PhysicsRigidbody } from '../physics/PhysicsRigidbody';
 import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
@@ -11,30 +10,28 @@ import { PhysicsBody } from "../physics/PhysicsBody";
  * @noInheritDoc
  */
 export class BoxCollider extends Collider {
-    public OnEnable() {
-        const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-        const physxScene = this.gameObject.scene.GetPhysics().GetScene();
 
-        const rigidbodyComponent = this.gameObject.GetComponent(Rigidbody) as Rigidbody;
+    public Awake() {
+        this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
+        this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
 
-        const shape = PhysicsShape.CreateBox(physxPhysics, this.transform.localScale);
+        this.CreateCollider();
+    }
 
-        if (rigidbodyComponent) {
-            this.body = rigidbodyComponent.body;
-            this.body.UpdateShape(shape);
-        }
-        else {
-            const geometry = shape.getGeometry().box();
-            const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-            const rigidbody = physxPhysics.createRigidStatic(transform);
+    private CreateCollider() {
+        const shape = PhysicsShape.CreateBox(this.physxPhysics, this.transform.localScale);
 
-            const physicsBody: PhysicsBody = {
-                rigidbody: rigidbody,
-                geometry: geometry,
-                shape: shape
-            };
-            
-            this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
-        }
+        const geometry = shape.getGeometry().box();
+        const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+        const rigidbody = this.physxPhysics.createRigidStatic(transform);
+
+        const physicsBody: PhysicsBody = {
+            rigidbody: rigidbody,
+            geometry: geometry,
+            shape: shape
+        };
+        
+        this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+        this.gameObject.BroadcastMessage("CreatedCollider", this.body);
     }
 }

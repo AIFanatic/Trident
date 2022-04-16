@@ -15,21 +15,8 @@ export enum ProjectionTypes {
  * @noInheritDoc
  */
 export class Camera extends Component {
-    private camera: PerspectiveCamera;
+    private camera: PerspectiveCamera = new PerspectiveCamera( 60, 1, 0.1, 1000 );
     private helper: CameraHelper;
-
-    private previousTransformPosition: Vector3 = new Vector3();
-    private previousCameraPosition: Vector3 = new Vector3();
-
-    // private _projection: ProjectionTypes;
-
-    // public get projection(): ProjectionTypes {
-    //     return this._projection;
-    // }
-
-    // public set projection(projection: ProjectionTypes) {
-        
-    // }
 
     @SerializeField
     public get far(): number {
@@ -61,47 +48,39 @@ export class Camera extends Component {
         this.camera.updateProjectionMatrix();
     }
 
-    public OnEnable() {
-        const canvas = this.gameObject.scene.GetRenderer().renderer.domElement;
-        this.camera = new PerspectiveCamera( 59, canvas.offsetWidth / canvas.offsetHeight, 0.1, 1000 );
+    public Awake() {
         this.transform.group.add(this.camera as any);
 
-        this.previousTransformPosition.copy(this.transform.localPosition);
-        this.previousCameraPosition.copy(this.transform.localPosition);
-
         window.addEventListener("resize", (event: UIEvent) => {
-            const canvas = this.gameObject.scene.GetRenderer().renderer.domElement;
-            this.camera.aspect = canvas.parentElement.offsetWidth / canvas.parentElement.offsetHeight;
-            this.camera.updateProjectionMatrix();
+            this.OnResize();
         });
+        this.OnResize();
     }
 
     public GetCamera(): PerspectiveCamera {
         return this.camera;
     }
 
-    public OnGizmosEnabled() {
+    public OnResize() {
+        const canvas = this.gameObject.scene.GetRenderer().renderer.domElement;
+        this.camera.aspect = canvas.parentElement.offsetWidth / canvas.parentElement.offsetHeight;
+        this.camera.updateProjectionMatrix();
+    }
+
+    public OnDrawGizmos() {
         if (!this.helper) {
             this.helper = new CameraHelper(this.camera);
             this.transform.group.add(this.helper);
         }
+
+        this.helper.update();
     }
 
-    public OnDrawGizmos() {
-        if (this.helper) {
-            this.helper.update();
-        }
-    }
-
-    public OnGizmosDisabled() {
+    public Destroy() {
         if (this.helper) {
             this.transform.group.remove(this.helper);
             this.helper = undefined;
         }
-    }
-
-    public Destroy() {
-        this.OnGizmosDisabled();
         this.transform.group.remove(this.camera);
         this.gameObject.RemoveComponent(this);
     }

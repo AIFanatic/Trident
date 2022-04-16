@@ -16,7 +16,7 @@ export class Animation extends Component {
 
     private clock: Clock;
 
-    public OnEnable() {
+    public Awake() {
         this.animations = new Map<string, AnimationClip>();
 
         this.clock = new Clock(true);

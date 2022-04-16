@@ -8,7 +8,7 @@ import { SerializeField } from "../utils/SerializeField";
  * @noInheritDoc
  */
 export class PointLight extends Component {
-    private light: PointLightTHREE;
+    private light: PointLightTHREE = new PointLightTHREE( 0xffffff, 1, 10 );
     private helper: PointLightHelper;
     
     @SerializeField
@@ -47,35 +47,26 @@ export class PointLight extends Component {
         this.light.castShadow = shadows;
     }
 
-    public OnEnable() {
-        this.light = new PointLightTHREE( 0xffffff, 1, 10 );
+    public Awake() {
         this.transform.group.add(this.light);
         this.light.parent = this.transform.group;
     }
 
-    public OnGizmosEnabled() {
+    public OnDrawGizmos() {
         if (!this.helper) {
             this.helper = new PointLightHelper(this.light);
             this.transform.group.add(this.helper);
         }
+
+        this.helper.update();
     }
 
-    public OnDrawGizmos() {
-        if (this.helper) {
-            this.helper.update();
-        }
-    }
-
-    public OnGizmosDisabled() {
+    public Destroy() {
         if (this.helper) {
             this.transform.group.remove(this.helper);
             this.helper.dispose();
             this.helper = undefined;
         }
-    }
-
-    public Destroy() {
-        this.OnGizmosDisabled();
         this.transform.group.remove(this.light);
         this.gameObject.RemoveComponent(this);
     }

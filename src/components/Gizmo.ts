@@ -1,4 +1,3 @@
-import { Plane, Vector3 } from "three";
 import { Component } from "./Component";
 import { LineRenderer } from "./LineRenderer";
 import { Transform } from "./Transform";
@@ -17,10 +16,10 @@ export class Gizmo extends Component {
 
     public target: Transform;
 
-    public OnEnable() {
-        this.upLine = this.gameObject.AddComponent(LineRenderer);
-        this.rightLine = this.gameObject.AddComponent(LineRenderer);
-        this.forwardLine = this.gameObject.AddComponent(LineRenderer);
+    public Awake() {
+        this.upLine = this.gameObject.AddComponent(LineRenderer) as LineRenderer;
+        this.rightLine = this.gameObject.AddComponent(LineRenderer) as LineRenderer;
+        this.forwardLine = this.gameObject.AddComponent(LineRenderer) as LineRenderer;
 
         this.upLine.color = 0x00ff00;
         this.rightLine.color = 0x0000ff;

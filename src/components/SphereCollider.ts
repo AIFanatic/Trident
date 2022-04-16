@@ -15,7 +15,7 @@ export class SphereCollider extends Collider {
     private physxPhysics: PhysX.PxPhysics;
     private physxScene: PhysX.PxScene;
 
-    public OnEnable() {
+    public Awake() {
         this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
         this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
 

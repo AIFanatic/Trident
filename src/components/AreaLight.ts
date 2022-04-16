@@ -11,7 +11,7 @@ import { SerializeField } from "../utils/SerializeField";
  * @noInheritDoc
  */
 export class AreaLight extends Component {
-    private light: RectAreaLightTHREE;
+    private light: RectAreaLightTHREE = new RectAreaLightTHREE( 0xffffff, 1, 1, 1 );
     private helper: RectAreaLightHelper;
 
     @SerializeField
@@ -59,8 +59,7 @@ export class AreaLight extends Component {
         this.light.castShadow = shadows;
     }
 
-    public OnEnable() {
-        this.light = new RectAreaLightTHREE( 0xffffff, 1, 1, 1 );
+    public Awake() {
         this.transform.group.add(this.light);
         this.light.parent = this.transform.group;
 
@@ -68,29 +67,20 @@ export class AreaLight extends Component {
         // RectAreaLightUniformsLib.init();
     }
 
-    public OnGizmosEnabled() {
+    public OnDrawGizmos() {
         if (!this.helper) {
             this.helper = new RectAreaLightHelper(this.light);
             this.transform.group.add(this.helper);
         }
+        this.helper.update();
     }
 
-    public OnDrawGizmos() {
-        if (this.helper) {
-            this.helper.update();
-        }
-    }
-
-    public OnGizmosDisabled() {
+    public Destroy() {
         if (this.helper) {
             this.transform.group.remove(this.helper);
             this.helper.dispose();
             this.helper = undefined;
         }
-    }
-
-    public Destroy() {
-        this.OnGizmosDisabled();
         this.transform.group.remove(this.light);
         this.gameObject.RemoveComponent(this);
     }

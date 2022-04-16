@@ -15,6 +15,9 @@ import { Mathf } from "../utils/Mathf";
 export class Collider extends Component {
     public body: PhysicsRigidbody;
 
+    protected physxPhysics: PhysX.PxPhysics;
+    protected physxScene: PhysX.PxScene;
+
     private position: Vector3 = new Vector3();
     private rotation: Quaternion = new Quaternion();
     private localScale: Vector3 = new Vector3();

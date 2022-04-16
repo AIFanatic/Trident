@@ -13,7 +13,7 @@ import { PhysicsBody } from "../physics/PhysicsBody";
  * @noInheritDoc
  */
 export class PlaneCollider extends Collider {
-    public OnEnable() {
+    public Awake() {
         const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
         const physxScene = this.gameObject.scene.GetPhysics().GetScene();
 

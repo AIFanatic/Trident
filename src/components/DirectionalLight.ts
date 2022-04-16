@@ -8,7 +8,7 @@ import { SerializeField } from "../utils/SerializeField";
  * @noInheritDoc
  */
 export class DirectionalLight extends Component {
-    private light: DirectionalLightTHREE;
+    private light: DirectionalLightTHREE = new DirectionalLightTHREE( 0xffffff, 1 );
     private helper: DirectionalLightHelper;
     
     @SerializeField
@@ -38,35 +38,26 @@ export class DirectionalLight extends Component {
         this.light.castShadow = shadows;
     }
 
-    public OnEnable() {
-        this.light = new DirectionalLightTHREE( 0xffffff, 1 );
+    public Awake() {
         this.transform.group.add(this.light);
         this.light.parent = this.transform.group;
     }
 
-    public OnGizmosEnabled() {
+    public OnDrawGizmos() {
         if (!this.helper) {
             this.helper = new DirectionalLightHelper(this.light);
             this.transform.group.add(this.helper);
         }
+
+        this.helper.update();
     }
 
-    public OnDrawGizmos() {
-        if (this.helper) {
-            this.helper.update();
-        }
-    }
-
-    public OnGizmosDisabled() {
+    public Destroy() {
         if (this.helper) {
             this.transform.group.remove(this.helper);
             this.helper.dispose();
             this.helper = undefined;
         }
-    }
-
-    public Destroy() {
-        this.OnGizmosDisabled();
         this.transform.group.remove(this.light);
         this.gameObject.RemoveComponent(this);
     }
