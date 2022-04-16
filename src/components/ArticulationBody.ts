@@ -17,6 +17,7 @@ class JointDriver {
     private _lowerLimit = 0;
     private _upperLimit = 0;
 
+    @SerializeField
     public get lowerLimit(): number {
         return this._lowerLimit;
     }
@@ -27,6 +28,7 @@ class JointDriver {
         this.joint.setLimit(this.axis, this.lowerLimit, this.upperLimit);
     }
 
+    @SerializeField
     public get upperLimit(): number {
         return this._upperLimit;
     }
@@ -37,6 +39,7 @@ class JointDriver {
         this.joint.setLimit(this.axis, this.lowerLimit, this.upperLimit);
     }
     
+    @SerializeField
     public get stiffness(): number {
         return this._stiffness;
     }
@@ -47,6 +50,7 @@ class JointDriver {
         this.joint.setDrive(this.axis, this._stiffness, this._damping, this._forceLimit);
     }
 
+    @SerializeField
     public get damping(): number {
         return this._damping;
     }
@@ -57,6 +61,7 @@ class JointDriver {
         this.joint.setDrive(this.axis, this._stiffness, this._damping, this._forceLimit);
     }
 
+    @SerializeField
     public get forceLimit(): number {
         return this._forceLimit;
     }
@@ -67,6 +72,7 @@ class JointDriver {
         this.joint.setDrive(this.axis, this._stiffness, this._damping, this._forceLimit);
     }
 
+    @SerializeField
     public get target(): number {
         // @ts-ignore
         return this.joint.getDriveTarget(this.axis);
@@ -77,6 +83,7 @@ class JointDriver {
         this.joint.setDriveTarget(this.axis, target);
     }
 
+    @SerializeField
     public get targetVelocity(): number {
         // @ts-ignore
         return this.joint.getDriveVelocity(this.axis);
@@ -103,8 +110,11 @@ class JointDriver {
 export class ArticulationBody extends Component {
     public runInEditMode = true;
     
+    @SerializeField(JointDriver)
     public xDrive: JointDriver;
+    @SerializeField(JointDriver)
     public yDrive: JointDriver;
+    @SerializeField(JointDriver)
     public zDrive: JointDriver;
 
     private articulation: PhysX.PxArticulationReducedCoordinate;

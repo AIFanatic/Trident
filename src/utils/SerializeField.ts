@@ -35,7 +35,10 @@ export function SerializeField(type?: any, propertyKey?: string, descriptor?: Pr
         const classname = target.constructor.name;
         if (!SerializableTypesInstance.has(classname, propertyKey)) {
             SerializableTypesInstance.set(classname, propertyKey, type);
-            descriptor.enumerable = true;
+            // Classes dont have a descriptor
+            if (descriptor) {
+                descriptor.enumerable = true;
+            }
         }
     }
     return _SerializeField;
