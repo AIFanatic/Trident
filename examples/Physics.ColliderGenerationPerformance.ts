@@ -10,7 +10,7 @@ class Spaceship extends Components.Component {
         const meshRenderer = this.gameObject.AddComponent(Components.MeshRenderer)
         const collider = this.gameObject.AddComponent(Components.MeshCollider);
         
-        return Resources.LoadAsync("./assets/Intergalactic_Spaceships_Version_2.obj")
+        return Resources.LoadAsync("./assets/spaceship.obj")
         .then(geometry => {
             if (geometry instanceof THREE.BufferGeometry) {
 

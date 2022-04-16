@@ -14,7 +14,7 @@ scene.OnInitialized = () => {
     const meshRenderer = shipGameobject.AddComponent(Components.MeshRenderer)
     const meshFilter = shipGameobject.AddComponent(Components.MeshFilter);
 
-    Resources.LoadAsync("./assets/Intergalactic_Spaceships_Version_2.obj")
+    Resources.LoadAsync("./assets/spaceship.obj")
     .then(geometry => {
         if (geometry instanceof THREE.BufferGeometry) {
             meshFilter.mesh = geometry;
