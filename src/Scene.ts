@@ -7,56 +7,44 @@ import { Renderer } from './Renderer'
 import { Physics } from './Physics'
 import { Input } from './Input';
 import { Camera } from "./components/Camera";
-import { DirectionalLight } from "./components";
-import { AmbientLight, Color } from "three";
+import { InstantiationPool } from "./InstantiationPool";
+import { IConfiguration } from "./interfaces/IConfiguration";
+import { ConfigurationDefaults } from "./defaults/ConfigurationDefaults";
 
 /**
  * The scene that holds all GameObjects.
  */
 export class Scene {
+    private config: IConfiguration;
     private renderer: Renderer;
     private physics: Physics;
     private input: Input;
     private camera: Camera;
 
-    public isPlaying: boolean;
+    public isPlaying: boolean = false;
     public currentFrame: number = 0;
+    public gizmosEnabled: boolean = false;
 
     public gameObjects: GameObject[] = [];
 
-    public OnLoaded: () => void = () => {};
+    public OnInitialized: () => void;
     private physicsLoaded: boolean;
     private rendererLoaded: boolean; 
-
-    private gizmosEnabled: boolean;
     
     /**
      * @param {IRendererConfiguration} rendererConfig - Renderer configuration.
      * @param {IPhysicsConfiguration} physicsConfig - Physics configuration.
      */
-    constructor(rendererConfig: IRendererConfiguration, physicsConfig: IPhysicsConfiguration) {
-        this.renderer = this.InitializeRenderer(rendererConfig);
-        this.physics = this.InitializePhysics(physicsConfig);
+    constructor(config: IConfiguration) {
+        this.config = {
+            renderer: Object.assign({}, ConfigurationDefaults.renderer, config.renderer),
+            physics: Object.assign({}, ConfigurationDefaults.physics, config.physics),
+            application: Object.assign({}, ConfigurationDefaults.application, config.application)
+        };
+
+        this.renderer = this.InitializeRenderer(this.config.renderer);
+        this.physics = this.InitializePhysics(this.config.physics);
         this.input = new Input(this);
-
-        // When a scene is created a camera is created too
-        const cameraGameObject = new GameObject(this);
-        cameraGameObject.name = "SceneCamera";
-        this.camera = cameraGameObject.AddComponent(Camera);
-        this.renderer.renderer.shadowMap.enabled = true;
-        
-        // When a scene is created a light is created too
-        const directionalLightGameObject = new GameObject(this);
-        directionalLightGameObject.name = "DirectionalLight";
-        directionalLightGameObject.transform.position.set(0, 3, 0);
-        directionalLightGameObject.transform.eulerAngles.set(50, 30, 0);
-        const directionalLight = directionalLightGameObject.AddComponent(DirectionalLight) as DirectionalLight;
-        directionalLight.intensity = 0.5;
-        directionalLight.shadows = true;
-
-        // TODO: Temporary
-        const ambientLight = new AmbientLight(0xffffff, 0.3);
-        this.renderer.scene.add(ambientLight);
 
         requestAnimationFrame((now) => { this.Update(); });
     }
@@ -64,21 +52,21 @@ export class Scene {
     private InitializeRenderer(rendererConfig: IRendererConfiguration): Renderer {
         return new Renderer(rendererConfig, () => {
             this.rendererLoaded = true;
-            this.CheckLoaded();
+            this.CheckInitialized();
         });
     }
 
     private InitializePhysics(physicsConfig: IPhysicsConfiguration): Physics {
         return new Physics(this, physicsConfig, () => {
             this.physicsLoaded = true;
-            this.CheckLoaded();
+            this.CheckInitialized();
         });
     }
 
-    private CheckLoaded() {
+    private CheckInitialized() {
         if (this.rendererLoaded && this.physicsLoaded) {
-            if (typeof this.OnLoaded == "function") {
-                this.OnLoaded();
+            if (this.OnInitialized) {
+                this.OnInitialized();
             }
         }
     }
@@ -124,51 +112,12 @@ export class Scene {
     public SetActiveCamera(camera: Camera) {
         this.camera = camera;
     }
-    
-    /**
-     * Enables Gizmos to be visible in the scene.
-     * Gizmos are helpful to visualize and debug components (eg: Camera and Lights).
-     */
-    public EnableGizmos() {
-        if (!this.gizmosEnabled) {
-            for(let gameObject of this.gameObjects) {
-                gameObject.OnGizmosEnabled();
-            }
-            this.gizmosEnabled = true;
-        }
-    }
-    
-    /**
-     * Disables Gizmos from being visible in the scene.
-     */
-    public DisableGizmos() {
-        if (this.gizmosEnabled) {
-            for(let gameObject of this.gameObjects) {
-                gameObject.OnGizmosDisabled();
-            }
-            this.gizmosEnabled = false;
-        }
-    }
-    
-    /**
-     * Check if Gizmos are enabled.
-     * @returns {boolean} - If Gizmos are enabled.
-     */
-    public HasGizmosEnabled(): boolean {
-        return this.gizmosEnabled;
-    }
 
-    // TODO: Figure another way of checking type due to runtime compilation stripping types
     /**
      * Adds a new GameObject to the scene.
      * @param {GameObject} gameObject - GameObject to be added to the scene.
      */
     public AddGameObject(gameObject: GameObject): boolean {
-        // if (gameObject instanceof GameObject == false) {
-        //     console.error(`Invalid GameObject ${gameObject}`);
-        //     return false;
-        // }
-
         this.gameObjects.push(gameObject);
         return true;
     }
@@ -235,17 +184,20 @@ export class Scene {
 
         requestAnimationFrame(() => { this.Update(); });
     }
-    
+
+    /**
+     * Load the Scene.
+     * Instanciates all Components
+     */
+    public Load() {
+        return InstantiationPool.Load();
+    }
+
     /**
      * Called when the scene starts.
-     * Calls Start on all attached components.
      */
-    public Start(): void {
+    public Play(): void {
         this.isPlaying = true;
-
-        for(let gameObject of this.gameObjects) {
-            gameObject.Start();
-        }
     }
 
     /**
@@ -254,9 +206,5 @@ export class Scene {
      */
     public Stop(): void {
         this.isPlaying = false;
-
-        for(let gameObject of this.gameObjects) {
-            gameObject.Stop();
-        }
     }
 }
