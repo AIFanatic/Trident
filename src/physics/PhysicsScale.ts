@@ -55,14 +55,14 @@ export class PhysicsScale {
         let geometry;
 
         if (type == PxGeometryTypeEnum.SPHERE.valueOf()) {
-            geometry = this.ScaleSphere(geometryHolder.sphere(), scale.length());
+            geometry = this.ScaleSphere(geometryHolder.sphere(), scale.x/2);
         }
         else if (type == PxGeometryTypeEnum.PLANE.valueOf()) {
             console.warn("Scaling PLANE not implemented, planes are just thin boxes");
             geometry = geometryHolder.plane();
         }
         else if (type == PxGeometryTypeEnum.CAPSULE.valueOf()) {
-            geometry = this.ScaleCapsule(geometryHolder.capsule(), scale.x, scale.y);
+            geometry = this.ScaleCapsule(geometryHolder.capsule(), scale.x/2, scale.y/2);
         }
         else if (type == PxGeometryTypeEnum.BOX.valueOf()) {
             geometry = this.ScaleBox(geometryHolder.box(), scale.clone().divideScalar(2));

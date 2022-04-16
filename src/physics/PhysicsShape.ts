@@ -32,8 +32,6 @@ export class PhysicsShape {
         return shape;
     }
 
-
-
     // TODO: Find a way of creating a rigidbody without a collider, probably needs flags
     public static CreateBlank(physics: PhysX.PxPhysics): PhysX.PxShape {
         const geometry = new PhysX.PxBoxGeometry(0, 0, 0);
