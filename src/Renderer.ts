@@ -1,6 +1,6 @@
 import { IRendererConfiguration } from './interfaces/IRendererConfiguration';
 
-import {PerspectiveCamera, Scene, WebGLRenderer} from 'three';
+import {AmbientLight, PerspectiveCamera, Scene, WebGLRenderer} from 'three';
 
 const RendererConfigurationDefaults: IRendererConfiguration = {
     containerId: null,
@@ -13,7 +13,6 @@ const RendererConfigurationDefaults: IRendererConfiguration = {
 
 export class Renderer {
     public scene: Scene;
-    // public camera: PerspectiveCamera;
     public renderer: WebGLRenderer;
     private canvas: HTMLCanvasElement;
 
@@ -26,6 +25,8 @@ export class Renderer {
     private frameCount: number = 0;
     private currentFps: number = 0;
 
+    private ambientLight: AmbientLight;
+
     constructor(config: IRendererConfiguration, loadedCb?:() => void) {
         const scene = new Scene();
 
@@ -37,10 +38,14 @@ export class Renderer {
         renderer.physicallyCorrectLights = _config.physicallyCorrectLights;
         renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
         renderer.setPixelRatio(window.devicePixelRatio * _config.pixelRatio);
+        renderer.shadowMap.enabled = true;
 
         this.scene = scene;
-        // this.camera = camera;
         this.renderer = renderer;
+
+        // TODO: Clean renderer rendering settings (skybox, fog, ambient, etc)
+        this.ambientLight = new AmbientLight(0xffffff, 0.3);
+        this.scene.add(this.ambientLight);
 
         this.fpsInterval = 1000 / config.targetFrameRate;
         this.then = Date.now();
