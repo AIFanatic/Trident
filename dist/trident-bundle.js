@@ -58297,9 +58297,6 @@ var trident = (() => {
     Awake() {
       this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
       this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
-      this.CreateCollider();
-    }
-    CreateCollider() {
       const shape = PhysicsShape.CreateBox(this.physxPhysics, this.transform.localScale);
       const geometry = shape.getGeometry().box();
       const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
@@ -58319,23 +58316,17 @@ var trident = (() => {
     Awake() {
       this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
       this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
-      const rigidbodyComponent = this.gameObject.GetComponent(Rigidbody);
-      if (rigidbodyComponent) {
-        this.body = rigidbodyComponent.body;
-        const shape = PhysicsShape.CreateSphere(this.physxPhysics, this.transform.localScale.length());
-        this.body.UpdateShape(shape);
-      } else {
-        const shape = PhysicsShape.CreateSphere(this.physxPhysics, this.transform.localScale.length());
-        const geometry = shape.getGeometry().sphere();
-        const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-        const rigidbody = this.physxPhysics.createRigidStatic(transform);
-        const physicsBody = {
-          rigidbody,
-          geometry,
-          shape
-        };
-        this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
-      }
+      const shape = PhysicsShape.CreateSphere(this.physxPhysics, this.transform.localScale.length());
+      const geometry = shape.getGeometry().sphere();
+      const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+      const rigidbody = this.physxPhysics.createRigidStatic(transform);
+      const physicsBody = {
+        rigidbody,
+        geometry,
+        shape
+      };
+      this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+      this.gameObject.BroadcastMessage("CreatedCollider", this.body);
     }
   };
 
@@ -58344,22 +58335,17 @@ var trident = (() => {
     Awake() {
       const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
       const physxScene = this.gameObject.scene.GetPhysics().GetScene();
-      const rigidbodyComponent = this.gameObject.GetComponent(Rigidbody);
       const shape = PhysicsShape.CreateCapsule(physxPhysics, this.transform.localScale.x, this.transform.localScale.y + 1);
-      if (rigidbodyComponent) {
-        this.body = rigidbodyComponent.body;
-        this.body.UpdateShape(shape);
-      } else {
-        const geometry = shape.getGeometry().capsule();
-        const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-        const rigidbody = physxPhysics.createRigidStatic(transform);
-        const physicsBody = {
-          rigidbody,
-          geometry,
-          shape
-        };
-        this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
-      }
+      const geometry = shape.getGeometry().capsule();
+      const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+      const rigidbody = physxPhysics.createRigidStatic(transform);
+      const physicsBody = {
+        rigidbody,
+        geometry,
+        shape
+      };
+      this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
+      this.gameObject.BroadcastMessage("CreatedCollider", this.body);
     }
   };
 
@@ -58368,22 +58354,17 @@ var trident = (() => {
     Awake() {
       const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
       const physxScene = this.gameObject.scene.GetPhysics().GetScene();
-      const rigidbodyComponent = this.gameObject.GetComponent(Rigidbody);
       const shape = PhysicsShape.CreatePlane(physxPhysics, this.transform.localScale.x, this.transform.localScale.z);
-      if (rigidbodyComponent) {
-        this.body = rigidbodyComponent.body;
-        this.body.UpdateShape(shape);
-      } else {
-        const geometry = shape.getGeometry().box();
-        const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-        const rigidbody = physxPhysics.createRigidStatic(transform);
-        const physicsBody = {
-          rigidbody,
-          geometry,
-          shape
-        };
-        this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
-      }
+      const geometry = shape.getGeometry().box();
+      const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+      const rigidbody = physxPhysics.createRigidStatic(transform);
+      const physicsBody = {
+        rigidbody,
+        geometry,
+        shape
+      };
+      this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
+      this.gameObject.BroadcastMessage("CreatedCollider", this.body);
     }
     Update() {
       this.transform.localScale.y = 0.01;

@@ -47,7 +47,7 @@ The scene that holds all GameObjects.
 
 #### Defined in
 
-[Scene.ts:38](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L38)
+[Scene.ts:38](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L38)
 
 ## Properties
 
@@ -65,7 +65,7 @@ The scene that holds all GameObjects.
 
 #### Defined in
 
-[Scene.ts:30](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L30)
+[Scene.ts:30](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L30)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:25](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L25)
+[Scene.ts:25](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L25)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:28](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L28)
+[Scene.ts:28](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L28)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:26](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L26)
+[Scene.ts:26](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L26)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:24](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L24)
+[Scene.ts:24](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L24)
 
 ## Methods
 
@@ -127,7 +127,7 @@ Adds a new GameObject to the scene.
 
 #### Defined in
 
-[Scene.ts:120](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L120)
+[Scene.ts:120](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L120)
 
 ___
 
@@ -144,7 +144,7 @@ Calls FixedUpdate on all attached components.
 
 #### Defined in
 
-[Scene.ts:149](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L149)
+[Scene.ts:149](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L149)
 
 ___
 
@@ -163,7 +163,7 @@ The main camera is the camera that the client is viewing the scene from.
 
 #### Defined in
 
-[Scene.ts:103](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L103)
+[Scene.ts:103](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L103)
 
 ___
 
@@ -181,7 +181,7 @@ Get the input for this scene.
 
 #### Defined in
 
-[Scene.ts:94](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L94)
+[Scene.ts:94](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L94)
 
 ___
 
@@ -199,7 +199,7 @@ Get the physics for this scene.
 
 #### Defined in
 
-[Scene.ts:86](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L86)
+[Scene.ts:86](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L86)
 
 ___
 
@@ -217,7 +217,7 @@ Renderer attached to this scene.
 
 #### Defined in
 
-[Scene.ts:78](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L78)
+[Scene.ts:78](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L78)
 
 ___
 
@@ -234,7 +234,7 @@ Instanciates all Components
 
 #### Defined in
 
-[Scene.ts:192](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L192)
+[Scene.ts:192](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L192)
 
 ___
 
@@ -250,7 +250,7 @@ Called when the scene starts.
 
 #### Defined in
 
-[Scene.ts:199](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L199)
+[Scene.ts:199](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L199)
 
 ___
 
@@ -274,7 +274,7 @@ Remove a GameObject from the scene
 
 #### Defined in
 
-[Scene.ts:129](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L129)
+[Scene.ts:129](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L129)
 
 ___
 
@@ -297,7 +297,7 @@ The main camera is the camera that the client is viewing the scene from.
 
 #### Defined in
 
-[Scene.ts:112](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L112)
+[Scene.ts:112](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L112)
 
 ___
 
@@ -314,7 +314,7 @@ Calls Stop on all attached components.
 
 #### Defined in
 
-[Scene.ts:207](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L207)
+[Scene.ts:207](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L207)
 
 ___
 
@@ -331,4 +331,4 @@ Calls Update on all attached components.
 
 #### Defined in
 
-[Scene.ts:159](https://github.com/AIFanatic/Trident/blob/49a3665/src/Scene.ts#L159)
+[Scene.ts:159](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Scene.ts#L159)

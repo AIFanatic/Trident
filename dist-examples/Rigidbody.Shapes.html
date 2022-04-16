@@ -36,6 +36,7 @@
                 const cylinderRigidbody = cylinderGameobject.AddComponent(Components.Rigidbody);
                 const teapotGameobject = new GameObject(scene);
                 teapotGameobject.transform.position.y = 10;
+                teapotGameobject.transform.localScale.set(0.5, 0.5, 0.5);
                 const teapotMeshRenderer = teapotGameobject.AddComponent(Components.MeshRenderer);
                 const teapotMeshFilter = teapotGameobject.AddComponent(Components.MeshFilter);
                 const teapotMeshCollider = teapotGameobject.AddComponent(Components.MeshCollider);

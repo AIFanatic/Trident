@@ -28,9 +28,6 @@ var BoxCollider = /** @class */ (function (_super) {
     BoxCollider.prototype.Awake = function () {
         this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
         this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
-        this.CreateCollider();
-    };
-    BoxCollider.prototype.CreateCollider = function () {
         var shape = PhysicsShape.CreateBox(this.physxPhysics, this.transform.localScale);
         var geometry = shape.getGeometry().box();
         var transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);

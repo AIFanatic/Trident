@@ -38,7 +38,7 @@ A directional light.
 
 #### Defined in
 
-[components/DirectionalLight.ts:15](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/DirectionalLight.ts#L15)
+[components/DirectionalLight.ts:15](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/DirectionalLight.ts#L15)
 
 • `set` **color**(`color`): `void`
 
@@ -54,7 +54,7 @@ A directional light.
 
 #### Defined in
 
-[components/DirectionalLight.ts:19](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/DirectionalLight.ts#L19)
+[components/DirectionalLight.ts:19](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/DirectionalLight.ts#L19)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-[components/DirectionalLight.ts:24](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/DirectionalLight.ts#L24)
+[components/DirectionalLight.ts:24](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/DirectionalLight.ts#L24)
 
 • `set` **intensity**(`intensity`): `void`
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[components/DirectionalLight.ts:28](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/DirectionalLight.ts#L28)
+[components/DirectionalLight.ts:28](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/DirectionalLight.ts#L28)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[components/DirectionalLight.ts:33](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/DirectionalLight.ts#L33)
+[components/DirectionalLight.ts:33](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/DirectionalLight.ts#L33)
 
 • `set` **shadows**(`shadows`): `void`
 
@@ -114,7 +114,7 @@ ___
 
 #### Defined in
 
-[components/DirectionalLight.ts:37](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/DirectionalLight.ts#L37)
+[components/DirectionalLight.ts:37](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/DirectionalLight.ts#L37)
 
 ## Methods
 
@@ -134,7 +134,7 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/DirectionalLight.ts:41](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/DirectionalLight.ts#L41)
+[components/DirectionalLight.ts:41](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/DirectionalLight.ts#L41)
 
 ___
 
@@ -154,7 +154,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/DirectionalLight.ts:55](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/DirectionalLight.ts#L55)
+[components/DirectionalLight.ts:55](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/DirectionalLight.ts#L55)
 
 ___
 
@@ -174,4 +174,4 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-[components/DirectionalLight.ts:46](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/DirectionalLight.ts#L46)
+[components/DirectionalLight.ts:46](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/DirectionalLight.ts#L46)

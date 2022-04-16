@@ -36,4 +36,4 @@
 
 #### Defined in
 
-[Resources.ts:105](https://github.com/AIFanatic/Trident/blob/49a3665/src/Resources.ts#L105)
+[Resources.ts:105](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Resources.ts#L105)

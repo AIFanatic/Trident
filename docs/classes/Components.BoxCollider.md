@@ -34,4 +34,4 @@ Collider.Awake
 
 #### Defined in
 
-[components/BoxCollider.ts:14](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/BoxCollider.ts#L14)
+[components/BoxCollider.ts:14](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/BoxCollider.ts#L14)

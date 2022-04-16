@@ -6,5 +6,4 @@ import { Collider } from "./Collider";
  */
 export declare class BoxCollider extends Collider {
     Awake(): void;
-    private CreateCollider;
 }

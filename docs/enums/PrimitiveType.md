@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[enums/PrimitiveType.ts:3](https://github.com/AIFanatic/Trident/blob/49a3665/src/enums/PrimitiveType.ts#L3)
+[enums/PrimitiveType.ts:3](https://github.com/AIFanatic/Trident/blob/5fab94d/src/enums/PrimitiveType.ts#L3)
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-[enums/PrimitiveType.ts:2](https://github.com/AIFanatic/Trident/blob/49a3665/src/enums/PrimitiveType.ts#L2)
+[enums/PrimitiveType.ts:2](https://github.com/AIFanatic/Trident/blob/5fab94d/src/enums/PrimitiveType.ts#L2)
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 #### Defined in
 
-[enums/PrimitiveType.ts:6](https://github.com/AIFanatic/Trident/blob/49a3665/src/enums/PrimitiveType.ts#L6)
+[enums/PrimitiveType.ts:6](https://github.com/AIFanatic/Trident/blob/5fab94d/src/enums/PrimitiveType.ts#L6)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-[enums/PrimitiveType.ts:4](https://github.com/AIFanatic/Trident/blob/49a3665/src/enums/PrimitiveType.ts#L4)
+[enums/PrimitiveType.ts:4](https://github.com/AIFanatic/Trident/blob/5fab94d/src/enums/PrimitiveType.ts#L4)
 
 ___
 
@@ -60,4 +60,4 @@ ___
 
 #### Defined in
 
-[enums/PrimitiveType.ts:5](https://github.com/AIFanatic/Trident/blob/49a3665/src/enums/PrimitiveType.ts#L5)
+[enums/PrimitiveType.ts:5](https://github.com/AIFanatic/Trident/blob/5fab94d/src/enums/PrimitiveType.ts#L5)
