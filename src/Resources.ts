@@ -38,9 +38,8 @@ class ResourcesCache {
 }
 
 const FilesCache = new ResourcesCache();
-console.warn(`[FilesCache] Removal of files not implemented, deque?`);
-console.warn("[ArticulationBody] Articulation needs to be rethough of, maybe separate into multiple individual components (REVOLUTE, PRISMATIC, SPHERICAL");
-console.warn("[RigidBody] RigidBody and Colliders need to be reactive, ie: when one gets changed the other may want to react.");
+// console.warn(`[FilesCache] Removal of files not implemented, deque?`);
+// console.warn("[ArticulationBody] Articulation needs to be rethough of, maybe separate into multiple individual components (REVOLUTE, PRISMATIC, SPHERICAL");
 
 enum ResourceExtensions {
     MATERIAL = "MAT",

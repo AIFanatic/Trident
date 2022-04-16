@@ -6,17 +6,6 @@ import { Vector3 } from 'three';
 
 import { PhysicsRaycast } from './physics/PhysicsRaycast';
 
-const PhysicsConfigurationDefault: IPhysicsConfiguration = {
-    physxWasmURL: "./trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-    gravity: {
-        x: 0,
-        y: -9.8,
-        z: 0,
-    },
-    framerate: 60,
-    performanceCooking: false,
-}
-
 export class Physics {
     private scene: Scene;
     private config: IPhysicsConfiguration;
@@ -33,7 +22,7 @@ export class Physics {
     constructor(scene: Scene, config: IPhysicsConfiguration, loadedCb?: () => void) {
         this.scene = scene;
         
-        this.config = Object.assign({}, PhysicsConfigurationDefault, config);
+        this.config = config;
 
         this.InitPhysX(loadedCb);
     }

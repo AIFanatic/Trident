@@ -2,15 +2,6 @@ import { IRendererConfiguration } from './interfaces/IRendererConfiguration';
 
 import {AmbientLight, PerspectiveCamera, Scene, WebGLRenderer} from 'three';
 
-const RendererConfigurationDefaults: IRendererConfiguration = {
-    containerId: null,
-    targetFrameRate: 60,
-    antialias: true,
-    logarithmicDepthBuffer: false,
-    pixelRatio: 1,
-    physicallyCorrectLights: false
-}
-
 export class Renderer {
     public scene: Scene;
     public renderer: WebGLRenderer;
@@ -30,14 +21,12 @@ export class Renderer {
     constructor(config: IRendererConfiguration, loadedCb?:() => void) {
         const scene = new Scene();
 
-        const _config = Object.assign({}, RendererConfigurationDefaults, config);
+        this.canvas = document.getElementById(config.containerId) as HTMLCanvasElement;
+        const renderer = new WebGLRenderer({canvas: this.canvas, logarithmicDepthBuffer: config.logarithmicDepthBuffer, antialias: config.antialias});
 
-        this.canvas = document.getElementById(_config.containerId) as HTMLCanvasElement;
-        const renderer = new WebGLRenderer({canvas: this.canvas, logarithmicDepthBuffer: _config.logarithmicDepthBuffer, antialias: _config.antialias});
-
-        renderer.physicallyCorrectLights = _config.physicallyCorrectLights;
+        renderer.physicallyCorrectLights = config.physicallyCorrectLights;
         renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
-        renderer.setPixelRatio(window.devicePixelRatio * _config.pixelRatio);
+        renderer.setPixelRatio(window.devicePixelRatio * config.pixelRatio);
         renderer.shadowMap.enabled = true;
 
         this.scene = scene;
