@@ -6,12 +6,13 @@ export class SceneHelper {
         if (!config.physics) config.physics = {};
         if (!config.application) config.application = {};
 
+        console.log(window.location + "/../../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm")
         const defaultConfig = {
             renderer: {
                 containerId: "canvasContainer",
             },
             physics: {
-                physxWasmURL: "../../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm"
+                physxWasmURL: window.location + "/../../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm"
             },
             application: {
                 rootPath: "../../dist/Assets/"
