@@ -1,5 +1,4 @@
 import { Collider } from "./Collider";
-import { Rigidbody } from './Rigidbody';
 import { PhysicsRigidbody } from '../physics/PhysicsRigidbody';
 import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
@@ -17,26 +16,20 @@ export class PlaneCollider extends Collider {
         const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
         const physxScene = this.gameObject.scene.GetPhysics().GetScene();
 
-        const rigidbodyComponent = this.gameObject.GetComponent(Rigidbody) as Rigidbody;
         const shape = PhysicsShape.CreatePlane(physxPhysics, this.transform.localScale.x, this.transform.localScale.z);
+        const geometry = shape.getGeometry().box();
+        const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+        const rigidbody = physxPhysics.createRigidStatic(transform);
 
-        if (rigidbodyComponent) {
-            this.body = rigidbodyComponent.body;
-            this.body.UpdateShape(shape);
-        }
-        else {
-            const geometry = shape.getGeometry().box();
-            const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-            const rigidbody = physxPhysics.createRigidStatic(transform);
+        const physicsBody: PhysicsBody = {
+            rigidbody: rigidbody,
+            geometry: geometry,
+            shape: shape
+        };
+        
+        this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
 
-            const physicsBody: PhysicsBody = {
-                rigidbody: rigidbody,
-                geometry: geometry,
-                shape: shape
-            };
-            
-            this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
-        }
+        this.gameObject.BroadcastMessage("CreatedCollider", this.body);
     }
 
     // Hacky, but plane is a box therefore PhysicsScale will treat it as a box and forcing Y scale

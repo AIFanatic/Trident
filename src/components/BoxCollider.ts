@@ -15,10 +15,6 @@ export class BoxCollider extends Collider {
         this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
         this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
 
-        this.CreateCollider();
-    }
-
-    private CreateCollider() {
         const shape = PhysicsShape.CreateBox(this.physxPhysics, this.transform.localScale);
 
         const geometry = shape.getGeometry().box();
