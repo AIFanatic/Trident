@@ -37,7 +37,7 @@ Collider.Awake
 
 #### Defined in
 
-[components/PlaneCollider.ts:16](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PlaneCollider.ts#L16)
+[components/PlaneCollider.ts:16](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/PlaneCollider.ts#L16)
 
 ___
 
@@ -55,4 +55,4 @@ Collider.Update
 
 #### Defined in
 
-[components/PlaneCollider.ts:43](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/PlaneCollider.ts#L43)
+[components/PlaneCollider.ts:43](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/PlaneCollider.ts#L43)

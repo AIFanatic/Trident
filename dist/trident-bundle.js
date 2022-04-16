@@ -57895,12 +57895,12 @@ var trident = (() => {
       const type = shape.getGeometryType();
       let geometry;
       if (type == 0 .valueOf()) {
-        geometry = this.ScaleSphere(geometryHolder.sphere(), scale.length());
+        geometry = this.ScaleSphere(geometryHolder.sphere(), scale.x / 2);
       } else if (type == 1 .valueOf()) {
         console.warn("Scaling PLANE not implemented, planes are just thin boxes");
         geometry = geometryHolder.plane();
       } else if (type == 2 .valueOf()) {
-        geometry = this.ScaleCapsule(geometryHolder.capsule(), scale.x, scale.y);
+        geometry = this.ScaleCapsule(geometryHolder.capsule(), scale.x / 2, scale.y / 2);
       } else if (type == 3 .valueOf()) {
         geometry = this.ScaleBox(geometryHolder.box(), scale.clone().divideScalar(2));
       } else if (type == 4 .valueOf()) {
@@ -59252,7 +59252,7 @@ var trident = (() => {
   // src/primitives/Cube.ts
   var Cube = class {
     static Create(gameObject) {
-      const geometry = new BoxGeometry(gameObject.transform.localScale.x, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+      const geometry = new BoxGeometry(1, 1, 1);
       const meshFilter = gameObject.AddComponent(MeshFilter);
       meshFilter.mesh = geometry;
       const meshRenderer = gameObject.AddComponent(MeshRenderer);
@@ -59403,7 +59403,7 @@ var trident = (() => {
   // src/primitives/Capsule.ts
   var Capsule = class {
     static Create(gameObject) {
-      const geometry = CapsuleBufferGeometry(1, 1, 2, 16, 1, 8, 8, 0, 2 * Math.PI);
+      const geometry = CapsuleBufferGeometry(0.5, 0.5, 1, 16, 1, 8, 8, 0, 2 * Math.PI);
       geometry.rotateZ(Math.PI / 2);
       const meshFilter = gameObject.AddComponent(MeshFilter);
       meshFilter.mesh = geometry;
@@ -59415,7 +59415,7 @@ var trident = (() => {
   // src/primitives/Plane.ts
   var Plane2 = class {
     static Create(gameObject) {
-      const geometry = new PlaneGeometry(gameObject.transform.localScale.x, gameObject.transform.localScale.z);
+      const geometry = new PlaneGeometry(1, 1);
       geometry.rotateX(-Math.PI / 2);
       const meshFilter = gameObject.AddComponent(MeshFilter);
       meshFilter.mesh = geometry;
@@ -59427,7 +59427,7 @@ var trident = (() => {
   // src/primitives/Sphere.ts
   var Sphere2 = class {
     static Create(gameObject) {
-      const geometry = new SphereGeometry(gameObject.transform.localScale.length(), 32, 32);
+      const geometry = new SphereGeometry(0.5, 32, 32);
       const meshFilter = gameObject.AddComponent(MeshFilter);
       meshFilter.mesh = geometry;
       const meshRenderer = gameObject.AddComponent(MeshRenderer);
@@ -59438,7 +59438,8 @@ var trident = (() => {
   // src/primitives/Cylinder.ts
   var Cylinder = class {
     static Create(gameObject) {
-      const geometry = new CylinderGeometry(gameObject.transform.localScale.length(), gameObject.transform.localScale.length(), gameObject.transform.localScale.y, 32, 32);
+      const geometry = new CylinderGeometry(0.5, 0.5, 2, 16, 1);
+      geometry.rotateZ(Math.PI / 2);
       const meshFilter = gameObject.AddComponent(MeshFilter);
       meshFilter.mesh = geometry;
       const meshRenderer = gameObject.AddComponent(MeshRenderer);
@@ -59615,14 +59616,6 @@ var trident = (() => {
   };
 
   // src/Renderer.ts
-  var RendererConfigurationDefaults = {
-    containerId: null,
-    targetFrameRate: 60,
-    antialias: true,
-    logarithmicDepthBuffer: false,
-    pixelRatio: 1,
-    physicallyCorrectLights: false
-  };
   var Renderer = class {
     constructor(config, loadedCb) {
       this.now = 0;
@@ -59633,12 +59626,11 @@ var trident = (() => {
       this.frameCount = 0;
       this.currentFps = 0;
       const scene = new Scene();
-      const _config = Object.assign({}, RendererConfigurationDefaults, config);
-      this.canvas = document.getElementById(_config.containerId);
-      const renderer = new WebGLRenderer({ canvas: this.canvas, logarithmicDepthBuffer: _config.logarithmicDepthBuffer, antialias: _config.antialias });
-      renderer.physicallyCorrectLights = _config.physicallyCorrectLights;
+      this.canvas = document.getElementById(config.containerId);
+      const renderer = new WebGLRenderer({ canvas: this.canvas, logarithmicDepthBuffer: config.logarithmicDepthBuffer, antialias: config.antialias });
+      renderer.physicallyCorrectLights = config.physicallyCorrectLights;
       renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
-      renderer.setPixelRatio(window.devicePixelRatio * _config.pixelRatio);
+      renderer.setPixelRatio(window.devicePixelRatio * config.pixelRatio);
       renderer.shadowMap.enabled = true;
       this.scene = scene;
       this.renderer = renderer;
@@ -59696,22 +59688,12 @@ var trident = (() => {
   };
 
   // src/Physics.ts
-  var PhysicsConfigurationDefault = {
-    physxWasmURL: "./trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-    gravity: {
-      x: 0,
-      y: -9.8,
-      z: 0
-    },
-    framerate: 60,
-    performanceCooking: false
-  };
   var Physics = class {
     constructor(scene, config, loadedCb) {
       this.OnLoaded = () => {
       };
       this.scene = scene;
-      this.config = Object.assign({}, PhysicsConfigurationDefault, config);
+      this.config = config;
       this.InitPhysX(loadedCb);
     }
     InitPhysX(loadedCb) {
@@ -60663,9 +60645,6 @@ var trident = (() => {
     }
   };
   var FilesCache = new ResourcesCache();
-  console.warn(`[FilesCache] Removal of files not implemented, deque?`);
-  console.warn("[ArticulationBody] Articulation needs to be rethough of, maybe separate into multiple individual components (REVOLUTE, PRISMATIC, SPHERICAL");
-  console.warn("[RigidBody] RigidBody and Colliders need to be reactive, ie: when one gets changed the other may want to react.");
   var ResourceExtensions;
   (function(ResourceExtensions2) {
     ResourceExtensions2["MATERIAL"] = "MAT";

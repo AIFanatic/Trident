@@ -38,7 +38,7 @@ Collider.Awake
 
 #### Defined in
 
-[components/MeshCollider.ts:25](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/MeshCollider.ts#L25)
+[components/MeshCollider.ts:25](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/MeshCollider.ts#L25)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[components/MeshCollider.ts:37](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/MeshCollider.ts#L37)
+[components/MeshCollider.ts:37](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/MeshCollider.ts#L37)
 
 ___
 
@@ -72,4 +72,4 @@ ___
 
 #### Defined in
 
-[components/MeshCollider.ts:33](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/MeshCollider.ts#L33)
+[components/MeshCollider.ts:33](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/MeshCollider.ts#L33)

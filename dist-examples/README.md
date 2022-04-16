@@ -22,4 +22,5 @@
 |Rigidbody|[Rigidbody.ChangeTransform](https://aifanatic.github.io/Trident/dist-examples/Rigidbody.ChangeTransform.html)| Rigidbody change transform properties.|
 |Rigidbody|[Rigidbody.Cube](https://aifanatic.github.io/Trident/dist-examples/Rigidbody.Cube.html)| A simple cube with physics.|
 |Rigidbody|[Rigidbody.Mesh](https://aifanatic.github.io/Trident/dist-examples/Rigidbody.Mesh.html)| Rigidbody custom mesh (trimesh).|
+|Rigidbody|[Rigidbody.Shapes](https://aifanatic.github.io/Trident/dist-examples/Rigidbody.Shapes.html)| A bunch of shapes with physics.|
 |Transform|[Transform.Parent](https://aifanatic.github.io/Trident/dist-examples/Transform.Parent.html)| Manipulate child Transform with parent.|

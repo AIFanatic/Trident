@@ -4,7 +4,7 @@ var Capsule = /** @class */ (function () {
     function Capsule() {
     }
     Capsule.Create = function (gameObject) {
-        var geometry = CapsuleBufferGeometry(1, 1, 2, 16, 1, 8, 8, 0, 2 * Math.PI);
+        var geometry = CapsuleBufferGeometry(0.5, 0.5, 1, 16, 1, 8, 8, 0, 2 * Math.PI);
         geometry.rotateZ(Math.PI / 2);
         var meshFilter = gameObject.AddComponent(MeshFilter);
         meshFilter.mesh = geometry;

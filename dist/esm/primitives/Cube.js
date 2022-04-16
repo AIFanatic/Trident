@@ -4,7 +4,7 @@ var Cube = /** @class */ (function () {
     function Cube() {
     }
     Cube.Create = function (gameObject) {
-        var geometry = new BoxGeometry(gameObject.transform.localScale.x, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+        var geometry = new BoxGeometry(1, 1, 1);
         var meshFilter = gameObject.AddComponent(MeshFilter);
         meshFilter.mesh = geometry;
         var meshRenderer = gameObject.AddComponent(MeshRenderer);

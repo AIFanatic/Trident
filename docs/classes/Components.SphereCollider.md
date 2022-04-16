@@ -34,4 +34,4 @@ Collider.Awake
 
 #### Defined in
 
-[components/SphereCollider.ts:15](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/SphereCollider.ts#L15)
+[components/SphereCollider.ts:15](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/SphereCollider.ts#L15)

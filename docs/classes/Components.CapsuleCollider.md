@@ -34,4 +34,4 @@ Collider.Awake
 
 #### Defined in
 
-[components/CapsuleCollider.ts:14](https://github.com/AIFanatic/Trident/blob/61d4a9b/src/components/CapsuleCollider.ts#L14)
+[components/CapsuleCollider.ts:14](https://github.com/AIFanatic/Trident/blob/49a3665/src/components/CapsuleCollider.ts#L14)

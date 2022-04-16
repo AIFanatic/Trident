@@ -4,7 +4,7 @@ var Sphere = /** @class */ (function () {
     function Sphere() {
     }
     Sphere.Create = function (gameObject) {
-        var geometry = new SphereGeometry(gameObject.transform.localScale.length(), 32, 32);
+        var geometry = new SphereGeometry(0.5, 32, 32);
         var meshFilter = gameObject.AddComponent(MeshFilter);
         meshFilter.mesh = geometry;
         var meshRenderer = gameObject.AddComponent(MeshRenderer);

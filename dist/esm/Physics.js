@@ -1,20 +1,10 @@
 import PhysX from 'trident-physx-js-webidl';
 import { PhysicsRaycast } from './physics/PhysicsRaycast';
-var PhysicsConfigurationDefault = {
-    physxWasmURL: "./trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-    gravity: {
-        x: 0,
-        y: -9.8,
-        z: 0,
-    },
-    framerate: 60,
-    performanceCooking: false,
-};
 var Physics = /** @class */ (function () {
     function Physics(scene, config, loadedCb) {
         this.OnLoaded = function () { };
         this.scene = scene;
-        this.config = Object.assign({}, PhysicsConfigurationDefault, config);
+        this.config = config;
         this.InitPhysX(loadedCb);
     }
     Physics.prototype.InitPhysX = function (loadedCb) {
