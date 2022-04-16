@@ -3,7 +3,7 @@ import { GameObject, MeshFilter, MeshRenderer, SphereCollider } from "../compone
 
 export class Sphere {
     public static Create(gameObject: GameObject) {
-        const geometry = new SphereGeometry(gameObject.transform.localScale.length(), 32, 32 );
+        const geometry = new SphereGeometry(0.5, 32, 32 );
 
         const meshFilter = gameObject.AddComponent(MeshFilter) as MeshFilter;
         meshFilter.mesh = geometry;

@@ -3,10 +3,7 @@ import { GameObject, MeshFilter, MeshRenderer, PlaneCollider } from "../componen
 
 export class Plane {
     public static Create(gameObject: GameObject) {
-        const geometry = new PlaneGeometry(
-            gameObject.transform.localScale.x,
-            gameObject.transform.localScale.z,
-        );
+        const geometry = new PlaneGeometry(1, 1);
 
         geometry.rotateX(-Math.PI/2);
 

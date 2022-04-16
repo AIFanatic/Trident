@@ -3,7 +3,7 @@ import { CapsuleBufferGeometry } from "../utils/CapsuleGeometry";
 
 export class Capsule {
     public static Create(gameObject: GameObject) {
-        const geometry = CapsuleBufferGeometry(1, 1, 2, 16, 1, 8, 8, 0, 2*Math.PI);
+        const geometry = CapsuleBufferGeometry(0.5, 0.5, 1, 16, 1, 8, 8, 0, 2*Math.PI);
         geometry.rotateZ(Math.PI / 2);
 
         const meshFilter = gameObject.AddComponent(MeshFilter) as MeshFilter;

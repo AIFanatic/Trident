@@ -3,15 +3,13 @@ import { CapsuleCollider, GameObject, MeshFilter, MeshRenderer } from "../compon
 
 export class Cylinder {
     public static Create(gameObject: GameObject) {
-        const geometry = new CylinderGeometry(
-            gameObject.transform.localScale.length(), 
-            gameObject.transform.localScale.length(),
-            gameObject.transform.localScale.y, 32, 32);
+        const geometry = new CylinderGeometry(0.5, 0.5, 2, 16, 1);
+        geometry.rotateZ(Math.PI / 2);
 
-        const meshFilter = gameObject.AddComponent(MeshFilter) as MeshFilter;
+        const meshFilter = gameObject.AddComponent(MeshFilter);
         meshFilter.mesh = geometry;
     
-        const meshRenderer = gameObject.AddComponent(MeshRenderer) as MeshRenderer;
-        const colllider = gameObject.AddComponent(CapsuleCollider) as CapsuleCollider;
+        const meshRenderer = gameObject.AddComponent(MeshRenderer);
+        const colllider = gameObject.AddComponent(CapsuleCollider);
     }
 }
