@@ -1,0 +1,14 @@
+export enum PropertyTypes {
+    BOOLEAN = "BOOLEAN",
+    NUMBER = "NUMBER",
+    STRING = "STRING",
+    OBJECT = "OBJECT",
+    COLOR = "COLOR",
+    VECTOR3 = "VECTOR3",
+    VECTOR2 = "VECTOR2",
+    MESH = "MESH",
+    MATERIAL = "MATERIAL",
+    COMPONENT = "COMPONENT",
+    CUSTOM_FUNCTION = "CUSTOM_FUNCTION",
+    CUSTOM_OBJECT = "CUSTOM_OBJECT"
+}
