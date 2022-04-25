@@ -165,6 +165,27 @@ export class Transform implements IComponent {
     public set localScale(localScale: Vector3) {
         this.group.scale.copy(localScale);
     }
+
+    private children: Transform[] = [];
+
+    /**
+     * Get a transform child by index.
+     * @returns {Transform | null} Returns the child Transform or null if not found.
+     */
+    public GetChild(index: number): Transform | null {
+        if (index < this.children.length) {
+            return this.children[index];
+        }
+        return null;
+    }
+
+    /**
+     * The number of children the Transform has.
+     * @returns {number} The number of children this Transform has.
+     */
+    public get childCount(): number {
+        return this.children.length;
+    }
     
     /**
     * Get the parent of this transform.
@@ -181,7 +202,13 @@ export class Transform implements IComponent {
     */
     public set parent(parent: Transform | null) {
         if (parent == null) {
-            this._parent = null;
+            if (this._parent) {
+                const childIndex = this._parent.children.indexOf(this);
+                if (childIndex != -1) {
+                    this._parent.children.splice(childIndex, 1);
+                }
+                this._parent = null;
+            }
 
             this.gameObject.scene.GetRenderer().scene.attach(this.group);
 
@@ -189,6 +216,7 @@ export class Transform implements IComponent {
         }
 
         this._parent = parent;
+        this._parent.children.push(this);
         parent.group.attach(this.group);
     }
 
