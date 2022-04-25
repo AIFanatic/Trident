@@ -11,6 +11,7 @@ import { LayerMask } from "../enums/LayerMask";
 import { PrimitiveType } from "../enums/PrimitiveType";
 import { Cube, Capsule, Plane, Sphere, Cylinder } from "../primitives";
 import { InstantiationPool } from "../InstantiationPool";
+import { HideFlags } from "..";
 
 /**
  * The main component of the entity component system.
@@ -29,6 +30,8 @@ export class GameObject implements IComponent {
     public components: Component[] = [];
 
     public layer: LayerMask = LayerMask.LAYER0;
+
+    public hideFlags: HideFlags = HideFlags.None;
 
     constructor(scene: Scene) {
         if (!scene) {
