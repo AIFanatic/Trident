@@ -2,7 +2,7 @@
  * @description Custom mesh with physics.
  */
  import { SceneHelper } from './assets/SceneHelper.js';
- import { GameObject, Components, PrimitiveType, Resources, THREE } from '../dist/esm/trident-esm-bundle.js';
+ import { Scene, GameObject, Components, PrimitiveType, Resources, THREE } from '../dist/esm/trident-esm-bundle.js';
 
 class Spaceship extends Components.Component {
     Awake() {
@@ -25,19 +25,18 @@ class Spaceship extends Components.Component {
     }
 }
 
-const scene = SceneHelper.CreateScene();
-scene.OnInitialized = () => {
+SceneHelper.CreateScene({}, (scene: Scene) => {
     SceneHelper.CreateCamera(scene, 0, 0, 40);
     SceneHelper.CreateSunlight(scene);
-
+    
     const floorGameObject = new GameObject(scene);
     floorGameObject.CreatePrimitive(PrimitiveType.Cube);
     floorGameObject.transform.localScale.set(50, 1, 50);
     floorGameObject.transform.position.y = -10;
-
+    
     const meshGameObject = new GameObject(scene);
     const meshComponent = meshGameObject.AddComponent(Spaceship);
-
+    
     scene.Load();
     scene.Play();
-};
+});

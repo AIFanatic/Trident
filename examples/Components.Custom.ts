@@ -2,7 +2,7 @@
  * @description Custom component creation.
  */
 import { SceneHelper } from './assets/SceneHelper.js';
-import { GameObject, Components, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
+import { Scene, GameObject, Components, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
 
 class CustomComponent extends Components.Component {
     public Start() {
@@ -14,8 +14,7 @@ class CustomComponent extends Components.Component {
     }
 }
 
-const scene = SceneHelper.CreateScene();
-scene.OnInitialized = () => {
+SceneHelper.CreateScene({}, (scene: Scene) => {
     SceneHelper.CreateCamera(scene);
     SceneHelper.CreateSunlight(scene);
     
@@ -25,4 +24,4 @@ scene.OnInitialized = () => {
     
     scene.Load();
     scene.Play();
-};
+});

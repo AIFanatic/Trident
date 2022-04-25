@@ -11,22 +11,21 @@ class BlockerCube extends Components.Component {
     }
 }
 
-const scene = SceneHelper.CreateScene();
-scene.OnInitialized = () => {
+SceneHelper.CreateScene({}, (scene: Scene) => {
     const camera = SceneHelper.CreateCamera(scene);
     camera.transform.position.set(0, 0, 30);
     SceneHelper.CreateSunlight(scene);
-
+    
     const blockerCubeGameobjectX = new GameObject(scene);
     blockerCubeGameobjectX.CreatePrimitive(PrimitiveType.Cube);
     blockerCubeGameobjectX.transform.position.set(0, -5, 0);
     blockerCubeGameobjectX.transform.localScale.set(0.5, 0.5, 0.5);
-
+    
     const rootArticulationGameobject = new GameObject(scene);
     rootArticulationGameobject.CreatePrimitive(PrimitiveType.Cube);
     const rootArticulation = rootArticulationGameobject.AddComponent(Components.ArticulationBody);
     rootArticulation.immovable = true;
-
+    
     let parentGameobject = rootArticulationGameobject;
     for (let x = 2; x < 10; x+=2) {
         const articulationGameobject = new GameObject(scene);
@@ -41,7 +40,7 @@ scene.OnInitialized = () => {
         articulation.zDrive.stiffness = 10;
         parentGameobject = articulationGameobject
     }
-
+    
     scene.Load();
     scene.Play();
-};
+});
