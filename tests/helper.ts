@@ -11,7 +11,7 @@ export function CreateScene(config: any = {}, OnLoaded) {
             containerId: "canvasContainer",
         },
         physics: {
-            physxWasmURL: "/../../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm"
+            physxWasmURL: window.location + "/../../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm"
         }
     }
     const _config = {
