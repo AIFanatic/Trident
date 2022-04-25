@@ -4,6 +4,7 @@ import { Transform } from "./Transform";
 import { IComponent } from "../interfaces/IComponent";
 
 import { UUID } from '../utils/UUID';
+import { HideFlags } from "../enums/HideFlags";
 
 /**
  * Base class that all components inherit from.
@@ -51,7 +52,9 @@ export class Component implements IComponent {
 
     public isAwake: boolean = false;
 
-    public runInEditMode: boolean = false;
+    public userData: any;
+
+    public hideFlags: HideFlags = HideFlags.None;
 
     constructor(gameObject: GameObject, transform: Transform) {
         this.gameObject = gameObject;
