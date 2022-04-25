@@ -1,11 +1,16 @@
 import { IRendererConfiguration } from './interfaces/IRendererConfiguration';
 
 import {AmbientLight, PerspectiveCamera, Scene, WebGLRenderer} from 'three';
+import { ConfigurationDefaults } from './defaults/ConfigurationDefaults';
 
 export class Renderer {
+    public OnLoaded: () => void = () => {};
+
     public scene: Scene;
     public renderer: WebGLRenderer;
     private canvas: HTMLCanvasElement;
+
+    private config: IRendererConfiguration;
 
     private now: number = 0;
     private then: number = 0;
@@ -18,15 +23,21 @@ export class Renderer {
 
     private ambientLight: AmbientLight;
 
-    constructor(config: IRendererConfiguration, loadedCb?:() => void) {
+    constructor(config: IRendererConfiguration) {
+        this.config = Object.assign({}, ConfigurationDefaults.renderer, config);
+
+        this.InitRenderer();
+    }
+
+    private InitRenderer() {
         const scene = new Scene();
 
-        this.canvas = document.getElementById(config.containerId) as HTMLCanvasElement;
-        const renderer = new WebGLRenderer({canvas: this.canvas, logarithmicDepthBuffer: config.logarithmicDepthBuffer, antialias: config.antialias});
+        this.canvas = document.getElementById(this.config.containerId) as HTMLCanvasElement;
+        const renderer = new WebGLRenderer({canvas: this.canvas, logarithmicDepthBuffer: this.config.logarithmicDepthBuffer, antialias: this.config.antialias});
 
-        renderer.physicallyCorrectLights = config.physicallyCorrectLights;
+        renderer.physicallyCorrectLights = this.config.physicallyCorrectLights;
         renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
-        renderer.setPixelRatio(window.devicePixelRatio * config.pixelRatio);
+        renderer.setPixelRatio(window.devicePixelRatio * this.config.pixelRatio);
         renderer.shadowMap.enabled = true;
 
         this.scene = scene;
@@ -36,17 +47,20 @@ export class Renderer {
         this.ambientLight = new AmbientLight(0xffffff, 0.3);
         this.scene.add(this.ambientLight);
 
-        this.fpsInterval = 1000 / config.targetFrameRate;
+        this.fpsInterval = 1000 / this.config.targetFrameRate;
         this.then = Date.now();
         this.startTime = this.then;
 
-        window.addEventListener("resize", (event: UIEvent) => {
-            this.renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
-        });
+        new ResizeObserver(() => {this.OnResize()}).observe(this.renderer.domElement)
 
-        if (loadedCb) {
-            loadedCb()
-        }
+        // Skip a bit so that initiator can set OnLoaded
+        setTimeout(() => {
+            this.OnLoaded();
+        }, 50);
+    }
+
+    private OnResize() {
+        this.renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
     }
 
     public Tick(camera: PerspectiveCamera) {

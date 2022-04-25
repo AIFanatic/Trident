@@ -27,50 +27,21 @@ export class Scene {
 
     public gameObjects: GameObject[] = [];
 
-    public OnInitialized: () => void;
-    private physicsLoaded: boolean;
-    private rendererLoaded: boolean; 
-    
     /**
-     * @param {IRendererConfiguration} rendererConfig - Renderer configuration.
-     * @param {IPhysicsConfiguration} physicsConfig - Physics configuration.
+     * @param {Renderer} renderer - Initialized Renderer instance.
+     * @param {Physics} physics - Initialized Physics instance.
      */
-    constructor(config: IConfiguration) {
-        this.config = {
-            renderer: Object.assign({}, ConfigurationDefaults.renderer, config.renderer),
-            physics: Object.assign({}, ConfigurationDefaults.physics, config.physics),
-            application: Object.assign({}, ConfigurationDefaults.application, config.application)
-        };
+    constructor(renderer: Renderer, physics: Physics) {
+        this.renderer = renderer;
+        this.physics = physics;
 
-        this.renderer = this.InitializeRenderer(this.config.renderer);
-        this.physics = this.InitializePhysics(this.config.physics);
+        this.physics.FixedUpdate = () => { this.FixedUpdate() };
+
         this.input = new Input(this);
 
         requestAnimationFrame((now) => { this.Update(); });
     }
 
-    private InitializeRenderer(rendererConfig: IRendererConfiguration): Renderer {
-        return new Renderer(rendererConfig, () => {
-            this.rendererLoaded = true;
-            this.CheckInitialized();
-        });
-    }
-
-    private InitializePhysics(physicsConfig: IPhysicsConfiguration): Physics {
-        return new Physics(this, physicsConfig, () => {
-            this.physicsLoaded = true;
-            this.CheckInitialized();
-        });
-    }
-
-    private CheckInitialized() {
-        if (this.rendererLoaded && this.physicsLoaded) {
-            if (this.OnInitialized) {
-                this.OnInitialized();
-            }
-        }
-    }
-    
     /**
      * Get the renderer for this scene.
      * @returns {Renderer} Renderer attached to this scene.
