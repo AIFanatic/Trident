@@ -18,8 +18,5 @@ export const ConfigurationDefaults: IConfiguration = {
         },
         framerate: 60,
         performanceCooking: false,
-    },
-    application: {
-        rootPath: "./"
     }
 }
