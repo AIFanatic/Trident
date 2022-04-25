@@ -1,4 +1,4 @@
-import PhysX from 'trident-physx-js-webidl';
+import { PhysX } from 'trident-physx-js-webidl';
 
 export interface PhysicsBody {
     rigidbody: PhysX.PxRigidStatic | PhysX.PxRigidDynamic;

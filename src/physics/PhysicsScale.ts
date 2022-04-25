@@ -1,4 +1,4 @@
-import PhysX from 'trident-physx-js-webidl';
+import { PhysX } from 'trident-physx-js-webidl';
 import { Quaternion, Vector3 } from 'three';
 
 // TODO: Doesnt work if using PhysX.PxGeometryTypeEnum.BOX

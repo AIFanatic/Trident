@@ -1,4 +1,4 @@
-import PhysX from 'trident-physx-js-webidl';
+import { PhysX } from 'trident-physx-js-webidl';
 import { Vector3 } from 'three';
 import { LayerMask } from '../enums/LayerMask';
 
