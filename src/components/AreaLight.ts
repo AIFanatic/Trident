@@ -4,6 +4,8 @@ import { Color, RectAreaLight as RectAreaLightTHREE } from "three";
 import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js';
 import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib.js';
 import { SerializeField } from "../utils/SerializeField";
+import { GameObject } from "./GameObject";
+import { Transform } from "./Transform";
 
 /**
  * A rectangle area light.
@@ -59,7 +61,8 @@ export class AreaLight extends Component {
         this.light.castShadow = shadows;
     }
 
-    public Awake() {
+    constructor(gameObject: GameObject, transform: Transform) {
+        super(gameObject, transform);
         this.transform.group.add(this.light);
         this.light.parent = this.transform.group;
 

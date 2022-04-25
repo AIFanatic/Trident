@@ -1,6 +1,7 @@
 import { Component } from "./Component";
 import { Color, DirectionalLight as DirectionalLightTHREE, DirectionalLightHelper } from "three";
 import { SerializeField } from "../utils/SerializeField";
+import { GameObject, Transform } from ".";
 
 /**
  * A directional light.
@@ -38,7 +39,8 @@ export class DirectionalLight extends Component {
         this.light.castShadow = shadows;
     }
 
-    public Awake() {
+    constructor(gameObject: GameObject, transform: Transform) {
+        super(gameObject, transform);
         this.transform.group.add(this.light);
         this.light.parent = this.transform.group;
     }
@@ -58,6 +60,7 @@ export class DirectionalLight extends Component {
             this.helper.dispose();
             this.helper = undefined;
         }
+        console.log("HERE")
         this.transform.group.remove(this.light);
         this.gameObject.RemoveComponent(this);
     }

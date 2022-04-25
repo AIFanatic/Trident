@@ -1,6 +1,8 @@
 import { Component } from "./Component";
 import { Color, PointLight as PointLightTHREE, PointLightHelper } from "three";
 import { SerializeField } from "../utils/SerializeField";
+import { GameObject } from "./GameObject";
+import { Transform } from "./Transform";
 
 /**
  * A point light.
@@ -47,7 +49,8 @@ export class PointLight extends Component {
         this.light.castShadow = shadows;
     }
 
-    public Awake() {
+    constructor(gameObject: GameObject, transform: Transform) {
+        super(gameObject, transform);
         this.transform.group.add(this.light);
         this.light.parent = this.transform.group;
     }

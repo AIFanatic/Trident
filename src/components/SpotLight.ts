@@ -1,6 +1,8 @@
 import { Component } from "./Component";
 import { Color, MathUtils, SpotLight as SpotLightTHREE, SpotLightHelper } from "three";
 import { SerializeField } from "../utils/SerializeField";
+import { GameObject } from "./GameObject";
+import { Transform } from "./Transform";
 
 /**
  * A spot light.
@@ -56,7 +58,8 @@ export class SpotLight extends Component {
         this.light.castShadow = shadows;
     }
 
-    public Awake() {
+    constructor(gameObject: GameObject, transform: Transform) {
+        super(gameObject, transform);
         this.transform.group.add(this.light);
         this.light.parent = this.transform.group;
     }
