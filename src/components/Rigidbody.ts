@@ -1,4 +1,4 @@
-import PhysX from 'trident-physx-js-webidl';
+import { PhysX } from 'trident-physx-js-webidl';
 import { Quaternion, Vector3 } from 'three';
 
 import { Component } from "./Component";
@@ -14,6 +14,8 @@ import { RigidBodyFlags } from '../enums/RigidbodyFlags';
 import { LayerMask } from '../enums/LayerMask';
 import { Mathf } from '../utils/Mathf';
 import { SerializeField } from '../utils/SerializeField';
+import { GameObject } from './GameObject';
+import { Transform } from './Transform';
 
 /**
  * RigidBody adds physics properties to an object.
@@ -161,23 +163,34 @@ export class Rigidbody extends Component {
         this.AddForce(force);
     }
 
-    public Awake() {
+    constructor(gameObject: GameObject, transform: Transform) {
+        super(gameObject, transform);
+
         this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
         this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
 
-        const shape = PhysicsShape.CreateBox(this.physxPhysics, new Vector3(1,1,1));
-        const geometry = shape.getGeometry().box();
-        const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-        const rigidbody = this.physxPhysics.createRigidDynamic(transform);
+        const collider = this.gameObject.GetComponent(Collider) as Collider;
 
-        const physicsBody: PhysicsBody = {
-            rigidbody: rigidbody,
-            geometry: geometry,
-            shape: shape
-        };
-        
-        this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
-        this.rigidbody = rigidbody;
+        if (collider && collider.body) {
+            this.body = collider.body;
+            this.body.ConvertToDynamic();
+            this.rigidbody = this.body.rigidbody as PhysX.PxRigidDynamic;
+        }
+        else {
+            const shape = PhysicsShape.CreateBox(this.physxPhysics, new Vector3(1,1,1));
+            const geometry = shape.getGeometry().box();
+            const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+            const rigidbody = this.physxPhysics.createRigidDynamic(physxTransform);
+    
+            const physicsBody: PhysicsBody = {
+                rigidbody: rigidbody,
+                geometry: geometry,
+                shape: shape
+            };
+            
+            this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+            this.rigidbody = rigidbody;
+        }
     }
 
     public CreatedCollider(body: PhysicsRigidbody) {
@@ -235,18 +248,20 @@ export class Rigidbody extends Component {
     public Destroy() {
         const collider = this.gameObject.GetComponent(Collider) as Collider;
 
-        if (collider) {
+        if (collider && collider.body) {
             this.body = collider.body;
             this.body.ConvertToStatic();
         }
-        else {
-            if (this.body && this.body.rigidbody) {
-                this.body.rigidbody.detachShape(this.body.shape);
-                this.body.shape.release();
-                this.body.rigidbody.release();
-                this.body = null;
-            }
-        }
+        // else {
+        //     if (this.body && this.body.rigidbody) {
+        //         console.log(this.body.rigidbody)
+        //         console.log(this.body.shape)
+        //         this.body.rigidbody.detachShape(this.body.shape);
+        //         // this.body.shape.release();
+        //         // this.body.rigidbody.release();
+        //         // this.body = null;
+        //     }
+        // }
 
         this.gameObject.RemoveComponent(this);
     }
