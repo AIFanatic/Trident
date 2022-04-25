@@ -1,16 +1,3 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -25,81 +12,57 @@ import { SerializeField } from "../utils/SerializeField";
  *
  * @noInheritDoc
  */
-var SpotLight = /** @class */ (function (_super) {
-    __extends(SpotLight, _super);
-    function SpotLight() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.light = new SpotLightTHREE(0xffffff, 1, 10, 30 * MathUtils.DEG2RAD);
-        return _this;
-    }
-    Object.defineProperty(SpotLight.prototype, "spotAngle", {
-        get: function () {
-            return this.light.angle * MathUtils.RAD2DEG;
-        },
-        set: function (spotAngle) {
-            this.light.angle = spotAngle * MathUtils.DEG2RAD;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(SpotLight.prototype, "range", {
-        get: function () {
-            return this.light.distance;
-        },
-        set: function (range) {
-            this.light.distance = range;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(SpotLight.prototype, "color", {
-        get: function () {
-            return this.light.color;
-        },
-        set: function (color) {
-            this.light.color.copy(color);
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(SpotLight.prototype, "intensity", {
-        get: function () {
-            return this.light.intensity;
-        },
-        set: function (intensity) {
-            this.light.intensity = intensity;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(SpotLight.prototype, "shadows", {
-        get: function () {
-            return this.light.castShadow;
-        },
-        set: function (shadows) {
-            this.light.castShadow = shadows;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    SpotLight.prototype.Awake = function () {
+export class SpotLight extends Component {
+    constructor(gameObject, transform) {
+        super(gameObject, transform);
+        this.light = new SpotLightTHREE(0xffffff, 1, 10, 30 * MathUtils.DEG2RAD);
         this.transform.group.add(this.light);
         this.light.parent = this.transform.group;
-    };
-    SpotLight.prototype.OnGizmosEnabled = function () {
+    }
+    get spotAngle() {
+        return this.light.angle * MathUtils.RAD2DEG;
+    }
+    set spotAngle(spotAngle) {
+        this.light.angle = spotAngle * MathUtils.DEG2RAD;
+    }
+    get range() {
+        return this.light.distance;
+    }
+    set range(range) {
+        this.light.distance = range;
+    }
+    get color() {
+        return this.light.color;
+    }
+    set color(color) {
+        this.light.color.copy(color);
+    }
+    get intensity() {
+        return this.light.intensity;
+    }
+    set intensity(intensity) {
+        this.light.intensity = intensity;
+    }
+    get shadows() {
+        return this.light.castShadow;
+    }
+    set shadows(shadows) {
+        this.light.castShadow = shadows;
+    }
+    OnGizmosEnabled() {
         if (!this.helper) {
             this.helper = new SpotLightHelper(this.light);
             this.transform.group.add(this.helper);
         }
-    };
-    SpotLight.prototype.OnDrawGizmos = function () {
+    }
+    OnDrawGizmos() {
         if (!this.helper) {
             this.helper = new SpotLightHelper(this.light);
             this.transform.group.add(this.helper);
         }
         this.helper.update();
-    };
-    SpotLight.prototype.Destroy = function () {
+    }
+    Destroy() {
         if (this.helper) {
             this.transform.group.remove(this.helper);
             this.helper.dispose();
@@ -107,23 +70,21 @@ var SpotLight = /** @class */ (function (_super) {
         }
         this.transform.group.remove(this.light);
         this.gameObject.RemoveComponent(this);
-    };
-    __decorate([
-        SerializeField
-    ], SpotLight.prototype, "spotAngle", null);
-    __decorate([
-        SerializeField
-    ], SpotLight.prototype, "range", null);
-    __decorate([
-        SerializeField
-    ], SpotLight.prototype, "color", null);
-    __decorate([
-        SerializeField
-    ], SpotLight.prototype, "intensity", null);
-    __decorate([
-        SerializeField
-    ], SpotLight.prototype, "shadows", null);
-    return SpotLight;
-}(Component));
-export { SpotLight };
+    }
+}
+__decorate([
+    SerializeField
+], SpotLight.prototype, "spotAngle", null);
+__decorate([
+    SerializeField
+], SpotLight.prototype, "range", null);
+__decorate([
+    SerializeField
+], SpotLight.prototype, "color", null);
+__decorate([
+    SerializeField
+], SpotLight.prototype, "intensity", null);
+__decorate([
+    SerializeField
+], SpotLight.prototype, "shadows", null);
 //# sourceMappingURL=SpotLight.js.map

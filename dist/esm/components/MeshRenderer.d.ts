@@ -1,5 +1,7 @@
 import { Component } from "./Component";
-import { BufferGeometry, Geometry, Material, Mesh } from "three";
+import { BufferGeometry, Geometry, Material, Mesh, MeshStandardMaterial } from "three";
+import { GameObject, Transform } from ".";
+export declare const DefaultMaterial: MeshStandardMaterial;
 /**
  * Renders a geometry from MeshFilter into the scene.
  *
@@ -17,7 +19,7 @@ export declare class MeshRenderer extends Component {
     set castShadows(castShadows: boolean);
     get receiveShadows(): boolean;
     set receiveShadows(receiveShadows: boolean);
-    Awake(): void;
+    constructor(gameObject: GameObject, transform: Transform);
     MeshFilterModelChanged(mesh: Geometry | BufferGeometry): void;
     private RemoveMesh;
     private AddMeshFromMeshFilter;

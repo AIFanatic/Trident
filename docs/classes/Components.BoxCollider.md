@@ -14,24 +14,27 @@ Adds a static box collider to the GameObject.
 
 ## Table of contents
 
-### Methods
+### Constructors
 
-- [Awake](Components.BoxCollider.md#awake)
+- [constructor](Components.BoxCollider.md#constructor)
 
-## Methods
+## Constructors
 
-### Awake
+### constructor
 
-▸ **Awake**(): `void`
+• **new BoxCollider**(`gameObject`, `transform`)
 
-#### Returns
+#### Parameters
 
-`void`
+| Name | Type |
+| :------ | :------ |
+| `gameObject` | [`GameObject`](GameObject.md) |
+| `transform` | [`Transform`](Components.Transform.md) |
 
 #### Overrides
 
-Collider.Awake
+Collider.constructor
 
 #### Defined in
 
-[components/BoxCollider.ts:14](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/BoxCollider.ts#L14)
+[components/BoxCollider.ts:16](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/BoxCollider.ts#L16)

@@ -1,5 +1,6 @@
 import { Component } from "./Component";
 import { Color } from "three";
+import { GameObject, Transform } from ".";
 /**
  * A directional light.
  *
@@ -14,7 +15,7 @@ export declare class DirectionalLight extends Component {
     set intensity(intensity: number);
     get shadows(): boolean;
     set shadows(shadows: boolean);
-    Awake(): void;
+    constructor(gameObject: GameObject, transform: Transform);
     OnDrawGizmos(): void;
     Destroy(): void;
 }

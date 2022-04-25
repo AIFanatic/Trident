@@ -1,6 +1,6 @@
 import { BufferAttribute, BufferGeometry, Vector2, Vector3 } from "three";
 export function CapsuleBufferGeometry(radiusTop, radiusBottom, height, radialSegments, heightSegments, capsTopSegments, capsBottomSegments, thetaStart, thetaLength) {
-    var bufferGeometry = new BufferGeometry();
+    const bufferGeometry = new BufferGeometry();
     radiusTop = radiusTop !== undefined ? radiusTop : 1;
     radiusBottom = radiusBottom !== undefined ? radiusBottom : 1;
     height = height !== undefined ? height : 2;

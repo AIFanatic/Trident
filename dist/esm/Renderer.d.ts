@@ -1,9 +1,11 @@
 import { IRendererConfiguration } from './interfaces/IRendererConfiguration';
 import { PerspectiveCamera, Scene, WebGLRenderer } from 'three';
 export declare class Renderer {
+    OnLoaded: () => void;
     scene: Scene;
     renderer: WebGLRenderer;
     private canvas;
+    private config;
     private now;
     private then;
     private elapsed;
@@ -12,6 +14,8 @@ export declare class Renderer {
     private frameCount;
     private currentFps;
     private ambientLight;
-    constructor(config: IRendererConfiguration, loadedCb?: () => void);
+    constructor(config: IRendererConfiguration);
+    private InitRenderer;
+    private OnResize;
     Tick(camera: PerspectiveCamera): void;
 }

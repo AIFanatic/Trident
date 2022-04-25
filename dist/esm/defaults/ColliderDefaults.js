@@ -1,8 +1,4 @@
-var ColliderDefaults = /** @class */ (function () {
-    function ColliderDefaults() {
-    }
-    ColliderDefaults.mass = 1000;
-    return ColliderDefaults;
-}());
-export { ColliderDefaults };
+export class ColliderDefaults {
+}
+ColliderDefaults.mass = 1000;
 //# sourceMappingURL=ColliderDefaults.js.map

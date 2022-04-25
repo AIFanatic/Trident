@@ -1,7 +1,7 @@
-import PhysX from 'trident-physx-js-webidl';
+import { PhysX } from 'trident-physx-js-webidl';
 import { PhysicsScale } from "./PhysicsScale";
-var PhysicsRigidbody = /** @class */ (function () {
-    function PhysicsRigidbody(physics, scene, body) {
+export class PhysicsRigidbody {
+    constructor(physics, scene, body) {
         this.physics = physics;
         this.scene = scene;
         this.rigidbody = body.rigidbody;
@@ -10,70 +10,68 @@ var PhysicsRigidbody = /** @class */ (function () {
         this.rigidbody.attachShape(this.shape);
         this.scene.addActor(body.rigidbody);
     }
-    PhysicsRigidbody.prototype.ConvertToStatic = function () {
+    ConvertToStatic() {
         if (!this.rigidbody || this.rigidbody instanceof PhysX.PxRigidDynamic) {
             return false;
         }
         this.rigidbody.detachShape(this.shape);
         this.scene.removeActor(this.rigidbody);
-        var transform = this.rigidbody.getGlobalPose();
-        var rigidbody = this.physics.createRigidStatic(transform);
+        const transform = this.rigidbody.getGlobalPose();
+        const rigidbody = this.physics.createRigidStatic(transform);
         this.rigidbody = rigidbody;
         this.rigidbody.attachShape(this.shape);
         this.scene.addActor(this.rigidbody);
         return true;
-    };
-    PhysicsRigidbody.prototype.ConvertToDynamic = function () {
+    }
+    ConvertToDynamic() {
         if (!this || this.rigidbody instanceof PhysX.PxRigidDynamic) {
             return false;
         }
         this.rigidbody.detachShape(this.shape);
         this.scene.removeActor(this.rigidbody);
-        var transform = this.rigidbody.getGlobalPose();
-        var rigidbody = this.physics.createRigidDynamic(transform);
+        const transform = this.rigidbody.getGlobalPose();
+        const rigidbody = this.physics.createRigidDynamic(transform);
         this.rigidbody = rigidbody;
         this.rigidbody.attachShape(this.shape);
         this.scene.addActor(this.rigidbody);
         return true;
-    };
-    PhysicsRigidbody.prototype.UpdateShape = function (shape) {
+    }
+    UpdateShape(shape) {
         this.rigidbody.detachShape(this.shape);
         this.shape = shape;
         this.rigidbody.attachShape(shape);
-    };
-    PhysicsRigidbody.prototype.UpdateGeometry = function (geometry) {
+    }
+    UpdateGeometry(geometry) {
         this.shape.setGeometry(geometry);
-    };
-    PhysicsRigidbody.prototype.UpdatePose = function (position, rotation, scale) {
-        var pxVec3 = new PhysX.PxVec3(position.x, position.y, position.z);
-        var pxQuat = new PhysX.PxQuat(rotation.x, rotation.y, rotation.z, rotation.w);
-        var transform = new PhysX.PxTransform(pxVec3, pxQuat);
+    }
+    UpdatePose(position, rotation, scale) {
+        const pxVec3 = new PhysX.PxVec3(position.x, position.y, position.z);
+        const pxQuat = new PhysX.PxQuat(rotation.x, rotation.y, rotation.z, rotation.w);
+        const transform = new PhysX.PxTransform(pxVec3, pxQuat);
         this.rigidbody.setGlobalPose(transform);
         PhysicsScale.ScaleShape(this.shape, scale);
         return true;
-    };
-    PhysicsRigidbody.prototype.UpdatePosition = function (position) {
-        var transform = this.rigidbody.getGlobalPose();
+    }
+    UpdatePosition(position) {
+        const transform = this.rigidbody.getGlobalPose();
         transform.p.x = position.x;
         transform.p.y = position.y;
         transform.p.z = position.z;
         this.rigidbody.setGlobalPose(transform);
         return true;
-    };
-    PhysicsRigidbody.prototype.UpdateRotation = function (rotation) {
-        var transform = this.rigidbody.getGlobalPose();
+    }
+    UpdateRotation(rotation) {
+        const transform = this.rigidbody.getGlobalPose();
         transform.q.x = rotation.x;
         transform.q.y = rotation.y;
         transform.q.z = rotation.z;
         transform.q.w = rotation.w;
         this.rigidbody.setGlobalPose(transform);
         return true;
-    };
-    PhysicsRigidbody.prototype.UpdateScale = function (scale) {
+    }
+    UpdateScale(scale) {
         PhysicsScale.ScaleShape(this.shape, scale);
         return true;
-    };
-    return PhysicsRigidbody;
-}());
-export { PhysicsRigidbody };
+    }
+}
 //# sourceMappingURL=PhysicsRigidbody.js.map

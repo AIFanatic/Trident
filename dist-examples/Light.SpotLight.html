@@ -10,9 +10,8 @@
              */
             import { SceneHelper } from './assets/SceneHelper.js';
             import { GameObject, Components, PrimitiveType, THREE } from '../dist/esm/trident-esm-bundle.js';
-            const scene = SceneHelper.CreateScene();
-            scene.gizmosEnabled = true;
-            scene.OnInitialized = () => {
+            SceneHelper.CreateScene({}, (scene) => {
+                scene.gizmosEnabled = true;
                 const camera = SceneHelper.CreateCamera(scene);
                 camera.transform.position.set(-8, 0, 7);
                 camera.transform.eulerAngles.set(-15, -50, -10);
@@ -37,7 +36,7 @@
                 }, 3000);
                 scene.Load();
                 scene.Play();
-            };
+            });
             
         </script>
     </body>

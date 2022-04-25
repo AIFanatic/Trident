@@ -106,6 +106,17 @@ export declare class Transform implements IComponent {
     * @param {Vector3} localScale - The local scale to be applied to the transform.
     */
     set localScale(localScale: Vector3);
+    private children;
+    /**
+     * Get a transform child by index.
+     * @returns {Transform | null} Returns the child Transform or null if not found.
+     */
+    GetChild(index: number): Transform | null;
+    /**
+     * The number of children the Transform has.
+     * @returns {number} The number of children this Transform has.
+     */
+    get childCount(): number;
     /**
     * Get the parent of this transform.
     * @returns {Transform} The transform parent.

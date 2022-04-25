@@ -16,8 +16,7 @@
                     this.transform.localScale.set(0.5, 0.5, 0.5);
                 }
             }
-            const scene = SceneHelper.CreateScene();
-            scene.OnInitialized = () => {
+            const scene = SceneHelper.CreateScene({}, (scene) => {
                 const camera = SceneHelper.CreateCamera(scene);
                 camera.transform.position.set(0, 0, 10);
                 SceneHelper.CreateSunlight(scene);
@@ -39,7 +38,7 @@
                 articulation1.xDrive.target = 1;
                 scene.Load();
                 scene.Play();
-            };
+            });
             
         </script>
     </body>

@@ -1,16 +1,3 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 import { Collider } from "./Collider";
 import { PhysicsRigidbody } from '../physics/PhysicsRigidbody';
 import { PhysicsShape } from "../physics/PhysicsShape";
@@ -20,27 +7,22 @@ import { PhysicsUtils } from "../physics/PhysicsUtils";
  *
  * @noInheritDoc
  */
-var CapsuleCollider = /** @class */ (function (_super) {
-    __extends(CapsuleCollider, _super);
-    function CapsuleCollider() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    CapsuleCollider.prototype.Awake = function () {
-        var physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-        var physxScene = this.gameObject.scene.GetPhysics().GetScene();
-        var shape = PhysicsShape.CreateCapsule(physxPhysics, this.transform.localScale.x, this.transform.localScale.y + 1);
-        var geometry = shape.getGeometry().capsule();
-        var transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-        var rigidbody = physxPhysics.createRigidStatic(transform);
-        var physicsBody = {
+export class CapsuleCollider extends Collider {
+    constructor(gameObject, transform) {
+        super(gameObject, transform);
+        const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
+        const physxScene = this.gameObject.scene.GetPhysics().GetScene();
+        const shape = PhysicsShape.CreateCapsule(physxPhysics, this.transform.localScale.x, this.transform.localScale.y + 1);
+        const geometry = shape.getGeometry().capsule();
+        const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+        const rigidbody = physxPhysics.createRigidStatic(physxTransform);
+        const physicsBody = {
             rigidbody: rigidbody,
             geometry: geometry,
             shape: shape
         };
         this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
         this.gameObject.BroadcastMessage("CreatedCollider", this.body);
-    };
-    return CapsuleCollider;
-}(Collider));
-export { CapsuleCollider };
+    }
+}
 //# sourceMappingURL=CapsuleCollider.js.map

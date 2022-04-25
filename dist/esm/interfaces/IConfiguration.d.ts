@@ -25,5 +25,4 @@ export interface IApplicationConfiguration {
 export interface IConfiguration {
     renderer: IRendererConfiguration;
     physics: IPhysicsConfiguration;
-    application: IApplicationConfiguration;
 }

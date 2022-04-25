@@ -18,8 +18,7 @@
                     this.transform.eulerAngles.x += 1;
                 }
             }
-            const scene = SceneHelper.CreateScene();
-            scene.OnInitialized = () => {
+            SceneHelper.CreateScene({}, (scene) => {
                 SceneHelper.CreateCamera(scene);
                 SceneHelper.CreateSunlight(scene);
                 const cubeGameobject = new GameObject(scene);
@@ -27,7 +26,7 @@
                 cubeComponent.transform.position.set(0, -2, -10);
                 scene.Load();
                 scene.Play();
-            };
+            });
             
         </script>
     </body>

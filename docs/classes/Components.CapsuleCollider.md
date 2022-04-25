@@ -14,24 +14,27 @@ Adds a static capsule collider to the GameObject.
 
 ## Table of contents
 
-### Methods
+### Constructors
 
-- [Awake](Components.CapsuleCollider.md#awake)
+- [constructor](Components.CapsuleCollider.md#constructor)
 
-## Methods
+## Constructors
 
-### Awake
+### constructor
 
-▸ **Awake**(): `void`
+• **new CapsuleCollider**(`gameObject`, `transform`)
 
-#### Returns
+#### Parameters
 
-`void`
+| Name | Type |
+| :------ | :------ |
+| `gameObject` | [`GameObject`](GameObject.md) |
+| `transform` | [`Transform`](Components.Transform.md) |
 
 #### Overrides
 
-Collider.Awake
+Collider.constructor
 
 #### Defined in
 
-[components/CapsuleCollider.ts:13](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/CapsuleCollider.ts#L13)
+[components/CapsuleCollider.ts:15](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/CapsuleCollider.ts#L15)

@@ -24,8 +24,7 @@
                     });
                 }
             }
-            const scene = SceneHelper.CreateScene();
-            scene.OnInitialized = () => {
+            const scene = SceneHelper.CreateScene({}, (scene) => {
                 SceneHelper.CreateCamera(scene, 0, 0, 40);
                 SceneHelper.CreateSunlight(scene);
                 const floorGameObject = new GameObject(scene);
@@ -36,7 +35,7 @@
                 const meshComponent = meshGameObject.AddComponent(Spaceship);
                 scene.Load();
                 scene.Play();
-            };
+            });
             
         </script>
     </body>

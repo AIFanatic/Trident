@@ -1,5 +1,7 @@
 import { Collider } from "./Collider";
 import { BufferGeometry } from 'three';
+import { GameObject } from './GameObject';
+import { Transform } from './Transform';
 /**
  * Adds a static mesh collider to the GameObject.
  *
@@ -10,7 +12,7 @@ import { BufferGeometry } from 'three';
 export declare class MeshCollider extends Collider {
     private physxCooking;
     private isConvex;
-    Awake(): void;
+    constructor(gameObject: GameObject, transform: Transform);
     MeshFilterModelChanged(mesh: BufferGeometry): void;
     CreateCollider(): void;
     private CreateConvexCollider;

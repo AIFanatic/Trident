@@ -6,7 +6,6 @@ import { BufferGeometry, Geometry } from "three";
  * @noInheritDoc
  */
 export declare class MeshFilter extends Component {
-    runInEditMode: boolean;
     _mesh: Geometry | BufferGeometry;
     get mesh(): Geometry | BufferGeometry;
     set mesh(mesh: Geometry | BufferGeometry);

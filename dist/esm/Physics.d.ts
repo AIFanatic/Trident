@@ -1,17 +1,16 @@
+import { PhysX } from 'trident-physx-js-webidl';
 import { IPhysicsConfiguration } from './interfaces/IPhysicsConfiguration';
-import { Scene } from './Scene';
-import PhysX from 'trident-physx-js-webidl';
 import { Vector3 } from 'three';
 export declare class Physics {
-    private scene;
+    OnLoaded: () => void;
+    FixedUpdate: () => void;
     private config;
     private physx;
     private physxPhysics;
     private physxScene;
     private physxCooking;
     private physicsRaycast;
-    OnLoaded: () => any;
-    constructor(scene: Scene, config: IPhysicsConfiguration, loadedCb?: () => void);
+    constructor(config: IPhysicsConfiguration);
     private InitPhysX;
     private createPhysXDebugger;
     GetPhysX(): typeof PhysX;

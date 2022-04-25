@@ -5,6 +5,7 @@ import { IComponent } from "../interfaces/IComponent";
 import { ComponentsEnum } from "../enums/ComponentsEnum";
 import { LayerMask } from "../enums/LayerMask";
 import { PrimitiveType } from "../enums/PrimitiveType";
+import { HideFlags } from "..";
 /**
  * The main component of the entity component system.
  *
@@ -20,6 +21,7 @@ export declare class GameObject implements IComponent {
     transform: Transform;
     components: Component[];
     layer: LayerMask;
+    hideFlags: HideFlags;
     constructor(scene: Scene);
     private IsValidComponent;
     /**

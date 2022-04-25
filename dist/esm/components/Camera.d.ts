@@ -1,4 +1,5 @@
 import { PerspectiveCamera } from "three";
+import { GameObject, Transform } from ".";
 import { Component } from "./Component";
 export declare enum ProjectionTypes {
     Perspective = 0,
@@ -20,7 +21,7 @@ export declare class Camera extends Component {
     set near(near: number);
     get fieldOfView(): number;
     set fieldOfView(fieldOfView: number);
-    Awake(): void;
+    constructor(gameObject: GameObject, transform: Transform);
     GetCamera(): PerspectiveCamera;
     OnResize(): void;
     OnDrawGizmos(): void;

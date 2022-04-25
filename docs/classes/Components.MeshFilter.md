@@ -17,7 +17,6 @@ Stores a geometry that later can be rendered to the scene.
 ### Properties
 
 - [\_mesh](Components.MeshFilter.md#_mesh)
-- [runInEditMode](Components.MeshFilter.md#runineditmode)
 
 ### Accessors
 
@@ -35,21 +34,7 @@ Stores a geometry that later can be rendered to the scene.
 
 #### Defined in
 
-[components/MeshFilter.ts:14](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/MeshFilter.ts#L14)
-
-___
-
-### runInEditMode
-
-• **runInEditMode**: `boolean` = `true`
-
-#### Overrides
-
-[Component](Components.Component.md).[runInEditMode](Components.Component.md#runineditmode)
-
-#### Defined in
-
-[components/MeshFilter.ts:12](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/MeshFilter.ts#L12)
+[components/MeshFilter.ts:12](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/MeshFilter.ts#L12)
 
 ## Accessors
 
@@ -63,7 +48,7 @@ ___
 
 #### Defined in
 
-[components/MeshFilter.ts:17](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/MeshFilter.ts#L17)
+[components/MeshFilter.ts:15](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/MeshFilter.ts#L15)
 
 • `set` **mesh**(`mesh`): `void`
 
@@ -79,7 +64,7 @@ ___
 
 #### Defined in
 
-[components/MeshFilter.ts:21](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/MeshFilter.ts#L21)
+[components/MeshFilter.ts:19](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/MeshFilter.ts#L19)
 
 ## Methods
 
@@ -99,4 +84,4 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/MeshFilter.ts:27](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/MeshFilter.ts#L27)
+[components/MeshFilter.ts:25](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/MeshFilter.ts#L25)

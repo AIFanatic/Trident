@@ -16,31 +16,37 @@ A MeshCollider can either be convex or a trimesh.
 
 ## Table of contents
 
+### Constructors
+
+- [constructor](Components.MeshCollider.md#constructor)
+
 ### Methods
 
-- [Awake](Components.MeshCollider.md#awake)
 - [CreateCollider](Components.MeshCollider.md#createcollider)
 - [MeshFilterModelChanged](Components.MeshCollider.md#meshfiltermodelchanged)
 
-## Methods
+## Constructors
 
-### Awake
+### constructor
 
-▸ **Awake**(): `void`
+• **new MeshCollider**(`gameObject`, `transform`)
 
-#### Returns
+#### Parameters
 
-`void`
+| Name | Type |
+| :------ | :------ |
+| `gameObject` | [`GameObject`](GameObject.md) |
+| `transform` | [`Transform`](Components.Transform.md) |
 
 #### Overrides
 
-Collider.Awake
+Collider.constructor
 
 #### Defined in
 
-[components/MeshCollider.ts:25](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/MeshCollider.ts#L25)
+[components/MeshCollider.ts:27](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/MeshCollider.ts#L27)
 
-___
+## Methods
 
 ### CreateCollider
 
@@ -52,7 +58,7 @@ ___
 
 #### Defined in
 
-[components/MeshCollider.ts:37](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/MeshCollider.ts#L37)
+[components/MeshCollider.ts:41](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/MeshCollider.ts#L41)
 
 ___
 
@@ -72,4 +78,4 @@ ___
 
 #### Defined in
 
-[components/MeshCollider.ts:33](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/MeshCollider.ts#L33)
+[components/MeshCollider.ts:37](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/MeshCollider.ts#L37)

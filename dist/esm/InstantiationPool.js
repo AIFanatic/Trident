@@ -1,16 +1,16 @@
-var _InstantiationPool = /** @class */ (function () {
-    function _InstantiationPool() {
+export class _InstantiationPool {
+    constructor() {
         this.pendingAwakes = [];
         this.pendingStarts = [];
     }
-    _InstantiationPool.prototype.add = function (component) {
+    add(component) {
         this.pendingAwakes.push(component);
         this.pendingStarts.push(component);
         // if (component.runInEditMode) {
         //     console.log(`[${component.gameObject.name} ${component.classname}] runInEditMode ${component.runInEditMode}`);
         //     this.Load();
         // }
-    };
+    }
     /**
      * Loads all the pending components.
      * Calls all Awake methods first then Start. If at any a new Component is created
@@ -18,9 +18,9 @@ var _InstantiationPool = /** @class */ (function () {
      *
      * TODO: Return when all done.
      */
-    _InstantiationPool.prototype.Load = function () {
-        for (var i = this.pendingAwakes.length; i > 0; i--) {
-            var component = this.pendingAwakes.pop();
+    Load() {
+        for (let i = this.pendingAwakes.length; i > 0; i--) {
+            const component = this.pendingAwakes.pop();
             // console.log(`[${component.gameObject.name} ${component.classname}] Awake`);
             component.Awake();
             component.isAwake = true;
@@ -30,8 +30,8 @@ var _InstantiationPool = /** @class */ (function () {
             this.Load();
             return;
         }
-        for (var i = this.pendingStarts.length; i > 0; i--) {
-            var component = this.pendingStarts.pop();
+        for (let i = this.pendingStarts.length; i > 0; i--) {
+            const component = this.pendingStarts.pop();
             // console.log(`[${component.gameObject.name} ${component.classname}] Start`);
             component.Start();
             component.isStarted = true;
@@ -42,9 +42,7 @@ var _InstantiationPool = /** @class */ (function () {
             }
         }
         return true;
-    };
-    return _InstantiationPool;
-}());
-export { _InstantiationPool };
-export var InstantiationPool = new _InstantiationPool();
+    }
+}
+export const InstantiationPool = new _InstantiationPool();
 //# sourceMappingURL=InstantiationPool.js.map

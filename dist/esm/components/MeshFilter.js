@@ -1,16 +1,3 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -24,34 +11,22 @@ import { SerializeField } from "../utils/SerializeField";
  *
  * @noInheritDoc
  */
-var MeshFilter = /** @class */ (function (_super) {
-    __extends(MeshFilter, _super);
-    function MeshFilter() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.runInEditMode = true;
-        return _this;
+export class MeshFilter extends Component {
+    get mesh() {
+        return this._mesh;
     }
-    Object.defineProperty(MeshFilter.prototype, "mesh", {
-        get: function () {
-            return this._mesh;
-        },
-        set: function (mesh) {
-            this._mesh = mesh;
-            this.gameObject.BroadcastMessage("MeshFilterModelChanged", this._mesh);
-        },
-        enumerable: false,
-        configurable: true
-    });
-    MeshFilter.prototype.Destroy = function () {
+    set mesh(mesh) {
+        this._mesh = mesh;
+        this.gameObject.BroadcastMessage("MeshFilterModelChanged", this._mesh);
+    }
+    Destroy() {
         if (this.mesh) {
             this.mesh.dispose();
         }
         this.gameObject.RemoveComponent(this);
-    };
-    __decorate([
-        SerializeField
-    ], MeshFilter.prototype, "mesh", null);
-    return MeshFilter;
-}(Component));
-export { MeshFilter };
+    }
+}
+__decorate([
+    SerializeField
+], MeshFilter.prototype, "mesh", null);
 //# sourceMappingURL=MeshFilter.js.map

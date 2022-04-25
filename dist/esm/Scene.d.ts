@@ -3,7 +3,6 @@ import { Renderer } from './Renderer';
 import { Physics } from './Physics';
 import { Input } from './Input';
 import { Camera } from "./components/Camera";
-import { IConfiguration } from "./interfaces/IConfiguration";
 /**
  * The scene that holds all GameObjects.
  */
@@ -17,17 +16,11 @@ export declare class Scene {
     currentFrame: number;
     gizmosEnabled: boolean;
     gameObjects: GameObject[];
-    OnInitialized: () => void;
-    private physicsLoaded;
-    private rendererLoaded;
     /**
-     * @param {IRendererConfiguration} rendererConfig - Renderer configuration.
-     * @param {IPhysicsConfiguration} physicsConfig - Physics configuration.
+     * @param {Renderer} renderer - Initialized Renderer instance.
+     * @param {Physics} physics - Initialized Physics instance.
      */
-    constructor(config: IConfiguration);
-    private InitializeRenderer;
-    private InitializePhysics;
-    private CheckInitialized;
+    constructor(renderer: Renderer, physics: Physics);
     /**
      * Get the renderer for this scene.
      * @returns {Renderer} Renderer attached to this scene.

@@ -1,5 +1,7 @@
 import { Component } from "./Component";
 import { Color } from "three";
+import { GameObject } from "./GameObject";
+import { Transform } from "./Transform";
 /**
  * A spot light.
  *
@@ -18,7 +20,7 @@ export declare class SpotLight extends Component {
     set intensity(intensity: number);
     get shadows(): boolean;
     set shadows(shadows: boolean);
-    Awake(): void;
+    constructor(gameObject: GameObject, transform: Transform);
     OnGizmosEnabled(): void;
     OnDrawGizmos(): void;
     Destroy(): void;

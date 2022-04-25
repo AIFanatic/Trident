@@ -1,5 +1,7 @@
 import { Component } from "./Component";
 import { Color } from "three";
+import { GameObject } from "./GameObject";
+import { Transform } from "./Transform";
 /**
  * A rectangle area light.
  *
@@ -18,7 +20,7 @@ export declare class AreaLight extends Component {
     set intensity(intensity: number);
     get shadows(): boolean;
     set shadows(shadows: boolean);
-    Awake(): void;
+    constructor(gameObject: GameObject, transform: Transform);
     OnDrawGizmos(): void;
     Destroy(): void;
 }

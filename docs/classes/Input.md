@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[Input.ts:16](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Input.ts#L16)
+[Input.ts:16](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Input.ts#L16)
 
 ## Methods
 
@@ -55,7 +55,7 @@ This method works with both the mouse and touch events.
 
 #### Defined in
 
-[Input.ts:105](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Input.ts#L105)
+[Input.ts:105](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Input.ts#L105)
 
 ___
 
@@ -80,7 +80,7 @@ This method returns true while the key is pressed down.
 
 #### Defined in
 
-[Input.ts:91](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Input.ts#L91)
+[Input.ts:91](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Input.ts#L91)
 
 ___
 
@@ -106,7 +106,7 @@ and pressed again in order for the condition to be true once more.
 
 #### Defined in
 
-[Input.ts:62](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Input.ts#L62)
+[Input.ts:62](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Input.ts#L62)
 
 ___
 
@@ -132,7 +132,7 @@ and released again in order for the condition to be true once more.
 
 #### Defined in
 
-[Input.ts:77](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Input.ts#L77)
+[Input.ts:77](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Input.ts#L77)
 
 ___
 
@@ -146,4 +146,4 @@ ___
 
 #### Defined in
 
-[Input.ts:114](https://github.com/AIFanatic/Trident/blob/5fab94d/src/Input.ts#L114)
+[Input.ts:114](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Input.ts#L114)

@@ -16,30 +16,36 @@ Note that a plane should extend to infinity, but in this case it's just a box wi
 
 ## Table of contents
 
+### Constructors
+
+- [constructor](Components.PlaneCollider.md#constructor)
+
 ### Methods
 
-- [Awake](Components.PlaneCollider.md#awake)
 - [Update](Components.PlaneCollider.md#update)
 
-## Methods
+## Constructors
 
-### Awake
+### constructor
 
-▸ **Awake**(): `void`
+• **new PlaneCollider**(`gameObject`, `transform`)
 
-#### Returns
+#### Parameters
 
-`void`
+| Name | Type |
+| :------ | :------ |
+| `gameObject` | [`GameObject`](GameObject.md) |
+| `transform` | [`Transform`](Components.Transform.md) |
 
 #### Overrides
 
-Collider.Awake
+Collider.constructor
 
 #### Defined in
 
-[components/PlaneCollider.ts:15](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/PlaneCollider.ts#L15)
+[components/PlaneCollider.ts:17](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/PlaneCollider.ts#L17)
 
-___
+## Methods
 
 ### Update
 
@@ -55,4 +61,4 @@ Collider.Update
 
 #### Defined in
 
-[components/PlaneCollider.ts:36](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/PlaneCollider.ts#L36)
+[components/PlaneCollider.ts:40](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/PlaneCollider.ts#L40)

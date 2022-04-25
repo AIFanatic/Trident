@@ -10,8 +10,7 @@
              */
             import { SceneHelper } from './assets/SceneHelper.js';
             import { GameObject, Components, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
-            const scene = SceneHelper.CreateScene();
-            scene.OnInitialized = () => {
+            SceneHelper.CreateScene({}, (scene) => {
                 SceneHelper.CreateCamera(scene, 0, 0, 40);
                 SceneHelper.CreateSunlight(scene);
                 const floorGameObject = new GameObject(scene);
@@ -24,7 +23,7 @@
                 const cubeRigidbody = cubeGameobject.AddComponent(Components.Rigidbody);
                 scene.Load();
                 scene.Play();
-            };
+            });
             
         </script>
     </body>

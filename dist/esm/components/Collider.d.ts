@@ -1,5 +1,5 @@
 import { Component } from "./Component";
-import PhysX from "trident-physx-js-webidl";
+import { PhysX } from "trident-physx-js-webidl";
 import { PhysicsRigidbody } from "../physics/PhysicsRigidbody";
 /**
  * Base collider class that all colliders extend.

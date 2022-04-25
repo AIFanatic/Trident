@@ -14,24 +14,27 @@ Adds a static sphere collider to the GameObject.
 
 ## Table of contents
 
-### Methods
+### Constructors
 
-- [Awake](Components.SphereCollider.md#awake)
+- [constructor](Components.SphereCollider.md#constructor)
 
-## Methods
+## Constructors
 
-### Awake
+### constructor
 
-▸ **Awake**(): `void`
+• **new SphereCollider**(`gameObject`, `transform`)
 
-#### Returns
+#### Parameters
 
-`void`
+| Name | Type |
+| :------ | :------ |
+| `gameObject` | [`GameObject`](GameObject.md) |
+| `transform` | [`Transform`](Components.Transform.md) |
 
 #### Overrides
 
-Collider.Awake
+Collider.constructor
 
 #### Defined in
 
-[components/SphereCollider.ts:13](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/SphereCollider.ts#L13)
+[components/SphereCollider.ts:15](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/SphereCollider.ts#L15)

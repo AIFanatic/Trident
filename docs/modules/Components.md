@@ -30,3 +30,17 @@
 - [SphereCollider](../classes/Components.SphereCollider.md)
 - [SpotLight](../classes/Components.SpotLight.md)
 - [Transform](../classes/Components.Transform.md)
+
+### Variables
+
+- [DefaultMaterial](Components.md#defaultmaterial)
+
+## Variables
+
+### DefaultMaterial
+
+• `Const` **DefaultMaterial**: `MeshStandardMaterial`
+
+#### Defined in
+
+[components/MeshRenderer.ts:9](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/MeshRenderer.ts#L9)

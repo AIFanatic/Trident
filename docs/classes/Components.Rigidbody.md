@@ -19,6 +19,10 @@ with forces, although setting the position, rotation, scale directly works.
 
 ## Table of contents
 
+### Constructors
+
+- [constructor](Components.Rigidbody.md#constructor)
+
 ### Properties
 
 - [body](Components.Rigidbody.md#body)
@@ -37,11 +41,31 @@ with forces, although setting the position, rotation, scale directly works.
 
 - [AddForce](Components.Rigidbody.md#addforce)
 - [AddTorque](Components.Rigidbody.md#addtorque)
-- [Awake](Components.Rigidbody.md#awake)
 - [CreatedCollider](Components.Rigidbody.md#createdcollider)
 - [Destroy](Components.Rigidbody.md#destroy)
 - [FixedUpdate](Components.Rigidbody.md#fixedupdate)
 - [MovePosition](Components.Rigidbody.md#moveposition)
+
+## Constructors
+
+### constructor
+
+• **new Rigidbody**(`gameObject`, `transform`)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `gameObject` | [`GameObject`](GameObject.md) |
+| `transform` | [`Transform`](Components.Transform.md) |
+
+#### Overrides
+
+[Component](Components.Component.md).[constructor](Components.Component.md#constructor)
+
+#### Defined in
+
+[components/Rigidbody.ts:166](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L166)
 
 ## Properties
 
@@ -51,7 +75,7 @@ with forces, although setting the position, rotation, scale directly works.
 
 #### Defined in
 
-[components/Rigidbody.ts:32](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L32)
+[components/Rigidbody.ts:34](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L34)
 
 ## Accessors
 
@@ -65,7 +89,7 @@ with forces, although setting the position, rotation, scale directly works.
 
 #### Defined in
 
-[components/Rigidbody.ts:95](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L95)
+[components/Rigidbody.ts:97](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L97)
 
 • `set` **angularDrag**(`angularDrag`): `void`
 
@@ -81,7 +105,7 @@ with forces, although setting the position, rotation, scale directly works.
 
 #### Defined in
 
-[components/Rigidbody.ts:99](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L99)
+[components/Rigidbody.ts:101](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L101)
 
 ___
 
@@ -95,7 +119,7 @@ ___
 
 #### Defined in
 
-[components/Rigidbody.ts:76](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L76)
+[components/Rigidbody.ts:78](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L78)
 
 • `set` **angularVelocity**(`angularVelocity`): `void`
 
@@ -111,7 +135,7 @@ ___
 
 #### Defined in
 
-[components/Rigidbody.ts:81](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L81)
+[components/Rigidbody.ts:83](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L83)
 
 ___
 
@@ -131,7 +155,7 @@ ___
 
 #### Defined in
 
-[components/Rigidbody.ts:118](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L118)
+[components/Rigidbody.ts:120](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L120)
 
 ___
 
@@ -145,7 +169,7 @@ ___
 
 #### Defined in
 
-[components/Rigidbody.ts:86](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L86)
+[components/Rigidbody.ts:88](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L88)
 
 • `set` **drag**(`drag`): `void`
 
@@ -161,7 +185,7 @@ ___
 
 #### Defined in
 
-[components/Rigidbody.ts:90](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L90)
+[components/Rigidbody.ts:92](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L92)
 
 ___
 
@@ -180,7 +204,7 @@ True if the object is kinematic, false otherwise
 
 #### Defined in
 
-[components/Rigidbody.ts:48](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L48)
+[components/Rigidbody.ts:50](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L50)
 
 • `set` **isKinematic**(`kinematic`): `void`
 
@@ -201,7 +225,7 @@ True if the object is kinematic, false otherwise
 
 #### Defined in
 
-[components/Rigidbody.ts:53](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L53)
+[components/Rigidbody.ts:55](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L55)
 
 ___
 
@@ -215,7 +239,7 @@ ___
 
 #### Defined in
 
-[components/Rigidbody.ts:58](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L58)
+[components/Rigidbody.ts:60](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L60)
 
 • `set` **mass**(`mass`): `void`
 
@@ -231,7 +255,7 @@ ___
 
 #### Defined in
 
-[components/Rigidbody.ts:62](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L62)
+[components/Rigidbody.ts:64](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L64)
 
 ___
 
@@ -245,7 +269,7 @@ ___
 
 #### Defined in
 
-[components/Rigidbody.ts:66](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L66)
+[components/Rigidbody.ts:68](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L68)
 
 • `set` **velocity**(`velocity`): `void`
 
@@ -261,7 +285,7 @@ ___
 
 #### Defined in
 
-[components/Rigidbody.ts:71](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L71)
+[components/Rigidbody.ts:73](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L73)
 
 ## Methods
 
@@ -282,7 +306,7 @@ ___
 
 #### Defined in
 
-[components/Rigidbody.ts:135](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L135)
+[components/Rigidbody.ts:137](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L137)
 
 ___
 
@@ -303,27 +327,7 @@ ___
 
 #### Defined in
 
-[components/Rigidbody.ts:144](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L144)
-
-___
-
-### Awake
-
-▸ **Awake**(): `void`
-
-Called once when the component is first added to a GameObject.
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[Component](Components.Component.md).[Awake](Components.Component.md#awake)
-
-#### Defined in
-
-[components/Rigidbody.ts:164](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L164)
+[components/Rigidbody.ts:146](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L146)
 
 ___
 
@@ -343,7 +347,7 @@ ___
 
 #### Defined in
 
-[components/Rigidbody.ts:183](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L183)
+[components/Rigidbody.ts:196](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L196)
 
 ___
 
@@ -363,7 +367,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/Rigidbody.ts:235](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L235)
+[components/Rigidbody.ts:248](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L248)
 
 ___
 
@@ -383,7 +387,7 @@ Called before every Physics update.
 
 #### Defined in
 
-[components/Rigidbody.ts:209](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L209)
+[components/Rigidbody.ts:222](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L222)
 
 ___
 
@@ -403,4 +407,4 @@ ___
 
 #### Defined in
 
-[components/Rigidbody.ts:153](https://github.com/AIFanatic/Trident/blob/5fab94d/src/components/Rigidbody.ts#L153)
+[components/Rigidbody.ts:155](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Rigidbody.ts#L155)

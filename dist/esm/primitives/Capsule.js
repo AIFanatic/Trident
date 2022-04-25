@@ -1,17 +1,13 @@
 import { CapsuleCollider, MeshFilter, MeshRenderer } from "../components";
 import { CapsuleBufferGeometry } from "../utils/CapsuleGeometry";
-var Capsule = /** @class */ (function () {
-    function Capsule() {
-    }
-    Capsule.Create = function (gameObject) {
-        var geometry = CapsuleBufferGeometry(0.5, 0.5, 1, 16, 1, 8, 8, 0, 2 * Math.PI);
+export class Capsule {
+    static Create(gameObject) {
+        const geometry = CapsuleBufferGeometry(0.5, 0.5, 1, 16, 1, 8, 8, 0, 2 * Math.PI);
         geometry.rotateZ(Math.PI / 2);
-        var meshFilter = gameObject.AddComponent(MeshFilter);
+        const meshFilter = gameObject.AddComponent(MeshFilter);
         meshFilter.mesh = geometry;
-        var meshRenderer = gameObject.AddComponent(MeshRenderer);
-        var colllider = gameObject.AddComponent(CapsuleCollider);
-    };
-    return Capsule;
-}());
-export { Capsule };
+        const meshRenderer = gameObject.AddComponent(MeshRenderer);
+        const colllider = gameObject.AddComponent(CapsuleCollider);
+    }
+}
 //# sourceMappingURL=Capsule.js.map

@@ -3,6 +3,8 @@ import { Component } from "./Component";
 import { PhysicsRigidbody } from "../physics/PhysicsRigidbody";
 import { ForceMode } from '../enums/ForceMode';
 import { RigidbodyConstraints } from '../enums/RigidbodyConstraints';
+import { GameObject } from './GameObject';
+import { Transform } from './Transform';
 /**
  * RigidBody adds physics properties to an object.
  *
@@ -44,7 +46,7 @@ export declare class Rigidbody extends Component {
     AddForce(force: Vector3, mode?: ForceMode): void;
     AddTorque(torque: Vector3, mode?: ForceMode): void;
     MovePosition(position: Vector3): void;
-    Awake(): void;
+    constructor(gameObject: GameObject, transform: Transform);
     CreatedCollider(body: PhysicsRigidbody): void;
     private HandleTransformChanges;
     FixedUpdate(): void;

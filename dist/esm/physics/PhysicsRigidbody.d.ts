@@ -1,6 +1,6 @@
 import { Quaternion, Vector3 } from "three";
 import { PhysicsBody } from "./PhysicsBody";
-import PhysX from 'trident-physx-js-webidl';
+import { PhysX } from 'trident-physx-js-webidl';
 export declare class PhysicsRigidbody {
     rigidbody: PhysX.PxRigidStatic | PhysX.PxRigidDynamic;
     geometry: PhysX.PxGeometry;

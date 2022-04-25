@@ -1,4 +1,4 @@
-import PhysX from 'trident-physx-js-webidl';
+import { PhysX } from 'trident-physx-js-webidl';
 // TODO: Doesnt work if using PhysX.PxGeometryTypeEnum.BOX
 var PxGeometryTypeEnum;
 (function (PxGeometryTypeEnum) {
@@ -10,42 +10,40 @@ var PxGeometryTypeEnum;
     PxGeometryTypeEnum[PxGeometryTypeEnum["TRIANGLEMESH"] = 5] = "TRIANGLEMESH";
     PxGeometryTypeEnum[PxGeometryTypeEnum["HEIGHTFIELD"] = 6] = "HEIGHTFIELD";
 })(PxGeometryTypeEnum || (PxGeometryTypeEnum = {}));
-var PhysicsScale = /** @class */ (function () {
-    function PhysicsScale() {
-    }
-    PhysicsScale.ScaleSphere = function (sphere, radius) {
+export class PhysicsScale {
+    static ScaleSphere(sphere, radius) {
         sphere.radius = radius;
         return sphere;
-    };
-    PhysicsScale.ScalePlane = function (box, width, height) {
-        var halfExtentsPxVec3 = new PhysX.PxVec3(width, 0.01, height);
+    }
+    static ScalePlane(box, width, height) {
+        const halfExtentsPxVec3 = new PhysX.PxVec3(width, 0.01, height);
         box.halfExtents = halfExtentsPxVec3;
         return box;
-    };
-    PhysicsScale.ScaleCapsule = function (capsule, radius, halfHeight) {
+    }
+    static ScaleCapsule(capsule, radius, halfHeight) {
         capsule.radius = radius;
         capsule.halfHeight = halfHeight;
         return capsule;
-    };
-    PhysicsScale.ScaleBox = function (box, halfExtents) {
-        var halfExtentsPxVec3 = new PhysX.PxVec3(halfExtents.x, halfExtents.y, halfExtents.z);
+    }
+    static ScaleBox(box, halfExtents) {
+        const halfExtentsPxVec3 = new PhysX.PxVec3(halfExtents.x, halfExtents.y, halfExtents.z);
         box.halfExtents = halfExtentsPxVec3;
         return box;
-    };
-    PhysicsScale.ScaleConvex = function (convex, scale) {
-        var scalePxVec3 = new PhysX.PxVec3(scale.x, scale.y, scale.z);
+    }
+    static ScaleConvex(convex, scale) {
+        const scalePxVec3 = new PhysX.PxVec3(scale.x, scale.y, scale.z);
         convex.scale.scale = scalePxVec3;
         return convex;
-    };
-    PhysicsScale.ScaleTrimesh = function (trimesh, scale) {
-        var scalePxVec3 = new PhysX.PxVec3(scale.x, scale.y, scale.z);
+    }
+    static ScaleTrimesh(trimesh, scale) {
+        const scalePxVec3 = new PhysX.PxVec3(scale.x, scale.y, scale.z);
         trimesh.scale.scale = scalePxVec3;
         return trimesh;
-    };
-    PhysicsScale.ScaleShape = function (shape, scale) {
-        var geometryHolder = shape.getGeometry();
-        var type = shape.getGeometryType();
-        var geometry;
+    }
+    static ScaleShape(shape, scale) {
+        const geometryHolder = shape.getGeometry();
+        const type = shape.getGeometryType();
+        let geometry;
         if (type == PxGeometryTypeEnum.SPHERE.valueOf()) {
             geometry = this.ScaleSphere(geometryHolder.sphere(), scale.x / 2);
         }
@@ -71,8 +69,6 @@ var PhysicsScale = /** @class */ (function () {
         }
         shape.setGeometry(geometry);
         return shape;
-    };
-    return PhysicsScale;
-}());
-export { PhysicsScale };
+    }
+}
 //# sourceMappingURL=PhysicsScale.js.map

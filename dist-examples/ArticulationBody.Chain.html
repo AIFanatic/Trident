@@ -16,8 +16,7 @@
                     this.transform.localScale.set(0.5, 0.5, 0.5);
                 }
             }
-            const scene = SceneHelper.CreateScene();
-            scene.OnInitialized = () => {
+            SceneHelper.CreateScene({}, (scene) => {
                 const camera = SceneHelper.CreateCamera(scene);
                 camera.transform.position.set(0, 0, 30);
                 SceneHelper.CreateSunlight(scene);
@@ -45,7 +44,7 @@
                 }
                 scene.Load();
                 scene.Play();
-            };
+            });
             
         </script>
     </body>

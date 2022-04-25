@@ -1,6 +1,7 @@
 import { GameObject } from "./GameObject";
 import { Transform } from "./Transform";
 import { IComponent } from "../interfaces/IComponent";
+import { HideFlags } from "../enums/HideFlags";
 /**
  * Base class that all components inherit from.
  * Can be extended to create custom components.
@@ -40,7 +41,8 @@ export declare class Component implements IComponent {
      */
     isStarted: boolean;
     isAwake: boolean;
-    runInEditMode: boolean;
+    userData: any;
+    hideFlags: HideFlags;
     constructor(gameObject: GameObject, transform: Transform);
     /**
      * Called once when the component is first added to a GameObject.

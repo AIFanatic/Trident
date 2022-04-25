@@ -1,4 +1,6 @@
 import { Collider } from "./Collider";
+import { GameObject } from "./GameObject";
+import { Transform } from "./Transform";
 /**
  * Adds a static plane collider to the GameObject.
  *
@@ -7,6 +9,6 @@ import { Collider } from "./Collider";
  * @noInheritDoc
  */
 export declare class PlaneCollider extends Collider {
-    Awake(): void;
+    constructor(gameObject: GameObject, transform: Transform);
     Update(): void;
 }

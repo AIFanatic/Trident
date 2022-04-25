@@ -1,4 +1,4 @@
-export var ConfigurationDefaults = {
+export const ConfigurationDefaults = {
     renderer: {
         containerId: null,
         targetFrameRate: 60,
@@ -16,9 +16,6 @@ export var ConfigurationDefaults = {
         },
         framerate: 60,
         performanceCooking: false,
-    },
-    application: {
-        rootPath: "./"
     }
 };
 //# sourceMappingURL=ConfigurationDefaults.js.map

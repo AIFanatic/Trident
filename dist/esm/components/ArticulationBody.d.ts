@@ -1,4 +1,4 @@
-import PhysX from "trident-physx-js-webidl";
+import { PhysX } from "trident-physx-js-webidl";
 import { ArticulationAxis } from "../enums/ArticulationAxis";
 import { ArticulationJointType } from "../enums/ArticulationJointType";
 import { ArticulationDofLock } from "../enums/ArticulationDofLock";
@@ -36,7 +36,6 @@ declare class JointDriver {
  * @noInheritDoc
  */
 export declare class ArticulationBody extends Component {
-    runInEditMode: boolean;
     xDrive: JointDriver;
     yDrive: JointDriver;
     zDrive: JointDriver;
@@ -71,8 +70,8 @@ export declare class ArticulationBody extends Component {
     set angularDamping(angularDamping: number);
     private collider;
     private hasAttachedShape;
+    private isRootArticulation;
     constructor(gameObject: GameObject, transform: Transform);
-    Awake(): void;
     FixedUpdate(): void;
     Destroy(): void;
 }
