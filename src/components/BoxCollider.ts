@@ -3,6 +3,8 @@ import { PhysicsRigidbody } from '../physics/PhysicsRigidbody';
 import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
 import { PhysicsBody } from "../physics/PhysicsBody";
+import { GameObject } from "./GameObject";
+import { Transform } from "./Transform";
 
 /**
  * Adds a static box collider to the GameObject.
@@ -11,15 +13,17 @@ import { PhysicsBody } from "../physics/PhysicsBody";
  */
 export class BoxCollider extends Collider {
 
-    public Awake() {
+    constructor(gameObject: GameObject, transform: Transform) {
+        super(gameObject, transform);
+        
         this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
         this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
 
         const shape = PhysicsShape.CreateBox(this.physxPhysics, this.transform.localScale);
 
         const geometry = shape.getGeometry().box();
-        const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-        const rigidbody = this.physxPhysics.createRigidStatic(transform);
+        const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+        const rigidbody = this.physxPhysics.createRigidStatic(physxTransform);
 
         const physicsBody: PhysicsBody = {
             rigidbody: rigidbody,

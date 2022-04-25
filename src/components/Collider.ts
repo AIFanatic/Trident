@@ -2,7 +2,7 @@ import { Quaternion, Vector3 } from "three";
 import { Component } from "./Component";
 import { BodyType } from "../enums/BodyType";
 
-import PhysX from "trident-physx-js-webidl";
+import { PhysX } from "trident-physx-js-webidl";
 import { PhysicsRigidbody } from "../physics/PhysicsRigidbody";
 import { LayerMask } from "../enums/LayerMask";
 import { Mathf } from "../utils/Mathf";

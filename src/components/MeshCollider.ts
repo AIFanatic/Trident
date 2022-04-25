@@ -1,4 +1,4 @@
-import PhysX from 'trident-physx-js-webidl';
+import { PhysX } from 'trident-physx-js-webidl';
 import { Collider } from "./Collider";
 import { MeshFilter } from './MeshFilter';
 
@@ -9,6 +9,8 @@ import { PhysicsBody } from "../physics/PhysicsBody";
 import { BufferGeometry } from 'three';
 
 import { ConvertGeometryToIndexed, TrianglesModeEnum } from '../utils/ConvertGeometryToIndexed';
+import { GameObject } from './GameObject';
+import { Transform } from './Transform';
 
 /**
  * Adds a static mesh collider to the GameObject.
@@ -22,7 +24,9 @@ export class MeshCollider extends Collider {
 
     private isConvex: boolean;
 
-    public Awake() {
+    constructor(gameObject: GameObject, transform: Transform) {
+        super(gameObject, transform);
+        
         this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
         this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
         this.physxCooking = this.gameObject.scene.GetPhysics().GetCooking();
