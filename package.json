@@ -23,10 +23,13 @@
   "module": "dist/esm/index.js",
   "dependencies": {
     "three": "0.123.0",
-    "trident-physx-js-webidl": "https://github.com/AIFanatic/trident-physx-js-webidl.git"
+    "trident-physx-js-webidl": "^0.4.12"
   },
   "devDependencies": {
+    "@types/jasmine": "^4.0.3",
+    "@types/resize-observer-browser": "^0.1.7",
     "esbuild": "^0.12.21",
+    "jasmine": "^4.1.0",
     "typedoc": "^0.21.6",
     "typedoc-plugin-markdown": "^3.10.4",
     "typedoc-plugin-no-inherit": "^1.3.0",
@@ -35,12 +38,12 @@
   "scripts": {
     "build:all": "npm run build && npm run build:examples && npm run docs",
     "build": "npm run build:iife-bundle && npm run build:esm-bundle && npm run build:esm",
-    "build:iife-bundle": "esbuild src/index.ts --bundle --outfile=dist/trident-bundle.js --target=es6 --format=iife --global-name=trident",
-    "build:esm-bundle": "esbuild src/index.ts --bundle --outfile=dist/esm/trident-esm-bundle.js --target=es6 --format=esm",
-    "build:esm": "tsc -m es6 && cp ./dist/esm/index.d.ts ./dist/esm/trident-esm-bundle.d.ts",
-    "build:examples": "rm -rf ./dist-examples && tsc -p tsconfig.examples.json && node ./examples/scripts/postbuild.js && node ./examples/scripts/generatedoc.js && cp -r ./examples/assets ./dist-examples/",
-    "dev": "esbuild src/index.ts --bundle --outfile=dist/esm/trident-esm-bundle.js --target=es6 --format=esm --watch",
-    "docs": "typedoc ./src/index.ts --excludeExternals --excludePrivate  && mv ./docs/modules.md ./docs/README.md"
-  },
-  "peerDependencies": {}
+    "build:iife-bundle": "esbuild src/index.ts --bundle --outfile=dist/trident-bundle.js --target=es2020 --format=iife --global-name=trident",
+    "build:esm-bundle": "esbuild src/index.ts --bundle --outfile=dist/esm/trident-esm-bundle.js --target=es2020 --format=esm",
+    "build:esm": "tsc -m es2020 && cp ./dist/esm/index.d.ts ./dist/esm/trident-esm-bundle.d.ts",
+    "build:examples": "rm -rf ./dist-examples && tsc -p ./examples/tsconfig.examples.json && node ./examples/scripts/postbuild.js && node ./examples/scripts/generatedoc.js && cp -r ./examples/assets ./dist-examples/",
+    "dev": "esbuild src/index.ts --bundle --outfile=dist/esm/trident-esm-bundle.js --target=es2020 --format=esm --watch",
+    "docs": "typedoc ./src/index.ts --excludeExternals --excludePrivate  && mv ./docs/modules.md ./docs/README.md",
+    "test": "esbuild --bundle --keep-names ./tests/index.ts --outfile=dist-test/tests.spec.js --target=es2020 --format=esm --watch"
+  }
 }
