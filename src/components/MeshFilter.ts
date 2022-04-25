@@ -9,8 +9,6 @@ import { SerializeField } from "../utils/SerializeField";
  * @noInheritDoc
  */
 export class MeshFilter extends Component {
-    public runInEditMode = true;
-    
     public _mesh: Geometry | BufferGeometry;
     
     @SerializeField

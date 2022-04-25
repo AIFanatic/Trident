@@ -4,8 +4,9 @@ import { Component } from "./Component";
 import { Renderer } from "../Renderer";
 import { BufferGeometry, Geometry, Material, Mesh, MeshStandardMaterial } from "three";
 import { SerializeField } from "../utils/SerializeField";
+import { GameObject, Transform } from ".";
 
-const DefaultMaterial = new MeshStandardMaterial();
+export const DefaultMaterial = new MeshStandardMaterial();
 
 /**
  * Renders a geometry from MeshFilter into the scene.
@@ -65,7 +66,8 @@ export class MeshRenderer extends Component {
         })
     }
 
-    public Awake() {
+    constructor(gameObject: GameObject, transform: Transform) {
+        super(gameObject, transform);
         this.renderer = this.gameObject.scene.GetRenderer();
         this.AddMeshFromMeshFilter();
     }
