@@ -1,13 +1,14 @@
+import { PhysXLoader, PhysX } from 'trident-physx-js-webidl';
 import { IPhysicsConfiguration } from './interfaces/IPhysicsConfiguration';
-import { Scene } from './Scene';
-
-import PhysX from 'trident-physx-js-webidl';
 import { Vector3 } from 'three';
 
 import { PhysicsRaycast } from './physics/PhysicsRaycast';
+import { ConfigurationDefaults } from './defaults/ConfigurationDefaults';
 
 export class Physics {
-    private scene: Scene;
+    public OnLoaded: () => void = () => {};
+    public FixedUpdate: () => void = () => {};
+    
     private config: IPhysicsConfiguration;
 
     private physx: typeof PhysX;
@@ -17,113 +18,193 @@ export class Physics {
 
     private physicsRaycast: PhysicsRaycast;
 
-    public OnLoaded: () => any = () => {};
 
-    constructor(scene: Scene, config: IPhysicsConfiguration, loadedCb?: () => void) {
-        this.scene = scene;
-        
-        this.config = config;
+    constructor(config: IPhysicsConfiguration) {
+        this.config = Object.assign({}, ConfigurationDefaults.physics, config);
 
-        this.InitPhysX(loadedCb);
+        // const a: PhysX.PxCooking = null;
+        this.InitPhysX();
     }
 
 
-    private InitPhysX(loadedCb?: () => void) {
-        fetch(this.config.physxWasmURL).then(response => {
-            response.arrayBuffer()
-            .then(bytes => {
-                PhysX['wasmBinary'] = bytes;
-                // If locateFile is used it loads the wasm 3 times
-                // PhysX['locateFile'] = (s) => {
-                //     return this.config.physxWasmURL
-                // };
-                PhysX()
-                .then(ret => {
-                    this.physx = ret;
-                    // Setup
-                    // TODO: Dunno why PxTopLevelFunctions doesnt work without .prototype
-                    // @ts-ignore
-                    const version = PhysX.PxTopLevelFunctions.prototype.PHYSICS_VERSION;
-                    const defaultErrorCallback = new PhysX.PxDefaultErrorCallback()
-                    const allocator = new PhysX.PxDefaultAllocator();
-                    const tolerance = new PhysX.PxTolerancesScale();
-                    // @ts-ignore
-                    const foundation = PhysX.PxTopLevelFunctions.prototype.CreateFoundation(
-                        version,
-                        allocator,
-                        defaultErrorCallback
-                    )
+    private InitPhysX() {
+        PhysXLoader(this.config.physxWasmURL).then(response => {
+            this.physx = response as any;
+            // Setup
+            // TODO: Dunno why PxTopLevelFunctions doesnt work without .prototype
+            // @ts-ignore
+            const version = PhysX.PxTopLevelFunctions.prototype.PHYSICS_VERSION;
+            const defaultErrorCallback = new PhysX.PxDefaultErrorCallback()
+            const allocator = new PhysX.PxDefaultAllocator();
+            const tolerance = new PhysX.PxTolerancesScale();
+            // @ts-ignore
+            const foundation = PhysX.PxTopLevelFunctions.prototype.CreateFoundation(
+                version,
+                allocator,
+                defaultErrorCallback
+            )
 
-                    let pvdPvd: PhysX.PxPvd = null;
-                    if (this.config.debug) {
-                        console.warn(`⚠️ Make sure Profile/Debug PhysX build is used.`);
+            let pvdPvd: PhysX.PxPvd = null;
+            if (this.config.debug) {
+                console.warn(`⚠️ Make sure Profile/Debug PhysX build is used.`);
+            
+                // @ts-ignore
+                pvdPvd = PhysX.PxTopLevelFunctions.prototype.CreatePvd(foundation);
+                const pvdTransport = this.createPhysXDebugger(this.config.debugHost, this.config.debugPort);
+
+                // @ts-ignore
+                pvdPvd.connect(pvdTransport, new PhysX.PxPvdInstrumentationFlags(PhysX._emscripten_enum_PxPvdInstrumentationFlagEnum_eDEBUG()));
+            }
+
+            // @ts-ignore
+            const physics: PhysX.PxPhysics = PhysX.PxTopLevelFunctions.prototype.CreatePhysics(
+                version,
+                foundation,
+                tolerance,
+                pvdPvd
+            )
+
+            const cookingParamas = new PhysX.PxCookingParams(tolerance);
+
+            if (this.config.performanceCooking) {
+                // @ts-ignore
+                const flags = new PhysX.PxMeshPreprocessingFlags(PhysX.eDISABLE_CLEAN_MESH | PhysX.eDISABLE_ACTIVE_EDGES_PRECOMPUTE);
+                cookingParamas.meshPreprocessParams = flags;
+                // @ts-ignore
+                cookingParamas.midphaseDesc.mBVH33Desc.meshCookingHint = PhysX.eCOOKING_PERFORMANCE; 
+            }
+            // @ts-ignore
+            const cooking = PhysX.PxTopLevelFunctions.prototype.CreateCooking(version, foundation, cookingParamas);
+
+            // @ts-ignore
+            PhysX.PxTopLevelFunctions.prototype.InitExtensions(physics);
+
+            const sceneDesc = new PhysX.PxSceneDesc(tolerance);
+            sceneDesc.gravity = new PhysX.PxVec3(this.config.gravity.x, this.config.gravity.y, this.config.gravity.z);
+            // @ts-ignore
+            sceneDesc.cpuDispatcher = PhysX.PxTopLevelFunctions.prototype.DefaultCpuDispatcherCreate(0);
+            // @ts-ignore
+            sceneDesc.filterShader = PhysX.PxTopLevelFunctions.prototype.DefaultFilterShader();
+
+            sceneDesc.kineKineFilteringMode = 0;
+            sceneDesc.staticKineFilteringMode = 0;
+
+            // @ts-ignore
+            sceneDesc.solverType = PhysX.ePGS;
+
+            // @ts-ignore
+            // sceneDesc.broadPhaseType = PhysX.eABP;
+
+            // @ts-ignore
+            sceneDesc.flags = new PhysX.PxSceneFlags(PhysX.eENABLE_PCM)
+
+            // @ts-ignore
+            const sceneFlags = new PhysX.PxSceneFlags(PhysX.ENABLE_CCD);
+            const physicsScene: PhysX.PxScene = physics.createScene(sceneDesc);
+
+            this.physxPhysics = physics;
+            this.physxScene = physicsScene;
+            this.physxCooking = cooking;
+
+            this.physicsRaycast = new PhysicsRaycast(this.physxScene);
+
+            this.OnLoaded();
+        })
+    //     fetch(this.config.physxWasmURL).then(response => {
+    //         response.arrayBuffer()
+    //         .then(bytes => {
+    //             PhysX['wasmBinary'] = bytes;
+    //             // If locateFile is used it loads the wasm 3 times
+    //             // PhysX['locateFile'] = (s) => {
+    //             //     return this.config.physxWasmURL
+    //             // };
+    //             PhysX()
+    //             .then(ret => {
+    //                 console.log(PhysX)
+    //                 return;
+    //                 this.physx = ret;
+    //                 // Setup
+    //                 // TODO: Dunno why PxTopLevelFunctions doesnt work without .prototype
+    //                 // @ts-ignore
+    //                 const version = PhysX.PxTopLevelFunctions.prototype.PHYSICS_VERSION;
+    //                 const defaultErrorCallback = new PhysX.PxDefaultErrorCallback()
+    //                 const allocator = new PhysX.PxDefaultAllocator();
+    //                 const tolerance = new PhysX.PxTolerancesScale();
+    //                 // @ts-ignore
+    //                 const foundation = PhysX.PxTopLevelFunctions.prototype.CreateFoundation(
+    //                     version,
+    //                     allocator,
+    //                     defaultErrorCallback
+    //                 )
+
+    //                 let pvdPvd: PhysX.PxPvd = null;
+    //                 if (this.config.debug) {
+    //                     console.warn(`⚠️ Make sure Profile/Debug PhysX build is used.`);
                     
-                        // @ts-ignore
-                        pvdPvd = PhysX.PxTopLevelFunctions.prototype.CreatePvd(foundation);
-                        const pvdTransport = this.createPhysXDebugger(this.config.debugHost, this.config.debugPort);
+    //                     // @ts-ignore
+    //                     pvdPvd = PhysX.PxTopLevelFunctions.prototype.CreatePvd(foundation);
+    //                     const pvdTransport = this.createPhysXDebugger(this.config.debugHost, this.config.debugPort);
 
-                        // @ts-ignore
-                        pvdPvd.connect(pvdTransport, new PhysX.PxPvdInstrumentationFlags(PhysX._emscripten_enum_PxPvdInstrumentationFlagEnum_eDEBUG()));
-                    }
+    //                     // @ts-ignore
+    //                     pvdPvd.connect(pvdTransport, new PhysX.PxPvdInstrumentationFlags(PhysX._emscripten_enum_PxPvdInstrumentationFlagEnum_eDEBUG()));
+    //                 }
 
-                    // @ts-ignore
-                    const physics: PhysX.PxPhysics = PhysX.PxTopLevelFunctions.prototype.CreatePhysics(
-                        version,
-                        foundation,
-                        tolerance,
-                        pvdPvd
-                    )
+    //                 // @ts-ignore
+    //                 const physics: PhysX.PxPhysics = PhysX.PxTopLevelFunctions.prototype.CreatePhysics(
+    //                     version,
+    //                     foundation,
+    //                     tolerance,
+    //                     pvdPvd
+    //                 )
 
-                    const cookingParamas = new PhysX.PxCookingParams(tolerance);
+    //                 const cookingParamas = new PhysX.PxCookingParams(tolerance);
 
-                    if (this.config.performanceCooking) {
-                        // @ts-ignore
-                        const flags = new PhysX.PxMeshPreprocessingFlags(PhysX.eDISABLE_CLEAN_MESH | PhysX.eDISABLE_ACTIVE_EDGES_PRECOMPUTE);
-                        cookingParamas.meshPreprocessParams = flags;
-                        // @ts-ignore
-                        cookingParamas.midphaseDesc.mBVH33Desc.meshCookingHint = PhysX.eCOOKING_PERFORMANCE; 
-                    }
-                    // @ts-ignore
-                    const cooking = PhysX.PxTopLevelFunctions.prototype.CreateCooking(version, foundation, cookingParamas);
+    //                 if (this.config.performanceCooking) {
+    //                     // @ts-ignore
+    //                     const flags = new PhysX.PxMeshPreprocessingFlags(PhysX.eDISABLE_CLEAN_MESH | PhysX.eDISABLE_ACTIVE_EDGES_PRECOMPUTE);
+    //                     cookingParamas.meshPreprocessParams = flags;
+    //                     // @ts-ignore
+    //                     cookingParamas.midphaseDesc.mBVH33Desc.meshCookingHint = PhysX.eCOOKING_PERFORMANCE; 
+    //                 }
+    //                 // @ts-ignore
+    //                 const cooking = PhysX.PxTopLevelFunctions.prototype.CreateCooking(version, foundation, cookingParamas);
 
-                    // @ts-ignore
-                    PhysX.PxTopLevelFunctions.prototype.InitExtensions(physics);
+    //                 // @ts-ignore
+    //                 PhysX.PxTopLevelFunctions.prototype.InitExtensions(physics);
 
-                    const sceneDesc = new PhysX.PxSceneDesc(tolerance);
-                    sceneDesc.gravity = new PhysX.PxVec3(this.config.gravity.x, this.config.gravity.y, this.config.gravity.z);
-                    // @ts-ignore
-                    sceneDesc.cpuDispatcher = PhysX.PxTopLevelFunctions.prototype.DefaultCpuDispatcherCreate(0);
-                    // @ts-ignore
-                    sceneDesc.filterShader = PhysX.PxTopLevelFunctions.prototype.DefaultFilterShader();
+    //                 const sceneDesc = new PhysX.PxSceneDesc(tolerance);
+    //                 sceneDesc.gravity = new PhysX.PxVec3(this.config.gravity.x, this.config.gravity.y, this.config.gravity.z);
+    //                 // @ts-ignore
+    //                 sceneDesc.cpuDispatcher = PhysX.PxTopLevelFunctions.prototype.DefaultCpuDispatcherCreate(0);
+    //                 // @ts-ignore
+    //                 sceneDesc.filterShader = PhysX.PxTopLevelFunctions.prototype.DefaultFilterShader();
 
-                    sceneDesc.kineKineFilteringMode = 0;
-                    sceneDesc.staticKineFilteringMode = 0;
+    //                 sceneDesc.kineKineFilteringMode = 0;
+    //                 sceneDesc.staticKineFilteringMode = 0;
 
-                    // @ts-ignore
-                    sceneDesc.solverType = PhysX.ePGS;
+    //                 // @ts-ignore
+    //                 sceneDesc.solverType = PhysX.ePGS;
 
-                    // @ts-ignore
-                    // sceneDesc.broadPhaseType = PhysX.eABP;
+    //                 // @ts-ignore
+    //                 // sceneDesc.broadPhaseType = PhysX.eABP;
 
-                    // @ts-ignore
-                    sceneDesc.flags = new PhysX.PxSceneFlags(PhysX.eENABLE_PCM)
+    //                 // @ts-ignore
+    //                 sceneDesc.flags = new PhysX.PxSceneFlags(PhysX.eENABLE_PCM)
 
-                    // @ts-ignore
-                    const sceneFlags = new PhysX.PxSceneFlags(PhysX.ENABLE_CCD);
-                    const physicsScene: PhysX.PxScene = physics.createScene(sceneDesc);
+    //                 // @ts-ignore
+    //                 const sceneFlags = new PhysX.PxSceneFlags(PhysX.ENABLE_CCD);
+    //                 const physicsScene: PhysX.PxScene = physics.createScene(sceneDesc);
 
-                    this.physxPhysics = physics;
-                    this.physxScene = physicsScene;
-                    this.physxCooking = cooking;
+    //                 this.physxPhysics = physics;
+    //                 this.physxScene = physicsScene;
+    //                 this.physxCooking = cooking;
 
-                    this.physicsRaycast = new PhysicsRaycast(this.physxScene);
+    //                 this.physicsRaycast = new PhysicsRaycast(this.physxScene);
 
-                    if (loadedCb) {
-                        loadedCb();
-                    }
-                })
-            });
-        });
+    //                 this.OnLoaded();
+    //             })
+    //         });
+    //     });
     }
 
     private createPhysXDebugger(host: string = 'localhost', port: number = 8090): PhysX.JSPvdTransport {
@@ -199,7 +280,7 @@ export class Physics {
 
     public Update() {
         if(this.physxScene) {
-            this.scene.FixedUpdate();
+            this.FixedUpdate();
             this.physxScene.simulate(1/this.config.framerate, null);
             this.physxScene.fetchResults();
         }
