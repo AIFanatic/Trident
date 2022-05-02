@@ -24,8 +24,6 @@ export class SceneSerializer {
         const classname = component.constructor.name;
         const type = typeof component[property];
         
-        // console.log(classname, type, component, property, component[property] instanceof Geometry)
-
         if (type == "function") return null;
 
         const customType = SerializableTypesInstance.get(classname, property);
@@ -70,7 +68,6 @@ export class SceneSerializer {
             };
         }
         else if (component[property] instanceof BufferGeometry || component[property] instanceof Geometry) {
-            console.log("BUFFER")
             return {
                 name: property,
                 value: "BufferGeometry",
@@ -129,9 +126,6 @@ export class SceneSerializer {
     }
 
     static SerializeTransform(transform: Transform): ITransformSerialized {
-        if (transform.parent) {
-            console.warn(transform.gameObject.name, transform.parent.gameObject.name)
-        };
         return {
             uuid: transform.uuid,
             position: {x: transform.position.x, y: transform.position.y, z: transform.position.z},
@@ -160,7 +154,11 @@ export class SceneSerializer {
     }
     
     static Serialize(scene: Scene): ISceneSerialized {
-        let sceneSerialized: ISceneSerialized = {gameObjects: []};
+        let sceneSerialized: ISceneSerialized = {
+            name: scene.name,
+            gameObjects: [],
+            file: scene.userData ? scene.userData : null
+        };
 
         for (let gameObject of scene.gameObjects) {
             if (gameObject.hideFlags == HideFlags.HideAndDontSave) continue;

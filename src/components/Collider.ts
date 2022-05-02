@@ -6,6 +6,9 @@ import { PhysX } from "trident-physx-js-webidl";
 import { PhysicsRigidbody } from "../physics/PhysicsRigidbody";
 import { LayerMask } from "../enums/LayerMask";
 import { Mathf } from "../utils/Mathf";
+import { GameObject } from "./GameObject";
+import { Transform } from "./Transform";
+import { Runtime } from "../Runtime";
 
 /**
  * Base collider class that all colliders extend.
@@ -48,6 +51,13 @@ export class Collider extends Component {
     //     this.body.ammo.setCollisionFlags(_isTrigger == true ? BodyType.STATIC_GHOST : BodyType.KINEMATIC);
     // }
 
+    constructor(gameObject: GameObject, transform: Transform) {
+        super(gameObject, transform);
+
+        this.physxPhysics = Runtime.Physics.GetPhysics();
+        this.physxScene = gameObject.scene.physicsScene;
+    }
+
     public Start() {
         if (this.body) {
             this.HandleTransformChanges();
@@ -80,10 +90,12 @@ export class Collider extends Component {
     }
 
     public Destroy() {
-        if (this.body && this.body.rigidbody) {
+        if (this.body && this.body.rigidbody && this.body.shape && this.body.rigidbody.getNbShapes() > 0) {
             this.body.rigidbody.detachShape(this.body.shape);
             this.body.shape.release();
             this.body.rigidbody.release();
+            this.body.rigidbody = null;
+            this.body.shape = null;
             this.body = null;
         }
         this.gameObject.RemoveComponent(this);

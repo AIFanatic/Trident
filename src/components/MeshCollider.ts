@@ -11,6 +11,7 @@ import { BufferGeometry } from 'three';
 import { ConvertGeometryToIndexed, TrianglesModeEnum } from '../utils/ConvertGeometryToIndexed';
 import { GameObject } from './GameObject';
 import { Transform } from './Transform';
+import { Runtime } from '../Runtime';
 
 /**
  * Adds a static mesh collider to the GameObject.
@@ -27,9 +28,7 @@ export class MeshCollider extends Collider {
     constructor(gameObject: GameObject, transform: Transform) {
         super(gameObject, transform);
         
-        this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-        this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
-        this.physxCooking = this.gameObject.scene.GetPhysics().GetCooking();
+        this.physxCooking = Runtime.Physics.GetCooking();
 
         this.CreateCollider();
     }

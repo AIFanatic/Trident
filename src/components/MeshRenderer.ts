@@ -1,7 +1,6 @@
 import { MeshFilter } from "./MeshFilter";
 
 import { Component } from "./Component";
-import { Renderer } from "../Renderer";
 import { BufferGeometry, Geometry, Material, Mesh, MeshStandardMaterial } from "three";
 import { SerializeField } from "../utils/SerializeField";
 import { GameObject, Transform } from ".";
@@ -14,20 +13,8 @@ export const DefaultMaterial = new MeshStandardMaterial();
  * @noInheritDoc
  */
 export class MeshRenderer extends Component {
-    private renderer: Renderer;
     private _material: Material = DefaultMaterial;
-    private _mesh: Mesh;
-
-    public get mesh(): Mesh {
-        return this._mesh;
-    }
-
-    public set mesh(mesh: Mesh) {
-        this.RemoveMesh();
-        this.AddMeshToViewer(mesh);
-
-        this._mesh = mesh;
-    }
+    public mesh: Mesh;
 
     @SerializeField
     public get material(): Material {
@@ -37,8 +24,8 @@ export class MeshRenderer extends Component {
     public set material(material: Material) {
         this._material = material;
         
-        if (this._mesh) {
-            this._mesh.material = this._material;
+        if (this.mesh) {
+            this.mesh.material = this._material;
         }
     }
 
@@ -68,7 +55,6 @@ export class MeshRenderer extends Component {
 
     constructor(gameObject: GameObject, transform: Transform) {
         super(gameObject, transform);
-        this.renderer = this.gameObject.scene.GetRenderer();
         this.AddMeshFromMeshFilter();
     }
 
@@ -77,11 +63,11 @@ export class MeshRenderer extends Component {
     }
 
     private RemoveMesh() {
-        if (this._mesh) {
-            this.transform.group.remove(this._mesh);
-            this.renderer.scene.remove(this._mesh);
+        if (this.mesh) {
+            this.transform.group.remove(this.mesh);
+            this.gameObject.scene.rendererScene.remove(this.mesh);
 
-            const material = this._mesh.material as any;
+            const material = this.mesh.material as any;
 
             if (material && material.dispose) {
                 material.dispose();
@@ -93,18 +79,19 @@ export class MeshRenderer extends Component {
         const geometry: Geometry | BufferGeometry = this.GetMeshFromMeshFilter();
 
         if (geometry) {
-            this.mesh = new Mesh(geometry, this.material);
-            this.mesh.userData.transform = this.transform;
+            
+            const mesh = new Mesh(geometry, this.material);
+
+            this.RemoveMesh();
+            if (mesh.name == "") {  
+                mesh.name = mesh.uuid;
+            }
+            this.transform.group.add(mesh);
+    
+            this.mesh = mesh;
             this.castShadows = true;
             this.receiveShadows = true;
         }
-    }
-
-    private AddMeshToViewer(mesh: Mesh) {
-        if (mesh.name == "") {  
-            mesh.name = mesh.uuid;
-        }
-        this.transform.group.add(mesh);
     }
 
     private GetMeshFromMeshFilter(): Geometry | BufferGeometry {

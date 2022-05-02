@@ -5,6 +5,7 @@ import { PhysicsUtils } from "../physics/PhysicsUtils";
 import { PhysicsBody } from "../physics/PhysicsBody";
 import { GameObject } from "./GameObject";
 import { Transform } from "./Transform";
+import { Runtime } from "../Runtime";
 
 /**
  * Adds a static sphere collider to the GameObject.
@@ -15,9 +16,6 @@ export class SphereCollider extends Collider {
     constructor(gameObject: GameObject, transform: Transform) {
         super(gameObject, transform);
         
-        this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-        this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
-
         const shape = PhysicsShape.CreateSphere(this.physxPhysics, this.transform.localScale.length());
         const geometry = shape.getGeometry().sphere();
         const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);

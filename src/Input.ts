@@ -1,9 +1,9 @@
 import { Vector2 } from "three";
+import { Runtime } from ".";
 import { KeyCodes } from "./enums/KeyCodes";
-import { Scene } from "./Scene";
 
 export class Input {
-    private scene: Scene;
+    private runtime: Runtime;
     private keysDown: any = {};
     private keysUp: any = {};
 
@@ -13,14 +13,14 @@ export class Input {
 
     private previousTouch: Vector2 = new Vector2();
 
-    constructor(scene: Scene) {
-        this.scene = scene;
-        const canvas = this.scene.GetRenderer().renderer.domElement;
+    constructor(runtime: Runtime) {
+        this.runtime = runtime;
+        // const canvas = Runtime.Renderer.renderer.domElement;
 
-        document.onkeydown = (event) => { this.OnKeyDown(event) };
-        document.onkeyup = (event) => { this.OnKeyUp(event) };
-        canvas.onmousemove = (event) => { this.OnMouseMove(event) };
-        canvas.ontouchmove = (event) => { this.OnTouchMove(event); };
+        // document.onkeydown = (event) => { this.OnKeyDown(event) };
+        // document.onkeyup = (event) => { this.OnKeyUp(event) };
+        // canvas.onmousemove = (event) => { this.OnMouseMove(event) };
+        // canvas.ontouchmove = (event) => { this.OnTouchMove(event); };
     }
 
     private OnTouchMove(event: TouchEvent) {
@@ -41,13 +41,13 @@ export class Input {
 
     private OnKeyDown(event: KeyboardEvent) {
         if (this.keysDown[event.keyCode] === undefined) {
-            this.keysDown[event.keyCode] = this.scene.currentFrame;  
+            this.keysDown[event.keyCode] = this.runtime.currentFrame;  
             delete this.keysUp[event.keyCode];  
         }
     }
 
     private OnKeyUp(event: KeyboardEvent) {
-        this.keysUp[event.keyCode] = this.scene.currentFrame;
+        this.keysUp[event.keyCode] = this.runtime.currentFrame;
         delete this.keysDown[event.keyCode];
     }
     
@@ -60,7 +60,7 @@ export class Input {
      * @returns {boolean} - True if the key was pressed down during this frame.
      */
     public GetKeyDown(key: KeyCodes): boolean {
-        if (this.keysDown[key] == this.scene.currentFrame)  {
+        if (this.keysDown[key] == this.runtime.currentFrame)  {
             return true;
         }
         return false;
@@ -75,7 +75,7 @@ export class Input {
      * @returns {boolean} - True if the key was released during this frame.
      */
     public GetKeyUp(key: KeyCodes): boolean {
-        if (this.keysUp[key] == this.scene.currentFrame)  {
+        if (this.keysUp[key] == this.runtime.currentFrame)  {
             return true;
         }
         return false;

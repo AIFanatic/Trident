@@ -5,6 +5,7 @@ import { PhysicsUtils } from "../physics/PhysicsUtils";
 import { PhysicsBody } from "../physics/PhysicsBody";
 import { GameObject } from "./GameObject";
 import { Transform } from "./Transform";
+import { Runtime } from "../Runtime";
 
 /**
  * Adds a static plane collider to the GameObject.
@@ -17,13 +18,10 @@ export class PlaneCollider extends Collider {
     constructor(gameObject: GameObject, transform: Transform) {
         super(gameObject, transform);
         
-        const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-        const physxScene = this.gameObject.scene.GetPhysics().GetScene();
-
-        const shape = PhysicsShape.CreatePlane(physxPhysics, this.transform.localScale.x, this.transform.localScale.z);
+        const shape = PhysicsShape.CreatePlane(this.physxPhysics, this.transform.localScale.x, this.transform.localScale.z);
         const geometry = shape.getGeometry().box();
         const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-        const rigidbody = physxPhysics.createRigidStatic(physxTransform);
+        const rigidbody = this.physxPhysics.createRigidStatic(physxTransform);
 
         const physicsBody: PhysicsBody = {
             rigidbody: rigidbody,
@@ -31,7 +29,7 @@ export class PlaneCollider extends Collider {
             shape: shape
         };
         
-        this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
+        this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
 
         this.gameObject.BroadcastMessage("CreatedCollider", this.body);
     }

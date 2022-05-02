@@ -6,7 +6,6 @@ import { ConfigurationDefaults } from './defaults/ConfigurationDefaults';
 export class Renderer {
     public OnLoaded: () => void = () => {};
 
-    public scene: Scene;
     public renderer: WebGLRenderer;
     private canvas: HTMLCanvasElement;
 
@@ -40,18 +39,13 @@ export class Renderer {
         renderer.setPixelRatio(window.devicePixelRatio * this.config.pixelRatio);
         renderer.shadowMap.enabled = true;
 
-        this.scene = scene;
         this.renderer = renderer;
-
-        // TODO: Clean renderer rendering settings (skybox, fog, ambient, etc)
-        this.ambientLight = new AmbientLight(0xffffff, 0.3);
-        this.scene.add(this.ambientLight);
 
         this.fpsInterval = 1000 / this.config.targetFrameRate;
         this.then = Date.now();
         this.startTime = this.then;
 
-        new ResizeObserver(() => {this.OnResize()}).observe(this.renderer.domElement)
+        new ResizeObserver(() => {this.OnResize()}).observe(this.renderer.domElement.parentElement);
 
         // Skip a bit so that initiator can set OnLoaded
         setTimeout(() => {
@@ -59,11 +53,15 @@ export class Renderer {
         }, 50);
     }
 
+    public CreateScene(): Scene {
+        return new Scene();
+    }
+
     private OnResize() {
         this.renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
     }
 
-    public Tick(camera: PerspectiveCamera) {
+    public Tick(scene: Scene, camera: PerspectiveCamera) {
         // calc elapsed time since last loop
 
         this.now = Date.now();
@@ -78,7 +76,7 @@ export class Renderer {
 
             // draw stuff here
             if (camera) {
-                this.renderer.render(this.scene, camera);
+                this.renderer.render(scene, camera);
             }
 
             // TESTING...Report #seconds since start and achieved fps.

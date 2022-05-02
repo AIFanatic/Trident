@@ -25,7 +25,6 @@ export class GameObject implements IComponent {
     public classtype: ComponentsEnum = ComponentsEnum.GameObject;
     public name: string;
 
-    public scene: Scene;
     public transform: Transform;
     public components: Component[] = [];
 
@@ -33,9 +32,11 @@ export class GameObject implements IComponent {
 
     public hideFlags: HideFlags = HideFlags.None;
 
+    public readonly scene: Scene;
+
     constructor(scene: Scene) {
         if (!scene) {
-            console.error("Invalid scene provided");
+            console.error("Invalid scene provided.");
             return;
         }
 
@@ -190,35 +191,33 @@ export class GameObject implements IComponent {
         return matches;
     }
 
+    public Tick(): void {
+        this.transform.Tick();
+    }
+
     public FixedUpdate(): void {
-        this.transform.FixedUpdate();
         for(let component of this.components) {
             component.FixedUpdate();
         }
     }
 
     public Update(): void {
-        this.transform.Update();
-
-        if (this.scene.isPlaying) {
-            for(let component of this.components) {
-                if (component.isAwake && component.isStarted) {
-                    component.Update();
-                }
-            }
-        }
-    }
-
-    public LateUpdate(): void {
-        this.transform.LateUpdate();
         for(let component of this.components) {
-            component.LateUpdate();
+            if (component.isAwake && component.isStarted) {
+                component.Update();
+            }
         }
     }
 
     public OnDrawGizmos() {
         for(let component of this.components) {
             component.OnDrawGizmos();
+        }
+    }
+
+    public LateUpdate(): void {
+        for(let component of this.components) {
+            component.LateUpdate();
         }
     }
 

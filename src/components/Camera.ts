@@ -1,5 +1,6 @@
-import { PerspectiveCamera, Vector3, CameraHelper } from "three";
+import { PerspectiveCamera, CameraHelper } from "three";
 import { GameObject, Transform } from ".";
+import { Runtime } from "..";
 import { SerializeField } from "../utils/SerializeField";
 import { Component } from "./Component";
 
@@ -53,9 +54,7 @@ export class Camera extends Component {
         super(gameObject, transform);
         this.transform.group.add(this.camera as any);
 
-        this.gameObject.scene.SetActiveCamera(this);
-
-        const canvasDom = this.gameObject.scene.GetRenderer().renderer.domElement;
+        const canvasDom = Runtime.Renderer.renderer.domElement;
         const resizeObserver = new ResizeObserver(() => {this.OnResize()}).observe(canvasDom);
         this.OnResize();
     }
@@ -65,7 +64,7 @@ export class Camera extends Component {
     }
 
     public OnResize() {
-        const canvas = this.gameObject.scene.GetRenderer().renderer.domElement;
+        const canvas = Runtime.Renderer.renderer.domElement;
         this.camera.aspect = canvas.parentElement.offsetWidth / canvas.parentElement.offsetHeight;
         this.camera.updateProjectionMatrix();
     }

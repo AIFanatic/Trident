@@ -31,5 +31,7 @@ export interface IGameObjectSerialized {
 };
 
 export interface ISceneSerialized {
+    name: string;
     gameObjects: IGameObjectSerialized[];
+    file?: IFile;
 };

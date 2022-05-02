@@ -10,6 +10,7 @@ import { UUID } from '../utils/UUID';
 import { Mathf } from '../utils/Mathf';
 import { Object3DExtended } from '../utils/Object3DExtended';
 import { SerializeField } from '../utils/SerializeField';
+import { Runtime } from '../Runtime';
 
 /**
  * Every GameObject has a Transform.
@@ -210,7 +211,7 @@ export class Transform implements IComponent {
                 this._parent = null;
             }
 
-            this.gameObject.scene.GetRenderer().scene.attach(this.group);
+            this.gameObject.scene.rendererScene.attach(this.group);
 
             return;
         }
@@ -224,9 +225,9 @@ export class Transform implements IComponent {
         this.gameObject = gameObject;
 
         this.group = new Object3DExtended();
-        this.group["transform"] = this;
+        this.group.userData = this;
 
-        this.gameObject.scene.GetRenderer().scene.add(this.group);
+        this.gameObject.scene.rendererScene.add(this.group);
     }
 
     public Translate(translation: Vector3) {
@@ -255,15 +256,6 @@ export class Transform implements IComponent {
     }
 
     public Tick() {
-    }
-
-    public FixedUpdate() {
-    }
-
-    public LateUpdate() {
-    }
-
-    public Update() {
         this.up.copy(TransformDefaults.VectorUp);
         this.up.applyQuaternion(this.rotation);
 
@@ -274,18 +266,12 @@ export class Transform implements IComponent {
         this.forward.applyQuaternion(this.rotation);
     }
 
-    public Start() {
-    }
-
-    public Stop() {
-    }
-
     public Destroy() {
         if (this.parent) {
             this.parent.group.remove(this.group);
         }
         else {
-            this.gameObject.scene.GetRenderer().scene.remove(this.group);
+            this.gameObject.scene.rendererScene.remove(this.group);
         }
 
         this.group.clear();

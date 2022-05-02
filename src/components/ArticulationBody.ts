@@ -1,15 +1,15 @@
 import { PhysX } from "trident-physx-js-webidl";
-import { ArticulationAxis } from "../enums/ArticulationAxis";
-import { ArticulationJointType } from "../enums/ArticulationJointType";
-import { ArticulationDofLock } from "../enums/ArticulationDofLock";
 import { Collider } from "./Collider";
 import { Component } from "./Component";
 import { SerializeField } from "../utils/SerializeField";
 import { GameObject, Transform } from ".";
+import { Runtime } from "../Runtime";
+import { ArticulationJointType, ArticulationMotion } from "..";
+import { ArticulationAxis } from "../enums/ArticulationAxis";
 
 class JointDriver {
     private joint: PhysX.PxArticulationJointReducedCoordinate;
-    private axis: ArticulationAxis;
+    private axis: PhysX.PxArticulationAxisEnum;
 
     private _stiffness = 0;
     private _damping = 0;
@@ -24,7 +24,6 @@ class JointDriver {
 
     public set lowerLimit(lowerLimit: number) {
         this.lowerLimit = lowerLimit;
-        // @ts-ignore
         this.joint.setLimit(this.axis, this.lowerLimit, this.upperLimit);
     }
 
@@ -35,7 +34,6 @@ class JointDriver {
 
     public set upperLimit(upperLimit: number) {
         this._upperLimit = upperLimit;
-        // @ts-ignore
         this.joint.setLimit(this.axis, this.lowerLimit, this.upperLimit);
     }
     
@@ -46,7 +44,6 @@ class JointDriver {
 
     public set stiffness(stiffness: number) {
         this._stiffness = stiffness;
-        // @ts-ignore
         this.joint.setDrive(this.axis, this._stiffness, this._damping, this._forceLimit);
     }
 
@@ -57,7 +54,6 @@ class JointDriver {
 
     public set damping(damping: number) {
         this._damping = damping;
-        // @ts-ignore
         this.joint.setDrive(this.axis, this._stiffness, this._damping, this._forceLimit);
     }
 
@@ -68,33 +64,28 @@ class JointDriver {
 
     public set forceLimit(forceLimit: number) {
         this._forceLimit = forceLimit;
-        // @ts-ignore
         this.joint.setDrive(this.axis, this._stiffness, this._damping, this._forceLimit);
     }
 
     @SerializeField
     public get target(): number {
-        // @ts-ignore
         return this.joint.getDriveTarget(this.axis);
     }
 
     public set target(target: number) {
-        // @ts-ignore
         this.joint.setDriveTarget(this.axis, target);
     }
 
     @SerializeField
     public get targetVelocity(): number {
-        // @ts-ignore
         return this.joint.getDriveVelocity(this.axis);
     }
 
     public set targetVelocity(targetVelocity: number) {
-        // @ts-ignore
         this.joint.setDriveVelocity(this.axis, targetVelocity);
     }
 
-    constructor(joint: PhysX.PxArticulationJointReducedCoordinate, axis: ArticulationAxis) {
+    constructor(joint: PhysX.PxArticulationJointReducedCoordinate, axis: PhysX.PxArticulationAxisEnum) {
         this.joint = joint;
         this.axis = axis;
     }
@@ -125,156 +116,135 @@ export class ArticulationBody extends Component {
     @SerializeField
     public get immovable(): boolean {
         const flags = this.articulation.getArticulationFlags();
-        // @ts-ignore
-        return flags.isSet(PhysX.eFIX_BASE)
+        return flags.isSet(PhysX.PxArticulationFlagEnum.FIX_BASE)
     }
 
     public set immovable(immovable: boolean) {
-        // @ts-ignore
-        this.articulation.setArticulationFlag(PhysX.eFIX_BASE, immovable);
+        this.articulation.setArticulationFlag(PhysX.PxArticulationFlagEnum.FIX_BASE, immovable);
     }
 
     @SerializeField(ArticulationJointType)
-    public get jointType(): ArticulationJointType {
-        // @ts-ignore
+    public get jointType(): ArticulationJointType | PhysX.PxArticulationJointTypeEnum {
         return this.inboundJoint.getJointType();
     }
 
-    public set jointType(jointType: ArticulationJointType) {
+    public set jointType(jointType: ArticulationJointType | PhysX.PxArticulationJointTypeEnum) {
         if (this.inboundJoint) {
-            if (jointType == ArticulationJointType.FixedJoint) {
-                // @ts-ignore
-                this.inboundJoint.setJointType(ArticulationJointType.FixedJoint);
+            if (jointType == PhysX.PxArticulationJointTypeEnum.FIX) {
+                this.inboundJoint.setJointType(PhysX.PxArticulationJointTypeEnum.FIX);
             }
-            else if (jointType == ArticulationJointType.PrismaticJoint) {
-                // @ts-ignore
-                this.inboundJoint.setJointType(ArticulationJointType.PrismaticJoint);
-                this.xDrive = new JointDriver(this.inboundJoint, ArticulationAxis.X);
-                this.yDrive = new JointDriver(this.inboundJoint, ArticulationAxis.Y);
-                this.zDrive = new JointDriver(this.inboundJoint, ArticulationAxis.Z);
+            else if (jointType == PhysX.PxArticulationJointTypeEnum.PRISMATIC) {
+                this.inboundJoint.setJointType(PhysX.PxArticulationJointTypeEnum.PRISMATIC);
+                this.xDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.X);
+                this.yDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.Y);
+                this.zDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.Z);
                 
-                this.linearLockX = ArticulationDofLock.FreeMotion;
+                this.linearLockX = PhysX.PxArticulationMotionEnum.FREE;
             }
-            else if (jointType == ArticulationJointType.RevoluteJoint) {
-                // @ts-ignore
-                this.inboundJoint.setJointType(ArticulationJointType.RevoluteJoint);
-                this.xDrive = new JointDriver(this.inboundJoint, ArticulationAxis.SWING1);
+            else if (jointType == PhysX.PxArticulationJointTypeEnum.REVOLUTE) {
+                this.inboundJoint.setJointType(PhysX.PxArticulationJointTypeEnum.REVOLUTE);
+                this.xDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.SWING1);
                 this.yDrive = undefined;
                 this.zDrive = undefined;
                 
-                this.swingZLock = ArticulationDofLock.FreeMotion;
+                this.swingZLock = PhysX.PxArticulationMotionEnum.FREE;
             }
-            else if (jointType == ArticulationJointType.SphericalJoint) {
-                // @ts-ignore
-                this.inboundJoint.setJointType(ArticulationJointType.SphericalJoint);
-                this.xDrive = new JointDriver(this.inboundJoint, ArticulationAxis.TWIST);
-                this.yDrive = new JointDriver(this.inboundJoint, ArticulationAxis.SWING2);
-                this.zDrive = new JointDriver(this.inboundJoint, ArticulationAxis.SWING1);
+            else if (jointType == PhysX.PxArticulationJointTypeEnum.SPHERICAL) {
+                this.inboundJoint.setJointType(PhysX.PxArticulationJointTypeEnum.SPHERICAL);
+                this.xDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.TWIST);
+                this.yDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.SWING2);
+                this.zDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.SWING1);
                 
-                this.twistLock = ArticulationDofLock.FreeMotion;
-                this.swingYLock = ArticulationDofLock.FreeMotion;
-                this.swingZLock = ArticulationDofLock.FreeMotion;
+                this.twistLock = PhysX.PxArticulationMotionEnum.FREE;
+                this.swingYLock = PhysX.PxArticulationMotionEnum.FREE;
+                this.swingZLock = PhysX.PxArticulationMotionEnum.FREE;
             }
         }
     }
 
     // TOOD: Why does the articulation need to be re-added? May have to do with existing forces
-    private setLinearLock(axis: ArticulationAxis, motion: ArticulationDofLock) {
+    private setLinearLock(axis: PhysX.PxArticulationAxisEnum, motion: PhysX.PxArticulationMotionEnum) {
         // A Prismatic joint can only have one active axis and the articulation needs to be re-added to the scene.
-        if (this.jointType == ArticulationJointType.PrismaticJoint) {
+        if (this.jointType == PhysX.PxArticulationJointTypeEnum.PRISMATIC) {
             this.physicsScene.removeArticulation(this.articulation);
-            // @ts-ignore
-            this.inboundJoint.setMotion(ArticulationAxis.X, ArticulationDofLock.LockedMotion);
-            // @ts-ignore
-            this.inboundJoint.setMotion(ArticulationAxis.Y, ArticulationDofLock.LockedMotion);
-            // @ts-ignore
-            this.inboundJoint.setMotion(ArticulationAxis.Z, ArticulationDofLock.LockedMotion);
-            // @ts-ignore
+            this.inboundJoint.setMotion(PhysX.PxArticulationAxisEnum.X, PhysX.PxArticulationMotionEnum.LOCKED);
+            this.inboundJoint.setMotion(PhysX.PxArticulationAxisEnum.Y, PhysX.PxArticulationMotionEnum.LOCKED);
+            this.inboundJoint.setMotion(PhysX.PxArticulationAxisEnum.Z, PhysX.PxArticulationMotionEnum.LOCKED);
             this.inboundJoint.setMotion(axis, motion);
 
             this.physicsScene.addArticulation(this.articulation);
             return;
         }
 
-        // @ts-ignore
         this.inboundJoint.setMotion(axis, motion);
     }
 
-    @SerializeField(ArticulationDofLock)
-    public get linearLockX(): ArticulationDofLock {
-        // @ts-ignore
-        return this.inboundJoint.getMotion(ArticulationAxis.X);
+    @SerializeField(ArticulationMotion)
+    public get linearLockX(): ArticulationMotion | PhysX.PxArticulationMotionEnum {
+        return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.X);
     }
 
-    public set linearLockX(linearLockX: ArticulationDofLock) {
-        this.setLinearLock(ArticulationAxis.X, linearLockX);
+    public set linearLockX(linearLockX: ArticulationMotion | PhysX.PxArticulationMotionEnum) {
+        this.setLinearLock(PhysX.PxArticulationAxisEnum.X, linearLockX as PhysX.PxArticulationMotionEnum);
     }
 
-    @SerializeField(ArticulationDofLock)
-    public get linearLockY(): ArticulationDofLock {
-        // @ts-ignore
-        return this.inboundJoint.getMotion(ArticulationAxis.Y);
+    @SerializeField(ArticulationMotion)
+    public get linearLockY(): ArticulationMotion | PhysX.PxArticulationMotionEnum {
+        return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.Y);
     }
 
-    public set linearLockY(linearLockY: ArticulationDofLock) {
-        this.setLinearLock(ArticulationAxis.Y, linearLockY);
+    public set linearLockY(linearLockY: ArticulationMotion | PhysX.PxArticulationMotionEnum) {
+        this.setLinearLock(PhysX.PxArticulationAxisEnum.Y, linearLockY as PhysX.PxArticulationMotionEnum);
     }
 
-    @SerializeField(ArticulationDofLock)
-    public get linearLockZ(): ArticulationDofLock {
-        // @ts-ignore
-        return this.inboundJoint.getMotion(ArticulationAxis.Z);
+    @SerializeField(ArticulationMotion)
+    public get linearLockZ(): ArticulationMotion | PhysX.PxArticulationMotionEnum {
+        return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.Z);
     }
 
-    public set linearLockZ(linearLockZ: ArticulationDofLock) {
-        this.setLinearLock(ArticulationAxis.Z, linearLockZ);
+    public set linearLockZ(linearLockZ: ArticulationMotion | PhysX.PxArticulationMotionEnum) {
+        this.setLinearLock(PhysX.PxArticulationAxisEnum.Z, linearLockZ as PhysX.PxArticulationMotionEnum);
     }
 
     // TOOD: Why does the articulation need to be re-added? May have to do with existing forces
-    private setSwingLock(axis: ArticulationAxis, motion: ArticulationDofLock) {
+    private setSwingLock(axis: ArticulationAxis | PhysX.PxArticulationAxisEnum, motion: ArticulationMotion | PhysX.PxArticulationMotionEnum) {
         // A Spherical joint needs to be re-added to the scene.
-        if (this.jointType == ArticulationJointType.SphericalJoint) {
+        if (this.jointType == PhysX.PxArticulationJointTypeEnum.SPHERICAL) {
             this.physicsScene.removeArticulation(this.articulation);
-            // @ts-ignore
-            this.inboundJoint.setMotion(axis, motion);
+            this.inboundJoint.setMotion(axis as PhysX.PxArticulationAxisEnum, motion as PhysX.PxArticulationMotionEnum);
 
             this.physicsScene.addArticulation(this.articulation);
             return;
         }
 
-        // @ts-ignore
-        this.inboundJoint.setMotion(axis, motion);
+        this.inboundJoint.setMotion(axis as PhysX.PxArticulationAxisEnum, motion as PhysX.PxArticulationMotionEnum);
     }
 
-    @SerializeField(ArticulationDofLock)
-    public get swingYLock(): ArticulationDofLock {
-        // @ts-ignore
-        return this.inboundJoint.getMotion(ArticulationAxis.SWING2);
+    @SerializeField(ArticulationMotion)
+    public get swingYLock(): ArticulationMotion | PhysX.PxArticulationMotionEnum {
+        return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.SWING2);
     }
 
-    public set swingYLock(swingYLock: ArticulationDofLock) {
-        this.setSwingLock(ArticulationAxis.SWING2, swingYLock);
+    public set swingYLock(swingYLock: ArticulationMotion | PhysX.PxArticulationMotionEnum) {
+        this.setSwingLock(PhysX.PxArticulationAxisEnum.SWING2, swingYLock);
     }
 
-    @SerializeField(ArticulationDofLock)
-    public get swingZLock(): ArticulationDofLock {
-        // @ts-ignore
-        return this.inboundJoint.getMotion(ArticulationAxis.SWING1);
+    @SerializeField(ArticulationMotion)
+    public get swingZLock(): ArticulationMotion | PhysX.PxArticulationMotionEnum {
+        return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.SWING1);
     }
 
-    public set swingZLock(swingZLock: ArticulationDofLock) {
-        // @ts-ignore
-        this.setSwingLock(ArticulationAxis.SWING1, swingZLock);
+    public set swingZLock(swingZLock: ArticulationMotion | PhysX.PxArticulationMotionEnum) {
+        this.setSwingLock(PhysX.PxArticulationAxisEnum.SWING1, swingZLock);
     }
 
-    @SerializeField(ArticulationDofLock)
-    public get twistLock(): ArticulationDofLock {
-        // @ts-ignore
-        return this.inboundJoint.getMotion(ArticulationAxis.TWIST);
+    @SerializeField(ArticulationMotion)
+    public get twistLock(): ArticulationMotion | PhysX.PxArticulationMotionEnum {
+        return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.TWIST);
     }
 
-    public set twistLock(twistLock: ArticulationDofLock) {
-        this.setSwingLock(ArticulationAxis.TWIST, twistLock);
+    public set twistLock(twistLock: ArticulationMotion | PhysX.PxArticulationMotionEnum) {
+        this.setSwingLock(PhysX.PxArticulationAxisEnum.TWIST, twistLock);
     }
 
     @SerializeField
@@ -312,8 +282,8 @@ export class ArticulationBody extends Component {
     constructor(gameObject: GameObject, transform: Transform) {
         super(gameObject, transform);
         
-        this.physics = this.gameObject.scene.GetPhysics().GetPhysics();
-        this.physicsScene = this.gameObject.scene.GetPhysics().GetScene();
+        this.physics = Runtime.Physics.GetPhysics();
+        this.physicsScene = this.gameObject.scene.physicsScene;
 
         const parentArticulation: ArticulationBody = this.transform.parent ? this.transform.parent.gameObject.GetComponent(ArticulationBody) : null;
 
@@ -344,7 +314,7 @@ export class ArticulationBody extends Component {
             
             this.inboundJoint.setParentPose(localPose);
 
-            this.jointType = ArticulationJointType.FixedJoint;
+            this.jointType = PhysX.PxArticulationJointTypeEnum.FIX;
 
             this.physicsScene.addArticulation(this.articulation);
         }
@@ -386,13 +356,13 @@ export class ArticulationBody extends Component {
 
         // Prismatic joints move the position while spherical and revolute joints move the rotation.
         // Positions are updated by THREE since they are grouped/parented.
-        if (this.inboundJoint && this.jointType && this.jointType == ArticulationJointType.PrismaticJoint) {
+        if (this.inboundJoint && this.jointType && this.jointType == PhysX.PxArticulationJointTypeEnum.PRISMATIC) {
             this.transform.position.set(pose.p.x, pose.p.y, pose.p.z);
         }
         this.transform.rotation.set(pose.q.x, pose.q.y, pose.q.z, pose.q.w);
 
         // No lazy articulations
-        if (this.articulation) {
+        if (this.articulation.isSleeping()) {
             this.articulation.wakeUp();
         }
     }

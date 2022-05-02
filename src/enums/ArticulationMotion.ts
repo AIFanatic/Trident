@@ -1,4 +1,4 @@
-export enum ArticulationDofLock {
+export enum ArticulationMotion {
     LockedMotion,
     LimitedMotion,
     FreeMotion

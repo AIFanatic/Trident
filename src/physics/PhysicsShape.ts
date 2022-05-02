@@ -8,12 +8,7 @@ export class PhysicsShape {
     }
 
     public static DefaultFlags(): PhysX.PxShapeFlags {
-        return new PhysX.PxShapeFlags(
-            // @ts-ignore
-            PhysX._emscripten_enum_PxShapeFlagEnum_eSCENE_QUERY_SHAPE() | 
-            // @ts-ignore
-            PhysX._emscripten_enum_PxShapeFlagEnum_eSIMULATION_SHAPE()
-        );
+        return new PhysX.PxShapeFlags(PhysX.PxShapeFlagEnum.SCENE_QUERY_SHAPE | PhysX.PxShapeFlagEnum.SIMULATION_SHAPE);
     }
 
     public static DefaultFilterData(): PhysX.PxFilterData {
@@ -70,8 +65,7 @@ export class PhysicsShape {
 
     public static CreateConvex(physics: PhysX.PxPhysics, cooking: PhysX.PxCooking, vertices: Float32Array): PhysX.PxShape {
         const desc = new PhysX.PxConvexMeshDesc();
-        // @ts-ignore
-        desc.flags = new PhysX.PxConvexFlags(PhysX._emscripten_enum_PxConvexFlagEnum_eCOMPUTE_CONVEX());
+        desc.flags = new PhysX.PxConvexFlags(PhysX.PxConvexFlagEnum.COMPUTE_CONVEX);
         desc.points.count = vertices.length / 3;
         desc.points.stride = 12;
         desc.points.data = this.putIntoPhysXHeap(PhysX.HEAPF32, vertices);

@@ -21,10 +21,6 @@ export interface IRendererConfiguration {
     physicallyCorrectLights?: boolean;
 }
 
-export interface IApplicationConfiguration {
-    rootPath: string;
-}
-
 export interface IConfiguration {
     renderer: IRendererConfiguration;
     physics: IPhysicsConfiguration;
