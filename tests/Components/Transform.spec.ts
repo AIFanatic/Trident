@@ -1,17 +1,19 @@
-import { Scene, GameObject, PrimitiveType } from '../../src/';
+import { Runtime, Scene, GameObject } from '../../src/';
+import { CreateCamera, CreateRuntime, CreateScene, WaitForTick } from '../helper';
+
 import { Transform } from '../../src/components';
-import { CreateCamera, CreateScene, CreateSunlight, WaitForTick } from '../helper';
 
 describe("Transform", function() {
+    let runtime: Runtime;
     let scene: Scene;
 
     beforeEach(async () => {
-        return await new Promise((resolve, reject) => {
-            CreateScene({}, (_scene) => {
-                scene = _scene;
+        return await new Promise<Scene>((resolve, reject) => {
+            CreateRuntime({}).then(_runtime => {
+                runtime = _runtime;
+                scene = CreateScene();
                 resolve(scene);
             })
-
         })
     });
 
@@ -30,9 +32,9 @@ describe("Transform", function() {
         child.transform.parent = parent.transform;
         child.transform.position.y = 2;
 
-        await WaitForTick(scene, 2);
+        await WaitForTick(runtime, 2);
         parent.transform.position.x = 1;
-        await WaitForTick(scene, 2);
+        await WaitForTick(runtime, 2);
         expect(child.transform.position.x).toBe(1);
     });
 

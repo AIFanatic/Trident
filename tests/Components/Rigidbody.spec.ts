@@ -1,17 +1,19 @@
-import { Scene, GameObject } from '../../src/';
+import { Runtime, Scene, GameObject } from '../../src/';
+import { CreateRuntime, CreateScene } from '../helper';
+
 import { BoxCollider, Rigidbody } from '../../src/components';
-import { CreateScene } from '../helper';
 
 describe("Rigidbody", function() {
+    let runtime: Runtime;
     let scene: Scene;
 
     beforeEach(async () => {
-        return await new Promise((resolve, reject) => {
-            CreateScene({}, (_scene) => {
-                scene = _scene;
+        return await new Promise<Scene>((resolve, reject) => {
+            CreateRuntime({}).then(_runtime => {
+                runtime = _runtime;
+                scene = CreateScene();
                 resolve(scene);
             })
-
         })
     });
 
