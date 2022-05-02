@@ -12,54 +12,42 @@ The scene that holds all GameObjects.
 
 ### Properties
 
-- [currentFrame](Scene.md#currentframe)
 - [gameObjects](Scene.md#gameobjects)
-- [gizmosEnabled](Scene.md#gizmosenabled)
-- [isPlaying](Scene.md#isplaying)
+- [name](Scene.md#name)
+- [physicsScene](Scene.md#physicsscene)
+- [rendererScene](Scene.md#rendererscene)
+- [userData](Scene.md#userdata)
 
 ### Methods
 
 - [AddGameObject](Scene.md#addgameobject)
 - [FixedUpdate](Scene.md#fixedupdate)
 - [GetActiveCamera](Scene.md#getactivecamera)
-- [GetInput](Scene.md#getinput)
-- [GetPhysics](Scene.md#getphysics)
-- [GetRenderer](Scene.md#getrenderer)
-- [Load](Scene.md#load)
-- [Play](Scene.md#play)
+- [LateUpdate](Scene.md#lateupdate)
+- [OnDrawGizmos](Scene.md#ondrawgizmos)
 - [RemoveGameObject](Scene.md#removegameobject)
+- [Render](Scene.md#render)
 - [SetActiveCamera](Scene.md#setactivecamera)
-- [Stop](Scene.md#stop)
 - [Update](Scene.md#update)
+- [UpdatePhysics](Scene.md#updatephysics)
 
 ## Constructors
 
 ### constructor
 
-• **new Scene**(`renderer`, `physics`)
+• **new Scene**(`name`)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `renderer` | [`Renderer`](Renderer.md) | Initialized Renderer instance. |
-| `physics` | [`Physics`](Physics.md) | Initialized Physics instance. |
+| Name | Type |
+| :------ | :------ |
+| `name` | `string` |
 
 #### Defined in
 
-[Scene.ts:34](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L34)
+[Scene.ts:23](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L23)
 
 ## Properties
-
-### currentFrame
-
-• **currentFrame**: `number` = `0`
-
-#### Defined in
-
-[Scene.ts:25](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L25)
-
-___
 
 ### gameObjects
 
@@ -67,27 +55,47 @@ ___
 
 #### Defined in
 
-[Scene.ts:28](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L28)
+[Scene.ts:14](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L14)
 
 ___
 
-### gizmosEnabled
+### name
 
-• **gizmosEnabled**: `boolean` = `false`
+• **name**: `string`
 
 #### Defined in
 
-[Scene.ts:26](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L26)
+[Scene.ts:13](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L13)
 
 ___
 
-### isPlaying
+### physicsScene
 
-• **isPlaying**: `boolean` = `false`
+• `Readonly` **physicsScene**: `PxScene`
 
 #### Defined in
 
-[Scene.ts:24](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L24)
+[Scene.ts:21](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L21)
+
+___
+
+### rendererScene
+
+• `Readonly` **rendererScene**: `Scene`
+
+#### Defined in
+
+[Scene.ts:20](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L20)
+
+___
+
+### userData
+
+• **userData**: `any`
+
+#### Defined in
+
+[Scene.ts:18](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L18)
 
 ## Methods
 
@@ -109,7 +117,7 @@ Adds a new GameObject to the scene.
 
 #### Defined in
 
-[Scene.ts:91](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L91)
+[Scene.ts:38](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L38)
 
 ___
 
@@ -126,7 +134,7 @@ Calls FixedUpdate on all attached components.
 
 #### Defined in
 
-[Scene.ts:120](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L120)
+[Scene.ts:85](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L85)
 
 ___
 
@@ -145,86 +153,13 @@ The main camera is the camera that the client is viewing the scene from.
 
 #### Defined in
 
-[Scene.ts:74](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L74)
+[Scene.ts:68](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L68)
 
 ___
 
-### GetInput
+### LateUpdate
 
-▸ **GetInput**(): [`Input`](Input.md)
-
-Get the input for this scene.
-
-#### Returns
-
-[`Input`](Input.md)
-
-- Input attached to this scene.
-
-#### Defined in
-
-[Scene.ts:65](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L65)
-
-___
-
-### GetPhysics
-
-▸ **GetPhysics**(): [`Physics`](Physics.md)
-
-Get the physics for this scene.
-
-#### Returns
-
-[`Physics`](Physics.md)
-
-- Physics attached to this scene.
-
-#### Defined in
-
-[Scene.ts:57](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L57)
-
-___
-
-### GetRenderer
-
-▸ **GetRenderer**(): [`Renderer`](Renderer.md)
-
-Get the renderer for this scene.
-
-#### Returns
-
-[`Renderer`](Renderer.md)
-
-Renderer attached to this scene.
-
-#### Defined in
-
-[Scene.ts:49](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L49)
-
-___
-
-### Load
-
-▸ **Load**(): `boolean`
-
-Load the Scene.
-Instanciates all Components
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-[Scene.ts:163](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L163)
-
-___
-
-### Play
-
-▸ **Play**(): `void`
-
-Called when the scene starts.
+▸ **LateUpdate**(): `void`
 
 #### Returns
 
@@ -232,7 +167,21 @@ Called when the scene starts.
 
 #### Defined in
 
-[Scene.ts:170](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L170)
+[Scene.ts:97](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L97)
+
+___
+
+### OnDrawGizmos
+
+▸ **OnDrawGizmos**(): `void`
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[Scene.ts:103](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L103)
 
 ___
 
@@ -256,7 +205,21 @@ Remove a GameObject from the scene
 
 #### Defined in
 
-[Scene.ts:100](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L100)
+[Scene.ts:47](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L47)
+
+___
+
+### Render
+
+▸ **Render**(): `void`
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[Scene.ts:113](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L113)
 
 ___
 
@@ -279,24 +242,7 @@ The main camera is the camera that the client is viewing the scene from.
 
 #### Defined in
 
-[Scene.ts:83](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L83)
-
-___
-
-### Stop
-
-▸ **Stop**(): `void`
-
-Called when the scene stops.
-Calls Stop on all attached components.
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[Scene.ts:178](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L178)
+[Scene.ts:77](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L77)
 
 ___
 
@@ -304,8 +250,19 @@ ___
 
 ▸ **Update**(): `void`
 
-Called before every Renderer update.
-Calls Update on all attached components.
+#### Returns
+
+`void`
+
+#### Defined in
+
+[Scene.ts:91](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L91)
+
+___
+
+### UpdatePhysics
+
+▸ **UpdatePhysics**(): `void`
 
 #### Returns
 
@@ -313,4 +270,4 @@ Calls Update on all attached components.
 
 #### Defined in
 
-[Scene.ts:130](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Scene.ts#L130)
+[Scene.ts:109](https://github.com/AIFanatic/Trident/blob/44c915e/src/Scene.ts#L109)

@@ -12,10 +12,10 @@
 
 - [OnLoaded](Renderer.md#onloaded)
 - [renderer](Renderer.md#renderer)
-- [scene](Renderer.md#scene)
 
 ### Methods
 
+- [CreateScene](Renderer.md#createscene)
 - [Tick](Renderer.md#tick)
 
 ## Constructors
@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[Renderer.ts:26](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Renderer.ts#L26)
+[Renderer.ts:25](https://github.com/AIFanatic/Trident/blob/44c915e/src/Renderer.ts#L25)
 
 ## Properties
 
@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[Renderer.ts:7](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Renderer.ts#L7)
+[Renderer.ts:7](https://github.com/AIFanatic/Trident/blob/44c915e/src/Renderer.ts#L7)
 
 ___
 
@@ -60,28 +60,33 @@ ___
 
 #### Defined in
 
-[Renderer.ts:10](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Renderer.ts#L10)
-
-___
-
-### scene
-
-• **scene**: `Scene`
-
-#### Defined in
-
-[Renderer.ts:9](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Renderer.ts#L9)
+[Renderer.ts:9](https://github.com/AIFanatic/Trident/blob/44c915e/src/Renderer.ts#L9)
 
 ## Methods
 
+### CreateScene
+
+▸ **CreateScene**(): `Scene`
+
+#### Returns
+
+`Scene`
+
+#### Defined in
+
+[Renderer.ts:56](https://github.com/AIFanatic/Trident/blob/44c915e/src/Renderer.ts#L56)
+
+___
+
 ### Tick
 
-▸ **Tick**(`camera`): `void`
+▸ **Tick**(`scene`, `camera`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
+| `scene` | `Scene` |
 | `camera` | `PerspectiveCamera` |
 
 #### Returns
@@ -90,4 +95,4 @@ ___
 
 #### Defined in
 
-[Renderer.ts:66](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Renderer.ts#L66)
+[Renderer.ts:64](https://github.com/AIFanatic/Trident/blob/44c915e/src/Renderer.ts#L64)

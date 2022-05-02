@@ -41,7 +41,7 @@
 
 #### Defined in
 
-[serializer/SceneSerializer.ts:162](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/serializer/SceneSerializer.ts#L162)
+[serializer/SceneSerializer.ts:156](https://github.com/AIFanatic/Trident/blob/44c915e/src/serializer/SceneSerializer.ts#L156)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 #### Defined in
 
-[serializer/SceneSerializer.ts:93](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/serializer/SceneSerializer.ts#L93)
+[serializer/SceneSerializer.ts:90](https://github.com/AIFanatic/Trident/blob/44c915e/src/serializer/SceneSerializer.ts#L90)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[serializer/SceneSerializer.ts:23](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/serializer/SceneSerializer.ts#L23)
+[serializer/SceneSerializer.ts:23](https://github.com/AIFanatic/Trident/blob/44c915e/src/serializer/SceneSerializer.ts#L23)
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 #### Defined in
 
-[serializer/SceneSerializer.ts:144](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/serializer/SceneSerializer.ts#L144)
+[serializer/SceneSerializer.ts:138](https://github.com/AIFanatic/Trident/blob/44c915e/src/serializer/SceneSerializer.ts#L138)
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 #### Defined in
 
-[serializer/SceneSerializer.ts:131](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/serializer/SceneSerializer.ts#L131)
+[serializer/SceneSerializer.ts:128](https://github.com/AIFanatic/Trident/blob/44c915e/src/serializer/SceneSerializer.ts#L128)
 
 ___
 
@@ -143,4 +143,4 @@ ___
 
 #### Defined in
 
-[serializer/SceneSerializer.ts:13](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/serializer/SceneSerializer.ts#L13)
+[serializer/SceneSerializer.ts:13](https://github.com/AIFanatic/Trident/blob/44c915e/src/serializer/SceneSerializer.ts#L13)

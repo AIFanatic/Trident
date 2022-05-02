@@ -10,8 +10,6 @@ import { PhysicsUtils } from "../physics/PhysicsUtils";
 export class SphereCollider extends Collider {
     constructor(gameObject, transform) {
         super(gameObject, transform);
-        this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-        this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
         const shape = PhysicsShape.CreateSphere(this.physxPhysics, this.transform.localScale.length());
         const geometry = shape.getGeometry().sphere();
         const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);

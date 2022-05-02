@@ -40,8 +40,8 @@ export class Transform {
         this.children = [];
         this.gameObject = gameObject;
         this.group = new Object3DExtended();
-        this.group["transform"] = this;
-        this.gameObject.scene.GetRenderer().scene.add(this.group);
+        this.group.userData = this;
+        this.gameObject.scene.rendererScene.add(this.group);
     }
     /**
     * Get the world position of this transform.
@@ -183,7 +183,7 @@ export class Transform {
                 }
                 this._parent = null;
             }
-            this.gameObject.scene.GetRenderer().scene.attach(this.group);
+            this.gameObject.scene.rendererScene.attach(this.group);
             return;
         }
         this._parent = parent;
@@ -212,12 +212,6 @@ export class Transform {
         this.group.position.add(point);
     }
     Tick() {
-    }
-    FixedUpdate() {
-    }
-    LateUpdate() {
-    }
-    Update() {
         this.up.copy(TransformDefaults.VectorUp);
         this.up.applyQuaternion(this.rotation);
         this.right.copy(TransformDefaults.VectorRight);
@@ -225,16 +219,12 @@ export class Transform {
         this.forward.copy(TransformDefaults.VectorForward);
         this.forward.applyQuaternion(this.rotation);
     }
-    Start() {
-    }
-    Stop() {
-    }
     Destroy() {
         if (this.parent) {
             this.parent.group.remove(this.group);
         }
         else {
-            this.gameObject.scene.GetRenderer().scene.remove(this.group);
+            this.gameObject.scene.rendererScene.remove(this.group);
         }
         this.group.clear();
     }

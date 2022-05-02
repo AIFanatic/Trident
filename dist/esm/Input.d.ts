@@ -1,14 +1,14 @@
+import { Runtime } from ".";
 import { KeyCodes } from "./enums/KeyCodes";
-import { Scene } from "./Scene";
 export declare class Input {
-    private scene;
+    private runtime;
     private keysDown;
     private keysUp;
     private mousePosition;
     private horizontalAxis;
     private verticalAxis;
     private previousTouch;
-    constructor(scene: Scene);
+    constructor(runtime: Runtime);
     private OnTouchMove;
     private OnMouseMove;
     private OnKeyDown;

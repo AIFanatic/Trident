@@ -21,7 +21,7 @@ export class GameObject {
         this.layer = LayerMask.LAYER0;
         this.hideFlags = HideFlags.None;
         if (!scene) {
-            console.error("Invalid scene provided");
+            console.error("Invalid scene provided.");
             return;
         }
         this.scene = scene;
@@ -155,31 +155,29 @@ export class GameObject {
         }
         return matches;
     }
+    Tick() {
+        this.transform.Tick();
+    }
     FixedUpdate() {
-        this.transform.FixedUpdate();
         for (let component of this.components) {
             component.FixedUpdate();
         }
     }
     Update() {
-        this.transform.Update();
-        if (this.scene.isPlaying) {
-            for (let component of this.components) {
-                if (component.isAwake && component.isStarted) {
-                    component.Update();
-                }
-            }
-        }
-    }
-    LateUpdate() {
-        this.transform.LateUpdate();
         for (let component of this.components) {
-            component.LateUpdate();
+            if (component.isAwake && component.isStarted) {
+                component.Update();
+            }
         }
     }
     OnDrawGizmos() {
         for (let component of this.components) {
             component.OnDrawGizmos();
+        }
+    }
+    LateUpdate() {
+        for (let component of this.components) {
+            component.LateUpdate();
         }
     }
     /**

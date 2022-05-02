@@ -14,6 +14,7 @@
 - [LoadComponentAsync](Resources.md#loadcomponentasync)
 - [LoadMaterialAsync](Resources.md#loadmaterialasync)
 - [LoadMeshAsync](Resources.md#loadmeshasync)
+- [LoadSceneAsync](Resources.md#loadsceneasync)
 
 ## Constructors
 
@@ -25,7 +26,7 @@
 
 ### LoadAsync
 
-▸ `Static` **LoadAsync**(`path`): `Promise`<[`Component`](Components.Component.md) \| `BufferGeometry` \| `Material`\>
+▸ `Static` **LoadAsync**(`path`): `Promise`<`ResourcesCacheEntry`\>
 
 #### Parameters
 
@@ -35,11 +36,11 @@
 
 #### Returns
 
-`Promise`<[`Component`](Components.Component.md) \| `BufferGeometry` \| `Material`\>
+`Promise`<`ResourcesCacheEntry`\>
 
 #### Defined in
 
-[resources/Resources.ts:101](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/resources/Resources.ts#L101)
+[resources/Resources.ts:128](https://github.com/AIFanatic/Trident/blob/44c915e/src/resources/Resources.ts#L128)
 
 ___
 
@@ -60,7 +61,7 @@ ___
 
 #### Defined in
 
-[resources/Resources.ts:80](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/resources/Resources.ts#L80)
+[resources/Resources.ts:84](https://github.com/AIFanatic/Trident/blob/44c915e/src/resources/Resources.ts#L84)
 
 ___
 
@@ -81,7 +82,7 @@ ___
 
 #### Defined in
 
-[resources/Resources.ts:51](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/resources/Resources.ts#L51)
+[resources/Resources.ts:55](https://github.com/AIFanatic/Trident/blob/44c915e/src/resources/Resources.ts#L55)
 
 ___
 
@@ -103,4 +104,25 @@ ___
 
 #### Defined in
 
-[resources/Resources.ts:15](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/resources/Resources.ts#L15)
+[resources/Resources.ts:19](https://github.com/AIFanatic/Trident/blob/44c915e/src/resources/Resources.ts#L19)
+
+___
+
+### LoadSceneAsync
+
+▸ `Static` **LoadSceneAsync**(`path`, `fileId`): `Promise`<[`Scene`](Scene.md)\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `path` | `string` |
+| `fileId` | `string` |
+
+#### Returns
+
+`Promise`<[`Scene`](Scene.md)\>
+
+#### Defined in
+
+[resources/Resources.ts:105](https://github.com/AIFanatic/Trident/blob/44c915e/src/resources/Resources.ts#L105)

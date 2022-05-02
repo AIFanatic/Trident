@@ -1,6 +1,12 @@
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
+var __export = (target, all) => {
+  __markAsModule(target);
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
 var __decorateClass = (decorators, target, key, kind) => {
   var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc(target, key) : target;
   for (var i = decorators.length - 1, decorator; i >= 0; i--)
@@ -22695,6 +22701,49 @@ Object.assign(StereoCamera.prototype, {
     this.cameraR.matrixWorld.copy(camera.matrixWorld).multiply(_eyeRight);
   }
 });
+var Clock = class {
+  constructor(autoStart) {
+    this.autoStart = autoStart !== void 0 ? autoStart : true;
+    this.startTime = 0;
+    this.oldTime = 0;
+    this.elapsedTime = 0;
+    this.running = false;
+  }
+  start() {
+    this.startTime = now();
+    this.oldTime = this.startTime;
+    this.elapsedTime = 0;
+    this.running = true;
+  }
+  stop() {
+    this.getElapsedTime();
+    this.running = false;
+    this.autoStart = false;
+  }
+  getElapsedTime() {
+    this.getDelta();
+    return this.elapsedTime;
+  }
+  getDelta() {
+    let diff = 0;
+    if (this.autoStart && !this.running) {
+      this.start();
+      return 0;
+    }
+    if (this.running) {
+      const newTime = now();
+      diff = (newTime - this.oldTime) / 1e3;
+      this.oldTime = newTime;
+      this.elapsedTime += diff;
+    }
+    return diff;
+  }
+};
+__name(Clock, "Clock");
+function now() {
+  return (typeof performance === "undefined" ? Date : performance).now();
+}
+__name(now, "now");
 var Audio = class extends Object3D {
   constructor(listener) {
     super();
@@ -23691,15 +23740,15 @@ var AnimationAction = class {
     return this.warp(this._effectiveTimeScale, 0, duration);
   }
   warp(startTimeScale, endTimeScale, duration) {
-    const mixer = this._mixer, now = mixer.time, timeScale = this.timeScale;
+    const mixer = this._mixer, now2 = mixer.time, timeScale = this.timeScale;
     let interpolant = this._timeScaleInterpolant;
     if (interpolant === null) {
       interpolant = mixer._lendControlInterpolant();
       this._timeScaleInterpolant = interpolant;
     }
     const times = interpolant.parameterPositions, values = interpolant.sampleValues;
-    times[0] = now;
-    times[1] = now + duration;
+    times[0] = now2;
+    times[1] = now2 + duration;
     values[0] = startTimeScale / timeScale;
     values[1] = endTimeScale / timeScale;
     return this;
@@ -23902,16 +23951,16 @@ var AnimationAction = class {
     }
   }
   _scheduleFading(duration, weightNow, weightThen) {
-    const mixer = this._mixer, now = mixer.time;
+    const mixer = this._mixer, now2 = mixer.time;
     let interpolant = this._weightInterpolant;
     if (interpolant === null) {
       interpolant = mixer._lendControlInterpolant();
       this._weightInterpolant = interpolant;
     }
     const times = interpolant.parameterPositions, values = interpolant.sampleValues;
-    times[0] = now;
+    times[0] = now2;
     values[0] = weightNow;
-    times[1] = now + duration;
+    times[1] = now2 + duration;
     values[1] = weightThen;
     return this;
   }
@@ -26163,6 +26212,106 @@ if (typeof __THREE_DEVTOOLS__ !== "undefined") {
   } }));
 }
 
+// src/Input.ts
+var Input = class {
+  constructor(runtime) {
+    this.keysDown = {};
+    this.keysUp = {};
+    this.mousePosition = new Vector2();
+    this.horizontalAxis = 0;
+    this.verticalAxis = 0;
+    this.previousTouch = new Vector2();
+    this.runtime = runtime;
+  }
+  OnTouchMove(event) {
+    event.preventDefault();
+    this.mousePosition.x = event.touches[0].clientX;
+    this.mousePosition.y = event.touches[0].clientY;
+    this.horizontalAxis = Math.round(this.mousePosition.x - this.previousTouch.x);
+    this.verticalAxis = Math.round(this.mousePosition.y - this.previousTouch.y);
+    this.previousTouch.set(this.mousePosition.x, this.mousePosition.y);
+  }
+  OnMouseMove(event) {
+    this.mousePosition.x = event.clientX;
+    this.mousePosition.y = event.clientY;
+    this.horizontalAxis = event.movementX;
+    this.verticalAxis = event.movementY;
+  }
+  OnKeyDown(event) {
+    if (this.keysDown[event.keyCode] === void 0) {
+      this.keysDown[event.keyCode] = this.runtime.currentFrame;
+      delete this.keysUp[event.keyCode];
+    }
+  }
+  OnKeyUp(event) {
+    this.keysUp[event.keyCode] = this.runtime.currentFrame;
+    delete this.keysDown[event.keyCode];
+  }
+  GetKeyDown(key) {
+    if (this.keysDown[key] == this.runtime.currentFrame) {
+      return true;
+    }
+    return false;
+  }
+  GetKeyUp(key) {
+    if (this.keysUp[key] == this.runtime.currentFrame) {
+      return true;
+    }
+    return false;
+  }
+  GetKey(key) {
+    if (this.keysDown[key] !== void 0) {
+      return true;
+    }
+    return false;
+  }
+  GetAxis(axisName) {
+    if (axisName == "Horizontal") {
+      return this.horizontalAxis;
+    } else if (axisName == "Vertical") {
+      return this.verticalAxis;
+    }
+  }
+  Tick() {
+  }
+};
+__name(Input, "Input");
+
+// src/InstantiationPool.ts
+var _InstantiationPool = class {
+  constructor() {
+    this.pendingAwakes = [];
+    this.pendingStarts = [];
+  }
+  add(component) {
+    this.pendingAwakes.push(component);
+    this.pendingStarts.push(component);
+  }
+  Load() {
+    for (let i = this.pendingAwakes.length; i > 0; i--) {
+      const component = this.pendingAwakes.pop();
+      component.Awake();
+      component.isAwake = true;
+    }
+    if (this.pendingAwakes.length > 0) {
+      this.Load();
+      return;
+    }
+    for (let i = this.pendingStarts.length; i > 0; i--) {
+      const component = this.pendingStarts.pop();
+      component.Start();
+      component.isStarted = true;
+      if (this.pendingAwakes.length != 0) {
+        this.Load();
+        break;
+      }
+    }
+    return true;
+  }
+};
+__name(_InstantiationPool, "_InstantiationPool");
+var InstantiationPool = new _InstantiationPool();
+
 // src/defaults/TransformDefaults.ts
 var TransformDefaults = class {
 };
@@ -26384,8 +26533,8 @@ var Transform = class {
     this.children = [];
     this.gameObject = gameObject;
     this.group = new Object3DExtended();
-    this.group["transform"] = this;
-    this.gameObject.scene.GetRenderer().scene.add(this.group);
+    this.group.userData = this;
+    this.gameObject.scene.rendererScene.add(this.group);
   }
   get position() {
     return this.group.worldPosition;
@@ -26450,7 +26599,7 @@ var Transform = class {
         }
         this._parent = null;
       }
-      this.gameObject.scene.GetRenderer().scene.attach(this.group);
+      this.gameObject.scene.rendererScene.attach(this.group);
       return;
     }
     this._parent = parent;
@@ -26471,12 +26620,6 @@ var Transform = class {
     this.group.position.add(point);
   }
   Tick() {
-  }
-  FixedUpdate() {
-  }
-  LateUpdate() {
-  }
-  Update() {
     this.up.copy(TransformDefaults.VectorUp);
     this.up.applyQuaternion(this.rotation);
     this.right.copy(TransformDefaults.VectorRight);
@@ -26484,15 +26627,11 @@ var Transform = class {
     this.forward.copy(TransformDefaults.VectorForward);
     this.forward.applyQuaternion(this.rotation);
   }
-  Start() {
-  }
-  Stop() {
-  }
   Destroy() {
     if (this.parent) {
       this.parent.group.remove(this.group);
     } else {
-      this.gameObject.scene.GetRenderer().scene.remove(this.group);
+      this.gameObject.scene.rendererScene.remove(this.group);
     }
     this.group.clear();
   }
@@ -26525,13 +26664,40 @@ var LayerMask;
 
 // src/enums/PrimitiveType.ts
 var PrimitiveType;
-(function(PrimitiveType3) {
-  PrimitiveType3[PrimitiveType3["Cube"] = 0] = "Cube";
-  PrimitiveType3[PrimitiveType3["Capsule"] = 1] = "Capsule";
-  PrimitiveType3[PrimitiveType3["Plane"] = 2] = "Plane";
-  PrimitiveType3[PrimitiveType3["Sphere"] = 3] = "Sphere";
-  PrimitiveType3[PrimitiveType3["Cylinder"] = 4] = "Cylinder";
+(function(PrimitiveType2) {
+  PrimitiveType2[PrimitiveType2["Cube"] = 0] = "Cube";
+  PrimitiveType2[PrimitiveType2["Capsule"] = 1] = "Capsule";
+  PrimitiveType2[PrimitiveType2["Plane"] = 2] = "Plane";
+  PrimitiveType2[PrimitiveType2["Sphere"] = 3] = "Sphere";
+  PrimitiveType2[PrimitiveType2["Cylinder"] = 4] = "Cylinder";
 })(PrimitiveType || (PrimitiveType = {}));
+
+// src/components/index.ts
+var components_exports = {};
+__export(components_exports, {
+  Animation: () => Animation,
+  AreaLight: () => AreaLight,
+  ArticulationBody: () => ArticulationBody,
+  BoxCollider: () => BoxCollider,
+  Camera: () => Camera2,
+  CapsuleCollider: () => CapsuleCollider,
+  Component: () => Component,
+  DefaultMaterial: () => DefaultMaterial,
+  DirectionalLight: () => DirectionalLight2,
+  GameObject: () => GameObject6,
+  Gizmo: () => Gizmo,
+  LineRenderer: () => LineRenderer,
+  MeshCollider: () => MeshCollider,
+  MeshFilter: () => MeshFilter,
+  MeshRenderer: () => MeshRenderer,
+  PlaneCollider: () => PlaneCollider,
+  PointLight: () => PointLight2,
+  ProjectionTypes: () => ProjectionTypes,
+  Rigidbody: () => Rigidbody,
+  SphereCollider: () => SphereCollider,
+  SpotLight: () => SpotLight2,
+  Transform: () => Transform
+});
 
 // src/enums/HideFlags.ts
 var HideFlags;
@@ -26589,8 +26755,7 @@ var Camera2 = class extends Component {
     super(gameObject, transform);
     this.camera = new PerspectiveCamera(60, 1, 0.1, 1e3);
     this.transform.group.add(this.camera);
-    this.gameObject.scene.SetActiveCamera(this);
-    const canvasDom = this.gameObject.scene.GetRenderer().renderer.domElement;
+    const canvasDom = Runtime.Renderer.renderer.domElement;
     const resizeObserver = new ResizeObserver(() => {
       this.OnResize();
     }).observe(canvasDom);
@@ -26621,7 +26786,7 @@ var Camera2 = class extends Component {
     return this.camera;
   }
   OnResize() {
-    const canvas = this.gameObject.scene.GetRenderer().renderer.domElement;
+    const canvas = Runtime.Renderer.renderer.domElement;
     this.camera.aspect = canvas.parentElement.offsetWidth / canvas.parentElement.offsetHeight;
     this.camera.updateProjectionMatrix();
   }
@@ -26679,24 +26844,15 @@ var MeshRenderer = class extends Component {
   constructor(gameObject, transform) {
     super(gameObject, transform);
     this._material = DefaultMaterial;
-    this.renderer = this.gameObject.scene.GetRenderer();
     this.AddMeshFromMeshFilter();
-  }
-  get mesh() {
-    return this._mesh;
-  }
-  set mesh(mesh) {
-    this.RemoveMesh();
-    this.AddMeshToViewer(mesh);
-    this._mesh = mesh;
   }
   get material() {
     return this._material;
   }
   set material(material) {
     this._material = material;
-    if (this._mesh) {
-      this._mesh.material = this._material;
+    if (this.mesh) {
+      this.mesh.material = this._material;
     }
   }
   get castShadows() {
@@ -26721,10 +26877,10 @@ var MeshRenderer = class extends Component {
     this.AddMeshFromMeshFilter();
   }
   RemoveMesh() {
-    if (this._mesh) {
-      this.transform.group.remove(this._mesh);
-      this.renderer.scene.remove(this._mesh);
-      const material = this._mesh.material;
+    if (this.mesh) {
+      this.transform.group.remove(this.mesh);
+      this.gameObject.scene.rendererScene.remove(this.mesh);
+      const material = this.mesh.material;
       if (material && material.dispose) {
         material.dispose();
       }
@@ -26733,17 +26889,16 @@ var MeshRenderer = class extends Component {
   AddMeshFromMeshFilter() {
     const geometry = this.GetMeshFromMeshFilter();
     if (geometry) {
-      this.mesh = new Mesh(geometry, this.material);
-      this.mesh.userData.transform = this.transform;
+      const mesh = new Mesh(geometry, this.material);
+      this.RemoveMesh();
+      if (mesh.name == "") {
+        mesh.name = mesh.uuid;
+      }
+      this.transform.group.add(mesh);
+      this.mesh = mesh;
       this.castShadows = true;
       this.receiveShadows = true;
     }
-  }
-  AddMeshToViewer(mesh) {
-    if (mesh.name == "") {
-      mesh.name = mesh.uuid;
-    }
-    this.transform.group.add(mesh);
   }
   GetMeshFromMeshFilter() {
     const meshFilter = this.gameObject.GetComponent(MeshFilter);
@@ -60816,6 +60971,21 @@ var PhysXModule = (() => {
 })();
 var trident_physx_js_webidl_wasm_default = PhysXModule;
 var PhysX = trident_physx_js_webidl_wasm_default;
+function FixEnums(PhysX2) {
+  const enums = Object.keys(PhysX2).filter((key) => {
+    return key.includes("_emscripten_enum_");
+  }).map((enumString) => {
+    const split = enumString.split("_emscripten_enum_")[1].split("();")[0].split("_e");
+    return { enumName: split[0], entryName: split[1], emscript: enumString };
+  });
+  for (const enumEntry of enums) {
+    if (!PhysX2[enumEntry.enumName]) {
+      PhysX2[enumEntry.enumName] = {};
+    }
+    PhysX2[enumEntry.enumName][enumEntry.entryName] = PhysX2[enumEntry.emscript]();
+  }
+}
+__name(FixEnums, "FixEnums");
 function PhysXLoader(wasmLocation) {
   return new Promise((resolve, reject) => {
     fetch(wasmLocation).then((response) => {
@@ -60825,6 +60995,7 @@ function PhysXLoader(wasmLocation) {
         };
         trident_physx_js_webidl_wasm_default(PhysXModuleClone).then((instance) => {
           PhysX = instance;
+          FixEnums(PhysX);
           resolve(PhysX);
         }).catch((error) => {
           reject(error);
@@ -60839,12 +61010,14 @@ __name(PhysXLoader, "PhysXLoader");
 
 // src/components/Collider.ts
 var Collider = class extends Component {
-  constructor() {
-    super(...arguments);
+  constructor(gameObject, transform) {
+    super(gameObject, transform);
     this.position = new Vector3();
     this.rotation = new Quaternion();
     this.localScale = new Vector3();
     this.previousLayer = LayerMask.LAYER0;
+    this.physxPhysics = Runtime.Physics.GetPhysics();
+    this.physxScene = gameObject.scene.physicsScene;
   }
   Start() {
     if (this.body) {
@@ -60876,10 +61049,12 @@ var Collider = class extends Component {
     }
   }
   Destroy() {
-    if (this.body && this.body.rigidbody) {
+    if (this.body && this.body.rigidbody && this.body.shape && this.body.rigidbody.getNbShapes() > 0) {
       this.body.rigidbody.detachShape(this.body.shape);
       this.body.shape.release();
       this.body.rigidbody.release();
+      this.body.rigidbody = null;
+      this.body.shape = null;
       this.body = null;
     }
     this.gameObject.RemoveComponent(this);
@@ -61037,7 +61212,7 @@ var PhysicsShape = class {
     return physics.createMaterial(0.6, 0.6, 0);
   }
   static DefaultFlags() {
-    return new PhysX.PxShapeFlags(PhysX._emscripten_enum_PxShapeFlagEnum_eSCENE_QUERY_SHAPE() | PhysX._emscripten_enum_PxShapeFlagEnum_eSIMULATION_SHAPE());
+    return new PhysX.PxShapeFlags(PhysX.PxShapeFlagEnum.SCENE_QUERY_SHAPE | PhysX.PxShapeFlagEnum.SIMULATION_SHAPE);
   }
   static DefaultFilterData() {
     return new PhysX.PxFilterData(1, 1, 0, 0);
@@ -61078,7 +61253,7 @@ var PhysicsShape = class {
   }
   static CreateConvex(physics, cooking, vertices) {
     const desc = new PhysX.PxConvexMeshDesc();
-    desc.flags = new PhysX.PxConvexFlags(PhysX._emscripten_enum_PxConvexFlagEnum_eCOMPUTE_CONVEX());
+    desc.flags = new PhysX.PxConvexFlags(PhysX.PxConvexFlagEnum.COMPUTE_CONVEX);
     desc.points.count = vertices.length / 3;
     desc.points.stride = 12;
     desc.points.data = this.putIntoPhysXHeap(PhysX.HEAPF32, vertices);
@@ -61152,20 +61327,6 @@ var RigidbodyConstraints;
   RigidbodyConstraints2[RigidbodyConstraints2["FreezeAll"] = 256] = "FreezeAll";
 })(RigidbodyConstraints || (RigidbodyConstraints = {}));
 
-// src/enums/RigidbodyFlags.ts
-var RigidBodyFlags;
-(function(RigidBodyFlags2) {
-  RigidBodyFlags2[RigidBodyFlags2["None"] = 0] = "None";
-  RigidBodyFlags2[RigidBodyFlags2["KINEMATIC"] = 1] = "KINEMATIC";
-  RigidBodyFlags2[RigidBodyFlags2["USE_KINEMATIC_TARGET_FOR_SCENE_QUERIES"] = 2] = "USE_KINEMATIC_TARGET_FOR_SCENE_QUERIES";
-  RigidBodyFlags2[RigidBodyFlags2["ENABLE_CCD"] = 4] = "ENABLE_CCD";
-  RigidBodyFlags2[RigidBodyFlags2["ENABLE_CCD_FRICTION"] = 8] = "ENABLE_CCD_FRICTION";
-  RigidBodyFlags2[RigidBodyFlags2["ENABLE_POSE_INTEGRATION_PREVIEW"] = 16] = "ENABLE_POSE_INTEGRATION_PREVIEW";
-  RigidBodyFlags2[RigidBodyFlags2["ENABLE_SPECULATIVE_CCD"] = 32] = "ENABLE_SPECULATIVE_CCD";
-  RigidBodyFlags2[RigidBodyFlags2["ENABLE_CCD_MAX_CONTACT_IMPULSE"] = 64] = "ENABLE_CCD_MAX_CONTACT_IMPULSE";
-  RigidBodyFlags2[RigidBodyFlags2["RETAIN_ACCELERATIONS"] = 128] = "RETAIN_ACCELERATIONS";
-})(RigidBodyFlags || (RigidBodyFlags = {}));
-
 // src/components/Rigidbody.ts
 var Rigidbody = class extends Component {
   constructor(gameObject, transform) {
@@ -61174,8 +61335,8 @@ var Rigidbody = class extends Component {
     this.rotation = new Quaternion();
     this.localScale = new Vector3();
     this.previousLayer = LayerMask.LAYER0;
-    this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-    this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
+    this.physxPhysics = Runtime.Physics.GetPhysics();
+    this.physxScene = gameObject.scene.physicsScene;
     const collider = this.gameObject.GetComponent(Collider);
     if (collider && collider.body) {
       this.body = collider.body;
@@ -61197,10 +61358,10 @@ var Rigidbody = class extends Component {
   }
   get isKinematic() {
     const flags = this.rigidbody.getRigidBodyFlags();
-    return flags.isSet(RigidBodyFlags.KINEMATIC.valueOf());
+    return flags.isSet(PhysX.PxRigidBodyFlagEnum.KINEMATIC.valueOf());
   }
   set isKinematic(kinematic) {
-    this.rigidbody.setRigidBodyFlag(RigidBodyFlags.KINEMATIC.valueOf(), kinematic);
+    this.rigidbody.setRigidBodyFlag(PhysX.PxRigidBodyFlagEnum.KINEMATIC.valueOf(), kinematic);
   }
   get mass() {
     return this.rigidbody.getMass();
@@ -61310,7 +61471,7 @@ var Rigidbody = class extends Component {
   }
   Destroy() {
     const collider = this.gameObject.GetComponent(Collider);
-    if (collider && collider.body) {
+    if (collider && collider.body && collider.body.rigidbody && collider.body.rigidbody.getNbShapes() > 0) {
       this.body = collider.body;
       this.body.ConvertToStatic();
     }
@@ -61335,8 +61496,6 @@ __decorateClass([
 var BoxCollider = class extends Collider {
   constructor(gameObject, transform) {
     super(gameObject, transform);
-    this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-    this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
     const shape = PhysicsShape.CreateBox(this.physxPhysics, this.transform.localScale);
     const geometry = shape.getGeometry().box();
     const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
@@ -61356,8 +61515,6 @@ __name(BoxCollider, "BoxCollider");
 var SphereCollider = class extends Collider {
   constructor(gameObject, transform) {
     super(gameObject, transform);
-    this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-    this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
     const shape = PhysicsShape.CreateSphere(this.physxPhysics, this.transform.localScale.length());
     const geometry = shape.getGeometry().sphere();
     const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
@@ -61377,18 +61534,16 @@ __name(SphereCollider, "SphereCollider");
 var CapsuleCollider = class extends Collider {
   constructor(gameObject, transform) {
     super(gameObject, transform);
-    const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-    const physxScene = this.gameObject.scene.GetPhysics().GetScene();
-    const shape = PhysicsShape.CreateCapsule(physxPhysics, this.transform.localScale.x, this.transform.localScale.y + 1);
+    const shape = PhysicsShape.CreateCapsule(this.physxPhysics, this.transform.localScale.x, this.transform.localScale.y + 1);
     const geometry = shape.getGeometry().capsule();
     const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-    const rigidbody = physxPhysics.createRigidStatic(physxTransform);
+    const rigidbody = this.physxPhysics.createRigidStatic(physxTransform);
     const physicsBody = {
       rigidbody,
       geometry,
       shape
     };
-    this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
+    this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
     this.gameObject.BroadcastMessage("CreatedCollider", this.body);
   }
 };
@@ -61398,18 +61553,16 @@ __name(CapsuleCollider, "CapsuleCollider");
 var PlaneCollider = class extends Collider {
   constructor(gameObject, transform) {
     super(gameObject, transform);
-    const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-    const physxScene = this.gameObject.scene.GetPhysics().GetScene();
-    const shape = PhysicsShape.CreatePlane(physxPhysics, this.transform.localScale.x, this.transform.localScale.z);
+    const shape = PhysicsShape.CreatePlane(this.physxPhysics, this.transform.localScale.x, this.transform.localScale.z);
     const geometry = shape.getGeometry().box();
     const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-    const rigidbody = physxPhysics.createRigidStatic(physxTransform);
+    const rigidbody = this.physxPhysics.createRigidStatic(physxTransform);
     const physicsBody = {
       rigidbody,
       geometry,
       shape
     };
-    this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
+    this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
     this.gameObject.BroadcastMessage("CreatedCollider", this.body);
   }
   Update() {
@@ -61425,6 +61578,234 @@ var TrianglesModeEnum;
   TrianglesModeEnum2[TrianglesModeEnum2["TriangleFanDrawMode"] = 1] = "TriangleFanDrawMode";
   TrianglesModeEnum2[TrianglesModeEnum2["TriangleStripDrawMode"] = 2] = "TriangleStripDrawMode";
 })(TrianglesModeEnum || (TrianglesModeEnum = {}));
+function ConvertGeometryToIndexed(geometry, drawMode) {
+  if (drawMode === 0) {
+    console.warn("THREE.BufferGeometryUtils.toTrianglesDrawMode(): Geometry already defined as triangles.");
+    return geometry;
+  }
+  if (drawMode === 1 || drawMode === 2) {
+    var index = geometry.getIndex();
+    if (index === null) {
+      var indices = [];
+      var position = geometry.getAttribute("position");
+      if (position !== void 0) {
+        for (var i = 0; i < position.count; i++) {
+          indices.push(i);
+        }
+        geometry.setIndex(indices);
+        index = geometry.getIndex();
+      } else {
+        console.error("THREE.BufferGeometryUtils.toTrianglesDrawMode(): Undefined position attribute. Processing not possible.");
+        return geometry;
+      }
+    }
+    var numberOfTriangles = index.count - 2;
+    var newIndices = [];
+    if (drawMode === 1) {
+      for (var i = 1; i <= numberOfTriangles; i++) {
+        newIndices.push(index.getX(0));
+        newIndices.push(index.getX(i));
+        newIndices.push(index.getX(i + 1));
+      }
+    } else {
+      for (var i = 0; i < numberOfTriangles; i++) {
+        if (i % 2 === 0) {
+          newIndices.push(index.getX(i));
+          newIndices.push(index.getX(i + 1));
+          newIndices.push(index.getX(i + 2));
+        } else {
+          newIndices.push(index.getX(i + 2));
+          newIndices.push(index.getX(i + 1));
+          newIndices.push(index.getX(i));
+        }
+      }
+    }
+    if (newIndices.length / 3 !== numberOfTriangles) {
+      console.error("THREE.BufferGeometryUtils.toTrianglesDrawMode(): Unable to generate correct amount of triangles.");
+    }
+    var newGeometry = geometry.clone();
+    newGeometry.setIndex(newIndices);
+    newGeometry.clearGroups();
+    return newGeometry;
+  } else {
+    console.error("THREE.BufferGeometryUtils.toTrianglesDrawMode(): Unknown draw mode:", drawMode);
+    return geometry;
+  }
+}
+__name(ConvertGeometryToIndexed, "ConvertGeometryToIndexed");
+
+// src/components/MeshCollider.ts
+var MeshCollider = class extends Collider {
+  constructor(gameObject, transform) {
+    super(gameObject, transform);
+    this.physxCooking = Runtime.Physics.GetCooking();
+    this.CreateCollider();
+  }
+  MeshFilterModelChanged(mesh) {
+    this.CreateCollider();
+  }
+  CreateCollider() {
+    const meshFilter = this.gameObject.GetComponent(MeshFilter);
+    const bufferGeometry = meshFilter.mesh;
+    if (!bufferGeometry)
+      return;
+    let createdCollider = false;
+    if (this.isConvex) {
+      createdCollider = this.CreateConvexCollider(bufferGeometry);
+    } else {
+      createdCollider = this.CreateTrimeshCollider(bufferGeometry);
+    }
+    if (createdCollider) {
+      this.gameObject.BroadcastMessage("CreatedCollider", this.body);
+    }
+  }
+  CreateConvexCollider(bufferGeometry) {
+    const vertices = bufferGeometry.getAttribute("position").array;
+    const shape = PhysicsShape.CreateConvex(this.physxPhysics, this.physxCooking, vertices);
+    if (this.body) {
+      this.body.UpdateShape(shape);
+      return true;
+    }
+    const geometry = shape.getGeometry().convexMesh();
+    const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+    const rigidbody = this.physxPhysics.createRigidStatic(transform);
+    const physicsBody = {
+      rigidbody,
+      geometry,
+      shape
+    };
+    this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+    return true;
+  }
+  CreateTrimeshCollider(bufferGeometry) {
+    const indexedBufferGeometry = bufferGeometry.index !== null ? bufferGeometry : ConvertGeometryToIndexed(bufferGeometry, TrianglesModeEnum.TriangleStripDrawMode);
+    const vertices = indexedBufferGeometry.getAttribute("position").array;
+    const indices = indexedBufferGeometry.getIndex().array;
+    const shape = PhysicsShape.CreateTrimesh(this.physxPhysics, this.physxCooking, vertices, indices);
+    if (this.body) {
+      this.body.UpdateShape(shape);
+      return true;
+    }
+    const geometry = shape.getGeometry().triangleMesh();
+    const transform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+    const rigidbody = this.physxPhysics.createRigidStatic(transform);
+    const physicsBody = {
+      rigidbody,
+      geometry,
+      shape
+    };
+    this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+    return true;
+  }
+};
+__name(MeshCollider, "MeshCollider");
+
+// src/components/Animation.ts
+var Animation = class extends Component {
+  Awake() {
+    this.animations = new Map();
+    this.clock = new Clock(true);
+    this.OnMeshChanged();
+  }
+  OnMeshChanged() {
+    const meshFilter = this.gameObject.GetComponent(MeshRenderer);
+    const mesh = meshFilter.mesh;
+    if (mesh) {
+      this.mixer = new AnimationMixer(mesh);
+    }
+  }
+  AddClip(clip, name) {
+    this.animations.set(name, clip);
+  }
+  Play(name) {
+    if (!this.animations.has(name)) {
+      console.warn("Tried to play non existing animation");
+      return;
+    }
+    if (this.action) {
+      this.action.stop();
+    }
+    this.action = this.mixer.clipAction(this.animations.get(name));
+    this.action.play();
+  }
+  Stop() {
+    this.action.stop();
+    this.action = null;
+  }
+  Update() {
+    if (this.mixer && this.action) {
+      this.mixer.update(this.clock.getDelta());
+    }
+  }
+};
+__name(Animation, "Animation");
+
+// src/components/LineRenderer.ts
+var LineRenderer = class extends Component {
+  constructor() {
+    super(...arguments);
+    this.from = new Vector3();
+    this.to = new Vector3();
+    this.color = 16777215;
+    this.previousFrom = new Vector3();
+    this.previousTo = new Vector3();
+  }
+  Awake() {
+    this.material = new LineBasicMaterial({ color: this.color });
+    this.geometry = new BufferGeometry().setFromPoints([this.from, this.to]);
+    const line = new Line(this.geometry, this.material);
+    this.transform.group.add(line);
+    this.line = line;
+  }
+  Update() {
+    if (this.material.color.getHex() != this.color) {
+      this.material.color.setHex(this.color);
+    }
+    if (this.previousFrom.distanceToSquared(this.from) > Number.EPSILON || this.previousTo.distanceToSquared(this.to) > Number.EPSILON) {
+      this.geometry.setFromPoints([this.from, this.to]);
+      this.previousFrom.copy(this.from);
+      this.previousTo.copy(this.to);
+      this.geometry.attributes.position.needsUpdate = true;
+    }
+  }
+  Destroy() {
+    if (this.line) {
+      this.transform.group.remove(this.line);
+    }
+    this.gameObject.RemoveComponent(this);
+  }
+};
+__name(LineRenderer, "LineRenderer");
+
+// src/components/Gizmo.ts
+var Gizmo = class extends Component {
+  constructor() {
+    super(...arguments);
+    this.length = 20;
+  }
+  Awake() {
+    this.upLine = this.gameObject.AddComponent(LineRenderer);
+    this.rightLine = this.gameObject.AddComponent(LineRenderer);
+    this.forwardLine = this.gameObject.AddComponent(LineRenderer);
+    this.upLine.color = 65280;
+    this.rightLine.color = 255;
+    this.forwardLine.color = 16711680;
+  }
+  Start() {
+    if (!this.target) {
+      console.error("Target is not set");
+    }
+  }
+  Update() {
+    this.upLine.from.copy(this.target.position);
+    this.upLine.to.copy(this.upLine.from).add(this.target.up.clone().multiplyScalar(this.length));
+    this.rightLine.from.copy(this.target.position);
+    this.rightLine.to.copy(this.rightLine.from).add(this.target.right.clone().multiplyScalar(this.length));
+    this.forwardLine.from.copy(this.target.position);
+    this.forwardLine.to.copy(this.forwardLine.from).add(this.target.forward.clone().multiplyScalar(this.length));
+  }
+};
+__name(Gizmo, "Gizmo");
 
 // src/components/PointLight.ts
 var PointLight2 = class extends Component {
@@ -61528,7 +61909,6 @@ var DirectionalLight2 = class extends Component {
       this.helper.dispose();
       this.helper = void 0;
     }
-    console.log("HERE");
     this.transform.group.remove(this.light);
     this.gameObject.RemoveComponent(this);
   }
@@ -61736,35 +62116,6 @@ __decorateClass([
   SerializeField
 ], AreaLight.prototype, "shadows", 1);
 
-// src/enums/ArticulationAxis.ts
-var ArticulationAxis;
-(function(ArticulationAxis2) {
-  ArticulationAxis2[ArticulationAxis2["TWIST"] = 0] = "TWIST";
-  ArticulationAxis2[ArticulationAxis2["SWING1"] = 1] = "SWING1";
-  ArticulationAxis2[ArticulationAxis2["SWING2"] = 2] = "SWING2";
-  ArticulationAxis2[ArticulationAxis2["X"] = 3] = "X";
-  ArticulationAxis2[ArticulationAxis2["Y"] = 4] = "Y";
-  ArticulationAxis2[ArticulationAxis2["Z"] = 5] = "Z";
-  ArticulationAxis2[ArticulationAxis2["COUNT"] = 6] = "COUNT";
-})(ArticulationAxis || (ArticulationAxis = {}));
-
-// src/enums/ArticulationJointType.ts
-var ArticulationJointType;
-(function(ArticulationJointType2) {
-  ArticulationJointType2[ArticulationJointType2["FixedJoint"] = 0] = "FixedJoint";
-  ArticulationJointType2[ArticulationJointType2["PrismaticJoint"] = 1] = "PrismaticJoint";
-  ArticulationJointType2[ArticulationJointType2["RevoluteJoint"] = 2] = "RevoluteJoint";
-  ArticulationJointType2[ArticulationJointType2["SphericalJoint"] = 3] = "SphericalJoint";
-})(ArticulationJointType || (ArticulationJointType = {}));
-
-// src/enums/ArticulationDofLock.ts
-var ArticulationDofLock;
-(function(ArticulationDofLock2) {
-  ArticulationDofLock2[ArticulationDofLock2["LockedMotion"] = 0] = "LockedMotion";
-  ArticulationDofLock2[ArticulationDofLock2["LimitedMotion"] = 1] = "LimitedMotion";
-  ArticulationDofLock2[ArticulationDofLock2["FreeMotion"] = 2] = "FreeMotion";
-})(ArticulationDofLock || (ArticulationDofLock = {}));
-
 // src/components/ArticulationBody.ts
 var JointDriver = class {
   constructor(joint, axis) {
@@ -61851,8 +62202,8 @@ var _ArticulationBody = class extends Component {
     super(gameObject, transform);
     this.hasAttachedShape = false;
     this.isRootArticulation = false;
-    this.physics = this.gameObject.scene.GetPhysics().GetPhysics();
-    this.physicsScene = this.gameObject.scene.GetPhysics().GetScene();
+    this.physics = Runtime.Physics.GetPhysics();
+    this.physicsScene = this.gameObject.scene.physicsScene;
     const parentArticulation = this.transform.parent ? this.transform.parent.gameObject.GetComponent(_ArticulationBody) : null;
     if (parentArticulation) {
       const position = new PhysX.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
@@ -61869,7 +62220,7 @@ var _ArticulationBody = class extends Component {
       const localRotation = new PhysX.PxQuat(this.transform.localRotation.x, this.transform.localRotation.y, this.transform.localRotation.z, this.transform.localRotation.w);
       const localPose = new PhysX.PxTransform(localPosition, localRotation);
       this.inboundJoint.setParentPose(localPose);
-      this.jointType = ArticulationJointType.FixedJoint;
+      this.jointType = PhysX.PxArticulationJointTypeEnum.FIX;
       this.physicsScene.addArticulation(this.articulation);
     } else {
       const position = new PhysX.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
@@ -61890,47 +62241,47 @@ var _ArticulationBody = class extends Component {
   }
   get immovable() {
     const flags = this.articulation.getArticulationFlags();
-    return flags.isSet(PhysX.eFIX_BASE);
+    return flags.isSet(PhysX.PxArticulationFlagEnum.FIX_BASE);
   }
   set immovable(immovable) {
-    this.articulation.setArticulationFlag(PhysX.eFIX_BASE, immovable);
+    this.articulation.setArticulationFlag(PhysX.PxArticulationFlagEnum.FIX_BASE, immovable);
   }
   get jointType() {
     return this.inboundJoint.getJointType();
   }
   set jointType(jointType) {
     if (this.inboundJoint) {
-      if (jointType == ArticulationJointType.FixedJoint) {
-        this.inboundJoint.setJointType(ArticulationJointType.FixedJoint);
-      } else if (jointType == ArticulationJointType.PrismaticJoint) {
-        this.inboundJoint.setJointType(ArticulationJointType.PrismaticJoint);
-        this.xDrive = new JointDriver(this.inboundJoint, ArticulationAxis.X);
-        this.yDrive = new JointDriver(this.inboundJoint, ArticulationAxis.Y);
-        this.zDrive = new JointDriver(this.inboundJoint, ArticulationAxis.Z);
-        this.linearLockX = ArticulationDofLock.FreeMotion;
-      } else if (jointType == ArticulationJointType.RevoluteJoint) {
-        this.inboundJoint.setJointType(ArticulationJointType.RevoluteJoint);
-        this.xDrive = new JointDriver(this.inboundJoint, ArticulationAxis.SWING1);
+      if (jointType == PhysX.PxArticulationJointTypeEnum.FIX) {
+        this.inboundJoint.setJointType(PhysX.PxArticulationJointTypeEnum.FIX);
+      } else if (jointType == PhysX.PxArticulationJointTypeEnum.PRISMATIC) {
+        this.inboundJoint.setJointType(PhysX.PxArticulationJointTypeEnum.PRISMATIC);
+        this.xDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.X);
+        this.yDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.Y);
+        this.zDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.Z);
+        this.linearLockX = PhysX.PxArticulationMotionEnum.FREE;
+      } else if (jointType == PhysX.PxArticulationJointTypeEnum.REVOLUTE) {
+        this.inboundJoint.setJointType(PhysX.PxArticulationJointTypeEnum.REVOLUTE);
+        this.xDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.SWING1);
         this.yDrive = void 0;
         this.zDrive = void 0;
-        this.swingZLock = ArticulationDofLock.FreeMotion;
-      } else if (jointType == ArticulationJointType.SphericalJoint) {
-        this.inboundJoint.setJointType(ArticulationJointType.SphericalJoint);
-        this.xDrive = new JointDriver(this.inboundJoint, ArticulationAxis.TWIST);
-        this.yDrive = new JointDriver(this.inboundJoint, ArticulationAxis.SWING2);
-        this.zDrive = new JointDriver(this.inboundJoint, ArticulationAxis.SWING1);
-        this.twistLock = ArticulationDofLock.FreeMotion;
-        this.swingYLock = ArticulationDofLock.FreeMotion;
-        this.swingZLock = ArticulationDofLock.FreeMotion;
+        this.swingZLock = PhysX.PxArticulationMotionEnum.FREE;
+      } else if (jointType == PhysX.PxArticulationJointTypeEnum.SPHERICAL) {
+        this.inboundJoint.setJointType(PhysX.PxArticulationJointTypeEnum.SPHERICAL);
+        this.xDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.TWIST);
+        this.yDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.SWING2);
+        this.zDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.SWING1);
+        this.twistLock = PhysX.PxArticulationMotionEnum.FREE;
+        this.swingYLock = PhysX.PxArticulationMotionEnum.FREE;
+        this.swingZLock = PhysX.PxArticulationMotionEnum.FREE;
       }
     }
   }
   setLinearLock(axis, motion) {
-    if (this.jointType == ArticulationJointType.PrismaticJoint) {
+    if (this.jointType == PhysX.PxArticulationJointTypeEnum.PRISMATIC) {
       this.physicsScene.removeArticulation(this.articulation);
-      this.inboundJoint.setMotion(ArticulationAxis.X, ArticulationDofLock.LockedMotion);
-      this.inboundJoint.setMotion(ArticulationAxis.Y, ArticulationDofLock.LockedMotion);
-      this.inboundJoint.setMotion(ArticulationAxis.Z, ArticulationDofLock.LockedMotion);
+      this.inboundJoint.setMotion(PhysX.PxArticulationAxisEnum.X, PhysX.PxArticulationMotionEnum.LOCKED);
+      this.inboundJoint.setMotion(PhysX.PxArticulationAxisEnum.Y, PhysX.PxArticulationMotionEnum.LOCKED);
+      this.inboundJoint.setMotion(PhysX.PxArticulationAxisEnum.Z, PhysX.PxArticulationMotionEnum.LOCKED);
       this.inboundJoint.setMotion(axis, motion);
       this.physicsScene.addArticulation(this.articulation);
       return;
@@ -61938,25 +62289,25 @@ var _ArticulationBody = class extends Component {
     this.inboundJoint.setMotion(axis, motion);
   }
   get linearLockX() {
-    return this.inboundJoint.getMotion(ArticulationAxis.X);
+    return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.X);
   }
   set linearLockX(linearLockX) {
-    this.setLinearLock(ArticulationAxis.X, linearLockX);
+    this.setLinearLock(PhysX.PxArticulationAxisEnum.X, linearLockX);
   }
   get linearLockY() {
-    return this.inboundJoint.getMotion(ArticulationAxis.Y);
+    return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.Y);
   }
   set linearLockY(linearLockY) {
-    this.setLinearLock(ArticulationAxis.Y, linearLockY);
+    this.setLinearLock(PhysX.PxArticulationAxisEnum.Y, linearLockY);
   }
   get linearLockZ() {
-    return this.inboundJoint.getMotion(ArticulationAxis.Z);
+    return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.Z);
   }
   set linearLockZ(linearLockZ) {
-    this.setLinearLock(ArticulationAxis.Z, linearLockZ);
+    this.setLinearLock(PhysX.PxArticulationAxisEnum.Z, linearLockZ);
   }
   setSwingLock(axis, motion) {
-    if (this.jointType == ArticulationJointType.SphericalJoint) {
+    if (this.jointType == PhysX.PxArticulationJointTypeEnum.SPHERICAL) {
       this.physicsScene.removeArticulation(this.articulation);
       this.inboundJoint.setMotion(axis, motion);
       this.physicsScene.addArticulation(this.articulation);
@@ -61965,22 +62316,22 @@ var _ArticulationBody = class extends Component {
     this.inboundJoint.setMotion(axis, motion);
   }
   get swingYLock() {
-    return this.inboundJoint.getMotion(ArticulationAxis.SWING2);
+    return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.SWING2);
   }
   set swingYLock(swingYLock) {
-    this.setSwingLock(ArticulationAxis.SWING2, swingYLock);
+    this.setSwingLock(PhysX.PxArticulationAxisEnum.SWING2, swingYLock);
   }
   get swingZLock() {
-    return this.inboundJoint.getMotion(ArticulationAxis.SWING1);
+    return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.SWING1);
   }
   set swingZLock(swingZLock) {
-    this.setSwingLock(ArticulationAxis.SWING1, swingZLock);
+    this.setSwingLock(PhysX.PxArticulationAxisEnum.SWING1, swingZLock);
   }
   get twistLock() {
-    return this.inboundJoint.getMotion(ArticulationAxis.TWIST);
+    return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.TWIST);
   }
   set twistLock(twistLock) {
-    this.setSwingLock(ArticulationAxis.TWIST, twistLock);
+    this.setSwingLock(PhysX.PxArticulationAxisEnum.TWIST, twistLock);
   }
   get mass() {
     return this.link.getMass();
@@ -62012,11 +62363,11 @@ var _ArticulationBody = class extends Component {
       this.hasAttachedShape = true;
     }
     const pose = this.link.getGlobalPose();
-    if (this.inboundJoint && this.jointType && this.jointType == ArticulationJointType.PrismaticJoint) {
+    if (this.inboundJoint && this.jointType && this.jointType == PhysX.PxArticulationJointTypeEnum.PRISMATIC) {
       this.transform.position.set(pose.p.x, pose.p.y, pose.p.z);
     }
     this.transform.rotation.set(pose.q.x, pose.q.y, pose.q.z, pose.q.w);
-    if (this.articulation) {
+    if (this.articulation.isSleeping()) {
       this.articulation.wakeUp();
     }
   }
@@ -62055,22 +62406,22 @@ __decorateClass([
   SerializeField(ArticulationJointType)
 ], ArticulationBody.prototype, "jointType", 1);
 __decorateClass([
-  SerializeField(ArticulationDofLock)
+  SerializeField(ArticulationMotion)
 ], ArticulationBody.prototype, "linearLockX", 1);
 __decorateClass([
-  SerializeField(ArticulationDofLock)
+  SerializeField(ArticulationMotion)
 ], ArticulationBody.prototype, "linearLockY", 1);
 __decorateClass([
-  SerializeField(ArticulationDofLock)
+  SerializeField(ArticulationMotion)
 ], ArticulationBody.prototype, "linearLockZ", 1);
 __decorateClass([
-  SerializeField(ArticulationDofLock)
+  SerializeField(ArticulationMotion)
 ], ArticulationBody.prototype, "swingYLock", 1);
 __decorateClass([
-  SerializeField(ArticulationDofLock)
+  SerializeField(ArticulationMotion)
 ], ArticulationBody.prototype, "swingZLock", 1);
 __decorateClass([
-  SerializeField(ArticulationDofLock)
+  SerializeField(ArticulationMotion)
 ], ArticulationBody.prototype, "twistLock", 1);
 __decorateClass([
   SerializeField
@@ -62289,41 +62640,6 @@ var Cylinder = class {
 };
 __name(Cylinder, "Cylinder");
 
-// src/InstantiationPool.ts
-var _InstantiationPool = class {
-  constructor() {
-    this.pendingAwakes = [];
-    this.pendingStarts = [];
-  }
-  add(component) {
-    this.pendingAwakes.push(component);
-    this.pendingStarts.push(component);
-  }
-  Load() {
-    for (let i = this.pendingAwakes.length; i > 0; i--) {
-      const component = this.pendingAwakes.pop();
-      component.Awake();
-      component.isAwake = true;
-    }
-    if (this.pendingAwakes.length > 0) {
-      this.Load();
-      return;
-    }
-    for (let i = this.pendingStarts.length; i > 0; i--) {
-      const component = this.pendingStarts.pop();
-      component.Start();
-      component.isStarted = true;
-      if (this.pendingAwakes.length != 0) {
-        this.Load();
-        break;
-      }
-    }
-    return true;
-  }
-};
-__name(_InstantiationPool, "_InstantiationPool");
-var InstantiationPool = new _InstantiationPool();
-
 // src/components/GameObject.ts
 var GameObject6 = class {
   constructor(scene) {
@@ -62333,7 +62649,7 @@ var GameObject6 = class {
     this.layer = LayerMask.LAYER0;
     this.hideFlags = HideFlags.None;
     if (!scene) {
-      console.error("Invalid scene provided");
+      console.error("Invalid scene provided.");
       return;
     }
     this.scene = scene;
@@ -62417,31 +62733,29 @@ var GameObject6 = class {
     }
     return matches;
   }
+  Tick() {
+    this.transform.Tick();
+  }
   FixedUpdate() {
-    this.transform.FixedUpdate();
     for (let component of this.components) {
       component.FixedUpdate();
     }
   }
   Update() {
-    this.transform.Update();
-    if (this.scene.isPlaying) {
-      for (let component of this.components) {
-        if (component.isAwake && component.isStarted) {
-          component.Update();
-        }
-      }
-    }
-  }
-  LateUpdate() {
-    this.transform.LateUpdate();
     for (let component of this.components) {
-      component.LateUpdate();
+      if (component.isAwake && component.isStarted) {
+        component.Update();
+      }
     }
   }
   OnDrawGizmos() {
     for (let component of this.components) {
       component.OnDrawGizmos();
+    }
+  }
+  LateUpdate() {
+    for (let component of this.components) {
+      component.LateUpdate();
     }
   }
   Destroy() {
@@ -62460,115 +62774,15 @@ var GameObject6 = class {
 };
 __name(GameObject6, "GameObject");
 
-// src/Input.ts
-var Input = class {
-  constructor(scene) {
-    this.keysDown = {};
-    this.keysUp = {};
-    this.mousePosition = new Vector2();
-    this.horizontalAxis = 0;
-    this.verticalAxis = 0;
-    this.previousTouch = new Vector2();
-    this.scene = scene;
-    const canvas = this.scene.GetRenderer().renderer.domElement;
-    document.onkeydown = (event) => {
-      this.OnKeyDown(event);
-    };
-    document.onkeyup = (event) => {
-      this.OnKeyUp(event);
-    };
-    canvas.onmousemove = (event) => {
-      this.OnMouseMove(event);
-    };
-    canvas.ontouchmove = (event) => {
-      this.OnTouchMove(event);
-    };
-  }
-  OnTouchMove(event) {
-    event.preventDefault();
-    this.mousePosition.x = event.touches[0].clientX;
-    this.mousePosition.y = event.touches[0].clientY;
-    this.horizontalAxis = Math.round(this.mousePosition.x - this.previousTouch.x);
-    this.verticalAxis = Math.round(this.mousePosition.y - this.previousTouch.y);
-    this.previousTouch.set(this.mousePosition.x, this.mousePosition.y);
-  }
-  OnMouseMove(event) {
-    this.mousePosition.x = event.clientX;
-    this.mousePosition.y = event.clientY;
-    this.horizontalAxis = event.movementX;
-    this.verticalAxis = event.movementY;
-  }
-  OnKeyDown(event) {
-    if (this.keysDown[event.keyCode] === void 0) {
-      this.keysDown[event.keyCode] = this.scene.currentFrame;
-      delete this.keysUp[event.keyCode];
-    }
-  }
-  OnKeyUp(event) {
-    this.keysUp[event.keyCode] = this.scene.currentFrame;
-    delete this.keysDown[event.keyCode];
-  }
-  GetKeyDown(key) {
-    if (this.keysDown[key] == this.scene.currentFrame) {
-      return true;
-    }
-    return false;
-  }
-  GetKeyUp(key) {
-    if (this.keysUp[key] == this.scene.currentFrame) {
-      return true;
-    }
-    return false;
-  }
-  GetKey(key) {
-    if (this.keysDown[key] !== void 0) {
-      return true;
-    }
-    return false;
-  }
-  GetAxis(axisName) {
-    if (axisName == "Horizontal") {
-      return this.horizontalAxis;
-    } else if (axisName == "Vertical") {
-      return this.verticalAxis;
-    }
-  }
-  Tick() {
-  }
-};
-__name(Input, "Input");
-
 // src/Scene.ts
 var Scene2 = class {
-  constructor(renderer, physics) {
-    this.isPlaying = false;
-    this.currentFrame = 0;
-    this.gizmosEnabled = false;
+  constructor(name) {
     this.gameObjects = [];
-    this.renderer = renderer;
-    this.physics = physics;
-    this.physics.FixedUpdate = () => {
-      this.FixedUpdate();
-    };
-    this.input = new Input(this);
-    requestAnimationFrame((now) => {
-      this.Update();
-    });
-  }
-  GetRenderer() {
-    return this.renderer;
-  }
-  GetPhysics() {
-    return this.physics;
-  }
-  GetInput() {
-    return this.input;
-  }
-  GetActiveCamera() {
-    return this.camera;
-  }
-  SetActiveCamera(camera) {
-    this.camera = camera;
+    this.name = name;
+    this.rendererScene = Runtime.Renderer.CreateScene();
+    this.physicsScene = Runtime.Physics.CreateScene();
+    const ambientLight = new AmbientLight(16777215, 0.3);
+    this.rendererScene.add(ambientLight);
   }
   AddGameObject(gameObject) {
     this.gameObjects.push(gameObject);
@@ -62587,44 +62801,196 @@ var Scene2 = class {
     this.gameObjects.splice(gameObjectIndex, 1);
     return true;
   }
+  GetActiveCamera() {
+    return this.activeCamera;
+  }
+  SetActiveCamera(camera) {
+    this.activeCamera = camera;
+  }
   FixedUpdate() {
     for (let gameObject of this.gameObjects) {
       gameObject.FixedUpdate();
     }
   }
   Update() {
-    if (this.isPlaying) {
-      this.physics.Update();
-      for (let gameObject of this.gameObjects) {
-        gameObject.Update();
-        if (this.gizmosEnabled) {
-          gameObject.OnDrawGizmos();
-        }
-      }
+    for (let gameObject of this.gameObjects) {
+      gameObject.Update();
     }
-    if (this.camera) {
-      this.renderer.Tick(this.camera.GetCamera());
-    }
+  }
+  LateUpdate() {
     for (let gameObject of this.gameObjects) {
       gameObject.LateUpdate();
     }
-    this.input.Tick();
-    this.currentFrame++;
-    requestAnimationFrame(() => {
-      this.Update();
-    });
   }
-  Load() {
-    return InstantiationPool.Load();
+  OnDrawGizmos() {
+    for (let gameObject of this.gameObjects) {
+      gameObject.OnDrawGizmos();
+    }
   }
-  Play() {
-    this.isPlaying = true;
+  UpdatePhysics() {
+    Runtime.Physics.Update(this.physicsScene);
   }
-  Stop() {
-    this.isPlaying = false;
+  Render() {
+    if (this.GetActiveCamera()) {
+      Runtime.Renderer.Tick(this.rendererScene, this.GetActiveCamera().GetCamera());
+    }
   }
 };
 __name(Scene2, "Scene");
+
+// src/serializer/PropertyTypes.ts
+var PropertyTypes;
+(function(PropertyTypes2) {
+  PropertyTypes2["BOOLEAN"] = "BOOLEAN";
+  PropertyTypes2["NUMBER"] = "NUMBER";
+  PropertyTypes2["STRING"] = "STRING";
+  PropertyTypes2["OBJECT"] = "OBJECT";
+  PropertyTypes2["COLOR"] = "COLOR";
+  PropertyTypes2["VECTOR3"] = "VECTOR3";
+  PropertyTypes2["VECTOR2"] = "VECTOR2";
+  PropertyTypes2["MESH"] = "MESH";
+  PropertyTypes2["MATERIAL"] = "MATERIAL";
+  PropertyTypes2["COMPONENT"] = "COMPONENT";
+  PropertyTypes2["CUSTOM_FUNCTION"] = "CUSTOM_FUNCTION";
+  PropertyTypes2["CUSTOM_OBJECT"] = "CUSTOM_OBJECT";
+})(PropertyTypes || (PropertyTypes = {}));
+
+// src/interfaces/IFile.ts
+var FileType;
+(function(FileType2) {
+  FileType2[FileType2["MATERIAL"] = 0] = "MATERIAL";
+  FileType2[FileType2["MESH"] = 1] = "MESH";
+  FileType2[FileType2["COMPONENT"] = 2] = "COMPONENT";
+})(FileType || (FileType = {}));
+
+// src/serializer/SceneDeserializer.ts
+var SceneDeserializer = class {
+  static async LoadFile(file) {
+    return Resources.LoadAsync(file.fileId);
+  }
+  static DeserializeComponentProperty(component, property) {
+    const classname = component.constructor.name;
+    const customType = SerializableTypesInstance.get(classname, property.name);
+    if (customType) {
+      if (typeof customType == "function") {
+        this.DeserializeComponentClassProperties(component[property.name], property.value);
+      } else if (typeof customType == "object") {
+        component[property.name] = property.value;
+      }
+    }
+    if (property.type == PropertyTypes.VECTOR3) {
+      const vector3 = new Vector3(property.value.x, property.value.y, property.value.z);
+      component[property.name] = vector3;
+    } else if (property.type == PropertyTypes.VECTOR2) {
+      const vector2 = new Vector2(property.value.x, property.value.y);
+      component[property.name] = vector2;
+    } else if (property.type == PropertyTypes.COLOR) {
+      const color = new Color(property.value);
+      component[property.name] = color;
+    } else if (property.type == PropertyTypes.MESH) {
+      if (property.file && property.file.type == FileType.MESH) {
+        this.LoadFile(property.file).then((geometry) => {
+          if (geometry instanceof BufferGeometry) {
+            component[property.name] = geometry;
+          }
+        });
+      } else {
+        component[property.name] = new BoxGeometry(1, 1, 1);
+      }
+    } else if (property.type == PropertyTypes.MATERIAL) {
+      if (property.file && property.file.type == FileType.MATERIAL) {
+        this.LoadFile(property.file).then((material) => {
+          if (material instanceof Material) {
+            component[property.name] = material;
+          }
+        });
+      } else {
+        component[property.name] = new MeshStandardMaterial();
+      }
+    } else if (property.type == PropertyTypes.NUMBER) {
+      component[property.name] = property.value;
+    } else if (property.type == PropertyTypes.BOOLEAN) {
+      component[property.name] = property.value;
+    } else if (property.type == PropertyTypes.OBJECT) {
+    }
+  }
+  static DeserializeComponentClassProperties(componentClass, componentClassProperties) {
+    for (let property of componentClassProperties.properties) {
+      try {
+        const componentPropertyElement = this.DeserializeComponentProperty(componentClass, property);
+      } catch (error) {
+      }
+    }
+    return componentClass;
+  }
+  static async DeserializeComponent(gameObject, componentSerialized) {
+    const componentCast = componentSerialized.file ? await this.LoadFile(componentSerialized.file) : components_exports[componentSerialized.component];
+    const component = gameObject.AddComponent(componentCast);
+    component.uuid = componentSerialized.uuid;
+    for (let property of componentSerialized.properties) {
+      try {
+        const componentPropertyElement = this.DeserializeComponentProperty(component, property);
+      } catch (error) {
+      }
+    }
+    return component;
+  }
+  static FindTransformByUUID(scene, uuid) {
+    for (let gameObject of scene.gameObjects) {
+      if (gameObject.transform.uuid === uuid)
+        return gameObject.transform;
+    }
+  }
+  static DeserializeTransform(scene, transform, transformSerialized) {
+    transform.uuid = transformSerialized.uuid;
+    if (transformSerialized.parent != "") {
+      transform.parent = this.FindTransformByUUID(scene, transformSerialized.parent);
+    }
+    transform.position.set(transformSerialized.position.x, transformSerialized.position.y, transformSerialized.position.z);
+    transform.eulerAngles.set(transformSerialized.rotation.x, transformSerialized.rotation.y, transformSerialized.rotation.z);
+    transform.localScale.set(transformSerialized.scale.x, transformSerialized.scale.y, transformSerialized.scale.z);
+  }
+  static async DeserializeGameObject(scene, gameObjectSerialized) {
+    const gameObject = new GameObject6(scene);
+    gameObject.uuid = gameObjectSerialized.uuid;
+    gameObject.name = gameObjectSerialized.name;
+    this.DeserializeTransform(scene, gameObject.transform, gameObjectSerialized.transform);
+    for (let componentSerialized of gameObjectSerialized.components) {
+      const component = await this.DeserializeComponent(gameObject, componentSerialized);
+    }
+    return gameObject;
+  }
+  static async Deserialize(sceneSerialized) {
+    const scene = new Scene2(sceneSerialized.name);
+    scene.userData = sceneSerialized.file ? sceneSerialized.file : null;
+    for (let gameObjectSerialized of sceneSerialized.gameObjects) {
+      const gameObject = await this.DeserializeGameObject(scene, gameObjectSerialized);
+    }
+    return scene;
+  }
+};
+__name(SceneDeserializer, "SceneDeserializer");
+
+// src/SceneManager.ts
+var SceneManager = class {
+  constructor() {
+    this.activeScene = null;
+  }
+  CreateScene(name) {
+    return new Scene2(name);
+  }
+  async LoadSceneAsync(sceneSerialized) {
+    const scene = SceneDeserializer.Deserialize(sceneSerialized);
+    return scene;
+  }
+  SetActiveScene(scene) {
+    this.activeScene = scene;
+  }
+  GetActiveScene() {
+    return this.activeScene;
+  }
+};
+__name(SceneManager, "SceneManager");
 
 // src/defaults/ConfigurationDefaults.ts
 var ConfigurationDefaults = {
@@ -62671,30 +63037,30 @@ var Renderer = class {
     renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
     renderer.setPixelRatio(window.devicePixelRatio * this.config.pixelRatio);
     renderer.shadowMap.enabled = true;
-    this.scene = scene;
     this.renderer = renderer;
-    this.ambientLight = new AmbientLight(16777215, 0.3);
-    this.scene.add(this.ambientLight);
     this.fpsInterval = 1e3 / this.config.targetFrameRate;
     this.then = Date.now();
     this.startTime = this.then;
     new ResizeObserver(() => {
       this.OnResize();
-    }).observe(this.renderer.domElement);
+    }).observe(this.renderer.domElement.parentElement);
     setTimeout(() => {
       this.OnLoaded();
     }, 50);
   }
+  CreateScene() {
+    return new Scene();
+  }
   OnResize() {
     this.renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
   }
-  Tick(camera) {
+  Tick(scene, camera) {
     this.now = Date.now();
     this.elapsed = this.now - this.then;
     if (this.elapsed > this.fpsInterval) {
       this.then = this.now - this.elapsed % this.fpsInterval;
       if (camera) {
-        this.renderer.render(this.scene, camera);
+        this.renderer.render(scene, camera);
       }
       var sinceStart = this.now - this.startTime;
       this.currentFps = Math.round(1e3 / (sinceStart / ++this.frameCount) * 100) / 100;
@@ -62703,37 +63069,11 @@ var Renderer = class {
 };
 __name(Renderer, "Renderer");
 
-// src/physics/PhysicsRaycast.ts
-var PhysicsRaycast = class {
-  constructor(physxScene) {
-    this.physxScene = physxScene;
-    this._origin = new PhysX.PxVec3();
-    this._direction = new PhysX.PxVec3();
-    this._filterData = new PhysX.PxQueryFilterData();
-    this._hitFlags = new PhysX.PxHitFlags(PhysX.ePOSITION | PhysX.eNORMAL);
-  }
-  Raycast(origin, direction, maxDistance, layerMask = 0) {
-    this._origin.x = origin.x;
-    this._origin.y = origin.y;
-    this._origin.z = origin.z;
-    this._direction.x = direction.x;
-    this._direction.y = direction.y;
-    this._direction.z = direction.z;
-    const callback = new PhysX.PxRaycastBuffer10();
-    this._filterData.data.word2 = layerMask;
-    this.physxScene.raycast(this._origin, this._direction, maxDistance, callback, this._hitFlags, this._filterData);
-    return callback;
-  }
-};
-__name(PhysicsRaycast, "PhysicsRaycast");
-
 // src/Physics.ts
 var Physics = class {
   constructor(config) {
     this.OnLoaded = /* @__PURE__ */ __name(() => {
     }, "OnLoaded");
-    this.FixedUpdate = /* @__PURE__ */ __name(() => {
-    }, "FixedUpdate");
     this.config = Object.assign({}, ConfigurationDefaults.physics, config);
     this.InitPhysX();
   }
@@ -62761,22 +63101,24 @@ var Physics = class {
       }
       const cooking = PhysX.PxTopLevelFunctions.prototype.CreateCooking(version, foundation, cookingParamas);
       PhysX.PxTopLevelFunctions.prototype.InitExtensions(physics);
-      const sceneDesc = new PhysX.PxSceneDesc(tolerance);
-      sceneDesc.gravity = new PhysX.PxVec3(this.config.gravity.x, this.config.gravity.y, this.config.gravity.z);
-      sceneDesc.cpuDispatcher = PhysX.PxTopLevelFunctions.prototype.DefaultCpuDispatcherCreate(0);
-      sceneDesc.filterShader = PhysX.PxTopLevelFunctions.prototype.DefaultFilterShader();
-      sceneDesc.kineKineFilteringMode = 0;
-      sceneDesc.staticKineFilteringMode = 0;
-      sceneDesc.solverType = PhysX.ePGS;
-      sceneDesc.flags = new PhysX.PxSceneFlags(PhysX.eENABLE_PCM);
-      const sceneFlags = new PhysX.PxSceneFlags(PhysX.ENABLE_CCD);
-      const physicsScene = physics.createScene(sceneDesc);
       this.physxPhysics = physics;
-      this.physxScene = physicsScene;
       this.physxCooking = cooking;
-      this.physicsRaycast = new PhysicsRaycast(this.physxScene);
       this.OnLoaded();
     });
+  }
+  CreateScene() {
+    const tolerance = new PhysX.PxTolerancesScale();
+    const sceneDesc = new PhysX.PxSceneDesc(tolerance);
+    sceneDesc.gravity = new PhysX.PxVec3(this.config.gravity.x, this.config.gravity.y, this.config.gravity.z);
+    sceneDesc.cpuDispatcher = PhysX.PxTopLevelFunctions.prototype.DefaultCpuDispatcherCreate(0);
+    sceneDesc.filterShader = PhysX.PxTopLevelFunctions.prototype.DefaultFilterShader();
+    sceneDesc.kineKineFilteringMode = 0;
+    sceneDesc.staticKineFilteringMode = 0;
+    sceneDesc.solverType = PhysX.ePGS;
+    sceneDesc.flags = new PhysX.PxSceneFlags(PhysX.eENABLE_PCM);
+    const sceneFlags = new PhysX.PxSceneFlags(PhysX.ENABLE_CCD);
+    const physicsScene = this.physxPhysics.createScene(sceneDesc);
+    return physicsScene;
   }
   createPhysXDebugger(host = "localhost", port = 8090) {
     const pvdTransport = new PhysX.JSPvdTransport();
@@ -62821,9 +63163,6 @@ var Physics = class {
   GetPhysics() {
     return this.physxPhysics;
   }
-  GetScene() {
-    return this.physxScene;
-  }
   GetCooking() {
     return this.physxCooking;
   }
@@ -62833,15 +63172,74 @@ var Physics = class {
   }
   Start() {
   }
-  Update() {
-    if (this.physxScene) {
-      this.FixedUpdate();
-      this.physxScene.simulate(1 / this.config.framerate, null);
-      this.physxScene.fetchResults();
+  Update(scene) {
+    if (scene) {
+      scene.simulate(1 / this.config.framerate, null);
+      scene.fetchResults();
     }
   }
 };
 __name(Physics, "Physics");
+
+// src/Runtime.ts
+var Runtime = class {
+  constructor(config) {
+    this.OnLoaded = /* @__PURE__ */ __name(() => {
+    }, "OnLoaded");
+    this.isPlaying = false;
+    this.currentFrame = 0;
+    this.gizmosEnabled = false;
+    Runtime.Config = config;
+    Runtime.Input = new Input(this);
+    Runtime.SceneManager = new SceneManager();
+    Runtime.Renderer = new Renderer(Runtime.Config.renderer);
+    Runtime.Renderer.OnLoaded = () => {
+      Runtime.Physics = new Physics(Runtime.Config.physics);
+      Runtime.Physics.OnLoaded = () => {
+        this.OnLoaded();
+        requestAnimationFrame((now2) => {
+          this.Run();
+        });
+      };
+    };
+  }
+  Load() {
+    if (!Runtime.SceneManager.GetActiveScene()) {
+      return console.warn("No active scene set, nothing to load.");
+    }
+    return InstantiationPool.Load();
+  }
+  Play() {
+    if (!Runtime.SceneManager.GetActiveScene()) {
+      return console.warn("No active scene set, nothing to Play.");
+    }
+    this.isPlaying = true;
+  }
+  Stop() {
+    this.isPlaying = false;
+  }
+  Run() {
+    const activeScene = Runtime.SceneManager.GetActiveScene();
+    if (activeScene) {
+      if (this.isPlaying) {
+        activeScene.FixedUpdate();
+        activeScene.UpdatePhysics();
+        activeScene.Update();
+        if (this.gizmosEnabled) {
+          activeScene.OnDrawGizmos();
+        }
+      }
+      activeScene.Render();
+      activeScene.LateUpdate();
+    }
+    Runtime.Input.Tick();
+    this.currentFrame++;
+    requestAnimationFrame(() => {
+      this.Run();
+    });
+  }
+};
+__name(Runtime, "Runtime");
 
 // src/enums/KeyCodes.ts
 var KeyCodes;
@@ -62962,6 +63360,23 @@ var KeyCodes;
   KeyCodes2[KeyCodes2["QUOTE"] = 222] = "QUOTE";
   KeyCodes2[KeyCodes2["META"] = 224] = "META";
 })(KeyCodes || (KeyCodes = {}));
+
+// src/enums/ArticulationJointType.ts
+var ArticulationJointType;
+(function(ArticulationJointType2) {
+  ArticulationJointType2[ArticulationJointType2["FixedJoint"] = 0] = "FixedJoint";
+  ArticulationJointType2[ArticulationJointType2["PrismaticJoint"] = 1] = "PrismaticJoint";
+  ArticulationJointType2[ArticulationJointType2["RevoluteJoint"] = 2] = "RevoluteJoint";
+  ArticulationJointType2[ArticulationJointType2["SphericalJoint"] = 3] = "SphericalJoint";
+})(ArticulationJointType || (ArticulationJointType = {}));
+
+// src/enums/ArticulationMotion.ts
+var ArticulationMotion;
+(function(ArticulationMotion2) {
+  ArticulationMotion2[ArticulationMotion2["LockedMotion"] = 0] = "LockedMotion";
+  ArticulationMotion2[ArticulationMotion2["LimitedMotion"] = 1] = "LimitedMotion";
+  ArticulationMotion2[ArticulationMotion2["FreeMotion"] = 2] = "FreeMotion";
+})(ArticulationMotion || (ArticulationMotion = {}));
 
 // src/resources/ResourcesCache.ts
 var _ResourcesCache = class {
@@ -63474,67 +63889,282 @@ var OBJLoader = function() {
   return OBJLoader2;
 }();
 
-// src/interfaces/IFile.ts
-var FileType;
-(function(FileType2) {
-  FileType2[FileType2["MATERIAL"] = 0] = "MATERIAL";
-  FileType2[FileType2["MESH"] = 1] = "MESH";
-  FileType2[FileType2["COMPONENT"] = 2] = "COMPONENT";
-})(FileType || (FileType = {}));
-
 // src/resources/Resources.ts
 var ResourceExtensions;
 (function(ResourceExtensions2) {
   ResourceExtensions2["MATERIAL"] = "MAT";
   ResourceExtensions2["MESH_OBJ"] = "OBJ";
   ResourceExtensions2["COMPONENT"] = "JS";
+  ResourceExtensions2["SCENE"] = "SCENE";
 })(ResourceExtensions || (ResourceExtensions = {}));
+var Resources = class {
+  static LoadMeshAsync(path, type, fileId) {
+    if (type == ResourceExtensions.MESH_OBJ) {
+      const loader = new OBJLoader();
+      const promise = new Promise((resolve, reject) => {
+        loader.load(path, (group) => {
+          if (group.children.length > 0) {
+            const mesh = group.children[0];
+            if (mesh instanceof Mesh) {
+              const geometryFile = mesh.geometry;
+              const userData = {
+                type: FileType.MESH,
+                fileId
+              };
+              geometryFile.userData = userData;
+              resolve(geometryFile);
+            }
+          }
+        }, (xhr) => {
+        }, (err) => {
+          reject(err);
+        });
+      });
+      ResourcesCache.set(fileId, promise);
+      return promise;
+    }
+  }
+  static LoadMaterialAsync(path, fileId) {
+    const loader = new MaterialLoader();
+    const promise = new Promise((resolve, reject) => {
+      loader.load(path, (material) => {
+        const userData = {
+          type: FileType.MATERIAL,
+          fileId
+        };
+        material.userData = userData;
+        resolve(material);
+      }, (xhr) => {
+      }, (err) => {
+        reject(err);
+      });
+    });
+    ResourcesCache.set(fileId, promise);
+    return promise;
+  }
+  static LoadComponentAsync(path, fileId) {
+    const promise = new Promise((resolve, reject) => {
+      import(path).then((component) => {
+        const componentKeys = Object.keys(component);
+        if (componentKeys.length > 0) {
+          const key = componentKeys[0];
+          const userData = {
+            type: FileType.COMPONENT,
+            fileId
+          };
+          component[key].prototype.userData = userData;
+          resolve(component[key]);
+        }
+      });
+    });
+    ResourcesCache.set(fileId, promise);
+    return promise;
+  }
+  static LoadSceneAsync(path, fileId) {
+    const promise = new Promise((resolve, reject) => {
+      fetch(path).then((response) => response.json()).then((sceneSerialized) => {
+        SceneDeserializer.Deserialize(sceneSerialized).then((scene) => {
+          const userData = {
+            type: FileType.COMPONENT,
+            fileId
+          };
+          scene.userData = userData;
+          resolve(scene);
+        });
+      }).catch((error) => {
+        reject(error);
+      });
+    });
+    ResourcesCache.set(fileId, promise);
+    return promise;
+  }
+  static async LoadAsync(path) {
+    if (ResourcesCache.has(path)) {
+      return ResourcesCache.get(path);
+    }
+    const extension = path.substr(path.lastIndexOf(".") + 1).toUpperCase();
+    if (extension == ResourceExtensions.MATERIAL) {
+      return Resources.LoadMaterialAsync(path, path);
+    } else if (extension == ResourceExtensions.MESH_OBJ) {
+      return Resources.LoadMeshAsync(path, ResourceExtensions.MESH_OBJ, path);
+    } else if (extension == ResourceExtensions.COMPONENT) {
+      return Resources.LoadComponentAsync(path, path);
+    } else if (extension == ResourceExtensions.SCENE) {
+      return Resources.LoadSceneAsync(path, path);
+    }
+  }
+};
+__name(Resources, "Resources");
 
-// src/serializer/PropertyTypes.ts
-var PropertyTypes;
-(function(PropertyTypes2) {
-  PropertyTypes2["BOOLEAN"] = "BOOLEAN";
-  PropertyTypes2["NUMBER"] = "NUMBER";
-  PropertyTypes2["STRING"] = "STRING";
-  PropertyTypes2["OBJECT"] = "OBJECT";
-  PropertyTypes2["COLOR"] = "COLOR";
-  PropertyTypes2["VECTOR3"] = "VECTOR3";
-  PropertyTypes2["VECTOR2"] = "VECTOR2";
-  PropertyTypes2["MESH"] = "MESH";
-  PropertyTypes2["MATERIAL"] = "MATERIAL";
-  PropertyTypes2["COMPONENT"] = "COMPONENT";
-  PropertyTypes2["CUSTOM_FUNCTION"] = "CUSTOM_FUNCTION";
-  PropertyTypes2["CUSTOM_OBJECT"] = "CUSTOM_OBJECT";
-})(PropertyTypes || (PropertyTypes = {}));
+// src/serializer/SceneSerializer.ts
+var SceneSerializer = class {
+  static getInstanceParentInstance(instance) {
+    const prototype = Object.getPrototypeOf(instance);
+    const prototypeParent = Object.getPrototypeOf(prototype);
+    if (prototypeParent.constructor.name == "Object" || prototypeParent.constructor.name == "EventDispatcher") {
+      return prototype.constructor;
+    }
+    return SceneSerializer.getInstanceParentInstance(prototype);
+  }
+  static SerializeComponentProperty(component, property, checkCustomTypeOnly = false) {
+    const classname = component.constructor.name;
+    const type = typeof component[property];
+    if (type == "function")
+      return null;
+    const customType = SerializableTypesInstance.get(classname, property);
+    if (customType) {
+      if (typeof customType == "function") {
+        return {
+          name: property,
+          value: SceneSerializer.SerializeComponent(component[property]),
+          type: PropertyTypes.CUSTOM_FUNCTION
+        };
+      } else if (typeof customType == "object") {
+        return {
+          name: property,
+          value: component[property],
+          type: PropertyTypes.CUSTOM_OBJECT
+        };
+      }
+    }
+    if (checkCustomTypeOnly)
+      return;
+    if (component[property] instanceof Vector3) {
+      const value = { x: component[property].x, y: component[property].y, z: component[property].z };
+      return { name: property, value, type: PropertyTypes.VECTOR3 };
+    } else if (component[property] instanceof Color) {
+      const value = component[property].getHex();
+      return { name: property, value, type: PropertyTypes.COLOR };
+    } else if (component[property] instanceof Vector2) {
+      const value = { x: component[property].x, y: component[property].y };
+      return { name: property, value, type: PropertyTypes.VECTOR2 };
+    } else if (component[property] instanceof Material) {
+      return {
+        name: property,
+        value: "Material",
+        type: PropertyTypes.MATERIAL,
+        file: component[property].userData ? component[property].userData : null
+      };
+    } else if (component[property] instanceof BufferGeometry || component[property] instanceof Geometry) {
+      return {
+        name: property,
+        value: "BufferGeometry",
+        type: PropertyTypes.MESH,
+        file: component[property].userData ? component[property].userData : null
+      };
+    } else if (type == "number") {
+      return { name: property, value: component[property], type: PropertyTypes.NUMBER };
+    } else if (type == "boolean") {
+      return { name: property, value: component[property], type: PropertyTypes.BOOLEAN };
+    } else if (type == "object") {
+      const parent = SceneSerializer.getInstanceParentInstance(component[property]);
+      return { name: property, value: component[property].constructor.name, type: PropertyTypes.OBJECT };
+    }
+  }
+  static SerializeComponent(component) {
+    const componentCast = component;
+    let componentSerialized = {
+      uuid: component.uuid,
+      component: component.constructor.name,
+      properties: [],
+      file: component.userData ? component.userData : null
+    };
+    for (let property in Object.getPrototypeOf(component)) {
+      try {
+        const componentPropertyElement = SceneSerializer.SerializeComponentProperty(componentCast, property);
+        if (componentPropertyElement) {
+          componentSerialized.properties.push(componentPropertyElement);
+        }
+      } catch (error) {
+      }
+    }
+    for (let property in component) {
+      try {
+        if (typeof component[property] != "object")
+          continue;
+        const componentPropertyElement = SceneSerializer.SerializeComponentProperty(componentCast, property, true);
+        if (componentPropertyElement) {
+          componentSerialized.properties.push(componentPropertyElement);
+        }
+      } catch (error) {
+      }
+    }
+    return componentSerialized;
+  }
+  static SerializeTransform(transform) {
+    return {
+      uuid: transform.uuid,
+      position: { x: transform.position.x, y: transform.position.y, z: transform.position.z },
+      rotation: { x: transform.eulerAngles.x, y: transform.eulerAngles.y, z: transform.eulerAngles.z },
+      scale: { x: transform.localScale.x, y: transform.localScale.y, z: transform.localScale.z },
+      parent: transform.parent ? transform.parent.uuid : ""
+    };
+  }
+  static SerializeGameObject(gameObject) {
+    let gameObjectSerialized = {
+      uuid: gameObject.uuid,
+      name: gameObject.name,
+      transform: SceneSerializer.SerializeTransform(gameObject.transform),
+      components: []
+    };
+    for (let component of gameObject.components) {
+      const componentCast = component;
+      if (componentCast.hideFlags == HideFlags.HideAndDontSave)
+        continue;
+      const componentSerialized = SceneSerializer.SerializeComponent(componentCast);
+      gameObjectSerialized.components.push(componentSerialized);
+    }
+    return gameObjectSerialized;
+  }
+  static Serialize(scene) {
+    let sceneSerialized = {
+      name: scene.name,
+      gameObjects: [],
+      file: scene.userData ? scene.userData : null
+    };
+    for (let gameObject of scene.gameObjects) {
+      if (gameObject.hideFlags == HideFlags.HideAndDontSave)
+        continue;
+      const gameObjectSerialized = SceneSerializer.SerializeGameObject(gameObject);
+      sceneSerialized.gameObjects.push(gameObjectSerialized);
+    }
+    return sceneSerialized;
+  }
+};
+__name(SceneSerializer, "SceneSerializer");
 
 // tests/helper.ts
-function CreateScene(config = {}, OnLoaded) {
-  if (!config.renderer)
-    config.renderer = {};
-  if (!config.physics)
-    config.physics = {};
-  if (!config.application)
-    config.application = {};
-  const defaultConfig = {
-    renderer: {
-      containerId: "canvasContainer"
-    },
-    physics: {
-      physxWasmURL: window.location + "/../../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm"
-    }
-  };
-  const _config = {
-    renderer: Object.assign({}, defaultConfig.renderer, config.renderer),
-    physics: Object.assign({}, defaultConfig.physics, config.physics)
-  };
-  const renderer = new Renderer(_config.renderer);
-  renderer.OnLoaded = () => {
-    const physics = new Physics(_config.physics);
-    physics.OnLoaded = () => {
-      const scene = new Scene2(renderer, physics);
-      OnLoaded(scene);
+function CreateRuntime(config = {}) {
+  return new Promise((resolve, reject) => {
+    if (!config.renderer)
+      config.renderer = {};
+    if (!config.physics)
+      config.physics = {};
+    if (!config.application)
+      config.application = {};
+    const defaultConfig = {
+      renderer: {
+        containerId: "canvasContainer"
+      },
+      physics: {
+        physxWasmURL: window.location + "/../../dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm"
+      }
     };
-  };
+    const _config = {
+      renderer: Object.assign({}, defaultConfig.renderer, config.renderer),
+      physics: Object.assign({}, defaultConfig.physics, config.physics)
+    };
+    const runtime = new Runtime(_config);
+    runtime.OnLoaded = () => {
+      return resolve(runtime);
+    };
+  });
+}
+__name(CreateRuntime, "CreateRuntime");
+function CreateScene() {
+  const scene = Runtime.SceneManager.CreateScene("New Scene");
+  Runtime.SceneManager.SetActiveScene(scene);
+  return scene;
 }
 __name(CreateScene, "CreateScene");
 function CreateCamera(scene, x = 0, y = 0, z = 0) {
@@ -63546,11 +64176,11 @@ function CreateCamera(scene, x = 0, y = 0, z = 0) {
   return camera;
 }
 __name(CreateCamera, "CreateCamera");
-async function WaitForTick(scene, ticks = 0) {
+async function WaitForTick(runtime, ticks = 0) {
   return new Promise((resolve, reject) => {
-    const frame = scene.currentFrame;
+    const frame = runtime.currentFrame;
     const interval = setInterval(() => {
-      if (frame + ticks < scene.currentFrame) {
+      if (frame + ticks < runtime.currentFrame) {
         clearInterval(interval);
         resolve();
       }
@@ -63561,11 +64191,13 @@ __name(WaitForTick, "WaitForTick");
 
 // tests/Components/Transform.spec.ts
 describe("Transform", function() {
+  let runtime;
   let scene;
   beforeEach(async () => {
     return await new Promise((resolve, reject) => {
-      CreateScene({}, (_scene) => {
-        scene = _scene;
+      CreateRuntime({}).then((_runtime) => {
+        runtime = _runtime;
+        scene = CreateScene();
         resolve(scene);
       });
     });
@@ -63581,9 +64213,9 @@ describe("Transform", function() {
     const child = new GameObject6(scene);
     child.transform.parent = parent.transform;
     child.transform.position.y = 2;
-    await WaitForTick(scene, 2);
+    await WaitForTick(runtime, 2);
     parent.transform.position.x = 1;
-    await WaitForTick(scene, 2);
+    await WaitForTick(runtime, 2);
     expect(child.transform.position.x).toBe(1);
   });
   it("Setting transform parent should change parents child", function() {
@@ -63600,11 +64232,13 @@ describe("Transform", function() {
 
 // tests/Components/GameObject.spec.ts
 describe("GameObject", function() {
+  let runtime;
   let scene;
   beforeEach(async () => {
     return await new Promise((resolve, reject) => {
-      CreateScene({}, (_scene) => {
-        scene = _scene;
+      CreateRuntime({}).then((_runtime) => {
+        runtime = _runtime;
+        scene = CreateScene();
         resolve(scene);
       });
     });
@@ -63617,11 +64251,13 @@ describe("GameObject", function() {
 
 // tests/Components/Rigidbody.spec.ts
 describe("Rigidbody", function() {
+  let runtime;
   let scene;
   beforeEach(async () => {
     return await new Promise((resolve, reject) => {
-      CreateScene({}, (_scene) => {
-        scene = _scene;
+      CreateRuntime({}).then((_runtime) => {
+        runtime = _runtime;
+        scene = CreateScene();
         resolve(scene);
       });
     });
@@ -63659,5 +64295,40 @@ describe("Rigidbody", function() {
       gameObject2.Destroy();
     }
     expect(scene.gameObjects.length).toBe(0);
+  });
+});
+
+// tests/Serialization.spec.ts
+describe("Serialization", function() {
+  let runtime;
+  let scene;
+  beforeEach(async () => {
+    return await new Promise((resolve, reject) => {
+      CreateRuntime({}).then((_runtime) => {
+        runtime = _runtime;
+        scene = CreateScene();
+        resolve(scene);
+      });
+    });
+  });
+  it("Serialized scene should match deserialized scene", async function() {
+    const rootArticulationGameobject = new GameObject6(scene);
+    rootArticulationGameobject.CreatePrimitive(PrimitiveType.Cube);
+    const rootArticulation = rootArticulationGameobject.AddComponent(ArticulationBody);
+    rootArticulation.immovable = true;
+    const articulationGameobject = new GameObject6(scene);
+    articulationGameobject.transform.position.set(2, 0, 0);
+    articulationGameobject.transform.parent = rootArticulationGameobject.transform;
+    articulationGameobject.CreatePrimitive(PrimitiveType.Cube);
+    const articulation = articulationGameobject.AddComponent(ArticulationBody);
+    articulation.jointType = ArticulationJointType.SphericalJoint;
+    articulation.mass = 1 / 2 * 10;
+    articulation.xDrive.stiffness = 10;
+    articulation.yDrive.stiffness = 10;
+    articulation.zDrive.stiffness = 10;
+    const sceneSerialized = SceneSerializer.Serialize(scene);
+    const scene2 = await SceneDeserializer.Deserialize(sceneSerialized);
+    const scene2Serialized = SceneSerializer.Serialize(scene2);
+    expect(JSON.stringify(sceneSerialized)).toBe(JSON.stringify(scene2Serialized));
   });
 });

@@ -1,61 +1,18 @@
 import { GameObject } from "./components/GameObject";
-import { Input } from './Input';
-import { InstantiationPool } from "./InstantiationPool";
+import { Runtime } from "./Runtime";
+import { AmbientLight } from 'three';
 /**
  * The scene that holds all GameObjects.
  */
 export class Scene {
-    /**
-     * @param {Renderer} renderer - Initialized Renderer instance.
-     * @param {Physics} physics - Initialized Physics instance.
-     */
-    constructor(renderer, physics) {
-        this.isPlaying = false;
-        this.currentFrame = 0;
-        this.gizmosEnabled = false;
+    constructor(name) {
         this.gameObjects = [];
-        this.renderer = renderer;
-        this.physics = physics;
-        this.physics.FixedUpdate = () => { this.FixedUpdate(); };
-        this.input = new Input(this);
-        requestAnimationFrame((now) => { this.Update(); });
-    }
-    /**
-     * Get the renderer for this scene.
-     * @returns {Renderer} Renderer attached to this scene.
-     */
-    GetRenderer() {
-        return this.renderer;
-    }
-    /**
-     * Get the physics for this scene.
-     * @returns {Physics} - Physics attached to this scene.
-     */
-    GetPhysics() {
-        return this.physics;
-    }
-    /**
-     * Get the input for this scene.
-     * @returns {Input} - Input attached to this scene.
-     */
-    GetInput() {
-        return this.input;
-    }
-    /**
-     * Get the current main camera.
-     * The main camera is the camera that the client is viewing the scene from.
-     * @returns {Camera} - Current active camera.
-     */
-    GetActiveCamera() {
-        return this.camera;
-    }
-    /**
-     * Set the current main camera.
-     * The main camera is the camera that the client is viewing the scene from.
-     * @param {Camera} camera - Camera to become the main camera.
-     */
-    SetActiveCamera(camera) {
-        this.camera = camera;
+        this.name = name;
+        this.rendererScene = Runtime.Renderer.CreateScene();
+        this.physicsScene = Runtime.Physics.CreateScene();
+        // TODO: Clean renderer rendering settings (skybox, fog, ambient, etc)
+        const ambientLight = new AmbientLight(0xffffff, 0.3);
+        this.rendererScene.add(ambientLight);
     }
     /**
      * Adds a new GameObject to the scene.
@@ -83,6 +40,22 @@ export class Scene {
         return true;
     }
     /**
+     * Get the current main camera.
+     * The main camera is the camera that the client is viewing the scene from.
+     * @returns {Camera} - Current active camera.
+     */
+    GetActiveCamera() {
+        return this.activeCamera;
+    }
+    /**
+     * Set the current main camera.
+     * The main camera is the camera that the client is viewing the scene from.
+     * @param {Camera} camera - Camera to become the main camera.
+     */
+    SetActiveCamera(camera) {
+        this.activeCamera = camera;
+    }
+    /**
      * Called before every Physics update.
      * Calls FixedUpdate on all attached components.
      */
@@ -91,50 +64,28 @@ export class Scene {
             gameObject.FixedUpdate();
         }
     }
-    /**
-     * Called before every Renderer update.
-     * Calls Update on all attached components.
-     */
     Update() {
-        // this.physics.Update();
-        if (this.isPlaying) {
-            this.physics.Update();
-            for (let gameObject of this.gameObjects) {
-                gameObject.Update();
-                if (this.gizmosEnabled) {
-                    gameObject.OnDrawGizmos();
-                }
-            }
+        for (let gameObject of this.gameObjects) {
+            gameObject.Update();
         }
-        if (this.camera) {
-            this.renderer.Tick(this.camera.GetCamera());
-        }
+    }
+    LateUpdate() {
         for (let gameObject of this.gameObjects) {
             gameObject.LateUpdate();
         }
-        this.input.Tick();
-        this.currentFrame++;
-        requestAnimationFrame(() => { this.Update(); });
     }
-    /**
-     * Load the Scene.
-     * Instanciates all Components
-     */
-    Load() {
-        return InstantiationPool.Load();
+    OnDrawGizmos() {
+        for (let gameObject of this.gameObjects) {
+            gameObject.OnDrawGizmos();
+        }
     }
-    /**
-     * Called when the scene starts.
-     */
-    Play() {
-        this.isPlaying = true;
+    UpdatePhysics() {
+        Runtime.Physics.Update(this.physicsScene);
     }
-    /**
-     * Called when the scene stops.
-     * Calls Stop on all attached components.
-     */
-    Stop() {
-        this.isPlaying = false;
+    Render() {
+        if (this.GetActiveCamera()) {
+            Runtime.Renderer.Tick(this.rendererScene, this.GetActiveCamera().GetCamera());
+        }
     }
 }
 //# sourceMappingURL=Scene.js.map

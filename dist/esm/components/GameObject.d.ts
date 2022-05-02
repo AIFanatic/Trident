@@ -17,11 +17,11 @@ export declare class GameObject implements IComponent {
     uuid: string;
     classtype: ComponentsEnum;
     name: string;
-    scene: Scene;
     transform: Transform;
     components: Component[];
     layer: LayerMask;
     hideFlags: HideFlags;
+    readonly scene: Scene;
     constructor(scene: Scene);
     private IsValidComponent;
     /**
@@ -72,10 +72,11 @@ export declare class GameObject implements IComponent {
     * @returns {Component[]} - A list of the matched components, empty list otherwise.
     */
     GetComponents<T extends Component>(type: new (...args: any[]) => T): T[];
+    Tick(): void;
     FixedUpdate(): void;
     Update(): void;
-    LateUpdate(): void;
     OnDrawGizmos(): void;
+    LateUpdate(): void;
     /**
     * Remove the GameObject from the scene and all of its components.
     */

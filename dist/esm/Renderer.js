@@ -1,4 +1,4 @@
-import { AmbientLight, Scene, WebGLRenderer } from 'three';
+import { Scene, WebGLRenderer } from 'three';
 import { ConfigurationDefaults } from './defaults/ConfigurationDefaults';
 export class Renderer {
     constructor(config) {
@@ -21,24 +21,23 @@ export class Renderer {
         renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
         renderer.setPixelRatio(window.devicePixelRatio * this.config.pixelRatio);
         renderer.shadowMap.enabled = true;
-        this.scene = scene;
         this.renderer = renderer;
-        // TODO: Clean renderer rendering settings (skybox, fog, ambient, etc)
-        this.ambientLight = new AmbientLight(0xffffff, 0.3);
-        this.scene.add(this.ambientLight);
         this.fpsInterval = 1000 / this.config.targetFrameRate;
         this.then = Date.now();
         this.startTime = this.then;
-        new ResizeObserver(() => { this.OnResize(); }).observe(this.renderer.domElement);
+        new ResizeObserver(() => { this.OnResize(); }).observe(this.renderer.domElement.parentElement);
         // Skip a bit so that initiator can set OnLoaded
         setTimeout(() => {
             this.OnLoaded();
         }, 50);
     }
+    CreateScene() {
+        return new Scene();
+    }
     OnResize() {
         this.renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
     }
-    Tick(camera) {
+    Tick(scene, camera) {
         // calc elapsed time since last loop
         this.now = Date.now();
         this.elapsed = this.now - this.then;
@@ -49,7 +48,7 @@ export class Renderer {
             this.then = this.now - (this.elapsed % this.fpsInterval);
             // draw stuff here
             if (camera) {
-                this.renderer.render(this.scene, camera);
+                this.renderer.render(scene, camera);
             }
             // TESTING...Report #seconds since start and achieved fps.
             var sinceStart = this.now - this.startTime;

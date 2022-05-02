@@ -43,4 +43,4 @@
 
 #### Defined in
 
-[components/MeshRenderer.ts:9](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/MeshRenderer.ts#L9)
+[components/MeshRenderer.ts:8](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/MeshRenderer.ts#L8)

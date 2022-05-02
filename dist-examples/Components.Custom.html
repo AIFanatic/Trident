@@ -18,14 +18,15 @@
                     this.transform.eulerAngles.x += 1;
                 }
             }
-            SceneHelper.CreateScene({}, (scene) => {
+            SceneHelper.CreateRuntime({}).then(runtime => {
+                const scene = SceneHelper.CreateScene();
                 SceneHelper.CreateCamera(scene);
                 SceneHelper.CreateSunlight(scene);
                 const cubeGameobject = new GameObject(scene);
                 const cubeComponent = cubeGameobject.AddComponent(CustomComponent);
                 cubeComponent.transform.position.set(0, -2, -10);
-                scene.Load();
-                scene.Play();
+                runtime.Load();
+                runtime.Play();
             });
             
         </script>

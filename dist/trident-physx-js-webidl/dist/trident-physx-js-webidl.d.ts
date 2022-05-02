@@ -2626,5 +2626,4 @@ declare module PhysX {
         connect(transport: PxPvdTransport, flags: PxPvdInstrumentationFlags): boolean;
     }
 }
-
-export function PhysXLoader(wasmLocation: any): Promise<void>;
+export function PhysXLoader(wasmLocation: any): Promise<typeof PhysX>;

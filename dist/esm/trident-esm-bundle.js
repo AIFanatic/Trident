@@ -1,6 +1,7 @@
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
+var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 var __export = (target, all) => {
   __markAsModule(target);
   for (var name in all)
@@ -683,6 +684,7 @@ var GLSL1 = "100";
 var GLSL3 = "300 es";
 function EventDispatcher() {
 }
+__name(EventDispatcher, "EventDispatcher");
 Object.assign(EventDispatcher.prototype, {
   addEventListener: function(type, listener) {
     if (this._listeners === void 0)
@@ -1100,6 +1102,7 @@ var Vector2 = class {
     return this;
   }
 };
+__name(Vector2, "Vector2");
 var Matrix3 = class {
   constructor() {
     Object.defineProperty(this, "isMatrix3", { value: true });
@@ -1322,6 +1325,7 @@ var Matrix3 = class {
     return array;
   }
 };
+__name(Matrix3, "Matrix3");
 var _canvas;
 var ImageUtils = {
   getDataURL: function(image) {
@@ -1384,6 +1388,7 @@ function Texture(image = Texture.DEFAULT_IMAGE, mapping = Texture.DEFAULT_MAPPIN
   this.version = 0;
   this.onUpdate = null;
 }
+__name(Texture, "Texture");
 Texture.DEFAULT_IMAGE = void 0;
 Texture.DEFAULT_MAPPING = UVMapping;
 Texture.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
@@ -1551,6 +1556,7 @@ function serializeImage(image) {
     }
   }
 }
+__name(serializeImage, "serializeImage");
 var Vector4 = class {
   constructor(x = 0, y = 0, z = 0, w = 1) {
     Object.defineProperty(this, "isVector4", { value: true });
@@ -1926,6 +1932,7 @@ var Vector4 = class {
     return this;
   }
 };
+__name(Vector4, "Vector4");
 function WebGLRenderTarget(width, height, options) {
   this.width = width;
   this.height = height;
@@ -1943,6 +1950,7 @@ function WebGLRenderTarget(width, height, options) {
   this.stencilBuffer = options.stencilBuffer !== void 0 ? options.stencilBuffer : false;
   this.depthTexture = options.depthTexture !== void 0 ? options.depthTexture : null;
 }
+__name(WebGLRenderTarget, "WebGLRenderTarget");
 WebGLRenderTarget.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   constructor: WebGLRenderTarget,
   isWebGLRenderTarget: true,
@@ -1978,6 +1986,7 @@ function WebGLMultisampleRenderTarget(width, height, options) {
   WebGLRenderTarget.call(this, width, height, options);
   this.samples = 4;
 }
+__name(WebGLMultisampleRenderTarget, "WebGLMultisampleRenderTarget");
 WebGLMultisampleRenderTarget.prototype = Object.assign(Object.create(WebGLRenderTarget.prototype), {
   constructor: WebGLMultisampleRenderTarget,
   isWebGLMultisampleRenderTarget: true,
@@ -2355,6 +2364,7 @@ var Quaternion = class {
   _onChangeCallback() {
   }
 };
+__name(Quaternion, "Quaternion");
 var Vector3 = class {
   constructor(x = 0, y = 0, z = 0) {
     Object.defineProperty(this, "isVector3", { value: true });
@@ -2767,6 +2777,7 @@ var Vector3 = class {
     return this;
   }
 };
+__name(Vector3, "Vector3");
 var _vector = /* @__PURE__ */ new Vector3();
 var _quaternion = /* @__PURE__ */ new Quaternion();
 var Box3 = class {
@@ -3066,6 +3077,7 @@ var Box3 = class {
     return box.min.equals(this.min) && box.max.equals(this.max);
   }
 };
+__name(Box3, "Box3");
 function satForAxes(axes, v0, v1, v2, extents) {
   for (let i = 0, j = axes.length - 3; i <= j; i += 3) {
     _testAxis.fromArray(axes, i);
@@ -3079,6 +3091,7 @@ function satForAxes(axes, v0, v1, v2, extents) {
   }
   return true;
 }
+__name(satForAxes, "satForAxes");
 var _points = [
   /* @__PURE__ */ new Vector3(),
   /* @__PURE__ */ new Vector3(),
@@ -3197,6 +3210,7 @@ var Sphere = class {
     return sphere.center.equals(this.center) && sphere.radius === this.radius;
   }
 };
+__name(Sphere, "Sphere");
 var _vector$2 = /* @__PURE__ */ new Vector3();
 var _segCenter = /* @__PURE__ */ new Vector3();
 var _segDir = /* @__PURE__ */ new Vector3();
@@ -3455,6 +3469,7 @@ var Ray = class {
     return ray.origin.equals(this.origin) && ray.direction.equals(this.direction);
   }
 };
+__name(Ray, "Ray");
 var Matrix4 = class {
   constructor() {
     Object.defineProperty(this, "isMatrix4", { value: true });
@@ -4022,6 +4037,7 @@ var Matrix4 = class {
     return array;
   }
 };
+__name(Matrix4, "Matrix4");
 var _v1$1 = /* @__PURE__ */ new Vector3();
 var _m1 = /* @__PURE__ */ new Matrix4();
 var _zero = /* @__PURE__ */ new Vector3(0, 0, 0);
@@ -4204,6 +4220,7 @@ var Euler = class {
   _onChangeCallback() {
   }
 };
+__name(Euler, "Euler");
 Euler.DefaultOrder = "XYZ";
 Euler.RotationOrders = ["XYZ", "YZX", "ZXY", "XZY", "YXZ", "ZYX"];
 var _matrix = /* @__PURE__ */ new Matrix4();
@@ -4234,6 +4251,7 @@ var Layers = class {
     return (this.mask & layers.mask) !== 0;
   }
 };
+__name(Layers, "Layers");
 var _object3DId = 0;
 var _v1$2 = new Vector3();
 var _q1 = new Quaternion();
@@ -4262,9 +4280,11 @@ function Object3D() {
   function onRotationChange() {
     quaternion.setFromEuler(rotation, false);
   }
+  __name(onRotationChange, "onRotationChange");
   function onQuaternionChange() {
     rotation.setFromQuaternion(quaternion, void 0, false);
   }
+  __name(onQuaternionChange, "onQuaternionChange");
   rotation._onChange(onRotationChange);
   quaternion._onChange(onQuaternionChange);
   Object.defineProperties(this, {
@@ -4308,6 +4328,7 @@ function Object3D() {
   this.animations = [];
   this.userData = {};
 }
+__name(Object3D, "Object3D");
 Object3D.DefaultUp = new Vector3(0, 1, 0);
 Object3D.DefaultMatrixAutoUpdate = true;
 Object3D.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
@@ -4627,6 +4648,7 @@ Object3D.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
       }
       return element.uuid;
     }
+    __name(serialize, "serialize");
     if (this.isMesh || this.isLine || this.isPoints) {
       object.geometry = serialize(meta.geometries, this.geometry);
       const parameters = this.geometry.parameters;
@@ -4708,6 +4730,7 @@ Object3D.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
       }
       return values;
     }
+    __name(extractFromCache, "extractFromCache");
   },
   clone: function(recursive) {
     return new this.constructor().copy(this, recursive);
@@ -4852,6 +4875,7 @@ var Plane = class {
     return plane.normal.equals(this.normal) && plane.constant === this.constant;
   }
 };
+__name(Plane, "Plane");
 var _v0$1 = /* @__PURE__ */ new Vector3();
 var _v1$3 = /* @__PURE__ */ new Vector3();
 var _v2$1 = /* @__PURE__ */ new Vector3();
@@ -5031,6 +5055,7 @@ var Triangle = class {
     return triangle.a.equals(this.a) && triangle.b.equals(this.b) && triangle.c.equals(this.c);
   }
 };
+__name(Triangle, "Triangle");
 var _colorKeywords = {
   "aliceblue": 15792383,
   "antiquewhite": 16444375,
@@ -5196,12 +5221,15 @@ function hue2rgb(p, q, t) {
     return p + (q - p) * 6 * (2 / 3 - t);
   return p;
 }
+__name(hue2rgb, "hue2rgb");
 function SRGBToLinear(c) {
   return c < 0.04045 ? c * 0.0773993808 : Math.pow(c * 0.9478672986 + 0.0521327014, 2.4);
 }
+__name(SRGBToLinear, "SRGBToLinear");
 function LinearToSRGB(c) {
   return c < 31308e-7 ? c * 12.92 : 1.055 * Math.pow(c, 0.41666) - 0.055;
 }
+__name(LinearToSRGB, "LinearToSRGB");
 var Color = class {
   constructor(r, g, b) {
     Object.defineProperty(this, "isColor", { value: true });
@@ -5262,6 +5290,7 @@ var Color = class {
         console.warn("THREE.Color: Alpha component of " + style + " will be ignored.");
       }
     }
+    __name(handleAlpha, "handleAlpha");
     let m;
     if (m = /^((?:rgb|hsl)a?)\(\s*([^\)]*)\)/.exec(style)) {
       let color;
@@ -5507,6 +5536,7 @@ var Color = class {
     return this.getHex();
   }
 };
+__name(Color, "Color");
 Color.NAMES = _colorKeywords;
 Color.prototype.r = 1;
 Color.prototype.g = 1;
@@ -5541,6 +5571,7 @@ var Face3 = class {
     return this;
   }
 };
+__name(Face3, "Face3");
 var materialId = 0;
 function Material() {
   Object.defineProperty(this, "id", { value: materialId++ });
@@ -5588,6 +5619,7 @@ function Material() {
   this.userData = {};
   this.version = 0;
 }
+__name(Material, "Material");
 Material.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   constructor: Material,
   isMaterial: true,
@@ -5797,6 +5829,7 @@ Material.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
       }
       return values;
     }
+    __name(extractFromCache, "extractFromCache");
     if (isRoot) {
       const textures = extractFromCache(meta.textures);
       const images = extractFromCache(meta.images);
@@ -5895,6 +5928,7 @@ function MeshBasicMaterial(parameters) {
   this.morphTargets = false;
   this.setValues(parameters);
 }
+__name(MeshBasicMaterial, "MeshBasicMaterial");
 MeshBasicMaterial.prototype = Object.create(Material.prototype);
 MeshBasicMaterial.prototype.constructor = MeshBasicMaterial;
 MeshBasicMaterial.prototype.isMeshBasicMaterial = true;
@@ -5935,6 +5969,7 @@ function BufferAttribute(array, itemSize, normalized) {
   this.updateRange = { offset: 0, count: -1 };
   this.version = 0;
 }
+__name(BufferAttribute, "BufferAttribute");
 Object.defineProperty(BufferAttribute.prototype, "needsUpdate", {
   set: function(value) {
     if (value === true)
@@ -6148,52 +6183,62 @@ Object.assign(BufferAttribute.prototype, {
 function Int8BufferAttribute(array, itemSize, normalized) {
   BufferAttribute.call(this, new Int8Array(array), itemSize, normalized);
 }
+__name(Int8BufferAttribute, "Int8BufferAttribute");
 Int8BufferAttribute.prototype = Object.create(BufferAttribute.prototype);
 Int8BufferAttribute.prototype.constructor = Int8BufferAttribute;
 function Uint8BufferAttribute(array, itemSize, normalized) {
   BufferAttribute.call(this, new Uint8Array(array), itemSize, normalized);
 }
+__name(Uint8BufferAttribute, "Uint8BufferAttribute");
 Uint8BufferAttribute.prototype = Object.create(BufferAttribute.prototype);
 Uint8BufferAttribute.prototype.constructor = Uint8BufferAttribute;
 function Uint8ClampedBufferAttribute(array, itemSize, normalized) {
   BufferAttribute.call(this, new Uint8ClampedArray(array), itemSize, normalized);
 }
+__name(Uint8ClampedBufferAttribute, "Uint8ClampedBufferAttribute");
 Uint8ClampedBufferAttribute.prototype = Object.create(BufferAttribute.prototype);
 Uint8ClampedBufferAttribute.prototype.constructor = Uint8ClampedBufferAttribute;
 function Int16BufferAttribute(array, itemSize, normalized) {
   BufferAttribute.call(this, new Int16Array(array), itemSize, normalized);
 }
+__name(Int16BufferAttribute, "Int16BufferAttribute");
 Int16BufferAttribute.prototype = Object.create(BufferAttribute.prototype);
 Int16BufferAttribute.prototype.constructor = Int16BufferAttribute;
 function Uint16BufferAttribute(array, itemSize, normalized) {
   BufferAttribute.call(this, new Uint16Array(array), itemSize, normalized);
 }
+__name(Uint16BufferAttribute, "Uint16BufferAttribute");
 Uint16BufferAttribute.prototype = Object.create(BufferAttribute.prototype);
 Uint16BufferAttribute.prototype.constructor = Uint16BufferAttribute;
 function Int32BufferAttribute(array, itemSize, normalized) {
   BufferAttribute.call(this, new Int32Array(array), itemSize, normalized);
 }
+__name(Int32BufferAttribute, "Int32BufferAttribute");
 Int32BufferAttribute.prototype = Object.create(BufferAttribute.prototype);
 Int32BufferAttribute.prototype.constructor = Int32BufferAttribute;
 function Uint32BufferAttribute(array, itemSize, normalized) {
   BufferAttribute.call(this, new Uint32Array(array), itemSize, normalized);
 }
+__name(Uint32BufferAttribute, "Uint32BufferAttribute");
 Uint32BufferAttribute.prototype = Object.create(BufferAttribute.prototype);
 Uint32BufferAttribute.prototype.constructor = Uint32BufferAttribute;
 function Float16BufferAttribute(array, itemSize, normalized) {
   BufferAttribute.call(this, new Uint16Array(array), itemSize, normalized);
 }
+__name(Float16BufferAttribute, "Float16BufferAttribute");
 Float16BufferAttribute.prototype = Object.create(BufferAttribute.prototype);
 Float16BufferAttribute.prototype.constructor = Float16BufferAttribute;
 Float16BufferAttribute.prototype.isFloat16BufferAttribute = true;
 function Float32BufferAttribute(array, itemSize, normalized) {
   BufferAttribute.call(this, new Float32Array(array), itemSize, normalized);
 }
+__name(Float32BufferAttribute, "Float32BufferAttribute");
 Float32BufferAttribute.prototype = Object.create(BufferAttribute.prototype);
 Float32BufferAttribute.prototype.constructor = Float32BufferAttribute;
 function Float64BufferAttribute(array, itemSize, normalized) {
   BufferAttribute.call(this, new Float64Array(array), itemSize, normalized);
 }
+__name(Float64BufferAttribute, "Float64BufferAttribute");
 Float64BufferAttribute.prototype = Object.create(BufferAttribute.prototype);
 Float64BufferAttribute.prototype.constructor = Float64BufferAttribute;
 var DirectGeometry = class {
@@ -6344,6 +6389,7 @@ var DirectGeometry = class {
     return this;
   }
 };
+__name(DirectGeometry, "DirectGeometry");
 function arrayMax(array) {
   if (array.length === 0)
     return -Infinity;
@@ -6354,6 +6400,7 @@ function arrayMax(array) {
   }
   return max;
 }
+__name(arrayMax, "arrayMax");
 var TYPED_ARRAYS = {
   Int8Array,
   Uint8Array,
@@ -6368,6 +6415,7 @@ var TYPED_ARRAYS = {
 function getTypedArray(type, buffer) {
   return new TYPED_ARRAYS[type](buffer);
 }
+__name(getTypedArray, "getTypedArray");
 var _bufferGeometryId = 1;
 var _m1$2 = new Matrix4();
 var _obj = new Object3D();
@@ -6390,6 +6438,7 @@ function BufferGeometry() {
   this.drawRange = { start: 0, count: Infinity };
   this.userData = {};
 }
+__name(BufferGeometry, "BufferGeometry");
 BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   constructor: BufferGeometry,
   isBufferGeometry: true,
@@ -6842,6 +6891,7 @@ BufferGeometry.prototype = Object.assign(Object.create(EventDispatcher.prototype
       }
       return new BufferAttribute(array2, itemSize, normalized);
     }
+    __name(convertBufferAttribute, "convertBufferAttribute");
     if (this.index === null) {
       console.warn("THREE.BufferGeometry.toNonIndexed(): Geometry is already non-indexed.");
       return this;
@@ -7022,6 +7072,7 @@ function Mesh(geometry, material) {
   this.material = material !== void 0 ? material : new MeshBasicMaterial();
   this.updateMorphTargets();
 }
+__name(Mesh, "Mesh");
 Mesh.prototype = Object.assign(Object.create(Object3D.prototype), {
   constructor: Mesh,
   isMesh: true,
@@ -7209,6 +7260,7 @@ function checkIntersection(object, material, raycaster, ray, pA, pB, pC, point) 
     object
   };
 }
+__name(checkIntersection, "checkIntersection");
 function checkBufferGeometryIntersection(object, material, raycaster, ray, position, morphPosition, morphTargetsRelative, uv, uv2, a, b, c) {
   _vA.fromBufferAttribute(position, a);
   _vB.fromBufferAttribute(position, b);
@@ -7265,6 +7317,7 @@ function checkBufferGeometryIntersection(object, material, raycaster, ray, posit
   }
   return intersection;
 }
+__name(checkBufferGeometryIntersection, "checkBufferGeometryIntersection");
 var BoxBufferGeometry = class extends BufferGeometry {
   constructor(width = 1, height = 1, depth = 1, widthSegments = 1, heightSegments = 1, depthSegments = 1) {
     super();
@@ -7340,8 +7393,10 @@ var BoxBufferGeometry = class extends BufferGeometry {
       groupStart += groupCount;
       numberOfVertices += vertexCounter;
     }
+    __name(buildPlane, "buildPlane");
   }
 };
+__name(BoxBufferGeometry, "BoxBufferGeometry");
 function cloneUniforms(src) {
   const dst = {};
   for (const u in src) {
@@ -7359,6 +7414,7 @@ function cloneUniforms(src) {
   }
   return dst;
 }
+__name(cloneUniforms, "cloneUniforms");
 function mergeUniforms(uniforms) {
   const merged = {};
   for (let u = 0; u < uniforms.length; u++) {
@@ -7369,6 +7425,7 @@ function mergeUniforms(uniforms) {
   }
   return merged;
 }
+__name(mergeUniforms, "mergeUniforms");
 var UniformsUtils = { clone: cloneUniforms, merge: mergeUniforms };
 var default_vertex = "void main() {\n	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n}";
 var default_fragment = "void main() {\n	gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );\n}";
@@ -7409,6 +7466,7 @@ function ShaderMaterial(parameters) {
     this.setValues(parameters);
   }
 }
+__name(ShaderMaterial, "ShaderMaterial");
 ShaderMaterial.prototype = Object.create(Material.prototype);
 ShaderMaterial.prototype.constructor = ShaderMaterial;
 ShaderMaterial.prototype.isShaderMaterial = true;
@@ -7497,6 +7555,7 @@ function Camera() {
   this.projectionMatrix = new Matrix4();
   this.projectionMatrixInverse = new Matrix4();
 }
+__name(Camera, "Camera");
 Camera.prototype = Object.assign(Object.create(Object3D.prototype), {
   constructor: Camera,
   isCamera: true,
@@ -7542,6 +7601,7 @@ function PerspectiveCamera(fov2 = 50, aspect2 = 1, near = 0.1, far = 2e3) {
   this.filmOffset = 0;
   this.updateProjectionMatrix();
 }
+__name(PerspectiveCamera, "PerspectiveCamera");
 PerspectiveCamera.prototype = Object.assign(Object.create(Camera.prototype), {
   constructor: PerspectiveCamera,
   isPerspectiveCamera: true,
@@ -7704,6 +7764,7 @@ function CubeCamera(near, far, renderTarget) {
     renderer.xr.enabled = currentXrEnabled;
   };
 }
+__name(CubeCamera, "CubeCamera");
 CubeCamera.prototype = Object.create(Object3D.prototype);
 CubeCamera.prototype.constructor = CubeCamera;
 function CubeTexture(images, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy, encoding) {
@@ -7714,6 +7775,7 @@ function CubeTexture(images, mapping, wrapS, wrapT, magFilter, minFilter, format
   this.flipY = false;
   this._needsFlipEnvMap = true;
 }
+__name(CubeTexture, "CubeTexture");
 CubeTexture.prototype = Object.create(Texture.prototype);
 CubeTexture.prototype.constructor = CubeTexture;
 CubeTexture.prototype.isCubeTexture = true;
@@ -7735,6 +7797,7 @@ function WebGLCubeRenderTarget(size, options, dummy) {
   this.texture = new CubeTexture(void 0, options.mapping, options.wrapS, options.wrapT, options.magFilter, options.minFilter, options.format, options.type, options.anisotropy, options.encoding);
   this.texture._needsFlipEnvMap = false;
 }
+__name(WebGLCubeRenderTarget, "WebGLCubeRenderTarget");
 WebGLCubeRenderTarget.prototype = Object.create(WebGLRenderTarget.prototype);
 WebGLCubeRenderTarget.prototype.constructor = WebGLCubeRenderTarget;
 WebGLCubeRenderTarget.prototype.isWebGLCubeRenderTarget = true;
@@ -7826,6 +7889,7 @@ function DataTexture(data, width, height, format, type, mapping, wrapS, wrapT, m
   this.unpackAlignment = 1;
   this.needsUpdate = true;
 }
+__name(DataTexture, "DataTexture");
 DataTexture.prototype = Object.create(Texture.prototype);
 DataTexture.prototype.constructor = DataTexture;
 DataTexture.prototype.isDataTexture = true;
@@ -7925,6 +7989,7 @@ var Frustum = class {
     return true;
   }
 };
+__name(Frustum, "Frustum");
 function WebGLAnimation() {
   let context = null;
   let isAnimating = false;
@@ -7934,6 +7999,7 @@ function WebGLAnimation() {
     animationLoop(time, frame);
     requestId = context.requestAnimationFrame(onAnimationFrame);
   }
+  __name(onAnimationFrame, "onAnimationFrame");
   return {
     start: function() {
       if (isAnimating === true)
@@ -7955,6 +8021,7 @@ function WebGLAnimation() {
     }
   };
 }
+__name(WebGLAnimation, "WebGLAnimation");
 function WebGLAttributes(gl, capabilities) {
   const isWebGL2 = capabilities.isWebGL2;
   const buffers = new WeakMap();
@@ -7998,6 +8065,7 @@ function WebGLAttributes(gl, capabilities) {
       version: attribute.version
     };
   }
+  __name(createBuffer, "createBuffer");
   function updateBuffer(buffer, attribute, bufferType) {
     const array = attribute.array;
     const updateRange = attribute.updateRange;
@@ -8013,11 +8081,13 @@ function WebGLAttributes(gl, capabilities) {
       updateRange.count = -1;
     }
   }
+  __name(updateBuffer, "updateBuffer");
   function get(attribute) {
     if (attribute.isInterleavedBufferAttribute)
       attribute = attribute.data;
     return buffers.get(attribute);
   }
+  __name(get, "get");
   function remove(attribute) {
     if (attribute.isInterleavedBufferAttribute)
       attribute = attribute.data;
@@ -8027,6 +8097,7 @@ function WebGLAttributes(gl, capabilities) {
       buffers.delete(attribute);
     }
   }
+  __name(remove, "remove");
   function update(attribute, bufferType) {
     if (attribute.isGLBufferAttribute) {
       const cached = buffers.get(attribute);
@@ -8050,12 +8121,14 @@ function WebGLAttributes(gl, capabilities) {
       data.version = attribute.version;
     }
   }
+  __name(update, "update");
   return {
     get,
     remove,
     update
   };
 }
+__name(WebGLAttributes, "WebGLAttributes");
 var PlaneBufferGeometry = class extends BufferGeometry {
   constructor(width = 1, height = 1, widthSegments = 1, heightSegments = 1) {
     super();
@@ -8104,6 +8177,7 @@ var PlaneBufferGeometry = class extends BufferGeometry {
     this.setAttribute("uv", new Float32BufferAttribute(uvs, 2));
   }
 };
+__name(PlaneBufferGeometry, "PlaneBufferGeometry");
 var alphamap_fragment = "#ifdef USE_ALPHAMAP\n	diffuseColor.a *= texture2D( alphaMap, vUv ).g;\n#endif";
 var alphamap_pars_fragment = "#ifdef USE_ALPHAMAP\n	uniform sampler2D alphaMap;\n#endif";
 var alphatest_fragment = "#ifdef ALPHATEST\n	if ( diffuseColor.a < ALPHATEST ) discard;\n#endif";
@@ -8828,9 +8902,11 @@ function WebGLBackground(renderer, cubemaps, state, objects, premultipliedAlpha)
       renderList.unshift(planeMesh, planeMesh.geometry, planeMesh.material, 0, 0, null);
     }
   }
+  __name(render, "render");
   function setClear(color, alpha) {
     state.buffers.color.setClear(color.r, color.g, color.b, alpha, premultipliedAlpha);
   }
+  __name(setClear, "setClear");
   return {
     getClearColor: function() {
       return clearColor;
@@ -8850,6 +8926,7 @@ function WebGLBackground(renderer, cubemaps, state, objects, premultipliedAlpha)
     render
   };
 }
+__name(WebGLBackground, "WebGLBackground");
 function WebGLBindingStates(gl, extensions, attributes, capabilities) {
   const maxVertexAttributes = gl.getParameter(34921);
   const extension = capabilities.isWebGL2 ? null : extensions.get("OES_vertex_array_object");
@@ -8890,21 +8967,25 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
       }
     }
   }
+  __name(setup, "setup");
   function createVertexArrayObject() {
     if (capabilities.isWebGL2)
       return gl.createVertexArray();
     return extension.createVertexArrayOES();
   }
+  __name(createVertexArrayObject, "createVertexArrayObject");
   function bindVertexArrayObject(vao) {
     if (capabilities.isWebGL2)
       return gl.bindVertexArray(vao);
     return extension.bindVertexArrayOES(vao);
   }
+  __name(bindVertexArrayObject, "bindVertexArrayObject");
   function deleteVertexArrayObject(vao) {
     if (capabilities.isWebGL2)
       return gl.deleteVertexArray(vao);
     return extension.deleteVertexArrayOES(vao);
   }
+  __name(deleteVertexArrayObject, "deleteVertexArrayObject");
   function getBindingState(geometry, program, material) {
     const wireframe = material.wireframe === true;
     let programMap = bindingStates[geometry.id];
@@ -8924,6 +9005,7 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
     }
     return state;
   }
+  __name(getBindingState, "getBindingState");
   function createBindingState(vao) {
     const newAttributes = [];
     const enabledAttributes = [];
@@ -8945,6 +9027,7 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
       index: null
     };
   }
+  __name(createBindingState, "createBindingState");
   function needsUpdate(geometry, index) {
     const cachedAttributes = currentState.attributes;
     const geometryAttributes = geometry.attributes;
@@ -8966,6 +9049,7 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
       return true;
     return false;
   }
+  __name(needsUpdate, "needsUpdate");
   function saveCache(geometry, index) {
     const cache = {};
     const attributes2 = geometry.attributes;
@@ -8984,15 +9068,18 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
     currentState.attributesNum = attributesNum;
     currentState.index = index;
   }
+  __name(saveCache, "saveCache");
   function initAttributes() {
     const newAttributes = currentState.newAttributes;
     for (let i = 0, il = newAttributes.length; i < il; i++) {
       newAttributes[i] = 0;
     }
   }
+  __name(initAttributes, "initAttributes");
   function enableAttribute(attribute) {
     enableAttributeAndDivisor(attribute, 0);
   }
+  __name(enableAttribute, "enableAttribute");
   function enableAttributeAndDivisor(attribute, meshPerAttribute) {
     const newAttributes = currentState.newAttributes;
     const enabledAttributes = currentState.enabledAttributes;
@@ -9008,6 +9095,7 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
       attributeDivisors[attribute] = meshPerAttribute;
     }
   }
+  __name(enableAttributeAndDivisor, "enableAttributeAndDivisor");
   function disableUnusedAttributes() {
     const newAttributes = currentState.newAttributes;
     const enabledAttributes = currentState.enabledAttributes;
@@ -9018,6 +9106,7 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
       }
     }
   }
+  __name(disableUnusedAttributes, "disableUnusedAttributes");
   function vertexAttribPointer(index, size, type, normalized, stride, offset) {
     if (capabilities.isWebGL2 === true && (type === 5124 || type === 5125)) {
       gl.vertexAttribIPointer(index, size, type, stride, offset);
@@ -9025,6 +9114,7 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
       gl.vertexAttribPointer(index, size, type, normalized, stride, offset);
     }
   }
+  __name(vertexAttribPointer, "vertexAttribPointer");
   function setupVertexAttributes(object, material, program, geometry) {
     if (capabilities.isWebGL2 === false && (object.isInstancedMesh || geometry.isInstancedBufferGeometry)) {
       if (extensions.get("ANGLE_instanced_arrays") === null)
@@ -9119,6 +9209,7 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
     }
     disableUnusedAttributes();
   }
+  __name(setupVertexAttributes, "setupVertexAttributes");
   function dispose() {
     reset();
     for (const geometryId in bindingStates) {
@@ -9134,6 +9225,7 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
       delete bindingStates[geometryId];
     }
   }
+  __name(dispose, "dispose");
   function releaseStatesOfGeometry(geometry) {
     if (bindingStates[geometry.id] === void 0)
       return;
@@ -9148,6 +9240,7 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
     }
     delete bindingStates[geometry.id];
   }
+  __name(releaseStatesOfGeometry, "releaseStatesOfGeometry");
   function releaseStatesOfProgram(program) {
     for (const geometryId in bindingStates) {
       const programMap = bindingStates[geometryId];
@@ -9161,6 +9254,7 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
       delete programMap[program.id];
     }
   }
+  __name(releaseStatesOfProgram, "releaseStatesOfProgram");
   function reset() {
     resetDefaultState();
     if (currentState === defaultState)
@@ -9168,11 +9262,13 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
     currentState = defaultState;
     bindVertexArrayObject(currentState.object);
   }
+  __name(reset, "reset");
   function resetDefaultState() {
     defaultState.geometry = null;
     defaultState.program = null;
     defaultState.wireframe = false;
   }
+  __name(resetDefaultState, "resetDefaultState");
   return {
     setup,
     reset,
@@ -9185,16 +9281,19 @@ function WebGLBindingStates(gl, extensions, attributes, capabilities) {
     disableUnusedAttributes
   };
 }
+__name(WebGLBindingStates, "WebGLBindingStates");
 function WebGLBufferRenderer(gl, extensions, info, capabilities) {
   const isWebGL2 = capabilities.isWebGL2;
   let mode;
   function setMode(value) {
     mode = value;
   }
+  __name(setMode, "setMode");
   function render(start, count) {
     gl.drawArrays(mode, start, count);
     info.update(count, mode, 1);
   }
+  __name(render, "render");
   function renderInstances(start, count, primcount) {
     if (primcount === 0)
       return;
@@ -9213,10 +9312,12 @@ function WebGLBufferRenderer(gl, extensions, info, capabilities) {
     extension[methodName](mode, start, count, primcount);
     info.update(count, mode, primcount);
   }
+  __name(renderInstances, "renderInstances");
   this.setMode = setMode;
   this.render = render;
   this.renderInstances = renderInstances;
 }
+__name(WebGLBufferRenderer, "WebGLBufferRenderer");
 function WebGLCapabilities(gl, extensions, parameters) {
   let maxAnisotropy;
   function getMaxAnisotropy() {
@@ -9230,6 +9331,7 @@ function WebGLCapabilities(gl, extensions, parameters) {
     }
     return maxAnisotropy;
   }
+  __name(getMaxAnisotropy, "getMaxAnisotropy");
   function getMaxPrecision(precision2) {
     if (precision2 === "highp") {
       if (gl.getShaderPrecisionFormat(35633, 36338).precision > 0 && gl.getShaderPrecisionFormat(35632, 36338).precision > 0) {
@@ -9244,6 +9346,7 @@ function WebGLCapabilities(gl, extensions, parameters) {
     }
     return "lowp";
   }
+  __name(getMaxPrecision, "getMaxPrecision");
   const isWebGL2 = typeof WebGL2RenderingContext !== "undefined" && gl instanceof WebGL2RenderingContext || typeof WebGL2ComputeRenderingContext !== "undefined" && gl instanceof WebGL2ComputeRenderingContext;
   let precision = parameters.precision !== void 0 ? parameters.precision : "highp";
   const maxPrecision = getMaxPrecision(precision);
@@ -9284,6 +9387,7 @@ function WebGLCapabilities(gl, extensions, parameters) {
     maxSamples
   };
 }
+__name(WebGLCapabilities, "WebGLCapabilities");
 function WebGLClipping(properties) {
   const scope = this;
   let globalState = null, numGlobalPlanes = 0, localClippingEnabled = false, renderingShadows = false;
@@ -9336,6 +9440,7 @@ function WebGLClipping(properties) {
     scope.numPlanes = numGlobalPlanes;
     scope.numIntersection = 0;
   }
+  __name(resetGlobalState, "resetGlobalState");
   function projectPlanes(planes, camera, dstOffset, skipTransform) {
     const nPlanes = planes !== null ? planes.length : 0;
     let dstArray = null;
@@ -9360,7 +9465,9 @@ function WebGLClipping(properties) {
     scope.numIntersection = 0;
     return dstArray;
   }
+  __name(projectPlanes, "projectPlanes");
 }
+__name(WebGLClipping, "WebGLClipping");
 function WebGLCubeMaps(renderer) {
   let cubemaps = new WeakMap();
   function mapTextureMapping(texture, mapping) {
@@ -9371,6 +9478,7 @@ function WebGLCubeMaps(renderer) {
     }
     return texture;
   }
+  __name(mapTextureMapping, "mapTextureMapping");
   function get(texture) {
     if (texture && texture.isTexture) {
       const mapping = texture.mapping;
@@ -9400,6 +9508,7 @@ function WebGLCubeMaps(renderer) {
     }
     return texture;
   }
+  __name(get, "get");
   function onTextureDispose(event) {
     const texture = event.target;
     texture.removeEventListener("dispose", onTextureDispose);
@@ -9409,14 +9518,17 @@ function WebGLCubeMaps(renderer) {
       cubemap.dispose();
     }
   }
+  __name(onTextureDispose, "onTextureDispose");
   function dispose() {
     cubemaps = new WeakMap();
   }
+  __name(dispose, "dispose");
   return {
     get,
     dispose
   };
 }
+__name(WebGLCubeMaps, "WebGLCubeMaps");
 function WebGLExtensions(gl) {
   const extensions = {};
   return {
@@ -9452,6 +9564,7 @@ function WebGLExtensions(gl) {
     }
   };
 }
+__name(WebGLExtensions, "WebGLExtensions");
 function WebGLGeometries(gl, attributes, info, bindingStates) {
   const geometries = new WeakMap();
   const wireframeAttributes = new WeakMap();
@@ -9477,6 +9590,7 @@ function WebGLGeometries(gl, attributes, info, bindingStates) {
     }
     info.memory.geometries--;
   }
+  __name(onGeometryDispose, "onGeometryDispose");
   function get(object, geometry) {
     let buffergeometry = geometries.get(geometry);
     if (buffergeometry)
@@ -9494,6 +9608,7 @@ function WebGLGeometries(gl, attributes, info, bindingStates) {
     info.memory.geometries++;
     return buffergeometry;
   }
+  __name(get, "get");
   function update(geometry) {
     const geometryAttributes = geometry.attributes;
     for (const name in geometryAttributes) {
@@ -9507,6 +9622,7 @@ function WebGLGeometries(gl, attributes, info, bindingStates) {
       }
     }
   }
+  __name(update, "update");
   function updateWireframeAttribute(geometry) {
     const indices = [];
     const geometryIndex = geometry.index;
@@ -9538,6 +9654,7 @@ function WebGLGeometries(gl, attributes, info, bindingStates) {
       attributes.remove(previousAttribute);
     wireframeAttributes.set(geometry, attribute);
   }
+  __name(updateWireframeAttribute, "updateWireframeAttribute");
   function getWireframeAttribute(geometry) {
     const currentAttribute = wireframeAttributes.get(geometry);
     if (currentAttribute) {
@@ -9552,27 +9669,32 @@ function WebGLGeometries(gl, attributes, info, bindingStates) {
     }
     return wireframeAttributes.get(geometry);
   }
+  __name(getWireframeAttribute, "getWireframeAttribute");
   return {
     get,
     update,
     getWireframeAttribute
   };
 }
+__name(WebGLGeometries, "WebGLGeometries");
 function WebGLIndexedBufferRenderer(gl, extensions, info, capabilities) {
   const isWebGL2 = capabilities.isWebGL2;
   let mode;
   function setMode(value) {
     mode = value;
   }
+  __name(setMode, "setMode");
   let type, bytesPerElement;
   function setIndex(value) {
     type = value.type;
     bytesPerElement = value.bytesPerElement;
   }
+  __name(setIndex, "setIndex");
   function render(start, count) {
     gl.drawElements(mode, count, type, start * bytesPerElement);
     info.update(count, mode, 1);
   }
+  __name(render, "render");
   function renderInstances(start, count, primcount) {
     if (primcount === 0)
       return;
@@ -9591,11 +9713,13 @@ function WebGLIndexedBufferRenderer(gl, extensions, info, capabilities) {
     extension[methodName](mode, count, type, start * bytesPerElement, primcount);
     info.update(count, mode, primcount);
   }
+  __name(renderInstances, "renderInstances");
   this.setMode = setMode;
   this.setIndex = setIndex;
   this.render = render;
   this.renderInstances = renderInstances;
 }
+__name(WebGLIndexedBufferRenderer, "WebGLIndexedBufferRenderer");
 function WebGLInfo(gl) {
   const memory = {
     geometries: 0,
@@ -9631,6 +9755,7 @@ function WebGLInfo(gl) {
         break;
     }
   }
+  __name(update, "update");
   function reset() {
     render.frame++;
     render.calls = 0;
@@ -9638,6 +9763,7 @@ function WebGLInfo(gl) {
     render.points = 0;
     render.lines = 0;
   }
+  __name(reset, "reset");
   return {
     memory,
     render,
@@ -9647,12 +9773,15 @@ function WebGLInfo(gl) {
     update
   };
 }
+__name(WebGLInfo, "WebGLInfo");
 function numericalSort(a, b) {
   return a[0] - b[0];
 }
+__name(numericalSort, "numericalSort");
 function absNumericalSort(a, b) {
   return Math.abs(b[1]) - Math.abs(a[1]);
 }
+__name(absNumericalSort, "absNumericalSort");
 function WebGLMorphtargets(gl) {
   const influencesList = {};
   const morphInfluences = new Float32Array(8);
@@ -9717,10 +9846,12 @@ function WebGLMorphtargets(gl) {
     program.getUniforms().setValue(gl, "morphTargetBaseInfluence", morphBaseInfluence);
     program.getUniforms().setValue(gl, "morphTargetInfluences", morphInfluences);
   }
+  __name(update, "update");
   return {
     update
   };
 }
+__name(WebGLMorphtargets, "WebGLMorphtargets");
 function WebGLObjects(gl, geometries, attributes, info) {
   let updateMap = new WeakMap();
   function update(object) {
@@ -9742,14 +9873,17 @@ function WebGLObjects(gl, geometries, attributes, info) {
     }
     return buffergeometry;
   }
+  __name(update, "update");
   function dispose() {
     updateMap = new WeakMap();
   }
+  __name(dispose, "dispose");
   return {
     update,
     dispose
   };
 }
+__name(WebGLObjects, "WebGLObjects");
 function DataTexture2DArray(data = null, width = 1, height = 1, depth = 1) {
   Texture.call(this, null);
   this.image = { data, width, height, depth };
@@ -9760,6 +9894,7 @@ function DataTexture2DArray(data = null, width = 1, height = 1, depth = 1) {
   this.flipY = false;
   this.needsUpdate = true;
 }
+__name(DataTexture2DArray, "DataTexture2DArray");
 DataTexture2DArray.prototype = Object.create(Texture.prototype);
 DataTexture2DArray.prototype.constructor = DataTexture2DArray;
 DataTexture2DArray.prototype.isDataTexture2DArray = true;
@@ -9773,6 +9908,7 @@ function DataTexture3D(data = null, width = 1, height = 1, depth = 1) {
   this.flipY = false;
   this.needsUpdate = true;
 }
+__name(DataTexture3D, "DataTexture3D");
 DataTexture3D.prototype = Object.create(Texture.prototype);
 DataTexture3D.prototype.constructor = DataTexture3D;
 DataTexture3D.prototype.isDataTexture3D = true;
@@ -9804,6 +9940,7 @@ function flatten(array, nBlocks, blockSize) {
   }
   return r;
 }
+__name(flatten, "flatten");
 function arraysEqual(a, b) {
   if (a.length !== b.length)
     return false;
@@ -9813,11 +9950,13 @@ function arraysEqual(a, b) {
   }
   return true;
 }
+__name(arraysEqual, "arraysEqual");
 function copyArray(a, b) {
   for (let i = 0, l = b.length; i < l; i++) {
     a[i] = b[i];
   }
 }
+__name(copyArray, "copyArray");
 function allocTexUnits(textures, n) {
   let r = arrayCacheI32[n];
   if (r === void 0) {
@@ -9829,6 +9968,7 @@ function allocTexUnits(textures, n) {
   }
   return r;
 }
+__name(allocTexUnits, "allocTexUnits");
 function setValueV1f(gl, v) {
   const cache = this.cache;
   if (cache[0] === v)
@@ -9836,6 +9976,7 @@ function setValueV1f(gl, v) {
   gl.uniform1f(this.addr, v);
   cache[0] = v;
 }
+__name(setValueV1f, "setValueV1f");
 function setValueV2f(gl, v) {
   const cache = this.cache;
   if (v.x !== void 0) {
@@ -9851,6 +9992,7 @@ function setValueV2f(gl, v) {
     copyArray(cache, v);
   }
 }
+__name(setValueV2f, "setValueV2f");
 function setValueV3f(gl, v) {
   const cache = this.cache;
   if (v.x !== void 0) {
@@ -9874,6 +10016,7 @@ function setValueV3f(gl, v) {
     copyArray(cache, v);
   }
 }
+__name(setValueV3f, "setValueV3f");
 function setValueV4f(gl, v) {
   const cache = this.cache;
   if (v.x !== void 0) {
@@ -9891,6 +10034,7 @@ function setValueV4f(gl, v) {
     copyArray(cache, v);
   }
 }
+__name(setValueV4f, "setValueV4f");
 function setValueM2(gl, v) {
   const cache = this.cache;
   const elements = v.elements;
@@ -9907,6 +10051,7 @@ function setValueM2(gl, v) {
     copyArray(cache, elements);
   }
 }
+__name(setValueM2, "setValueM2");
 function setValueM3(gl, v) {
   const cache = this.cache;
   const elements = v.elements;
@@ -9923,6 +10068,7 @@ function setValueM3(gl, v) {
     copyArray(cache, elements);
   }
 }
+__name(setValueM3, "setValueM3");
 function setValueM4(gl, v) {
   const cache = this.cache;
   const elements = v.elements;
@@ -9939,6 +10085,7 @@ function setValueM4(gl, v) {
     copyArray(cache, elements);
   }
 }
+__name(setValueM4, "setValueM4");
 function setValueT1(gl, v, textures) {
   const cache = this.cache;
   const unit = textures.allocateTextureUnit();
@@ -9948,6 +10095,7 @@ function setValueT1(gl, v, textures) {
   }
   textures.safeSetTexture2D(v || emptyTexture, unit);
 }
+__name(setValueT1, "setValueT1");
 function setValueT2DArray1(gl, v, textures) {
   const cache = this.cache;
   const unit = textures.allocateTextureUnit();
@@ -9957,6 +10105,7 @@ function setValueT2DArray1(gl, v, textures) {
   }
   textures.setTexture2DArray(v || emptyTexture2dArray, unit);
 }
+__name(setValueT2DArray1, "setValueT2DArray1");
 function setValueT3D1(gl, v, textures) {
   const cache = this.cache;
   const unit = textures.allocateTextureUnit();
@@ -9966,6 +10115,7 @@ function setValueT3D1(gl, v, textures) {
   }
   textures.setTexture3D(v || emptyTexture3d, unit);
 }
+__name(setValueT3D1, "setValueT3D1");
 function setValueT6(gl, v, textures) {
   const cache = this.cache;
   const unit = textures.allocateTextureUnit();
@@ -9975,6 +10125,7 @@ function setValueT6(gl, v, textures) {
   }
   textures.safeSetTextureCube(v || emptyCubeTexture, unit);
 }
+__name(setValueT6, "setValueT6");
 function setValueV1i(gl, v) {
   const cache = this.cache;
   if (cache[0] === v)
@@ -9982,6 +10133,7 @@ function setValueV1i(gl, v) {
   gl.uniform1i(this.addr, v);
   cache[0] = v;
 }
+__name(setValueV1i, "setValueV1i");
 function setValueV2i(gl, v) {
   const cache = this.cache;
   if (arraysEqual(cache, v))
@@ -9989,6 +10141,7 @@ function setValueV2i(gl, v) {
   gl.uniform2iv(this.addr, v);
   copyArray(cache, v);
 }
+__name(setValueV2i, "setValueV2i");
 function setValueV3i(gl, v) {
   const cache = this.cache;
   if (arraysEqual(cache, v))
@@ -9996,6 +10149,7 @@ function setValueV3i(gl, v) {
   gl.uniform3iv(this.addr, v);
   copyArray(cache, v);
 }
+__name(setValueV3i, "setValueV3i");
 function setValueV4i(gl, v) {
   const cache = this.cache;
   if (arraysEqual(cache, v))
@@ -10003,6 +10157,7 @@ function setValueV4i(gl, v) {
   gl.uniform4iv(this.addr, v);
   copyArray(cache, v);
 }
+__name(setValueV4i, "setValueV4i");
 function setValueV1ui(gl, v) {
   const cache = this.cache;
   if (cache[0] === v)
@@ -10010,6 +10165,7 @@ function setValueV1ui(gl, v) {
   gl.uniform1ui(this.addr, v);
   cache[0] = v;
 }
+__name(setValueV1ui, "setValueV1ui");
 function getSingularSetter(type) {
   switch (type) {
     case 5126:
@@ -10062,45 +10218,57 @@ function getSingularSetter(type) {
       return setValueT2DArray1;
   }
 }
+__name(getSingularSetter, "getSingularSetter");
 function setValueV1fArray(gl, v) {
   gl.uniform1fv(this.addr, v);
 }
+__name(setValueV1fArray, "setValueV1fArray");
 function setValueV1iArray(gl, v) {
   gl.uniform1iv(this.addr, v);
 }
+__name(setValueV1iArray, "setValueV1iArray");
 function setValueV2iArray(gl, v) {
   gl.uniform2iv(this.addr, v);
 }
+__name(setValueV2iArray, "setValueV2iArray");
 function setValueV3iArray(gl, v) {
   gl.uniform3iv(this.addr, v);
 }
+__name(setValueV3iArray, "setValueV3iArray");
 function setValueV4iArray(gl, v) {
   gl.uniform4iv(this.addr, v);
 }
+__name(setValueV4iArray, "setValueV4iArray");
 function setValueV2fArray(gl, v) {
   const data = flatten(v, this.size, 2);
   gl.uniform2fv(this.addr, data);
 }
+__name(setValueV2fArray, "setValueV2fArray");
 function setValueV3fArray(gl, v) {
   const data = flatten(v, this.size, 3);
   gl.uniform3fv(this.addr, data);
 }
+__name(setValueV3fArray, "setValueV3fArray");
 function setValueV4fArray(gl, v) {
   const data = flatten(v, this.size, 4);
   gl.uniform4fv(this.addr, data);
 }
+__name(setValueV4fArray, "setValueV4fArray");
 function setValueM2Array(gl, v) {
   const data = flatten(v, this.size, 4);
   gl.uniformMatrix2fv(this.addr, false, data);
 }
+__name(setValueM2Array, "setValueM2Array");
 function setValueM3Array(gl, v) {
   const data = flatten(v, this.size, 9);
   gl.uniformMatrix3fv(this.addr, false, data);
 }
+__name(setValueM3Array, "setValueM3Array");
 function setValueM4Array(gl, v) {
   const data = flatten(v, this.size, 16);
   gl.uniformMatrix4fv(this.addr, false, data);
 }
+__name(setValueM4Array, "setValueM4Array");
 function setValueT1Array(gl, v, textures) {
   const n = v.length;
   const units = allocTexUnits(textures, n);
@@ -10109,6 +10277,7 @@ function setValueT1Array(gl, v, textures) {
     textures.safeSetTexture2D(v[i] || emptyTexture, units[i]);
   }
 }
+__name(setValueT1Array, "setValueT1Array");
 function setValueT6Array(gl, v, textures) {
   const n = v.length;
   const units = allocTexUnits(textures, n);
@@ -10117,6 +10286,7 @@ function setValueT6Array(gl, v, textures) {
     textures.safeSetTextureCube(v[i] || emptyCubeTexture, units[i]);
   }
 }
+__name(setValueT6Array, "setValueT6Array");
 function getPureArraySetter(type) {
   switch (type) {
     case 5126:
@@ -10158,12 +10328,14 @@ function getPureArraySetter(type) {
       return setValueT6Array;
   }
 }
+__name(getPureArraySetter, "getPureArraySetter");
 function SingleUniform(id, activeInfo, addr) {
   this.id = id;
   this.addr = addr;
   this.cache = [];
   this.setValue = getSingularSetter(activeInfo.type);
 }
+__name(SingleUniform, "SingleUniform");
 function PureArrayUniform(id, activeInfo, addr) {
   this.id = id;
   this.addr = addr;
@@ -10171,6 +10343,7 @@ function PureArrayUniform(id, activeInfo, addr) {
   this.size = activeInfo.size;
   this.setValue = getPureArraySetter(activeInfo.type);
 }
+__name(PureArrayUniform, "PureArrayUniform");
 PureArrayUniform.prototype.updateCache = function(data) {
   const cache = this.cache;
   if (data instanceof Float32Array && cache.length !== data.length) {
@@ -10183,6 +10356,7 @@ function StructuredUniform(id) {
   this.seq = [];
   this.map = {};
 }
+__name(StructuredUniform, "StructuredUniform");
 StructuredUniform.prototype.setValue = function(gl, value, textures) {
   const seq = this.seq;
   for (let i = 0, n = seq.length; i !== n; ++i) {
@@ -10195,6 +10369,7 @@ function addUniform(container, uniformObject) {
   container.seq.push(uniformObject);
   container.map[uniformObject.id] = uniformObject;
 }
+__name(addUniform, "addUniform");
 function parseUniform(activeInfo, addr, container) {
   const path = activeInfo.name, pathLength = path.length;
   RePathPart.lastIndex = 0;
@@ -10218,6 +10393,7 @@ function parseUniform(activeInfo, addr, container) {
     }
   }
 }
+__name(parseUniform, "parseUniform");
 function WebGLUniforms(gl, program) {
   this.seq = [];
   this.map = {};
@@ -10227,6 +10403,7 @@ function WebGLUniforms(gl, program) {
     parseUniform(info, addr, this);
   }
 }
+__name(WebGLUniforms, "WebGLUniforms");
 WebGLUniforms.prototype.setValue = function(gl, name, value, textures) {
   const u = this.map[name];
   if (u !== void 0)
@@ -10260,6 +10437,7 @@ function WebGLShader(gl, type, string) {
   gl.compileShader(shader);
   return shader;
 }
+__name(WebGLShader, "WebGLShader");
 var programIdCount = 0;
 function addLineNumbers(string) {
   const lines = string.split("\n");
@@ -10268,6 +10446,7 @@ function addLineNumbers(string) {
   }
   return lines.join("\n");
 }
+__name(addLineNumbers, "addLineNumbers");
 function getEncodingComponents(encoding) {
   switch (encoding) {
     case LinearEncoding:
@@ -10291,6 +10470,7 @@ function getEncodingComponents(encoding) {
       return ["Linear", "( value )"];
   }
 }
+__name(getEncodingComponents, "getEncodingComponents");
 function getShaderErrors(gl, shader, type) {
   const status = gl.getShaderParameter(shader, 35713);
   const log = gl.getShaderInfoLog(shader).trim();
@@ -10299,14 +10479,17 @@ function getShaderErrors(gl, shader, type) {
   const source = gl.getShaderSource(shader);
   return "THREE.WebGLShader: gl.getShaderInfoLog() " + type + "\n" + log + addLineNumbers(source);
 }
+__name(getShaderErrors, "getShaderErrors");
 function getTexelDecodingFunction(functionName, encoding) {
   const components = getEncodingComponents(encoding);
   return "vec4 " + functionName + "( vec4 value ) { return " + components[0] + "ToLinear" + components[1] + "; }";
 }
+__name(getTexelDecodingFunction, "getTexelDecodingFunction");
 function getTexelEncodingFunction(functionName, encoding) {
   const components = getEncodingComponents(encoding);
   return "vec4 " + functionName + "( vec4 value ) { return LinearTo" + components[0] + components[1] + "; }";
 }
+__name(getTexelEncodingFunction, "getTexelEncodingFunction");
 function getToneMappingFunction(functionName, toneMapping) {
   let toneMappingName;
   switch (toneMapping) {
@@ -10331,6 +10514,7 @@ function getToneMappingFunction(functionName, toneMapping) {
   }
   return "vec3 " + functionName + "( vec3 color ) { return " + toneMappingName + "ToneMapping( color ); }";
 }
+__name(getToneMappingFunction, "getToneMappingFunction");
 function generateExtensions(parameters) {
   const chunks = [
     parameters.extensionDerivatives || parameters.envMapCubeUV || parameters.bumpMap || parameters.tangentSpaceNormalMap || parameters.clearcoatNormalMap || parameters.flatShading || parameters.shaderID === "physical" ? "#extension GL_OES_standard_derivatives : enable" : "",
@@ -10340,6 +10524,7 @@ function generateExtensions(parameters) {
   ];
   return chunks.filter(filterEmptyLine).join("\n");
 }
+__name(generateExtensions, "generateExtensions");
 function generateDefines(defines) {
   const chunks = [];
   for (const name in defines) {
@@ -10350,6 +10535,7 @@ function generateDefines(defines) {
   }
   return chunks.join("\n");
 }
+__name(generateDefines, "generateDefines");
 function fetchAttributeLocations(gl, program) {
   const attributes = {};
   const n = gl.getProgramParameter(program, 35721);
@@ -10360,19 +10546,24 @@ function fetchAttributeLocations(gl, program) {
   }
   return attributes;
 }
+__name(fetchAttributeLocations, "fetchAttributeLocations");
 function filterEmptyLine(string) {
   return string !== "";
 }
+__name(filterEmptyLine, "filterEmptyLine");
 function replaceLightNums(string, parameters) {
   return string.replace(/NUM_DIR_LIGHTS/g, parameters.numDirLights).replace(/NUM_SPOT_LIGHTS/g, parameters.numSpotLights).replace(/NUM_RECT_AREA_LIGHTS/g, parameters.numRectAreaLights).replace(/NUM_POINT_LIGHTS/g, parameters.numPointLights).replace(/NUM_HEMI_LIGHTS/g, parameters.numHemiLights).replace(/NUM_DIR_LIGHT_SHADOWS/g, parameters.numDirLightShadows).replace(/NUM_SPOT_LIGHT_SHADOWS/g, parameters.numSpotLightShadows).replace(/NUM_POINT_LIGHT_SHADOWS/g, parameters.numPointLightShadows);
 }
+__name(replaceLightNums, "replaceLightNums");
 function replaceClippingPlaneNums(string, parameters) {
   return string.replace(/NUM_CLIPPING_PLANES/g, parameters.numClippingPlanes).replace(/UNION_CLIPPING_PLANES/g, parameters.numClippingPlanes - parameters.numClipIntersection);
 }
+__name(replaceClippingPlaneNums, "replaceClippingPlaneNums");
 var includePattern = /^[ \t]*#include +<([\w\d./]+)>/gm;
 function resolveIncludes(string) {
   return string.replace(includePattern, includeReplacer);
 }
+__name(resolveIncludes, "resolveIncludes");
 function includeReplacer(match, include) {
   const string = ShaderChunk[include];
   if (string === void 0) {
@@ -10380,15 +10571,18 @@ function includeReplacer(match, include) {
   }
   return resolveIncludes(string);
 }
+__name(includeReplacer, "includeReplacer");
 var deprecatedUnrollLoopPattern = /#pragma unroll_loop[\s]+?for \( int i \= (\d+)\; i < (\d+)\; i \+\+ \) \{([\s\S]+?)(?=\})\}/g;
 var unrollLoopPattern = /#pragma unroll_loop_start\s+for\s*\(\s*int\s+i\s*=\s*(\d+)\s*;\s*i\s*<\s*(\d+)\s*;\s*i\s*\+\+\s*\)\s*{([\s\S]+?)}\s+#pragma unroll_loop_end/g;
 function unrollLoops(string) {
   return string.replace(unrollLoopPattern, loopReplacer).replace(deprecatedUnrollLoopPattern, deprecatedLoopReplacer);
 }
+__name(unrollLoops, "unrollLoops");
 function deprecatedLoopReplacer(match, start, end, snippet) {
   console.warn("WebGLProgram: #pragma unroll_loop shader syntax is deprecated. Please use #pragma unroll_loop_start syntax instead.");
   return loopReplacer(match, start, end, snippet);
 }
+__name(deprecatedLoopReplacer, "deprecatedLoopReplacer");
 function loopReplacer(match, start, end, snippet) {
   let string = "";
   for (let i = parseInt(start); i < parseInt(end); i++) {
@@ -10396,6 +10590,7 @@ function loopReplacer(match, start, end, snippet) {
   }
   return string;
 }
+__name(loopReplacer, "loopReplacer");
 function generatePrecision(parameters) {
   let precisionstring = "precision " + parameters.precision + " float;\nprecision " + parameters.precision + " int;";
   if (parameters.precision === "highp") {
@@ -10407,6 +10602,7 @@ function generatePrecision(parameters) {
   }
   return precisionstring;
 }
+__name(generatePrecision, "generatePrecision");
 function generateShadowMapTypeDefine(parameters) {
   let shadowMapTypeDefine = "SHADOWMAP_TYPE_BASIC";
   if (parameters.shadowMapType === PCFShadowMap) {
@@ -10418,6 +10614,7 @@ function generateShadowMapTypeDefine(parameters) {
   }
   return shadowMapTypeDefine;
 }
+__name(generateShadowMapTypeDefine, "generateShadowMapTypeDefine");
 function generateEnvMapTypeDefine(parameters) {
   let envMapTypeDefine = "ENVMAP_TYPE_CUBE";
   if (parameters.envMap) {
@@ -10434,6 +10631,7 @@ function generateEnvMapTypeDefine(parameters) {
   }
   return envMapTypeDefine;
 }
+__name(generateEnvMapTypeDefine, "generateEnvMapTypeDefine");
 function generateEnvMapModeDefine(parameters) {
   let envMapModeDefine = "ENVMAP_MODE_REFLECTION";
   if (parameters.envMap) {
@@ -10446,6 +10644,7 @@ function generateEnvMapModeDefine(parameters) {
   }
   return envMapModeDefine;
 }
+__name(generateEnvMapModeDefine, "generateEnvMapModeDefine");
 function generateEnvMapBlendingDefine(parameters) {
   let envMapBlendingDefine = "ENVMAP_BLENDING_NONE";
   if (parameters.envMap) {
@@ -10463,6 +10662,7 @@ function generateEnvMapBlendingDefine(parameters) {
   }
   return envMapBlendingDefine;
 }
+__name(generateEnvMapBlendingDefine, "generateEnvMapBlendingDefine");
 function WebGLProgram(renderer, cacheKey, parameters, bindingStates) {
   const gl = renderer.getContext();
   const defines = parameters.defines;
@@ -10752,6 +10952,7 @@ function WebGLProgram(renderer, cacheKey, parameters, bindingStates) {
   this.fragmentShader = glFragmentShader;
   return this;
 }
+__name(WebGLProgram, "WebGLProgram");
 function WebGLPrograms(renderer, cubemaps, extensions, capabilities, bindingStates, clipping) {
   const programs = [];
   const isWebGL2 = capabilities.isWebGL2;
@@ -10867,6 +11068,7 @@ function WebGLPrograms(renderer, cubemaps, extensions, capabilities, bindingStat
       return maxBones;
     }
   }
+  __name(getMaxBones, "getMaxBones");
   function getTextureEncodingFromMap(map) {
     let encoding;
     if (!map) {
@@ -10879,6 +11081,7 @@ function WebGLPrograms(renderer, cubemaps, extensions, capabilities, bindingStat
     }
     return encoding;
   }
+  __name(getTextureEncodingFromMap, "getTextureEncodingFromMap");
   function getParameters(material, lights, shadows, scene, object) {
     const fog = scene.fog;
     const environment = material.isMeshStandardMaterial ? scene.environment : null;
@@ -10993,6 +11196,7 @@ function WebGLPrograms(renderer, cubemaps, extensions, capabilities, bindingStat
     };
     return parameters;
   }
+  __name(getParameters, "getParameters");
   function getProgramCacheKey(parameters) {
     const array = [];
     if (parameters.shaderID) {
@@ -11017,6 +11221,7 @@ function WebGLPrograms(renderer, cubemaps, extensions, capabilities, bindingStat
     array.push(parameters.customProgramCacheKey);
     return array.join();
   }
+  __name(getProgramCacheKey, "getProgramCacheKey");
   function getUniforms(material) {
     const shaderID = shaderIDs[material.type];
     let uniforms;
@@ -11028,6 +11233,7 @@ function WebGLPrograms(renderer, cubemaps, extensions, capabilities, bindingStat
     }
     return uniforms;
   }
+  __name(getUniforms, "getUniforms");
   function acquireProgram(parameters, cacheKey) {
     let program;
     for (let p = 0, pl = programs.length; p < pl; p++) {
@@ -11044,6 +11250,7 @@ function WebGLPrograms(renderer, cubemaps, extensions, capabilities, bindingStat
     }
     return program;
   }
+  __name(acquireProgram, "acquireProgram");
   function releaseProgram(program) {
     if (--program.usedTimes === 0) {
       const i = programs.indexOf(program);
@@ -11052,6 +11259,7 @@ function WebGLPrograms(renderer, cubemaps, extensions, capabilities, bindingStat
       program.destroy();
     }
   }
+  __name(releaseProgram, "releaseProgram");
   return {
     getParameters,
     getProgramCacheKey,
@@ -11061,6 +11269,7 @@ function WebGLPrograms(renderer, cubemaps, extensions, capabilities, bindingStat
     programs
   };
 }
+__name(WebGLPrograms, "WebGLPrograms");
 function WebGLProperties() {
   let properties = new WeakMap();
   function get(object) {
@@ -11071,15 +11280,19 @@ function WebGLProperties() {
     }
     return map;
   }
+  __name(get, "get");
   function remove(object) {
     properties.delete(object);
   }
+  __name(remove, "remove");
   function update(object, key, value) {
     properties.get(object)[key] = value;
   }
+  __name(update, "update");
   function dispose() {
     properties = new WeakMap();
   }
+  __name(dispose, "dispose");
   return {
     get,
     remove,
@@ -11087,6 +11300,7 @@ function WebGLProperties() {
     dispose
   };
 }
+__name(WebGLProperties, "WebGLProperties");
 function painterSortStable(a, b) {
   if (a.groupOrder !== b.groupOrder) {
     return a.groupOrder - b.groupOrder;
@@ -11102,6 +11316,7 @@ function painterSortStable(a, b) {
     return a.id - b.id;
   }
 }
+__name(painterSortStable, "painterSortStable");
 function reversePainterSortStable(a, b) {
   if (a.groupOrder !== b.groupOrder) {
     return a.groupOrder - b.groupOrder;
@@ -11113,6 +11328,7 @@ function reversePainterSortStable(a, b) {
     return a.id - b.id;
   }
 }
+__name(reversePainterSortStable, "reversePainterSortStable");
 function WebGLRenderList(properties) {
   const renderItems = [];
   let renderItemsIndex = 0;
@@ -11124,6 +11340,7 @@ function WebGLRenderList(properties) {
     opaque.length = 0;
     transparent.length = 0;
   }
+  __name(init, "init");
   function getNextRenderItem(object, geometry, material, groupOrder, z, group) {
     let renderItem = renderItems[renderItemsIndex];
     const materialProperties = properties.get(material);
@@ -11154,20 +11371,24 @@ function WebGLRenderList(properties) {
     renderItemsIndex++;
     return renderItem;
   }
+  __name(getNextRenderItem, "getNextRenderItem");
   function push(object, geometry, material, groupOrder, z, group) {
     const renderItem = getNextRenderItem(object, geometry, material, groupOrder, z, group);
     (material.transparent === true ? transparent : opaque).push(renderItem);
   }
+  __name(push, "push");
   function unshift(object, geometry, material, groupOrder, z, group) {
     const renderItem = getNextRenderItem(object, geometry, material, groupOrder, z, group);
     (material.transparent === true ? transparent : opaque).unshift(renderItem);
   }
+  __name(unshift, "unshift");
   function sort(customOpaqueSort, customTransparentSort) {
     if (opaque.length > 1)
       opaque.sort(customOpaqueSort || painterSortStable);
     if (transparent.length > 1)
       transparent.sort(customTransparentSort || reversePainterSortStable);
   }
+  __name(sort, "sort");
   function finish() {
     for (let i = renderItemsIndex, il = renderItems.length; i < il; i++) {
       const renderItem = renderItems[i];
@@ -11181,6 +11402,7 @@ function WebGLRenderList(properties) {
       renderItem.group = null;
     }
   }
+  __name(finish, "finish");
   return {
     opaque,
     transparent,
@@ -11191,6 +11413,7 @@ function WebGLRenderList(properties) {
     sort
   };
 }
+__name(WebGLRenderList, "WebGLRenderList");
 function WebGLRenderLists(properties) {
   let lists = new WeakMap();
   function get(scene, camera) {
@@ -11209,14 +11432,17 @@ function WebGLRenderLists(properties) {
     }
     return list;
   }
+  __name(get, "get");
   function dispose() {
     lists = new WeakMap();
   }
+  __name(dispose, "dispose");
   return {
     get,
     dispose
   };
 }
+__name(WebGLRenderLists, "WebGLRenderLists");
 function UniformsCache() {
   const lights = {};
   return {
@@ -11272,6 +11498,7 @@ function UniformsCache() {
     }
   };
 }
+__name(UniformsCache, "UniformsCache");
 function ShadowUniformsCache() {
   const lights = {};
   return {
@@ -11313,10 +11540,12 @@ function ShadowUniformsCache() {
     }
   };
 }
+__name(ShadowUniformsCache, "ShadowUniformsCache");
 var nextVersion = 0;
 function shadowCastingLightsFirst(lightA, lightB) {
   return (lightB.castShadow ? 1 : 0) - (lightA.castShadow ? 1 : 0);
 }
+__name(shadowCastingLightsFirst, "shadowCastingLightsFirst");
 function WebGLLights(extensions, capabilities) {
   const cache = new UniformsCache();
   const shadowCache = ShadowUniformsCache();
@@ -11527,11 +11756,13 @@ function WebGLLights(extensions, capabilities) {
       state.version = nextVersion++;
     }
   }
+  __name(setup, "setup");
   return {
     setup,
     state
   };
 }
+__name(WebGLLights, "WebGLLights");
 function WebGLRenderState(extensions, capabilities) {
   const lights = new WebGLLights(extensions, capabilities);
   const lightsArray = [];
@@ -11540,15 +11771,19 @@ function WebGLRenderState(extensions, capabilities) {
     lightsArray.length = 0;
     shadowsArray.length = 0;
   }
+  __name(init, "init");
   function pushLight(light) {
     lightsArray.push(light);
   }
+  __name(pushLight, "pushLight");
   function pushShadow(shadowLight) {
     shadowsArray.push(shadowLight);
   }
+  __name(pushShadow, "pushShadow");
   function setupLights(camera) {
     lights.setup(lightsArray, shadowsArray, camera);
   }
+  __name(setupLights, "setupLights");
   const state = {
     lightsArray,
     shadowsArray,
@@ -11562,6 +11797,7 @@ function WebGLRenderState(extensions, capabilities) {
     pushShadow
   };
 }
+__name(WebGLRenderState, "WebGLRenderState");
 function WebGLRenderStates(extensions, capabilities) {
   let renderStates = new WeakMap();
   function get(scene, camera) {
@@ -11580,14 +11816,17 @@ function WebGLRenderStates(extensions, capabilities) {
     }
     return renderState;
   }
+  __name(get, "get");
   function dispose() {
     renderStates = new WeakMap();
   }
+  __name(dispose, "dispose");
   return {
     get,
     dispose
   };
 }
+__name(WebGLRenderStates, "WebGLRenderStates");
 function MeshDepthMaterial(parameters) {
   Material.call(this);
   this.type = "MeshDepthMaterial";
@@ -11604,6 +11843,7 @@ function MeshDepthMaterial(parameters) {
   this.fog = false;
   this.setValues(parameters);
 }
+__name(MeshDepthMaterial, "MeshDepthMaterial");
 MeshDepthMaterial.prototype = Object.create(Material.prototype);
 MeshDepthMaterial.prototype.constructor = MeshDepthMaterial;
 MeshDepthMaterial.prototype.isMeshDepthMaterial = true;
@@ -11637,6 +11877,7 @@ function MeshDistanceMaterial(parameters) {
   this.fog = false;
   this.setValues(parameters);
 }
+__name(MeshDistanceMaterial, "MeshDistanceMaterial");
 MeshDistanceMaterial.prototype = Object.create(Material.prototype);
 MeshDistanceMaterial.prototype.constructor = MeshDistanceMaterial;
 MeshDistanceMaterial.prototype.isMeshDistanceMaterial = true;
@@ -11770,6 +12011,7 @@ function WebGLShadowMap(_renderer, _objects, maxTextureSize) {
     _renderer.clear();
     _renderer.renderBufferDirect(camera, null, geometry, shadowMaterialHorizonal, fullScreenMesh, null);
   }
+  __name(VSMPass, "VSMPass");
   function getDepthMaterialVariant(useMorphing, useSkinning, useInstancing) {
     const index = useMorphing << 0 | useSkinning << 1 | useInstancing << 2;
     let material = _depthMaterials[index];
@@ -11783,6 +12025,7 @@ function WebGLShadowMap(_renderer, _objects, maxTextureSize) {
     }
     return material;
   }
+  __name(getDepthMaterialVariant, "getDepthMaterialVariant");
   function getDistanceMaterialVariant(useMorphing, useSkinning, useInstancing) {
     const index = useMorphing << 0 | useSkinning << 1 | useInstancing << 2;
     let material = _distanceMaterials[index];
@@ -11795,6 +12038,7 @@ function WebGLShadowMap(_renderer, _objects, maxTextureSize) {
     }
     return material;
   }
+  __name(getDistanceMaterialVariant, "getDistanceMaterialVariant");
   function getDepthMaterial(object, geometry, material, light, shadowCameraNear, shadowCameraFar, type) {
     let result = null;
     let getMaterialVariant = getDepthMaterialVariant;
@@ -11854,6 +12098,7 @@ function WebGLShadowMap(_renderer, _objects, maxTextureSize) {
     }
     return result;
   }
+  __name(getDepthMaterial, "getDepthMaterial");
   function renderObject(object, camera, shadowCamera, light, type) {
     if (object.visible === false)
       return;
@@ -11884,7 +12129,9 @@ function WebGLShadowMap(_renderer, _objects, maxTextureSize) {
       renderObject(children[i], camera, shadowCamera, light, type);
     }
   }
+  __name(renderObject, "renderObject");
 }
+__name(WebGLShadowMap, "WebGLShadowMap");
 function WebGLState(gl, extensions, capabilities) {
   const isWebGL2 = capabilities.isWebGL2;
   function ColorBuffer() {
@@ -11921,6 +12168,7 @@ function WebGLState(gl, extensions, capabilities) {
       }
     };
   }
+  __name(ColorBuffer, "ColorBuffer");
   function DepthBuffer() {
     let locked = false;
     let currentDepthMask = null;
@@ -11994,6 +12242,7 @@ function WebGLState(gl, extensions, capabilities) {
       }
     };
   }
+  __name(DepthBuffer, "DepthBuffer");
   function StencilBuffer() {
     let locked = false;
     let currentStencilMask = null;
@@ -12058,6 +12307,7 @@ function WebGLState(gl, extensions, capabilities) {
       }
     };
   }
+  __name(StencilBuffer, "StencilBuffer");
   const colorBuffer = new ColorBuffer();
   const depthBuffer = new DepthBuffer();
   const stencilBuffer = new StencilBuffer();
@@ -12103,6 +12353,7 @@ function WebGLState(gl, extensions, capabilities) {
     }
     return texture;
   }
+  __name(createTexture, "createTexture");
   const emptyTextures = {};
   emptyTextures[3553] = createTexture(3553, 3553, 1);
   emptyTextures[34067] = createTexture(34067, 34069, 6);
@@ -12121,12 +12372,14 @@ function WebGLState(gl, extensions, capabilities) {
       enabledCapabilities[id] = true;
     }
   }
+  __name(enable, "enable");
   function disable(id) {
     if (enabledCapabilities[id] !== false) {
       gl.disable(id);
       enabledCapabilities[id] = false;
     }
   }
+  __name(disable, "disable");
   function useProgram(program) {
     if (currentProgram !== program) {
       gl.useProgram(program);
@@ -12135,6 +12388,7 @@ function WebGLState(gl, extensions, capabilities) {
     }
     return false;
   }
+  __name(useProgram, "useProgram");
   const equationToGL = {
     [AddEquation]: 32774,
     [SubtractEquation]: 32778,
@@ -12246,6 +12500,7 @@ function WebGLState(gl, extensions, capabilities) {
     currentBlending = blending;
     currentPremultipledAlpha = null;
   }
+  __name(setBlending, "setBlending");
   function setMaterial(material, frontFaceCW) {
     material.side === DoubleSide ? disable(2884) : enable(2884);
     let flipSided = material.side === BackSide;
@@ -12266,6 +12521,7 @@ function WebGLState(gl, extensions, capabilities) {
     }
     setPolygonOffset(material.polygonOffset, material.polygonOffsetFactor, material.polygonOffsetUnits);
   }
+  __name(setMaterial, "setMaterial");
   function setFlipSided(flipSided) {
     if (currentFlipSided !== flipSided) {
       if (flipSided) {
@@ -12276,6 +12532,7 @@ function WebGLState(gl, extensions, capabilities) {
       currentFlipSided = flipSided;
     }
   }
+  __name(setFlipSided, "setFlipSided");
   function setCullFace(cullFace) {
     if (cullFace !== CullFaceNone) {
       enable(2884);
@@ -12293,6 +12550,7 @@ function WebGLState(gl, extensions, capabilities) {
     }
     currentCullFace = cullFace;
   }
+  __name(setCullFace, "setCullFace");
   function setLineWidth(width) {
     if (width !== currentLineWidth) {
       if (lineWidthAvailable)
@@ -12300,6 +12558,7 @@ function WebGLState(gl, extensions, capabilities) {
       currentLineWidth = width;
     }
   }
+  __name(setLineWidth, "setLineWidth");
   function setPolygonOffset(polygonOffset, factor, units) {
     if (polygonOffset) {
       enable(32823);
@@ -12312,6 +12571,7 @@ function WebGLState(gl, extensions, capabilities) {
       disable(32823);
     }
   }
+  __name(setPolygonOffset, "setPolygonOffset");
   function setScissorTest(scissorTest) {
     if (scissorTest) {
       enable(3089);
@@ -12319,6 +12579,7 @@ function WebGLState(gl, extensions, capabilities) {
       disable(3089);
     }
   }
+  __name(setScissorTest, "setScissorTest");
   function activeTexture(webglSlot) {
     if (webglSlot === void 0)
       webglSlot = 33984 + maxTextures - 1;
@@ -12327,6 +12588,7 @@ function WebGLState(gl, extensions, capabilities) {
       currentTextureSlot = webglSlot;
     }
   }
+  __name(activeTexture, "activeTexture");
   function bindTexture(webglType, webglTexture) {
     if (currentTextureSlot === null) {
       activeTexture();
@@ -12342,6 +12604,7 @@ function WebGLState(gl, extensions, capabilities) {
       boundTexture.texture = webglTexture;
     }
   }
+  __name(bindTexture, "bindTexture");
   function unbindTexture() {
     const boundTexture = currentBoundTextures[currentTextureSlot];
     if (boundTexture !== void 0 && boundTexture.type !== void 0) {
@@ -12350,6 +12613,7 @@ function WebGLState(gl, extensions, capabilities) {
       boundTexture.texture = void 0;
     }
   }
+  __name(unbindTexture, "unbindTexture");
   function compressedTexImage2D() {
     try {
       gl.compressedTexImage2D.apply(gl, arguments);
@@ -12357,6 +12621,7 @@ function WebGLState(gl, extensions, capabilities) {
       console.error("THREE.WebGLState:", error);
     }
   }
+  __name(compressedTexImage2D, "compressedTexImage2D");
   function texImage2D() {
     try {
       gl.texImage2D.apply(gl, arguments);
@@ -12364,6 +12629,7 @@ function WebGLState(gl, extensions, capabilities) {
       console.error("THREE.WebGLState:", error);
     }
   }
+  __name(texImage2D, "texImage2D");
   function texImage3D() {
     try {
       gl.texImage3D.apply(gl, arguments);
@@ -12371,18 +12637,21 @@ function WebGLState(gl, extensions, capabilities) {
       console.error("THREE.WebGLState:", error);
     }
   }
+  __name(texImage3D, "texImage3D");
   function scissor(scissor2) {
     if (currentScissor.equals(scissor2) === false) {
       gl.scissor(scissor2.x, scissor2.y, scissor2.z, scissor2.w);
       currentScissor.copy(scissor2);
     }
   }
+  __name(scissor, "scissor");
   function viewport(viewport2) {
     if (currentViewport.equals(viewport2) === false) {
       gl.viewport(viewport2.x, viewport2.y, viewport2.z, viewport2.w);
       currentViewport.copy(viewport2);
     }
   }
+  __name(viewport, "viewport");
   function reset() {
     enabledCapabilities = {};
     currentTextureSlot = null;
@@ -12406,6 +12675,7 @@ function WebGLState(gl, extensions, capabilities) {
     depthBuffer.reset();
     stencilBuffer.reset();
   }
+  __name(reset, "reset");
   return {
     buffers: {
       color: colorBuffer,
@@ -12433,6 +12703,7 @@ function WebGLState(gl, extensions, capabilities) {
     reset
   };
 }
+__name(WebGLState, "WebGLState");
 function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, info) {
   const isWebGL2 = capabilities.isWebGL2;
   const maxTextures = capabilities.maxTextures;
@@ -12449,6 +12720,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
   function createCanvas(width, height) {
     return useOffscreenCanvas ? new OffscreenCanvas(width, height) : document.createElementNS("http://www.w3.org/1999/xhtml", "canvas");
   }
+  __name(createCanvas, "createCanvas");
   function resizeImage(image, needsPowerOfTwo, needsNewCanvas, maxSize) {
     let scale = 1;
     if (image.width > maxSize || image.height > maxSize) {
@@ -12477,22 +12749,27 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     }
     return image;
   }
+  __name(resizeImage, "resizeImage");
   function isPowerOfTwo(image) {
     return MathUtils.isPowerOfTwo(image.width) && MathUtils.isPowerOfTwo(image.height);
   }
+  __name(isPowerOfTwo, "isPowerOfTwo");
   function textureNeedsPowerOfTwo(texture) {
     if (isWebGL2)
       return false;
     return texture.wrapS !== ClampToEdgeWrapping || texture.wrapT !== ClampToEdgeWrapping || texture.minFilter !== NearestFilter && texture.minFilter !== LinearFilter;
   }
+  __name(textureNeedsPowerOfTwo, "textureNeedsPowerOfTwo");
   function textureNeedsGenerateMipmaps(texture, supportsMips) {
     return texture.generateMipmaps && supportsMips && texture.minFilter !== NearestFilter && texture.minFilter !== LinearFilter;
   }
+  __name(textureNeedsGenerateMipmaps, "textureNeedsGenerateMipmaps");
   function generateMipmap(target, texture, width, height) {
     _gl.generateMipmap(target);
     const textureProperties = properties.get(texture);
     textureProperties.__maxMipLevel = Math.log(Math.max(width, height)) * Math.LOG2E;
   }
+  __name(generateMipmap, "generateMipmap");
   function getInternalFormat(internalFormatName, glFormat, glType) {
     if (isWebGL2 === false)
       return glFormat;
@@ -12531,12 +12808,14 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     }
     return internalFormat;
   }
+  __name(getInternalFormat, "getInternalFormat");
   function filterFallback(f) {
     if (f === NearestFilter || f === NearestMipmapNearestFilter || f === NearestMipmapLinearFilter) {
       return 9728;
     }
     return 9729;
   }
+  __name(filterFallback, "filterFallback");
   function onTextureDispose(event) {
     const texture = event.target;
     texture.removeEventListener("dispose", onTextureDispose);
@@ -12546,12 +12825,14 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     }
     info.memory.textures--;
   }
+  __name(onTextureDispose, "onTextureDispose");
   function onRenderTargetDispose(event) {
     const renderTarget = event.target;
     renderTarget.removeEventListener("dispose", onRenderTargetDispose);
     deallocateRenderTarget(renderTarget);
     info.memory.textures--;
   }
+  __name(onRenderTargetDispose, "onRenderTargetDispose");
   function deallocateTexture(texture) {
     const textureProperties = properties.get(texture);
     if (textureProperties.__webglInit === void 0)
@@ -12559,6 +12840,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     _gl.deleteTexture(textureProperties.__webglTexture);
     properties.remove(texture);
   }
+  __name(deallocateTexture, "deallocateTexture");
   function deallocateRenderTarget(renderTarget) {
     const renderTargetProperties = properties.get(renderTarget);
     const textureProperties = properties.get(renderTarget.texture);
@@ -12590,10 +12872,12 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     properties.remove(renderTarget.texture);
     properties.remove(renderTarget);
   }
+  __name(deallocateRenderTarget, "deallocateRenderTarget");
   let textureUnits = 0;
   function resetTextureUnits() {
     textureUnits = 0;
   }
+  __name(resetTextureUnits, "resetTextureUnits");
   function allocateTextureUnit() {
     const textureUnit = textureUnits;
     if (textureUnit >= maxTextures) {
@@ -12602,6 +12886,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     textureUnits += 1;
     return textureUnit;
   }
+  __name(allocateTextureUnit, "allocateTextureUnit");
   function setTexture2D(texture, slot) {
     const textureProperties = properties.get(texture);
     if (texture.isVideoTexture)
@@ -12620,6 +12905,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     state.activeTexture(33984 + slot);
     state.bindTexture(3553, textureProperties.__webglTexture);
   }
+  __name(setTexture2D, "setTexture2D");
   function setTexture2DArray(texture, slot) {
     const textureProperties = properties.get(texture);
     if (texture.version > 0 && textureProperties.__version !== texture.version) {
@@ -12629,6 +12915,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     state.activeTexture(33984 + slot);
     state.bindTexture(35866, textureProperties.__webglTexture);
   }
+  __name(setTexture2DArray, "setTexture2DArray");
   function setTexture3D(texture, slot) {
     const textureProperties = properties.get(texture);
     if (texture.version > 0 && textureProperties.__version !== texture.version) {
@@ -12638,6 +12925,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     state.activeTexture(33984 + slot);
     state.bindTexture(32879, textureProperties.__webglTexture);
   }
+  __name(setTexture3D, "setTexture3D");
   function setTextureCube(texture, slot) {
     const textureProperties = properties.get(texture);
     if (texture.version > 0 && textureProperties.__version !== texture.version) {
@@ -12647,6 +12935,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     state.activeTexture(33984 + slot);
     state.bindTexture(34067, textureProperties.__webglTexture);
   }
+  __name(setTextureCube, "setTextureCube");
   const wrappingToGL = {
     [RepeatWrapping]: 10497,
     [ClampToEdgeWrapping]: 33071,
@@ -12696,6 +12985,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       }
     }
   }
+  __name(setTextureParameters, "setTextureParameters");
   function initTexture(textureProperties, texture) {
     if (textureProperties.__webglInit === void 0) {
       textureProperties.__webglInit = true;
@@ -12704,6 +12994,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       info.memory.textures++;
     }
   }
+  __name(initTexture, "initTexture");
   function uploadTexture(textureProperties, texture, slot) {
     let textureType = 3553;
     if (texture.isDataTexture2DArray)
@@ -12808,6 +13099,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     if (texture.onUpdate)
       texture.onUpdate(texture);
   }
+  __name(uploadTexture, "uploadTexture");
   function uploadCubeTexture(textureProperties, texture, slot) {
     if (texture.image.length !== 6)
       return;
@@ -12872,6 +13164,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     if (texture.onUpdate)
       texture.onUpdate(texture);
   }
+  __name(uploadCubeTexture, "uploadCubeTexture");
   function setupFrameBufferTexture(framebuffer, renderTarget, attachment, textureTarget) {
     const glFormat = utils.convert(renderTarget.texture.format);
     const glType = utils.convert(renderTarget.texture.type);
@@ -12881,6 +13174,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     _gl.framebufferTexture2D(36160, attachment, textureTarget, properties.get(renderTarget.texture).__webglTexture, 0);
     _gl.bindFramebuffer(36160, null);
   }
+  __name(setupFrameBufferTexture, "setupFrameBufferTexture");
   function setupRenderBufferStorage(renderbuffer, renderTarget, isMultisample) {
     _gl.bindRenderbuffer(36161, renderbuffer);
     if (renderTarget.depthBuffer && !renderTarget.stencilBuffer) {
@@ -12921,6 +13215,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     }
     _gl.bindRenderbuffer(36161, null);
   }
+  __name(setupRenderBufferStorage, "setupRenderBufferStorage");
   function setupDepthTexture(framebuffer, renderTarget) {
     const isCube = renderTarget && renderTarget.isWebGLCubeRenderTarget;
     if (isCube)
@@ -12944,6 +13239,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       throw new Error("Unknown depthTexture format");
     }
   }
+  __name(setupDepthTexture, "setupDepthTexture");
   function setupDepthRenderbuffer(renderTarget) {
     const renderTargetProperties = properties.get(renderTarget);
     const isCube = renderTarget.isWebGLCubeRenderTarget === true;
@@ -12967,6 +13263,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     }
     _gl.bindFramebuffer(36160, null);
   }
+  __name(setupDepthRenderbuffer, "setupDepthRenderbuffer");
   function setupRenderTarget(renderTarget) {
     const renderTargetProperties = properties.get(renderTarget);
     const textureProperties = properties.get(renderTarget.texture);
@@ -13033,6 +13330,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       setupDepthRenderbuffer(renderTarget);
     }
   }
+  __name(setupRenderTarget, "setupRenderTarget");
   function updateRenderTargetMipmap(renderTarget) {
     const texture = renderTarget.texture;
     const supportsMips = isPowerOfTwo(renderTarget) || isWebGL2;
@@ -13044,6 +13342,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       state.bindTexture(target, null);
     }
   }
+  __name(updateRenderTargetMipmap, "updateRenderTargetMipmap");
   function updateMultisampleRenderTarget(renderTarget) {
     if (renderTarget.isWebGLMultisampleRenderTarget) {
       if (isWebGL2) {
@@ -13064,9 +13363,11 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       }
     }
   }
+  __name(updateMultisampleRenderTarget, "updateMultisampleRenderTarget");
   function getRenderTargetSamples(renderTarget) {
     return isWebGL2 && renderTarget.isWebGLMultisampleRenderTarget ? Math.min(maxSamples, renderTarget.samples) : 0;
   }
+  __name(getRenderTargetSamples, "getRenderTargetSamples");
   function updateVideoTexture(texture) {
     const frame = info.render.frame;
     if (_videoTextures.get(texture) !== frame) {
@@ -13074,6 +13375,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
       texture.update();
     }
   }
+  __name(updateVideoTexture, "updateVideoTexture");
   let warnedTexture2D = false;
   let warnedTextureCube = false;
   function safeSetTexture2D(texture, slot) {
@@ -13086,6 +13388,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     }
     setTexture2D(texture, slot);
   }
+  __name(safeSetTexture2D, "safeSetTexture2D");
   function safeSetTextureCube(texture, slot) {
     if (texture && texture.isWebGLCubeRenderTarget) {
       if (warnedTextureCube === false) {
@@ -13096,6 +13399,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
     }
     setTextureCube(texture, slot);
   }
+  __name(safeSetTextureCube, "safeSetTextureCube");
   this.allocateTextureUnit = allocateTextureUnit;
   this.resetTextureUnits = resetTextureUnits;
   this.setTexture2D = setTexture2D;
@@ -13108,6 +13412,7 @@ function WebGLTextures(_gl, extensions, state, properties, capabilities, utils, 
   this.safeSetTexture2D = safeSetTexture2D;
   this.safeSetTextureCube = safeSetTextureCube;
 }
+__name(WebGLTextures, "WebGLTextures");
 function WebGLUtils(gl, extensions, capabilities) {
   const isWebGL2 = capabilities.isWebGL2;
   function convert(p) {
@@ -13242,12 +13547,15 @@ function WebGLUtils(gl, extensions, capabilities) {
       }
     }
   }
+  __name(convert, "convert");
   return { convert };
 }
+__name(WebGLUtils, "WebGLUtils");
 function ArrayCamera(array = []) {
   PerspectiveCamera.call(this);
   this.cameras = array;
 }
+__name(ArrayCamera, "ArrayCamera");
 ArrayCamera.prototype = Object.assign(Object.create(PerspectiveCamera.prototype), {
   constructor: ArrayCamera,
   isArrayCamera: true
@@ -13256,6 +13564,7 @@ function Group() {
   Object3D.call(this);
   this.type = "Group";
 }
+__name(Group, "Group");
 Group.prototype = Object.assign(Object.create(Object3D.prototype), {
   constructor: Group,
   isGroup: true
@@ -13265,6 +13574,7 @@ function WebXRController() {
   this._grip = null;
   this._hand = null;
 }
+__name(WebXRController, "WebXRController");
 Object.assign(WebXRController.prototype, {
   constructor: WebXRController,
   getHandSpace: function() {
@@ -13451,6 +13761,7 @@ function WebXRManager(renderer, gl) {
       controller.dispatchEvent({ type: event.type, data: event.inputSource });
     }
   }
+  __name(onSessionEvent, "onSessionEvent");
   function onSessionEnd() {
     inputSourcesMap.forEach(function(controller, inputSource) {
       controller.disconnect(inputSource);
@@ -13462,6 +13773,7 @@ function WebXRManager(renderer, gl) {
     scope.isPresenting = false;
     scope.dispatchEvent({ type: "sessionend" });
   }
+  __name(onSessionEnd, "onSessionEnd");
   function onRequestReferenceSpace(value) {
     referenceSpace = value;
     animation.setContext(session);
@@ -13469,6 +13781,7 @@ function WebXRManager(renderer, gl) {
     scope.isPresenting = true;
     scope.dispatchEvent({ type: "sessionstart" });
   }
+  __name(onRequestReferenceSpace, "onRequestReferenceSpace");
   this.setFramebufferScaleFactor = function(value) {
     framebufferScaleFactor = value;
     if (scope.isPresenting === true) {
@@ -13535,6 +13848,7 @@ function WebXRManager(renderer, gl) {
       }
     }
   }
+  __name(updateInputSources, "updateInputSources");
   const cameraLPos = new Vector3();
   const cameraRPos = new Vector3();
   function setProjectionFromUnion(camera, cameraL2, cameraR2) {
@@ -13566,6 +13880,7 @@ function WebXRManager(renderer, gl) {
     const bottom2 = bottomFov * far / far2 * near2;
     camera.projectionMatrix.makePerspective(left2, right2, top2, bottom2, near2, far2);
   }
+  __name(setProjectionFromUnion, "setProjectionFromUnion");
   function updateCamera(camera, parent) {
     if (parent === null) {
       camera.matrixWorld.copy(camera.matrix);
@@ -13574,6 +13889,7 @@ function WebXRManager(renderer, gl) {
     }
     camera.matrixWorldInverse.copy(camera.matrixWorld).invert();
   }
+  __name(updateCamera, "updateCamera");
   this.getCamera = function(camera) {
     cameraVR.near = cameraR.near = cameraL.near = camera.near;
     cameraVR.far = cameraR.far = cameraL.far = camera.far;
@@ -13639,6 +13955,7 @@ function WebXRManager(renderer, gl) {
     if (onAnimationFrameCallback)
       onAnimationFrameCallback(time, frame);
   }
+  __name(onAnimationFrame, "onAnimationFrame");
   const animation = new WebGLAnimation();
   animation.setAnimationLoop(onAnimationFrame);
   this.setAnimationLoop = function(callback) {
@@ -13647,6 +13964,7 @@ function WebXRManager(renderer, gl) {
   this.dispose = function() {
   };
 }
+__name(WebXRManager, "WebXRManager");
 Object.assign(WebXRManager.prototype, EventDispatcher.prototype);
 function WebGLMaterials(properties) {
   function refreshFogUniforms(uniforms, fog) {
@@ -13658,6 +13976,7 @@ function WebGLMaterials(properties) {
       uniforms.fogDensity.value = fog.density;
     }
   }
+  __name(refreshFogUniforms, "refreshFogUniforms");
   function refreshMaterialUniforms(uniforms, material, pixelRatio, height) {
     if (material.isMeshBasicMaterial) {
       refreshUniformsCommon(uniforms, material);
@@ -13705,6 +14024,7 @@ function WebGLMaterials(properties) {
       material.uniformsNeedUpdate = false;
     }
   }
+  __name(refreshMaterialUniforms, "refreshMaterialUniforms");
   function refreshUniformsCommon(uniforms, material) {
     uniforms.opacity.value = material.opacity;
     if (material.color) {
@@ -13792,15 +14112,18 @@ function WebGLMaterials(properties) {
       uniforms.uv2Transform.value.copy(uv2ScaleMap.matrix);
     }
   }
+  __name(refreshUniformsCommon, "refreshUniformsCommon");
   function refreshUniformsLine(uniforms, material) {
     uniforms.diffuse.value.copy(material.color);
     uniforms.opacity.value = material.opacity;
   }
+  __name(refreshUniformsLine, "refreshUniformsLine");
   function refreshUniformsDash(uniforms, material) {
     uniforms.dashSize.value = material.dashSize;
     uniforms.totalSize.value = material.dashSize + material.gapSize;
     uniforms.scale.value = material.scale;
   }
+  __name(refreshUniformsDash, "refreshUniformsDash");
   function refreshUniformsPoints(uniforms, material, pixelRatio, height) {
     uniforms.diffuse.value.copy(material.color);
     uniforms.opacity.value = material.opacity;
@@ -13825,6 +14148,7 @@ function WebGLMaterials(properties) {
       uniforms.uvTransform.value.copy(uvScaleMap.matrix);
     }
   }
+  __name(refreshUniformsPoints, "refreshUniformsPoints");
   function refreshUniformsSprites(uniforms, material) {
     uniforms.diffuse.value.copy(material.color);
     uniforms.opacity.value = material.opacity;
@@ -13848,11 +14172,13 @@ function WebGLMaterials(properties) {
       uniforms.uvTransform.value.copy(uvScaleMap.matrix);
     }
   }
+  __name(refreshUniformsSprites, "refreshUniformsSprites");
   function refreshUniformsLambert(uniforms, material) {
     if (material.emissiveMap) {
       uniforms.emissiveMap.value = material.emissiveMap;
     }
   }
+  __name(refreshUniformsLambert, "refreshUniformsLambert");
   function refreshUniformsPhong(uniforms, material) {
     uniforms.specular.value.copy(material.specular);
     uniforms.shininess.value = Math.max(material.shininess, 1e-4);
@@ -13877,6 +14203,7 @@ function WebGLMaterials(properties) {
       uniforms.displacementBias.value = material.displacementBias;
     }
   }
+  __name(refreshUniformsPhong, "refreshUniformsPhong");
   function refreshUniformsToon(uniforms, material) {
     if (material.gradientMap) {
       uniforms.gradientMap.value = material.gradientMap;
@@ -13902,6 +14229,7 @@ function WebGLMaterials(properties) {
       uniforms.displacementBias.value = material.displacementBias;
     }
   }
+  __name(refreshUniformsToon, "refreshUniformsToon");
   function refreshUniformsStandard(uniforms, material) {
     uniforms.roughness.value = material.roughness;
     uniforms.metalness.value = material.metalness;
@@ -13936,6 +14264,7 @@ function WebGLMaterials(properties) {
       uniforms.envMapIntensity.value = material.envMapIntensity;
     }
   }
+  __name(refreshUniformsStandard, "refreshUniformsStandard");
   function refreshUniformsPhysical(uniforms, material) {
     refreshUniformsStandard(uniforms, material);
     uniforms.reflectivity.value = material.reflectivity;
@@ -13961,6 +14290,7 @@ function WebGLMaterials(properties) {
       uniforms.transmissionMap.value = material.transmissionMap;
     }
   }
+  __name(refreshUniformsPhysical, "refreshUniformsPhysical");
   function refreshUniformsMatcap(uniforms, material) {
     if (material.matcap) {
       uniforms.matcap.value = material.matcap;
@@ -13983,6 +14313,7 @@ function WebGLMaterials(properties) {
       uniforms.displacementBias.value = material.displacementBias;
     }
   }
+  __name(refreshUniformsMatcap, "refreshUniformsMatcap");
   function refreshUniformsDepth(uniforms, material) {
     if (material.displacementMap) {
       uniforms.displacementMap.value = material.displacementMap;
@@ -13990,6 +14321,7 @@ function WebGLMaterials(properties) {
       uniforms.displacementBias.value = material.displacementBias;
     }
   }
+  __name(refreshUniformsDepth, "refreshUniformsDepth");
   function refreshUniformsDistance(uniforms, material) {
     if (material.displacementMap) {
       uniforms.displacementMap.value = material.displacementMap;
@@ -14000,6 +14332,7 @@ function WebGLMaterials(properties) {
     uniforms.nearDistance.value = material.nearDistance;
     uniforms.farDistance.value = material.farDistance;
   }
+  __name(refreshUniformsDistance, "refreshUniformsDistance");
   function refreshUniformsNormal(uniforms, material) {
     if (material.bumpMap) {
       uniforms.bumpMap.value = material.bumpMap;
@@ -14019,16 +14352,19 @@ function WebGLMaterials(properties) {
       uniforms.displacementBias.value = material.displacementBias;
     }
   }
+  __name(refreshUniformsNormal, "refreshUniformsNormal");
   return {
     refreshFogUniforms,
     refreshMaterialUniforms
   };
 }
+__name(WebGLMaterials, "WebGLMaterials");
 function createCanvasElement() {
   const canvas = document.createElementNS("http://www.w3.org/1999/xhtml", "canvas");
   canvas.style.display = "block";
   return canvas;
 }
+__name(createCanvasElement, "createCanvasElement");
 function WebGLRenderer(parameters) {
   parameters = parameters || {};
   const _canvas2 = parameters.canvas !== void 0 ? parameters.canvas : createCanvasElement(), _context2 = parameters.context !== void 0 ? parameters.context : null, _alpha = parameters.alpha !== void 0 ? parameters.alpha : false, _depth = parameters.depth !== void 0 ? parameters.depth : true, _stencil = parameters.stencil !== void 0 ? parameters.stencil : true, _antialias = parameters.antialias !== void 0 ? parameters.antialias : false, _premultipliedAlpha = parameters.premultipliedAlpha !== void 0 ? parameters.premultipliedAlpha : true, _preserveDrawingBuffer = parameters.preserveDrawingBuffer !== void 0 ? parameters.preserveDrawingBuffer : false, _powerPreference = parameters.powerPreference !== void 0 ? parameters.powerPreference : "default", _failIfMajorPerformanceCaveat = parameters.failIfMajorPerformanceCaveat !== void 0 ? parameters.failIfMajorPerformanceCaveat : false;
@@ -14082,6 +14418,7 @@ function WebGLRenderer(parameters) {
   function getTargetPixelRatio() {
     return _currentRenderTarget === null ? _pixelRatio : 1;
   }
+  __name(getTargetPixelRatio, "getTargetPixelRatio");
   let _gl = _context2;
   function getContext(contextNames, contextAttributes) {
     for (let i = 0; i < contextNames.length; i++) {
@@ -14092,6 +14429,7 @@ function WebGLRenderer(parameters) {
     }
     return null;
   }
+  __name(getContext, "getContext");
   try {
     const contextAttributes = {
       alpha: _alpha,
@@ -14176,6 +14514,7 @@ function WebGLRenderer(parameters) {
     _this.state = state;
     _this.info = info;
   }
+  __name(initGLContext, "initGLContext");
   initGLContext();
   const xr = new WebXRManager(_this, _gl);
   this.xr = xr;
@@ -14332,31 +14671,37 @@ function WebGLRenderer(parameters) {
     console.log("THREE.WebGLRenderer: Context Lost.");
     _isContextLost = true;
   }
+  __name(onContextLost, "onContextLost");
   function onContextRestore() {
     console.log("THREE.WebGLRenderer: Context Restored.");
     _isContextLost = false;
     initGLContext();
   }
+  __name(onContextRestore, "onContextRestore");
   function onMaterialDispose(event) {
     const material = event.target;
     material.removeEventListener("dispose", onMaterialDispose);
     deallocateMaterial(material);
   }
+  __name(onMaterialDispose, "onMaterialDispose");
   function deallocateMaterial(material) {
     releaseMaterialProgramReference(material);
     properties.remove(material);
   }
+  __name(deallocateMaterial, "deallocateMaterial");
   function releaseMaterialProgramReference(material) {
     const programInfo = properties.get(material).program;
     if (programInfo !== void 0) {
       programCache.releaseProgram(programInfo);
     }
   }
+  __name(releaseMaterialProgramReference, "releaseMaterialProgramReference");
   function renderObjectImmediate(object, program) {
     object.render(function(object2) {
       _this.renderBufferImmediate(object2, program);
     });
   }
+  __name(renderObjectImmediate, "renderObjectImmediate");
   this.renderBufferImmediate = function(object, program) {
     bindingStates.initAttributes();
     const buffers = properties.get(object);
@@ -14508,6 +14853,7 @@ function WebGLRenderer(parameters) {
     if (onAnimationFrameCallback)
       onAnimationFrameCallback(time);
   }
+  __name(onAnimationFrame, "onAnimationFrame");
   const animation = new WebGLAnimation();
   animation.setAnimationLoop(onAnimationFrame);
   if (typeof window !== "undefined")
@@ -14654,6 +15000,7 @@ function WebGLRenderer(parameters) {
       projectObject(children[i], camera, groupOrder, sortObjects);
     }
   }
+  __name(projectObject, "projectObject");
   function renderObjects(renderList, scene, camera) {
     const overrideMaterial = scene.isScene === true ? scene.overrideMaterial : null;
     for (let i = 0, l = renderList.length; i < l; i++) {
@@ -14679,6 +15026,7 @@ function WebGLRenderer(parameters) {
       }
     }
   }
+  __name(renderObjects, "renderObjects");
   function renderObject(object, scene, camera, geometry, material, group) {
     object.onBeforeRender(_this, scene, camera, geometry, material, group);
     currentRenderState = renderStates.get(scene, _currentArrayCamera || camera);
@@ -14695,6 +15043,7 @@ function WebGLRenderer(parameters) {
     object.onAfterRender(_this, scene, camera, geometry, material, group);
     currentRenderState = renderStates.get(scene, _currentArrayCamera || camera);
   }
+  __name(renderObject, "renderObject");
   function initMaterial(material, scene, object) {
     if (scene.isScene !== true)
       scene = _emptyScene;
@@ -14762,6 +15111,7 @@ function WebGLRenderer(parameters) {
     const uniformsList = WebGLUniforms.seqWithValue(progUniforms.seq, uniforms);
     materialProperties.uniformsList = uniformsList;
   }
+  __name(initMaterial, "initMaterial");
   function setProgram(camera, scene, material, object) {
     if (scene.isScene !== true)
       scene = _emptyScene;
@@ -14884,6 +15234,7 @@ function WebGLRenderer(parameters) {
     p_uniforms.setValue(_gl, "modelMatrix", object.matrixWorld);
     return program;
   }
+  __name(setProgram, "setProgram");
   function markUniformsLightsNeedsUpdate(uniforms, value) {
     uniforms.ambientLightColor.needsUpdate = value;
     uniforms.lightProbe.needsUpdate = value;
@@ -14896,9 +15247,11 @@ function WebGLRenderer(parameters) {
     uniforms.rectAreaLights.needsUpdate = value;
     uniforms.hemisphereLights.needsUpdate = value;
   }
+  __name(markUniformsLightsNeedsUpdate, "markUniformsLightsNeedsUpdate");
   function materialNeedsLights(material) {
     return material.isMeshLambertMaterial || material.isMeshToonMaterial || material.isMeshPhongMaterial || material.isMeshStandardMaterial || material.isShadowMaterial || material.isShaderMaterial && material.lights === true;
   }
+  __name(materialNeedsLights, "materialNeedsLights");
   this.setFramebuffer = function(value) {
     if (_framebuffer !== value && _currentRenderTarget === null)
       _gl.bindFramebuffer(36160, value);
@@ -15044,9 +15397,11 @@ function WebGLRenderer(parameters) {
     __THREE_DEVTOOLS__.dispatchEvent(new CustomEvent("observe", { detail: this }));
   }
 }
+__name(WebGLRenderer, "WebGLRenderer");
 function WebGL1Renderer(parameters) {
   WebGLRenderer.call(this, parameters);
 }
+__name(WebGL1Renderer, "WebGL1Renderer");
 WebGL1Renderer.prototype = Object.assign(Object.create(WebGLRenderer.prototype), {
   constructor: WebGL1Renderer,
   isWebGL1Renderer: true
@@ -15069,6 +15424,7 @@ var FogExp2 = class {
     };
   }
 };
+__name(FogExp2, "FogExp2");
 var Fog = class {
   constructor(color, near, far) {
     Object.defineProperty(this, "isFog", { value: true });
@@ -15089,6 +15445,7 @@ var Fog = class {
     };
   }
 };
+__name(Fog, "Fog");
 var Scene = class extends Object3D {
   constructor() {
     super();
@@ -15128,6 +15485,7 @@ var Scene = class extends Object3D {
     return data;
   }
 };
+__name(Scene, "Scene");
 function InterleavedBuffer(array, stride) {
   this.array = array;
   this.stride = stride;
@@ -15137,6 +15495,7 @@ function InterleavedBuffer(array, stride) {
   this.version = 0;
   this.uuid = MathUtils.generateUUID();
 }
+__name(InterleavedBuffer, "InterleavedBuffer");
 Object.defineProperty(InterleavedBuffer.prototype, "needsUpdate", {
   set: function(value) {
     if (value === true)
@@ -15215,6 +15574,7 @@ function InterleavedBufferAttribute(interleavedBuffer, itemSize, offset, normali
   this.offset = offset;
   this.normalized = normalized === true;
 }
+__name(InterleavedBufferAttribute, "InterleavedBufferAttribute");
 Object.defineProperties(InterleavedBufferAttribute.prototype, {
   count: {
     get: function() {
@@ -15358,6 +15718,7 @@ function SpriteMaterial(parameters) {
   this.transparent = true;
   this.setValues(parameters);
 }
+__name(SpriteMaterial, "SpriteMaterial");
 SpriteMaterial.prototype = Object.create(Material.prototype);
 SpriteMaterial.prototype.constructor = SpriteMaterial;
 SpriteMaterial.prototype.isSpriteMaterial = true;
@@ -15419,6 +15780,7 @@ function Sprite(material) {
   this.material = material !== void 0 ? material : new SpriteMaterial();
   this.center = new Vector2(0.5, 0.5);
 }
+__name(Sprite, "Sprite");
 Sprite.prototype = Object.assign(Object.create(Object3D.prototype), {
   constructor: Sprite,
   isSprite: true,
@@ -15487,6 +15849,7 @@ function transformVertex(vertexPosition, mvPosition, center, scale, sin, cos) {
   vertexPosition.y += _rotatedPosition.y;
   vertexPosition.applyMatrix4(_viewWorldMatrix);
 }
+__name(transformVertex, "transformVertex");
 var _v1$4 = new Vector3();
 var _v2$2 = new Vector3();
 function LOD() {
@@ -15501,6 +15864,7 @@ function LOD() {
   });
   this.autoUpdate = true;
 }
+__name(LOD, "LOD");
 LOD.prototype = Object.assign(Object.create(Object3D.prototype), {
   constructor: LOD,
   isLOD: true,
@@ -15599,6 +15963,7 @@ function SkinnedMesh(geometry, material) {
   this.bindMatrix = new Matrix4();
   this.bindMatrixInverse = new Matrix4();
 }
+__name(SkinnedMesh, "SkinnedMesh");
 SkinnedMesh.prototype = Object.assign(Object.create(Mesh.prototype), {
   constructor: SkinnedMesh,
   isSkinnedMesh: true,
@@ -15679,6 +16044,7 @@ function Bone() {
   Object3D.call(this);
   this.type = "Bone";
 }
+__name(Bone, "Bone");
 Bone.prototype = Object.assign(Object.create(Object3D.prototype), {
   constructor: Bone,
   isBone: true
@@ -15695,6 +16061,7 @@ function Skeleton(bones = [], boneInverses = []) {
   this.frame = -1;
   this.init();
 }
+__name(Skeleton, "Skeleton");
 Object.assign(Skeleton.prototype, {
   init: function() {
     const bones = this.bones;
@@ -15822,6 +16189,7 @@ function InstancedMesh(geometry, material, count) {
   this.count = count;
   this.frustumCulled = false;
 }
+__name(InstancedMesh, "InstancedMesh");
 InstancedMesh.prototype = Object.assign(Object.create(Mesh.prototype), {
   constructor: InstancedMesh,
   isInstancedMesh: true,
@@ -15880,6 +16248,7 @@ function LineBasicMaterial(parameters) {
   this.morphTargets = false;
   this.setValues(parameters);
 }
+__name(LineBasicMaterial, "LineBasicMaterial");
 LineBasicMaterial.prototype = Object.create(Material.prototype);
 LineBasicMaterial.prototype.constructor = LineBasicMaterial;
 LineBasicMaterial.prototype.isLineBasicMaterial = true;
@@ -15907,6 +16276,7 @@ function Line(geometry, material, mode) {
   this.material = material !== void 0 ? material : new LineBasicMaterial();
   this.updateMorphTargets();
 }
+__name(Line, "Line");
 Line.prototype = Object.assign(Object.create(Object3D.prototype), {
   constructor: Line,
   isLine: true,
@@ -16064,6 +16434,7 @@ function LineSegments(geometry, material) {
   Line.call(this, geometry, material);
   this.type = "LineSegments";
 }
+__name(LineSegments, "LineSegments");
 LineSegments.prototype = Object.assign(Object.create(Line.prototype), {
   constructor: LineSegments,
   isLineSegments: true,
@@ -16100,6 +16471,7 @@ function LineLoop(geometry, material) {
   Line.call(this, geometry, material);
   this.type = "LineLoop";
 }
+__name(LineLoop, "LineLoop");
 LineLoop.prototype = Object.assign(Object.create(Line.prototype), {
   constructor: LineLoop,
   isLineLoop: true
@@ -16115,6 +16487,7 @@ function PointsMaterial(parameters) {
   this.morphTargets = false;
   this.setValues(parameters);
 }
+__name(PointsMaterial, "PointsMaterial");
 PointsMaterial.prototype = Object.create(Material.prototype);
 PointsMaterial.prototype.constructor = PointsMaterial;
 PointsMaterial.prototype.isPointsMaterial = true;
@@ -16139,6 +16512,7 @@ function Points(geometry, material) {
   this.material = material !== void 0 ? material : new PointsMaterial();
   this.updateMorphTargets();
 }
+__name(Points, "Points");
 Points.prototype = Object.assign(Object.create(Object3D.prototype), {
   constructor: Points,
   isPoints: true,
@@ -16231,6 +16605,7 @@ function testPoint(point, index, localThresholdSq, matrixWorld, raycaster, inter
     });
   }
 }
+__name(testPoint, "testPoint");
 function VideoTexture(video, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy) {
   Texture.call(this, video, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
   this.format = format !== void 0 ? format : RGBFormat;
@@ -16242,10 +16617,12 @@ function VideoTexture(video, mapping, wrapS, wrapT, magFilter, minFilter, format
     scope.needsUpdate = true;
     video.requestVideoFrameCallback(updateVideo);
   }
+  __name(updateVideo, "updateVideo");
   if ("requestVideoFrameCallback" in video) {
     video.requestVideoFrameCallback(updateVideo);
   }
 }
+__name(VideoTexture, "VideoTexture");
 VideoTexture.prototype = Object.assign(Object.create(Texture.prototype), {
   constructor: VideoTexture,
   clone: function() {
@@ -16267,6 +16644,7 @@ function CompressedTexture(mipmaps, width, height, format, type, mapping, wrapS,
   this.flipY = false;
   this.generateMipmaps = false;
 }
+__name(CompressedTexture, "CompressedTexture");
 CompressedTexture.prototype = Object.create(Texture.prototype);
 CompressedTexture.prototype.constructor = CompressedTexture;
 CompressedTexture.prototype.isCompressedTexture = true;
@@ -16274,6 +16652,7 @@ function CanvasTexture(canvas, mapping, wrapS, wrapT, magFilter, minFilter, form
   Texture.call(this, canvas, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy);
   this.needsUpdate = true;
 }
+__name(CanvasTexture, "CanvasTexture");
 CanvasTexture.prototype = Object.create(Texture.prototype);
 CanvasTexture.prototype.constructor = CanvasTexture;
 CanvasTexture.prototype.isCanvasTexture = true;
@@ -16293,6 +16672,7 @@ function DepthTexture(width, height, type, mapping, wrapS, wrapT, magFilter, min
   this.flipY = false;
   this.generateMipmaps = false;
 }
+__name(DepthTexture, "DepthTexture");
 DepthTexture.prototype = Object.create(Texture.prototype);
 DepthTexture.prototype.constructor = DepthTexture;
 DepthTexture.prototype.isDepthTexture = true;
@@ -16324,6 +16704,7 @@ function Geometry() {
   this.lineDistancesNeedUpdate = false;
   this.groupsNeedUpdate = false;
 }
+__name(Geometry, "Geometry");
 Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   constructor: Geometry,
   isGeometry: true,
@@ -16430,6 +16811,7 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
         ]);
       }
     }
+    __name(addFace, "addFace");
     const groups = geometry.groups;
     if (groups.length > 0) {
       for (let i = 0; i < groups.length; i++) {
@@ -16750,6 +17132,7 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
     function materialIndexSort(a, b) {
       return a.materialIndex - b.materialIndex;
     }
+    __name(materialIndexSort, "materialIndexSort");
     faces.sort(materialIndexSort);
     const uvs1 = this.faceVertexUvs[0];
     const uvs2 = this.faceVertexUvs[1];
@@ -16845,6 +17228,7 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
     function setBit(value, position, enabled) {
       return enabled ? value | 1 << position : value & ~(1 << position);
     }
+    __name(setBit, "setBit");
     function getNormalIndex(normal) {
       const hash = normal.x.toString() + normal.y.toString() + normal.z.toString();
       if (normalsHash[hash] !== void 0) {
@@ -16854,6 +17238,7 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
       normals.push(normal.x, normal.y, normal.z);
       return normalsHash[hash];
     }
+    __name(getNormalIndex, "getNormalIndex");
     function getColorIndex(color) {
       const hash = color.r.toString() + color.g.toString() + color.b.toString();
       if (colorsHash[hash] !== void 0) {
@@ -16863,6 +17248,7 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
       colors.push(color.getHex());
       return colorsHash[hash];
     }
+    __name(getColorIndex, "getColorIndex");
     function getUvIndex(uv) {
       const hash = uv.x.toString() + uv.y.toString();
       if (uvsHash[hash] !== void 0) {
@@ -16872,6 +17258,7 @@ Geometry.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
       uvs.push(uv.x, uv.y);
       return uvsHash[hash];
     }
+    __name(getUvIndex, "getUvIndex");
     data.data = {};
     data.data.vertices = vertices;
     data.data.normals = normals;
@@ -17013,6 +17400,7 @@ var BoxGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(BoxGeometry, "BoxGeometry");
 var CircleBufferGeometry = class extends BufferGeometry {
   constructor(radius = 1, segments = 8, thetaStart = 0, thetaLength = Math.PI * 2) {
     super();
@@ -17052,6 +17440,7 @@ var CircleBufferGeometry = class extends BufferGeometry {
     this.setAttribute("uv", new Float32BufferAttribute(uvs, 2));
   }
 };
+__name(CircleBufferGeometry, "CircleBufferGeometry");
 var CircleGeometry = class extends Geometry {
   constructor(radius, segments, thetaStart, thetaLength) {
     super();
@@ -17066,6 +17455,7 @@ var CircleGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(CircleGeometry, "CircleGeometry");
 var CylinderBufferGeometry = class extends BufferGeometry {
   constructor(radiusTop = 1, radiusBottom = 1, height = 1, radialSegments = 8, heightSegments = 1, openEnded = false, thetaStart = 0, thetaLength = Math.PI * 2) {
     super();
@@ -17141,6 +17531,7 @@ var CylinderBufferGeometry = class extends BufferGeometry {
       scope.addGroup(groupStart, groupCount, 0);
       groupStart += groupCount;
     }
+    __name(generateTorso, "generateTorso");
     function generateCap(top) {
       const centerIndexStart = index;
       const uv = new Vector2();
@@ -17183,8 +17574,10 @@ var CylinderBufferGeometry = class extends BufferGeometry {
       scope.addGroup(groupStart, groupCount, top === true ? 1 : 2);
       groupStart += groupCount;
     }
+    __name(generateCap, "generateCap");
   }
 };
+__name(CylinderBufferGeometry, "CylinderBufferGeometry");
 var CylinderGeometry = class extends Geometry {
   constructor(radiusTop, radiusBottom, height, radialSegments, heightSegments, openEnded, thetaStart, thetaLength) {
     super();
@@ -17203,6 +17596,7 @@ var CylinderGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(CylinderGeometry, "CylinderGeometry");
 var ConeGeometry = class extends CylinderGeometry {
   constructor(radius, height, radialSegments, heightSegments, openEnded, thetaStart, thetaLength) {
     super(0, radius, height, radialSegments, heightSegments, openEnded, thetaStart, thetaLength);
@@ -17218,6 +17612,7 @@ var ConeGeometry = class extends CylinderGeometry {
     };
   }
 };
+__name(ConeGeometry, "ConeGeometry");
 var ConeBufferGeometry = class extends CylinderBufferGeometry {
   constructor(radius = 1, height = 1, radialSegments = 8, heightSegments = 1, openEnded = false, thetaStart = 0, thetaLength = Math.PI * 2) {
     super(0, radius, height, radialSegments, heightSegments, openEnded, thetaStart, thetaLength);
@@ -17233,6 +17628,7 @@ var ConeBufferGeometry = class extends CylinderBufferGeometry {
     };
   }
 };
+__name(ConeBufferGeometry, "ConeBufferGeometry");
 var PolyhedronBufferGeometry = class extends BufferGeometry {
   constructor(vertices, indices, radius = 1, detail = 0) {
     super();
@@ -17267,6 +17663,7 @@ var PolyhedronBufferGeometry = class extends BufferGeometry {
         subdivideFace(a, b, c, detail2);
       }
     }
+    __name(subdivide, "subdivide");
     function subdivideFace(a, b, c, detail2) {
       const cols = detail2 + 1;
       const v = [];
@@ -17298,6 +17695,7 @@ var PolyhedronBufferGeometry = class extends BufferGeometry {
         }
       }
     }
+    __name(subdivideFace, "subdivideFace");
     function applyRadius(radius2) {
       const vertex = new Vector3();
       for (let i = 0; i < vertexBuffer.length; i += 3) {
@@ -17310,6 +17708,7 @@ var PolyhedronBufferGeometry = class extends BufferGeometry {
         vertexBuffer[i + 2] = vertex.z;
       }
     }
+    __name(applyRadius, "applyRadius");
     function generateUVs() {
       const vertex = new Vector3();
       for (let i = 0; i < vertexBuffer.length; i += 3) {
@@ -17323,6 +17722,7 @@ var PolyhedronBufferGeometry = class extends BufferGeometry {
       correctUVs();
       correctSeam();
     }
+    __name(generateUVs, "generateUVs");
     function correctSeam() {
       for (let i = 0; i < uvBuffer.length; i += 6) {
         const x0 = uvBuffer[i + 0];
@@ -17340,15 +17740,18 @@ var PolyhedronBufferGeometry = class extends BufferGeometry {
         }
       }
     }
+    __name(correctSeam, "correctSeam");
     function pushVertex(vertex) {
       vertexBuffer.push(vertex.x, vertex.y, vertex.z);
     }
+    __name(pushVertex, "pushVertex");
     function getVertexByIndex(index, vertex) {
       const stride = index * 3;
       vertex.x = vertices[stride + 0];
       vertex.y = vertices[stride + 1];
       vertex.z = vertices[stride + 2];
     }
+    __name(getVertexByIndex, "getVertexByIndex");
     function correctUVs() {
       const a = new Vector3();
       const b = new Vector3();
@@ -17371,6 +17774,7 @@ var PolyhedronBufferGeometry = class extends BufferGeometry {
         correctUV(uvC, j + 4, c, azi);
       }
     }
+    __name(correctUVs, "correctUVs");
     function correctUV(uv, stride, vector, azimuth2) {
       if (azimuth2 < 0 && uv.x === 1) {
         uvBuffer[stride] = uv.x - 1;
@@ -17379,14 +17783,18 @@ var PolyhedronBufferGeometry = class extends BufferGeometry {
         uvBuffer[stride] = azimuth2 / 2 / Math.PI + 0.5;
       }
     }
+    __name(correctUV, "correctUV");
     function azimuth(vector) {
       return Math.atan2(vector.z, -vector.x);
     }
+    __name(azimuth, "azimuth");
     function inclination(vector) {
       return Math.atan2(-vector.y, Math.sqrt(vector.x * vector.x + vector.z * vector.z));
     }
+    __name(inclination, "inclination");
   }
 };
+__name(PolyhedronBufferGeometry, "PolyhedronBufferGeometry");
 var DodecahedronBufferGeometry = class extends PolyhedronBufferGeometry {
   constructor(radius = 1, detail = 0) {
     const t = (1 + Math.sqrt(5)) / 2;
@@ -17571,6 +17979,7 @@ var DodecahedronBufferGeometry = class extends PolyhedronBufferGeometry {
     };
   }
 };
+__name(DodecahedronBufferGeometry, "DodecahedronBufferGeometry");
 var DodecahedronGeometry = class extends Geometry {
   constructor(radius, detail) {
     super();
@@ -17583,6 +17992,7 @@ var DodecahedronGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(DodecahedronGeometry, "DodecahedronGeometry");
 var _v0$2 = new Vector3();
 var _v1$5 = new Vector3();
 var _normal$1 = new Vector3();
@@ -17665,6 +18075,7 @@ var EdgesGeometry = class extends BufferGeometry {
     this.setAttribute("position", new Float32BufferAttribute(vertices, 3));
   }
 };
+__name(EdgesGeometry, "EdgesGeometry");
 var Earcut = {
   triangulate: function(data, holeIndices, dim) {
     dim = dim || 2;
@@ -17714,6 +18125,7 @@ function linkedList(data, start, end, dim, clockwise) {
   }
   return last;
 }
+__name(linkedList, "linkedList");
 function filterPoints(start, end) {
   if (!start)
     return start;
@@ -17734,6 +18146,7 @@ function filterPoints(start, end) {
   } while (again || p !== end);
   return end;
 }
+__name(filterPoints, "filterPoints");
 function earcutLinked(ear, triangles, dim, minX, minY, invSize, pass) {
   if (!ear)
     return;
@@ -17766,6 +18179,7 @@ function earcutLinked(ear, triangles, dim, minX, minY, invSize, pass) {
     }
   }
 }
+__name(earcutLinked, "earcutLinked");
 function isEar(ear) {
   const a = ear.prev, b = ear, c = ear.next;
   if (area(a, b, c) >= 0)
@@ -17778,6 +18192,7 @@ function isEar(ear) {
   }
   return true;
 }
+__name(isEar, "isEar");
 function isEarHashed(ear, minX, minY, invSize) {
   const a = ear.prev, b = ear, c = ear.next;
   if (area(a, b, c) >= 0)
@@ -17805,6 +18220,7 @@ function isEarHashed(ear, minX, minY, invSize) {
   }
   return true;
 }
+__name(isEarHashed, "isEarHashed");
 function cureLocalIntersections(start, triangles, dim) {
   let p = start;
   do {
@@ -17821,6 +18237,7 @@ function cureLocalIntersections(start, triangles, dim) {
   } while (p !== start);
   return filterPoints(p);
 }
+__name(cureLocalIntersections, "cureLocalIntersections");
 function splitEarcut(start, triangles, dim, minX, minY, invSize) {
   let a = start;
   do {
@@ -17839,6 +18256,7 @@ function splitEarcut(start, triangles, dim, minX, minY, invSize) {
     a = a.next;
   } while (a !== start);
 }
+__name(splitEarcut, "splitEarcut");
 function eliminateHoles(data, holeIndices, outerNode, dim) {
   const queue = [];
   let i, len, start, end, list;
@@ -17857,9 +18275,11 @@ function eliminateHoles(data, holeIndices, outerNode, dim) {
   }
   return outerNode;
 }
+__name(eliminateHoles, "eliminateHoles");
 function compareX(a, b) {
   return a.x - b.x;
 }
+__name(compareX, "compareX");
 function eliminateHole(hole, outerNode) {
   outerNode = findHoleBridge(hole, outerNode);
   if (outerNode) {
@@ -17868,6 +18288,7 @@ function eliminateHole(hole, outerNode) {
     filterPoints(b, b.next);
   }
 }
+__name(eliminateHole, "eliminateHole");
 function findHoleBridge(hole, outerNode) {
   let p = outerNode;
   const hx = hole.x;
@@ -17908,9 +18329,11 @@ function findHoleBridge(hole, outerNode) {
   } while (p !== stop);
   return m;
 }
+__name(findHoleBridge, "findHoleBridge");
 function sectorContainsSector(m, p) {
   return area(m.prev, m, p.prev) < 0 && area(p.next, m, m.next) < 0;
 }
+__name(sectorContainsSector, "sectorContainsSector");
 function indexCurve(start, minX, minY, invSize) {
   let p = start;
   do {
@@ -17924,6 +18347,7 @@ function indexCurve(start, minX, minY, invSize) {
   p.prevZ = null;
   sortLinked(p);
 }
+__name(indexCurve, "indexCurve");
 function sortLinked(list) {
   let i, p, q, e, tail, numMerges, pSize, qSize, inSize = 1;
   do {
@@ -17966,6 +18390,7 @@ function sortLinked(list) {
   } while (numMerges > 1);
   return list;
 }
+__name(sortLinked, "sortLinked");
 function zOrder(x, y, minX, minY, invSize) {
   x = 32767 * (x - minX) * invSize;
   y = 32767 * (y - minY) * invSize;
@@ -17979,6 +18404,7 @@ function zOrder(x, y, minX, minY, invSize) {
   y = (y | y << 1) & 1431655765;
   return x | y << 1;
 }
+__name(zOrder, "zOrder");
 function getLeftmost(start) {
   let p = start, leftmost = start;
   do {
@@ -17988,18 +18414,23 @@ function getLeftmost(start) {
   } while (p !== start);
   return leftmost;
 }
+__name(getLeftmost, "getLeftmost");
 function pointInTriangle(ax, ay, bx, by, cx, cy, px2, py2) {
   return (cx - px2) * (ay - py2) - (ax - px2) * (cy - py2) >= 0 && (ax - px2) * (by - py2) - (bx - px2) * (ay - py2) >= 0 && (bx - px2) * (cy - py2) - (cx - px2) * (by - py2) >= 0;
 }
+__name(pointInTriangle, "pointInTriangle");
 function isValidDiagonal(a, b) {
   return a.next.i !== b.i && a.prev.i !== b.i && !intersectsPolygon(a, b) && (locallyInside(a, b) && locallyInside(b, a) && middleInside(a, b) && (area(a.prev, a, b.prev) || area(a, b.prev, b)) || equals(a, b) && area(a.prev, a, a.next) > 0 && area(b.prev, b, b.next) > 0);
 }
+__name(isValidDiagonal, "isValidDiagonal");
 function area(p, q, r) {
   return (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
 }
+__name(area, "area");
 function equals(p1, p2) {
   return p1.x === p2.x && p1.y === p2.y;
 }
+__name(equals, "equals");
 function intersects(p1, q1, p2, q2) {
   const o1 = sign(area(p1, q1, p2));
   const o2 = sign(area(p1, q1, q2));
@@ -18017,12 +18448,15 @@ function intersects(p1, q1, p2, q2) {
     return true;
   return false;
 }
+__name(intersects, "intersects");
 function onSegment(p, q, r) {
   return q.x <= Math.max(p.x, r.x) && q.x >= Math.min(p.x, r.x) && q.y <= Math.max(p.y, r.y) && q.y >= Math.min(p.y, r.y);
 }
+__name(onSegment, "onSegment");
 function sign(num) {
   return num > 0 ? 1 : num < 0 ? -1 : 0;
 }
+__name(sign, "sign");
 function intersectsPolygon(a, b) {
   let p = a;
   do {
@@ -18032,9 +18466,11 @@ function intersectsPolygon(a, b) {
   } while (p !== a);
   return false;
 }
+__name(intersectsPolygon, "intersectsPolygon");
 function locallyInside(a, b) {
   return area(a.prev, a, a.next) < 0 ? area(a, b, a.next) >= 0 && area(a, a.prev, b) >= 0 : area(a, b, a.prev) < 0 || area(a, a.next, b) < 0;
 }
+__name(locallyInside, "locallyInside");
 function middleInside(a, b) {
   let p = a, inside = false;
   const px2 = (a.x + b.x) / 2, py2 = (a.y + b.y) / 2;
@@ -18045,6 +18481,7 @@ function middleInside(a, b) {
   } while (p !== a);
   return inside;
 }
+__name(middleInside, "middleInside");
 function splitPolygon(a, b) {
   const a2 = new Node(a.i, a.x, a.y), b2 = new Node(b.i, b.x, b.y), an = a.next, bp = b.prev;
   a.next = b;
@@ -18057,6 +18494,7 @@ function splitPolygon(a, b) {
   b2.prev = bp;
   return b2;
 }
+__name(splitPolygon, "splitPolygon");
 function insertNode(i, x, y, last) {
   const p = new Node(i, x, y);
   if (!last) {
@@ -18070,6 +18508,7 @@ function insertNode(i, x, y, last) {
   }
   return p;
 }
+__name(insertNode, "insertNode");
 function removeNode(p) {
   p.next.prev = p.prev;
   p.prev.next = p.next;
@@ -18078,6 +18517,7 @@ function removeNode(p) {
   if (p.nextZ)
     p.nextZ.prevZ = p.prevZ;
 }
+__name(removeNode, "removeNode");
 function Node(i, x, y) {
   this.i = i;
   this.x = x;
@@ -18089,6 +18529,7 @@ function Node(i, x, y) {
   this.nextZ = null;
   this.steiner = false;
 }
+__name(Node, "Node");
 function signedArea(data, start, end, dim) {
   let sum = 0;
   for (let i = start, j = end - dim; i < end; i += dim) {
@@ -18097,6 +18538,7 @@ function signedArea(data, start, end, dim) {
   }
   return sum;
 }
+__name(signedArea, "signedArea");
 var ShapeUtils = {
   area: function(contour) {
     const n = contour.length;
@@ -18135,12 +18577,14 @@ function removeDupEndPts(points) {
     points.pop();
   }
 }
+__name(removeDupEndPts, "removeDupEndPts");
 function addContour(vertices, contour) {
   for (let i = 0; i < contour.length; i++) {
     vertices.push(contour[i].x);
     vertices.push(contour[i].y);
   }
 }
+__name(addContour, "addContour");
 var ExtrudeBufferGeometry = class extends BufferGeometry {
   constructor(shapes, options) {
     super();
@@ -18217,6 +18661,7 @@ var ExtrudeBufferGeometry = class extends BufferGeometry {
           console.error("THREE.ExtrudeGeometry: vec does not exist");
         return vec.clone().multiplyScalar(size).add(pt);
       }
+      __name(scalePt2, "scalePt2");
       const vlen = vertices.length, flen = faces.length;
       function getBevelVec(inPt, inPrev, inNext) {
         let v_trans_x, v_trans_y, shrink_by;
@@ -18269,6 +18714,7 @@ var ExtrudeBufferGeometry = class extends BufferGeometry {
         }
         return new Vector2(v_trans_x / shrink_by, v_trans_y / shrink_by);
       }
+      __name(getBevelVec, "getBevelVec");
       const contourMovements = [];
       for (let i = 0, il = contour.length, j = il - 1, k = i + 1; i < il; i++, j++, k++) {
         if (j === il)
@@ -18384,6 +18830,7 @@ var ExtrudeBufferGeometry = class extends BufferGeometry {
         }
         scope.addGroup(start, verticesArray.length / 3 - start, 0);
       }
+      __name(buildLidFaces, "buildLidFaces");
       function buildSideFaces() {
         const start = verticesArray.length / 3;
         let layeroffset = 0;
@@ -18396,6 +18843,7 @@ var ExtrudeBufferGeometry = class extends BufferGeometry {
         }
         scope.addGroup(start, verticesArray.length / 3 - start, 1);
       }
+      __name(buildSideFaces, "buildSideFaces");
       function sidewalls(contour2, layeroffset) {
         let i = contour2.length;
         while (--i >= 0) {
@@ -18411,11 +18859,13 @@ var ExtrudeBufferGeometry = class extends BufferGeometry {
           }
         }
       }
+      __name(sidewalls, "sidewalls");
       function v(x, y, z) {
         placeholder.push(x);
         placeholder.push(y);
         placeholder.push(z);
       }
+      __name(v, "v");
       function f3(a, b, c) {
         addVertex(a);
         addVertex(b);
@@ -18426,6 +18876,7 @@ var ExtrudeBufferGeometry = class extends BufferGeometry {
         addUV(uvs[1]);
         addUV(uvs[2]);
       }
+      __name(f3, "f3");
       function f4(a, b, c, d) {
         addVertex(a);
         addVertex(b);
@@ -18442,16 +18893,20 @@ var ExtrudeBufferGeometry = class extends BufferGeometry {
         addUV(uvs[2]);
         addUV(uvs[3]);
       }
+      __name(f4, "f4");
       function addVertex(index) {
         verticesArray.push(placeholder[index * 3 + 0]);
         verticesArray.push(placeholder[index * 3 + 1]);
         verticesArray.push(placeholder[index * 3 + 2]);
       }
+      __name(addVertex, "addVertex");
       function addUV(vector2) {
         uvArray.push(vector2.x);
         uvArray.push(vector2.y);
       }
+      __name(addUV, "addUV");
     }
+    __name(addShape, "addShape");
   }
   toJSON() {
     const data = BufferGeometry.prototype.toJSON.call(this);
@@ -18460,6 +18915,7 @@ var ExtrudeBufferGeometry = class extends BufferGeometry {
     return toJSON(shapes, options, data);
   }
 };
+__name(ExtrudeBufferGeometry, "ExtrudeBufferGeometry");
 var WorldUVGenerator = {
   generateTopUV: function(geometry, vertices, indexA, indexB, indexC) {
     const a_x = vertices[indexA * 3];
@@ -18518,6 +18974,7 @@ function toJSON(shapes, options, data) {
     data.options.extrudePath = options.extrudePath.toJSON();
   return data;
 }
+__name(toJSON, "toJSON");
 var ExtrudeGeometry = class extends Geometry {
   constructor(shapes, options) {
     super();
@@ -18536,6 +18993,7 @@ var ExtrudeGeometry = class extends Geometry {
     return toJSON$1(shapes, options, data);
   }
 };
+__name(ExtrudeGeometry, "ExtrudeGeometry");
 function toJSON$1(shapes, options, data) {
   data.shapes = [];
   if (Array.isArray(shapes)) {
@@ -18550,6 +19008,7 @@ function toJSON$1(shapes, options, data) {
     data.options.extrudePath = options.extrudePath.toJSON();
   return data;
 }
+__name(toJSON$1, "toJSON$1");
 var IcosahedronBufferGeometry = class extends PolyhedronBufferGeometry {
   constructor(radius = 1, detail = 0) {
     const t = (1 + Math.sqrt(5)) / 2;
@@ -18661,6 +19120,7 @@ var IcosahedronBufferGeometry = class extends PolyhedronBufferGeometry {
     };
   }
 };
+__name(IcosahedronBufferGeometry, "IcosahedronBufferGeometry");
 var IcosahedronGeometry = class extends Geometry {
   constructor(radius, detail) {
     super();
@@ -18673,6 +19133,7 @@ var IcosahedronGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(IcosahedronGeometry, "IcosahedronGeometry");
 var LatheBufferGeometry = class extends BufferGeometry {
   constructor(points, segments = 12, phiStart = 0, phiLength = Math.PI * 2) {
     super();
@@ -18741,6 +19202,7 @@ var LatheBufferGeometry = class extends BufferGeometry {
     }
   }
 };
+__name(LatheBufferGeometry, "LatheBufferGeometry");
 var LatheGeometry = class extends Geometry {
   constructor(points, segments, phiStart, phiLength) {
     super();
@@ -18755,6 +19217,7 @@ var LatheGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(LatheGeometry, "LatheGeometry");
 var OctahedronBufferGeometry = class extends PolyhedronBufferGeometry {
   constructor(radius = 1, detail = 0) {
     const vertices = [
@@ -18811,6 +19274,7 @@ var OctahedronBufferGeometry = class extends PolyhedronBufferGeometry {
     };
   }
 };
+__name(OctahedronBufferGeometry, "OctahedronBufferGeometry");
 var OctahedronGeometry = class extends Geometry {
   constructor(radius, detail) {
     super();
@@ -18823,6 +19287,7 @@ var OctahedronGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(OctahedronGeometry, "OctahedronGeometry");
 function ParametricBufferGeometry(func, slices, stacks) {
   BufferGeometry.call(this);
   this.type = "ParametricBufferGeometry";
@@ -18883,6 +19348,7 @@ function ParametricBufferGeometry(func, slices, stacks) {
   this.setAttribute("normal", new Float32BufferAttribute(normals, 3));
   this.setAttribute("uv", new Float32BufferAttribute(uvs, 2));
 }
+__name(ParametricBufferGeometry, "ParametricBufferGeometry");
 ParametricBufferGeometry.prototype = Object.create(BufferGeometry.prototype);
 ParametricBufferGeometry.prototype.constructor = ParametricBufferGeometry;
 function ParametricGeometry(func, slices, stacks) {
@@ -18896,6 +19362,7 @@ function ParametricGeometry(func, slices, stacks) {
   this.fromBufferGeometry(new ParametricBufferGeometry(func, slices, stacks));
   this.mergeVertices();
 }
+__name(ParametricGeometry, "ParametricGeometry");
 ParametricGeometry.prototype = Object.create(Geometry.prototype);
 ParametricGeometry.prototype.constructor = ParametricGeometry;
 var PlaneGeometry = class extends Geometry {
@@ -18912,6 +19379,7 @@ var PlaneGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(PlaneGeometry, "PlaneGeometry");
 var PolyhedronGeometry = class extends Geometry {
   constructor(vertices, indices, radius, detail) {
     super();
@@ -18926,6 +19394,7 @@ var PolyhedronGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(PolyhedronGeometry, "PolyhedronGeometry");
 var RingBufferGeometry = class extends BufferGeometry {
   constructor(innerRadius = 0.5, outerRadius = 1, thetaSegments = 8, phiSegments = 1, thetaStart = 0, thetaLength = Math.PI * 2) {
     super();
@@ -18979,6 +19448,7 @@ var RingBufferGeometry = class extends BufferGeometry {
     this.setAttribute("uv", new Float32BufferAttribute(uvs, 2));
   }
 };
+__name(RingBufferGeometry, "RingBufferGeometry");
 var RingGeometry = class extends Geometry {
   constructor(innerRadius, outerRadius, thetaSegments, phiSegments, thetaStart, thetaLength) {
     super();
@@ -18995,6 +19465,7 @@ var RingGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(RingGeometry, "RingGeometry");
 var ShapeBufferGeometry = class extends BufferGeometry {
   constructor(shapes, curveSegments = 12) {
     super();
@@ -19057,6 +19528,7 @@ var ShapeBufferGeometry = class extends BufferGeometry {
         groupCount += 3;
       }
     }
+    __name(addShape, "addShape");
   }
   toJSON() {
     const data = BufferGeometry.prototype.toJSON.call(this);
@@ -19064,6 +19536,7 @@ var ShapeBufferGeometry = class extends BufferGeometry {
     return toJSON$2(shapes, data);
   }
 };
+__name(ShapeBufferGeometry, "ShapeBufferGeometry");
 function toJSON$2(shapes, data) {
   data.shapes = [];
   if (Array.isArray(shapes)) {
@@ -19076,6 +19549,7 @@ function toJSON$2(shapes, data) {
   }
   return data;
 }
+__name(toJSON$2, "toJSON$2");
 var ShapeGeometry = class extends Geometry {
   constructor(shapes, curveSegments) {
     super();
@@ -19097,6 +19571,7 @@ var ShapeGeometry = class extends Geometry {
     return toJSON$3(shapes, data);
   }
 };
+__name(ShapeGeometry, "ShapeGeometry");
 function toJSON$3(shapes, data) {
   data.shapes = [];
   if (Array.isArray(shapes)) {
@@ -19109,6 +19584,7 @@ function toJSON$3(shapes, data) {
   }
   return data;
 }
+__name(toJSON$3, "toJSON$3");
 var SphereBufferGeometry = class extends BufferGeometry {
   constructor(radius = 1, widthSegments = 8, heightSegments = 6, phiStart = 0, phiLength = Math.PI * 2, thetaStart = 0, thetaLength = Math.PI) {
     super();
@@ -19173,6 +19649,7 @@ var SphereBufferGeometry = class extends BufferGeometry {
     this.setAttribute("uv", new Float32BufferAttribute(uvs, 2));
   }
 };
+__name(SphereBufferGeometry, "SphereBufferGeometry");
 var SphereGeometry = class extends Geometry {
   constructor(radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength) {
     super();
@@ -19190,6 +19667,7 @@ var SphereGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(SphereGeometry, "SphereGeometry");
 var TetrahedronBufferGeometry = class extends PolyhedronBufferGeometry {
   constructor(radius = 1, detail = 0) {
     const vertices = [
@@ -19228,6 +19706,7 @@ var TetrahedronBufferGeometry = class extends PolyhedronBufferGeometry {
     };
   }
 };
+__name(TetrahedronBufferGeometry, "TetrahedronBufferGeometry");
 var TetrahedronGeometry = class extends Geometry {
   constructor(radius, detail) {
     super();
@@ -19240,6 +19719,7 @@ var TetrahedronGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(TetrahedronGeometry, "TetrahedronGeometry");
 var TextBufferGeometry = class extends ExtrudeBufferGeometry {
   constructor(text, parameters = {}) {
     const font = parameters.font;
@@ -19259,6 +19739,7 @@ var TextBufferGeometry = class extends ExtrudeBufferGeometry {
     this.type = "TextBufferGeometry";
   }
 };
+__name(TextBufferGeometry, "TextBufferGeometry");
 var TextGeometry = class extends Geometry {
   constructor(text, parameters) {
     super();
@@ -19271,6 +19752,7 @@ var TextGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(TextGeometry, "TextGeometry");
 var TorusBufferGeometry = class extends BufferGeometry {
   constructor(radius = 1, tube = 0.4, radialSegments = 8, tubularSegments = 6, arc = Math.PI * 2) {
     super();
@@ -19323,6 +19805,7 @@ var TorusBufferGeometry = class extends BufferGeometry {
     this.setAttribute("uv", new Float32BufferAttribute(uvs, 2));
   }
 };
+__name(TorusBufferGeometry, "TorusBufferGeometry");
 var TorusGeometry = class extends Geometry {
   constructor(radius, tube, radialSegments, tubularSegments, arc) {
     super();
@@ -19338,6 +19821,7 @@ var TorusGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(TorusGeometry, "TorusGeometry");
 var TorusKnotBufferGeometry = class extends BufferGeometry {
   constructor(radius = 1, tube = 0.4, tubularSegments = 64, radialSegments = 8, p = 2, q = 3) {
     super();
@@ -19410,8 +19894,10 @@ var TorusKnotBufferGeometry = class extends BufferGeometry {
       position.y = radius2 * (2 + cs) * su * 0.5;
       position.z = radius2 * Math.sin(quOverP) * 0.5;
     }
+    __name(calculatePositionOnCurve, "calculatePositionOnCurve");
   }
 };
+__name(TorusKnotBufferGeometry, "TorusKnotBufferGeometry");
 var TorusKnotGeometry = class extends Geometry {
   constructor(radius, tube, tubularSegments, radialSegments, p, q, heightScale) {
     super();
@@ -19430,6 +19916,7 @@ var TorusKnotGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(TorusKnotGeometry, "TorusKnotGeometry");
 var TubeBufferGeometry = class extends BufferGeometry {
   constructor(path, tubularSegments = 64, radius = 1, radialSegments = 8, closed = false) {
     super();
@@ -19466,6 +19953,7 @@ var TubeBufferGeometry = class extends BufferGeometry {
       generateUVs();
       generateIndices();
     }
+    __name(generateBufferData, "generateBufferData");
     function generateSegment(i) {
       P = path.getPointAt(i / tubularSegments, P);
       const N = frames.normals[i];
@@ -19485,6 +19973,7 @@ var TubeBufferGeometry = class extends BufferGeometry {
         vertices.push(vertex.x, vertex.y, vertex.z);
       }
     }
+    __name(generateSegment, "generateSegment");
     function generateIndices() {
       for (let j = 1; j <= tubularSegments; j++) {
         for (let i = 1; i <= radialSegments; i++) {
@@ -19497,6 +19986,7 @@ var TubeBufferGeometry = class extends BufferGeometry {
         }
       }
     }
+    __name(generateIndices, "generateIndices");
     function generateUVs() {
       for (let i = 0; i <= tubularSegments; i++) {
         for (let j = 0; j <= radialSegments; j++) {
@@ -19506,6 +19996,7 @@ var TubeBufferGeometry = class extends BufferGeometry {
         }
       }
     }
+    __name(generateUVs, "generateUVs");
   }
   toJSON() {
     const data = BufferGeometry.prototype.toJSON.call(this);
@@ -19513,6 +20004,7 @@ var TubeBufferGeometry = class extends BufferGeometry {
     return data;
   }
 };
+__name(TubeBufferGeometry, "TubeBufferGeometry");
 var TubeGeometry = class extends Geometry {
   constructor(path, tubularSegments, radius, radialSegments, closed, taper) {
     super();
@@ -19534,6 +20026,7 @@ var TubeGeometry = class extends Geometry {
     this.mergeVertices();
   }
 };
+__name(TubeGeometry, "TubeGeometry");
 var WireframeGeometry = class extends BufferGeometry {
   constructor(geometry) {
     super();
@@ -19613,6 +20106,7 @@ var WireframeGeometry = class extends BufferGeometry {
     this.setAttribute("position", new Float32BufferAttribute(vertices, 3));
   }
 };
+__name(WireframeGeometry, "WireframeGeometry");
 var Geometries = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   BoxGeometry,
@@ -19665,6 +20159,7 @@ function ShadowMaterial(parameters) {
   this.transparent = true;
   this.setValues(parameters);
 }
+__name(ShadowMaterial, "ShadowMaterial");
 ShadowMaterial.prototype = Object.create(Material.prototype);
 ShadowMaterial.prototype.constructor = ShadowMaterial;
 ShadowMaterial.prototype.isShadowMaterial = true;
@@ -19677,6 +20172,7 @@ function RawShaderMaterial(parameters) {
   ShaderMaterial.call(this, parameters);
   this.type = "RawShaderMaterial";
 }
+__name(RawShaderMaterial, "RawShaderMaterial");
 RawShaderMaterial.prototype = Object.create(ShaderMaterial.prototype);
 RawShaderMaterial.prototype.constructor = RawShaderMaterial;
 RawShaderMaterial.prototype.isRawShaderMaterial = true;
@@ -19719,6 +20215,7 @@ function MeshStandardMaterial(parameters) {
   this.vertexTangents = false;
   this.setValues(parameters);
 }
+__name(MeshStandardMaterial, "MeshStandardMaterial");
 MeshStandardMaterial.prototype = Object.create(Material.prototype);
 MeshStandardMaterial.prototype.constructor = MeshStandardMaterial;
 MeshStandardMaterial.prototype.isMeshStandardMaterial = true;
@@ -19787,6 +20284,7 @@ function MeshPhysicalMaterial(parameters) {
   this.transmissionMap = null;
   this.setValues(parameters);
 }
+__name(MeshPhysicalMaterial, "MeshPhysicalMaterial");
 MeshPhysicalMaterial.prototype = Object.create(MeshStandardMaterial.prototype);
 MeshPhysicalMaterial.prototype.constructor = MeshPhysicalMaterial;
 MeshPhysicalMaterial.prototype.isMeshPhysicalMaterial = true;
@@ -19849,6 +20347,7 @@ function MeshPhongMaterial(parameters) {
   this.morphNormals = false;
   this.setValues(parameters);
 }
+__name(MeshPhongMaterial, "MeshPhongMaterial");
 MeshPhongMaterial.prototype = Object.create(Material.prototype);
 MeshPhongMaterial.prototype.constructor = MeshPhongMaterial;
 MeshPhongMaterial.prototype.isMeshPhongMaterial = true;
@@ -19920,6 +20419,7 @@ function MeshToonMaterial(parameters) {
   this.morphNormals = false;
   this.setValues(parameters);
 }
+__name(MeshToonMaterial, "MeshToonMaterial");
 MeshToonMaterial.prototype = Object.create(Material.prototype);
 MeshToonMaterial.prototype.constructor = MeshToonMaterial;
 MeshToonMaterial.prototype.isMeshToonMaterial = true;
@@ -19972,6 +20472,7 @@ function MeshNormalMaterial(parameters) {
   this.morphNormals = false;
   this.setValues(parameters);
 }
+__name(MeshNormalMaterial, "MeshNormalMaterial");
 MeshNormalMaterial.prototype = Object.create(Material.prototype);
 MeshNormalMaterial.prototype.constructor = MeshNormalMaterial;
 MeshNormalMaterial.prototype.isMeshNormalMaterial = true;
@@ -20019,6 +20520,7 @@ function MeshLambertMaterial(parameters) {
   this.morphNormals = false;
   this.setValues(parameters);
 }
+__name(MeshLambertMaterial, "MeshLambertMaterial");
 MeshLambertMaterial.prototype = Object.create(Material.prototype);
 MeshLambertMaterial.prototype.constructor = MeshLambertMaterial;
 MeshLambertMaterial.prototype.isMeshLambertMaterial = true;
@@ -20069,6 +20571,7 @@ function MeshMatcapMaterial(parameters) {
   this.morphNormals = false;
   this.setValues(parameters);
 }
+__name(MeshMatcapMaterial, "MeshMatcapMaterial");
 MeshMatcapMaterial.prototype = Object.create(Material.prototype);
 MeshMatcapMaterial.prototype.constructor = MeshMatcapMaterial;
 MeshMatcapMaterial.prototype.isMeshMatcapMaterial = true;
@@ -20100,6 +20603,7 @@ function LineDashedMaterial(parameters) {
   this.gapSize = 1;
   this.setValues(parameters);
 }
+__name(LineDashedMaterial, "LineDashedMaterial");
 LineDashedMaterial.prototype = Object.create(LineBasicMaterial.prototype);
 LineDashedMaterial.prototype.constructor = LineDashedMaterial;
 LineDashedMaterial.prototype.isLineDashedMaterial = true;
@@ -20153,6 +20657,7 @@ var AnimationUtils = {
     function compareTime(i, j) {
       return times[i] - times[j];
     }
+    __name(compareTime, "compareTime");
     const n = times.length;
     const result = new Array(n);
     for (let i = 0; i !== n; ++i)
@@ -20317,6 +20822,7 @@ function Interpolant(parameterPositions, sampleValues, sampleSize, resultBuffer)
   this.sampleValues = sampleValues;
   this.valueSize = sampleSize;
 }
+__name(Interpolant, "Interpolant");
 Object.assign(Interpolant.prototype, {
   evaluate: function(t) {
     const pp = this.parameterPositions;
@@ -20425,6 +20931,7 @@ function CubicInterpolant(parameterPositions, sampleValues, sampleSize, resultBu
   this._weightNext = -0;
   this._offsetNext = -0;
 }
+__name(CubicInterpolant, "CubicInterpolant");
 CubicInterpolant.prototype = Object.assign(Object.create(Interpolant.prototype), {
   constructor: CubicInterpolant,
   DefaultSettings_: {
@@ -20485,6 +20992,7 @@ CubicInterpolant.prototype = Object.assign(Object.create(Interpolant.prototype),
 function LinearInterpolant(parameterPositions, sampleValues, sampleSize, resultBuffer) {
   Interpolant.call(this, parameterPositions, sampleValues, sampleSize, resultBuffer);
 }
+__name(LinearInterpolant, "LinearInterpolant");
 LinearInterpolant.prototype = Object.assign(Object.create(Interpolant.prototype), {
   constructor: LinearInterpolant,
   interpolate_: function(i1, t0, t, t1) {
@@ -20498,6 +21006,7 @@ LinearInterpolant.prototype = Object.assign(Object.create(Interpolant.prototype)
 function DiscreteInterpolant(parameterPositions, sampleValues, sampleSize, resultBuffer) {
   Interpolant.call(this, parameterPositions, sampleValues, sampleSize, resultBuffer);
 }
+__name(DiscreteInterpolant, "DiscreteInterpolant");
 DiscreteInterpolant.prototype = Object.assign(Object.create(Interpolant.prototype), {
   constructor: DiscreteInterpolant,
   interpolate_: function(i1) {
@@ -20514,6 +21023,7 @@ function KeyframeTrack(name, times, values, interpolation) {
   this.values = AnimationUtils.convertArray(values, this.ValueBufferType);
   this.setInterpolation(interpolation || this.DefaultInterpolation);
 }
+__name(KeyframeTrack, "KeyframeTrack");
 Object.assign(KeyframeTrack, {
   toJSON: function(track) {
     const trackType = track.constructor;
@@ -20730,6 +21240,7 @@ Object.assign(KeyframeTrack.prototype, {
 function BooleanKeyframeTrack(name, times, values) {
   KeyframeTrack.call(this, name, times, values);
 }
+__name(BooleanKeyframeTrack, "BooleanKeyframeTrack");
 BooleanKeyframeTrack.prototype = Object.assign(Object.create(KeyframeTrack.prototype), {
   constructor: BooleanKeyframeTrack,
   ValueTypeName: "bool",
@@ -20741,6 +21252,7 @@ BooleanKeyframeTrack.prototype = Object.assign(Object.create(KeyframeTrack.proto
 function ColorKeyframeTrack(name, times, values, interpolation) {
   KeyframeTrack.call(this, name, times, values, interpolation);
 }
+__name(ColorKeyframeTrack, "ColorKeyframeTrack");
 ColorKeyframeTrack.prototype = Object.assign(Object.create(KeyframeTrack.prototype), {
   constructor: ColorKeyframeTrack,
   ValueTypeName: "color"
@@ -20748,6 +21260,7 @@ ColorKeyframeTrack.prototype = Object.assign(Object.create(KeyframeTrack.prototy
 function NumberKeyframeTrack(name, times, values, interpolation) {
   KeyframeTrack.call(this, name, times, values, interpolation);
 }
+__name(NumberKeyframeTrack, "NumberKeyframeTrack");
 NumberKeyframeTrack.prototype = Object.assign(Object.create(KeyframeTrack.prototype), {
   constructor: NumberKeyframeTrack,
   ValueTypeName: "number"
@@ -20755,6 +21268,7 @@ NumberKeyframeTrack.prototype = Object.assign(Object.create(KeyframeTrack.protot
 function QuaternionLinearInterpolant(parameterPositions, sampleValues, sampleSize, resultBuffer) {
   Interpolant.call(this, parameterPositions, sampleValues, sampleSize, resultBuffer);
 }
+__name(QuaternionLinearInterpolant, "QuaternionLinearInterpolant");
 QuaternionLinearInterpolant.prototype = Object.assign(Object.create(Interpolant.prototype), {
   constructor: QuaternionLinearInterpolant,
   interpolate_: function(i1, t0, t, t1) {
@@ -20769,6 +21283,7 @@ QuaternionLinearInterpolant.prototype = Object.assign(Object.create(Interpolant.
 function QuaternionKeyframeTrack(name, times, values, interpolation) {
   KeyframeTrack.call(this, name, times, values, interpolation);
 }
+__name(QuaternionKeyframeTrack, "QuaternionKeyframeTrack");
 QuaternionKeyframeTrack.prototype = Object.assign(Object.create(KeyframeTrack.prototype), {
   constructor: QuaternionKeyframeTrack,
   ValueTypeName: "quaternion",
@@ -20781,6 +21296,7 @@ QuaternionKeyframeTrack.prototype = Object.assign(Object.create(KeyframeTrack.pr
 function StringKeyframeTrack(name, times, values, interpolation) {
   KeyframeTrack.call(this, name, times, values, interpolation);
 }
+__name(StringKeyframeTrack, "StringKeyframeTrack");
 StringKeyframeTrack.prototype = Object.assign(Object.create(KeyframeTrack.prototype), {
   constructor: StringKeyframeTrack,
   ValueTypeName: "string",
@@ -20792,6 +21308,7 @@ StringKeyframeTrack.prototype = Object.assign(Object.create(KeyframeTrack.protot
 function VectorKeyframeTrack(name, times, values, interpolation) {
   KeyframeTrack.call(this, name, times, values, interpolation);
 }
+__name(VectorKeyframeTrack, "VectorKeyframeTrack");
 VectorKeyframeTrack.prototype = Object.assign(Object.create(KeyframeTrack.prototype), {
   constructor: VectorKeyframeTrack,
   ValueTypeName: "vector"
@@ -20806,6 +21323,7 @@ function AnimationClip(name, duration, tracks, blendMode) {
     this.resetDuration();
   }
 }
+__name(AnimationClip, "AnimationClip");
 function getTrackTypeForValueTypeName(typeName) {
   switch (typeName.toLowerCase()) {
     case "scalar":
@@ -20831,6 +21349,7 @@ function getTrackTypeForValueTypeName(typeName) {
   }
   throw new Error("THREE.KeyframeTrack: Unsupported typeName: " + typeName);
 }
+__name(getTrackTypeForValueTypeName, "getTrackTypeForValueTypeName");
 function parseKeyframeTrack(json) {
   if (json.type === void 0) {
     throw new Error("THREE.KeyframeTrack: track type undefined, can not parse");
@@ -20848,6 +21367,7 @@ function parseKeyframeTrack(json) {
     return new trackType(json.name, json.times, json.values, json.interpolation);
   }
 }
+__name(parseKeyframeTrack, "parseKeyframeTrack");
 Object.assign(AnimationClip, {
   parse: function(json) {
     const tracks = [], jsonTracks = json.tracks, frameTime = 1 / (json.fps || 1);
@@ -20930,7 +21450,7 @@ Object.assign(AnimationClip, {
       console.error("THREE.AnimationClip: No animation in JSONLoader data.");
       return null;
     }
-    const addNonemptyTrack = function(trackType, trackName, animationKeys, propertyName, destTracks) {
+    const addNonemptyTrack = /* @__PURE__ */ __name(function(trackType, trackName, animationKeys, propertyName, destTracks) {
       if (animationKeys.length !== 0) {
         const times = [];
         const values = [];
@@ -20939,7 +21459,7 @@ Object.assign(AnimationClip, {
           destTracks.push(new trackType(trackName, times, values));
         }
       }
-    };
+    }, "addNonemptyTrack");
     const tracks = [];
     const clipName = animation.name || "default";
     const fps = animation.fps || 30;
@@ -21117,6 +21637,7 @@ function LoadingManager(onLoad, onProgress, onError) {
     return null;
   };
 }
+__name(LoadingManager, "LoadingManager");
 var DefaultLoadingManager = new LoadingManager();
 function Loader(manager) {
   this.manager = manager !== void 0 ? manager : DefaultLoadingManager;
@@ -21126,6 +21647,7 @@ function Loader(manager) {
   this.resourcePath = "";
   this.requestHeader = {};
 }
+__name(Loader, "Loader");
 Object.assign(Loader.prototype, {
   load: function() {
   },
@@ -21162,6 +21684,7 @@ var loading = {};
 function FileLoader(manager) {
   Loader.call(this, manager);
 }
+__name(FileLoader, "FileLoader");
 FileLoader.prototype = Object.assign(Object.create(Loader.prototype), {
   constructor: FileLoader,
   load: function(url, onLoad, onProgress, onError) {
@@ -21328,6 +21851,7 @@ FileLoader.prototype = Object.assign(Object.create(Loader.prototype), {
 function AnimationLoader(manager) {
   Loader.call(this, manager);
 }
+__name(AnimationLoader, "AnimationLoader");
 AnimationLoader.prototype = Object.assign(Object.create(Loader.prototype), {
   constructor: AnimationLoader,
   load: function(url, onLoad, onProgress, onError) {
@@ -21361,6 +21885,7 @@ AnimationLoader.prototype = Object.assign(Object.create(Loader.prototype), {
 function CompressedTextureLoader(manager) {
   Loader.call(this, manager);
 }
+__name(CompressedTextureLoader, "CompressedTextureLoader");
 CompressedTextureLoader.prototype = Object.assign(Object.create(Loader.prototype), {
   constructor: CompressedTextureLoader,
   load: function(url, onLoad, onProgress, onError) {
@@ -21394,6 +21919,7 @@ CompressedTextureLoader.prototype = Object.assign(Object.create(Loader.prototype
         }
       }, onProgress, onError);
     }
+    __name(loadTexture, "loadTexture");
     if (Array.isArray(url)) {
       for (let i = 0, il = url.length; i < il; ++i) {
         loadTexture(i);
@@ -21432,6 +21958,7 @@ CompressedTextureLoader.prototype = Object.assign(Object.create(Loader.prototype
 function ImageLoader(manager) {
   Loader.call(this, manager);
 }
+__name(ImageLoader, "ImageLoader");
 ImageLoader.prototype = Object.assign(Object.create(Loader.prototype), {
   constructor: ImageLoader,
   load: function(url, onLoad, onProgress, onError) {
@@ -21458,6 +21985,7 @@ ImageLoader.prototype = Object.assign(Object.create(Loader.prototype), {
         onLoad(this);
       scope.manager.itemEnd(url);
     }
+    __name(onImageLoad, "onImageLoad");
     function onImageError(event) {
       image.removeEventListener("load", onImageLoad, false);
       image.removeEventListener("error", onImageError, false);
@@ -21466,6 +21994,7 @@ ImageLoader.prototype = Object.assign(Object.create(Loader.prototype), {
       scope.manager.itemError(url);
       scope.manager.itemEnd(url);
     }
+    __name(onImageError, "onImageError");
     image.addEventListener("load", onImageLoad, false);
     image.addEventListener("error", onImageError, false);
     if (url.substr(0, 5) !== "data:") {
@@ -21480,6 +22009,7 @@ ImageLoader.prototype = Object.assign(Object.create(Loader.prototype), {
 function CubeTextureLoader(manager) {
   Loader.call(this, manager);
 }
+__name(CubeTextureLoader, "CubeTextureLoader");
 CubeTextureLoader.prototype = Object.assign(Object.create(Loader.prototype), {
   constructor: CubeTextureLoader,
   load: function(urls, onLoad, onProgress, onError) {
@@ -21499,6 +22029,7 @@ CubeTextureLoader.prototype = Object.assign(Object.create(Loader.prototype), {
         }
       }, void 0, onError);
     }
+    __name(loadTexture, "loadTexture");
     for (let i = 0; i < urls.length; ++i) {
       loadTexture(i);
     }
@@ -21508,6 +22039,7 @@ CubeTextureLoader.prototype = Object.assign(Object.create(Loader.prototype), {
 function DataTextureLoader(manager) {
   Loader.call(this, manager);
 }
+__name(DataTextureLoader, "DataTextureLoader");
 DataTextureLoader.prototype = Object.assign(Object.create(Loader.prototype), {
   constructor: DataTextureLoader,
   load: function(url, onLoad, onProgress, onError) {
@@ -21557,6 +22089,7 @@ DataTextureLoader.prototype = Object.assign(Object.create(Loader.prototype), {
 function TextureLoader(manager) {
   Loader.call(this, manager);
 }
+__name(TextureLoader, "TextureLoader");
 TextureLoader.prototype = Object.assign(Object.create(Loader.prototype), {
   constructor: TextureLoader,
   load: function(url, onLoad, onProgress, onError) {
@@ -21580,6 +22113,7 @@ function Curve() {
   this.type = "Curve";
   this.arcLengthDivisions = 200;
 }
+__name(Curve, "Curve");
 Object.assign(Curve.prototype, {
   getPoint: function() {
     console.warn("THREE.Curve: .getPoint() not implemented.");
@@ -21779,6 +22313,7 @@ function EllipseCurve(aX, aY, xRadius, yRadius, aStartAngle, aEndAngle, aClockwi
   this.aClockwise = aClockwise || false;
   this.aRotation = aRotation || 0;
 }
+__name(EllipseCurve, "EllipseCurve");
 EllipseCurve.prototype = Object.create(Curve.prototype);
 EllipseCurve.prototype.constructor = EllipseCurve;
 EllipseCurve.prototype.isEllipseCurve = true;
@@ -21858,6 +22393,7 @@ function ArcCurve(aX, aY, aRadius, aStartAngle, aEndAngle, aClockwise) {
   EllipseCurve.call(this, aX, aY, aRadius, aRadius, aStartAngle, aEndAngle, aClockwise);
   this.type = "ArcCurve";
 }
+__name(ArcCurve, "ArcCurve");
 ArcCurve.prototype = Object.create(EllipseCurve.prototype);
 ArcCurve.prototype.constructor = ArcCurve;
 ArcCurve.prototype.isArcCurve = true;
@@ -21869,6 +22405,7 @@ function CubicPoly() {
     c2 = -3 * x0 + 3 * x1 - 2 * t0 - t1;
     c3 = 2 * x0 - 2 * x1 + t0 + t1;
   }
+  __name(init, "init");
   return {
     initCatmullRom: function(x0, x1, x2, x3, tension) {
       init(x1, x2, tension * (x2 - x0), tension * (x3 - x1));
@@ -21887,6 +22424,7 @@ function CubicPoly() {
     }
   };
 }
+__name(CubicPoly, "CubicPoly");
 var tmp = new Vector3();
 var px = new CubicPoly();
 var py = new CubicPoly();
@@ -21899,6 +22437,7 @@ function CatmullRomCurve3(points = [], closed = false, curveType = "centripetal"
   this.curveType = curveType;
   this.tension = tension;
 }
+__name(CatmullRomCurve3, "CatmullRomCurve3");
 CatmullRomCurve3.prototype = Object.create(Curve.prototype);
 CatmullRomCurve3.prototype.constructor = CatmullRomCurve3;
 CatmullRomCurve3.prototype.isCatmullRomCurve3 = true;
@@ -21995,36 +22534,46 @@ function CatmullRom(t, p0, p1, p2, p3) {
   const t3 = t * t2;
   return (2 * p1 - 2 * p2 + v0 + v1) * t3 + (-3 * p1 + 3 * p2 - 2 * v0 - v1) * t2 + v0 * t + p1;
 }
+__name(CatmullRom, "CatmullRom");
 function QuadraticBezierP0(t, p) {
   const k = 1 - t;
   return k * k * p;
 }
+__name(QuadraticBezierP0, "QuadraticBezierP0");
 function QuadraticBezierP1(t, p) {
   return 2 * (1 - t) * t * p;
 }
+__name(QuadraticBezierP1, "QuadraticBezierP1");
 function QuadraticBezierP2(t, p) {
   return t * t * p;
 }
+__name(QuadraticBezierP2, "QuadraticBezierP2");
 function QuadraticBezier(t, p0, p1, p2) {
   return QuadraticBezierP0(t, p0) + QuadraticBezierP1(t, p1) + QuadraticBezierP2(t, p2);
 }
+__name(QuadraticBezier, "QuadraticBezier");
 function CubicBezierP0(t, p) {
   const k = 1 - t;
   return k * k * k * p;
 }
+__name(CubicBezierP0, "CubicBezierP0");
 function CubicBezierP1(t, p) {
   const k = 1 - t;
   return 3 * k * k * t * p;
 }
+__name(CubicBezierP1, "CubicBezierP1");
 function CubicBezierP2(t, p) {
   return 3 * (1 - t) * t * t * p;
 }
+__name(CubicBezierP2, "CubicBezierP2");
 function CubicBezierP3(t, p) {
   return t * t * t * p;
 }
+__name(CubicBezierP3, "CubicBezierP3");
 function CubicBezier(t, p0, p1, p2, p3) {
   return CubicBezierP0(t, p0) + CubicBezierP1(t, p1) + CubicBezierP2(t, p2) + CubicBezierP3(t, p3);
 }
+__name(CubicBezier, "CubicBezier");
 function CubicBezierCurve(v0 = new Vector2(), v1 = new Vector2(), v2 = new Vector2(), v3 = new Vector2()) {
   Curve.call(this);
   this.type = "CubicBezierCurve";
@@ -22033,6 +22582,7 @@ function CubicBezierCurve(v0 = new Vector2(), v1 = new Vector2(), v2 = new Vecto
   this.v2 = v2;
   this.v3 = v3;
 }
+__name(CubicBezierCurve, "CubicBezierCurve");
 CubicBezierCurve.prototype = Object.create(Curve.prototype);
 CubicBezierCurve.prototype.constructor = CubicBezierCurve;
 CubicBezierCurve.prototype.isCubicBezierCurve = true;
@@ -22074,6 +22624,7 @@ function CubicBezierCurve3(v0 = new Vector3(), v1 = new Vector3(), v2 = new Vect
   this.v2 = v2;
   this.v3 = v3;
 }
+__name(CubicBezierCurve3, "CubicBezierCurve3");
 CubicBezierCurve3.prototype = Object.create(Curve.prototype);
 CubicBezierCurve3.prototype.constructor = CubicBezierCurve3;
 CubicBezierCurve3.prototype.isCubicBezierCurve3 = true;
@@ -22113,6 +22664,7 @@ function LineCurve(v1 = new Vector2(), v2 = new Vector2()) {
   this.v1 = v1;
   this.v2 = v2;
 }
+__name(LineCurve, "LineCurve");
 LineCurve.prototype = Object.create(Curve.prototype);
 LineCurve.prototype.constructor = LineCurve;
 LineCurve.prototype.isLineCurve = true;
@@ -22158,6 +22710,7 @@ function LineCurve3(v1 = new Vector3(), v2 = new Vector3()) {
   this.v1 = v1;
   this.v2 = v2;
 }
+__name(LineCurve3, "LineCurve3");
 LineCurve3.prototype = Object.create(Curve.prototype);
 LineCurve3.prototype.constructor = LineCurve3;
 LineCurve3.prototype.isLineCurve3 = true;
@@ -22199,6 +22752,7 @@ function QuadraticBezierCurve(v0 = new Vector2(), v1 = new Vector2(), v2 = new V
   this.v1 = v1;
   this.v2 = v2;
 }
+__name(QuadraticBezierCurve, "QuadraticBezierCurve");
 QuadraticBezierCurve.prototype = Object.create(Curve.prototype);
 QuadraticBezierCurve.prototype.constructor = QuadraticBezierCurve;
 QuadraticBezierCurve.prototype.isQuadraticBezierCurve = true;
@@ -22236,6 +22790,7 @@ function QuadraticBezierCurve3(v0 = new Vector3(), v1 = new Vector3(), v2 = new 
   this.v1 = v1;
   this.v2 = v2;
 }
+__name(QuadraticBezierCurve3, "QuadraticBezierCurve3");
 QuadraticBezierCurve3.prototype = Object.create(Curve.prototype);
 QuadraticBezierCurve3.prototype.constructor = QuadraticBezierCurve3;
 QuadraticBezierCurve3.prototype.isQuadraticBezierCurve3 = true;
@@ -22271,6 +22826,7 @@ function SplineCurve(points = []) {
   this.type = "SplineCurve";
   this.points = points;
 }
+__name(SplineCurve, "SplineCurve");
 SplineCurve.prototype = Object.create(Curve.prototype);
 SplineCurve.prototype.constructor = SplineCurve;
 SplineCurve.prototype.isSplineCurve = true;
@@ -22333,6 +22889,7 @@ function CurvePath() {
   this.curves = [];
   this.autoClose = false;
 }
+__name(CurvePath, "CurvePath");
 CurvePath.prototype = Object.assign(Object.create(Curve.prototype), {
   constructor: CurvePath,
   add: function(curve) {
@@ -22452,6 +23009,7 @@ function Path(points) {
     this.setFromPoints(points);
   }
 }
+__name(Path, "Path");
 Path.prototype = Object.assign(Object.create(CurvePath.prototype), {
   constructor: Path,
   setFromPoints: function(points) {
@@ -22541,6 +23099,7 @@ function Shape(points) {
   this.type = "Shape";
   this.holes = [];
 }
+__name(Shape, "Shape");
 Shape.prototype = Object.assign(Object.create(Path.prototype), {
   constructor: Shape,
   getPointsHoles: function(divisions) {
@@ -22592,6 +23151,7 @@ function Light(color, intensity = 1) {
   this.color = new Color(color);
   this.intensity = intensity;
 }
+__name(Light, "Light");
 Light.prototype = Object.assign(Object.create(Object3D.prototype), {
   constructor: Light,
   isLight: true,
@@ -22627,6 +23187,7 @@ function HemisphereLight(skyColor, groundColor, intensity) {
   this.updateMatrix();
   this.groundColor = new Color(groundColor);
 }
+__name(HemisphereLight, "HemisphereLight");
 HemisphereLight.prototype = Object.assign(Object.create(Light.prototype), {
   constructor: HemisphereLight,
   isHemisphereLight: true,
@@ -22654,6 +23215,7 @@ function LightShadow(camera) {
     new Vector4(0, 0, 1, 1)
   ];
 }
+__name(LightShadow, "LightShadow");
 Object.assign(LightShadow.prototype, {
   _projScreenMatrix: new Matrix4(),
   _lightPositionWorld: new Vector3(),
@@ -22712,6 +23274,7 @@ function SpotLightShadow() {
   LightShadow.call(this, new PerspectiveCamera(50, 1, 0.5, 500));
   this.focus = 1;
 }
+__name(SpotLightShadow, "SpotLightShadow");
 SpotLightShadow.prototype = Object.assign(Object.create(LightShadow.prototype), {
   constructor: SpotLightShadow,
   isSpotLightShadow: true,
@@ -22749,6 +23312,7 @@ function SpotLight(color, intensity, distance, angle, penumbra, decay) {
   this.decay = decay !== void 0 ? decay : 1;
   this.shadow = new SpotLightShadow();
 }
+__name(SpotLight, "SpotLight");
 SpotLight.prototype = Object.assign(Object.create(Light.prototype), {
   constructor: SpotLight,
   isSpotLight: true,
@@ -22792,6 +23356,7 @@ function PointLightShadow() {
     new Vector3(0, 0, -1)
   ];
 }
+__name(PointLightShadow, "PointLightShadow");
 PointLightShadow.prototype = Object.assign(Object.create(LightShadow.prototype), {
   constructor: PointLightShadow,
   isPointLightShadow: true,
@@ -22824,6 +23389,7 @@ function PointLight(color, intensity, distance, decay) {
   this.decay = decay !== void 0 ? decay : 1;
   this.shadow = new PointLightShadow();
 }
+__name(PointLight, "PointLight");
 PointLight.prototype = Object.assign(Object.create(Light.prototype), {
   constructor: PointLight,
   isPointLight: true,
@@ -22848,6 +23414,7 @@ function OrthographicCamera(left, right, top, bottom, near, far) {
   this.far = far !== void 0 ? far : 2e3;
   this.updateProjectionMatrix();
 }
+__name(OrthographicCamera, "OrthographicCamera");
 OrthographicCamera.prototype = Object.assign(Object.create(Camera.prototype), {
   constructor: OrthographicCamera,
   isOrthographicCamera: true,
@@ -22927,6 +23494,7 @@ OrthographicCamera.prototype = Object.assign(Object.create(Camera.prototype), {
 function DirectionalLightShadow() {
   LightShadow.call(this, new OrthographicCamera(-5, 5, 5, -5, 0.5, 500));
 }
+__name(DirectionalLightShadow, "DirectionalLightShadow");
 DirectionalLightShadow.prototype = Object.assign(Object.create(LightShadow.prototype), {
   constructor: DirectionalLightShadow,
   isDirectionalLightShadow: true,
@@ -22942,6 +23510,7 @@ function DirectionalLight(color, intensity) {
   this.target = new Object3D();
   this.shadow = new DirectionalLightShadow();
 }
+__name(DirectionalLight, "DirectionalLight");
 DirectionalLight.prototype = Object.assign(Object.create(Light.prototype), {
   constructor: DirectionalLight,
   isDirectionalLight: true,
@@ -22956,6 +23525,7 @@ function AmbientLight(color, intensity) {
   Light.call(this, color, intensity);
   this.type = "AmbientLight";
 }
+__name(AmbientLight, "AmbientLight");
 AmbientLight.prototype = Object.assign(Object.create(Light.prototype), {
   constructor: AmbientLight,
   isAmbientLight: true
@@ -22966,6 +23536,7 @@ function RectAreaLight(color, intensity, width, height) {
   this.width = width !== void 0 ? width : 10;
   this.height = height !== void 0 ? height : 10;
 }
+__name(RectAreaLight, "RectAreaLight");
 RectAreaLight.prototype = Object.assign(Object.create(Light.prototype), {
   constructor: RectAreaLight,
   isRectAreaLight: true,
@@ -23095,11 +23666,13 @@ var SphericalHarmonics3 = class {
     shBasis[8] = 0.546274 * (x * x - y * y);
   }
 };
+__name(SphericalHarmonics3, "SphericalHarmonics3");
 function LightProbe(sh, intensity) {
   Light.call(this, void 0, intensity);
   this.type = "LightProbe";
   this.sh = sh !== void 0 ? sh : new SphericalHarmonics3();
 }
+__name(LightProbe, "LightProbe");
 LightProbe.prototype = Object.assign(Object.create(Light.prototype), {
   constructor: LightProbe,
   isLightProbe: true,
@@ -23123,6 +23696,7 @@ function MaterialLoader(manager) {
   Loader.call(this, manager);
   this.textures = {};
 }
+__name(MaterialLoader, "MaterialLoader");
 MaterialLoader.prototype = Object.assign(Object.create(Loader.prototype), {
   constructor: MaterialLoader,
   load: function(url, onLoad, onProgress, onError) {
@@ -23152,6 +23726,7 @@ MaterialLoader.prototype = Object.assign(Object.create(Loader.prototype), {
       }
       return textures[name];
     }
+    __name(getTexture, "getTexture");
     const material = new Materials[json.type]();
     if (json.uuid !== void 0)
       material.uuid = json.uuid;
@@ -23409,6 +23984,7 @@ function InstancedBufferGeometry() {
   this.type = "InstancedBufferGeometry";
   this.instanceCount = Infinity;
 }
+__name(InstancedBufferGeometry, "InstancedBufferGeometry");
 InstancedBufferGeometry.prototype = Object.assign(Object.create(BufferGeometry.prototype), {
   constructor: InstancedBufferGeometry,
   isInstancedBufferGeometry: true,
@@ -23436,6 +24012,7 @@ function InstancedBufferAttribute(array, itemSize, normalized, meshPerAttribute)
   BufferAttribute.call(this, array, itemSize, normalized);
   this.meshPerAttribute = meshPerAttribute || 1;
 }
+__name(InstancedBufferAttribute, "InstancedBufferAttribute");
 InstancedBufferAttribute.prototype = Object.assign(Object.create(BufferAttribute.prototype), {
   constructor: InstancedBufferAttribute,
   isInstancedBufferAttribute: true,
@@ -23454,6 +24031,7 @@ InstancedBufferAttribute.prototype = Object.assign(Object.create(BufferAttribute
 function BufferGeometryLoader(manager) {
   Loader.call(this, manager);
 }
+__name(BufferGeometryLoader, "BufferGeometryLoader");
 BufferGeometryLoader.prototype = Object.assign(Object.create(Loader.prototype), {
   constructor: BufferGeometryLoader,
   load: function(url, onLoad, onProgress, onError) {
@@ -23490,6 +24068,7 @@ BufferGeometryLoader.prototype = Object.assign(Object.create(Loader.prototype), 
       interleavedBufferMap[uuid] = ib;
       return ib;
     }
+    __name(getInterleavedBuffer, "getInterleavedBuffer");
     function getArrayBuffer(json2, uuid) {
       if (arrayBufferMap[uuid] !== void 0)
         return arrayBufferMap[uuid];
@@ -23499,6 +24078,7 @@ BufferGeometryLoader.prototype = Object.assign(Object.create(Loader.prototype), 
       arrayBufferMap[uuid] = ab;
       return ab;
     }
+    __name(getArrayBuffer, "getArrayBuffer");
     const geometry = json.isInstancedBufferGeometry ? new InstancedBufferGeometry() : new BufferGeometry();
     const index = json.data.index;
     if (index !== void 0) {
@@ -23813,6 +24393,7 @@ var ObjectLoader = class extends Loader {
         scope.manager.itemEnd(url);
       });
     }
+    __name(loadImage, "loadImage");
     function deserializeImage(image) {
       if (typeof image === "string") {
         const url = image;
@@ -23830,6 +24411,7 @@ var ObjectLoader = class extends Loader {
         }
       }
     }
+    __name(deserializeImage, "deserializeImage");
     if (json !== void 0 && json.length > 0) {
       const manager = new LoadingManager(onLoad);
       loader = new ImageLoader(manager);
@@ -23867,6 +24449,7 @@ var ObjectLoader = class extends Loader {
       console.warn("THREE.ObjectLoader.parseTexture: Constant should be in numeric form.", value);
       return type[value];
     }
+    __name(parseConstant, "parseConstant");
     const textures = {};
     if (json !== void 0) {
       for (let i = 0, l = json.length; i < l; i++) {
@@ -23940,6 +24523,7 @@ var ObjectLoader = class extends Loader {
       }
       return geometries[name];
     }
+    __name(getGeometry, "getGeometry");
     function getMaterial(name) {
       if (name === void 0)
         return void 0;
@@ -23959,6 +24543,7 @@ var ObjectLoader = class extends Loader {
       }
       return materials[name];
     }
+    __name(getMaterial, "getMaterial");
     let geometry, material;
     switch (data.type) {
       case "Scene":
@@ -24160,6 +24745,7 @@ var ObjectLoader = class extends Loader {
     return this.setResourcePath(value);
   }
 };
+__name(ObjectLoader, "ObjectLoader");
 var TEXTURE_MAPPING = {
   UVMapping,
   CubeReflectionMapping,
@@ -24192,13 +24778,14 @@ function ImageBitmapLoader(manager) {
   Loader.call(this, manager);
   this.options = { premultiplyAlpha: "none" };
 }
+__name(ImageBitmapLoader, "ImageBitmapLoader");
 ImageBitmapLoader.prototype = Object.assign(Object.create(Loader.prototype), {
   constructor: ImageBitmapLoader,
   isImageBitmapLoader: true,
-  setOptions: function setOptions(options) {
+  setOptions: /* @__PURE__ */ __name(function setOptions(options) {
     this.options = options;
     return this;
-  },
+  }, "setOptions"),
   load: function(url, onLoad, onProgress, onError) {
     if (url === void 0)
       url = "";
@@ -24242,6 +24829,7 @@ function ShapePath() {
   this.subPaths = [];
   this.currentPath = null;
 }
+__name(ShapePath, "ShapePath");
 Object.assign(ShapePath.prototype, {
   moveTo: function(x, y) {
     this.currentPath = new Path();
@@ -24276,6 +24864,7 @@ Object.assign(ShapePath.prototype, {
       }
       return shapes2;
     }
+    __name(toShapesNoHoles, "toShapesNoHoles");
     function isPointInsidePolygon(inPt, inPolygon) {
       const polyLen = inPolygon.length;
       let inside = false;
@@ -24313,6 +24902,7 @@ Object.assign(ShapePath.prototype, {
       }
       return inside;
     }
+    __name(isPointInsidePolygon, "isPointInsidePolygon");
     const isClockWise = ShapeUtils.isClockWise;
     const subPaths = this.subPaths;
     if (subPaths.length === 0)
@@ -24405,6 +24995,7 @@ function Font(data) {
   this.type = "Font";
   this.data = data;
 }
+__name(Font, "Font");
 Object.assign(Font.prototype, {
   isFont: true,
   generateShapes: function(text, size = 100) {
@@ -24435,6 +25026,7 @@ function createPaths(text, size, data) {
   }
   return paths;
 }
+__name(createPaths, "createPaths");
 function createPath(char, scale, offsetX, offsetY, data) {
   const glyph = data.glyphs[char] || data.glyphs["?"];
   if (!glyph) {
@@ -24479,9 +25071,11 @@ function createPath(char, scale, offsetX, offsetY, data) {
   }
   return { offsetX: glyph.ha * scale, path };
 }
+__name(createPath, "createPath");
 function FontLoader(manager) {
   Loader.call(this, manager);
 }
+__name(FontLoader, "FontLoader");
 FontLoader.prototype = Object.assign(Object.create(Loader.prototype), {
   constructor: FontLoader,
   load: function(url, onLoad, onProgress, onError) {
@@ -24522,6 +25116,7 @@ var AudioContext = {
 function AudioLoader(manager) {
   Loader.call(this, manager);
 }
+__name(AudioLoader, "AudioLoader");
 AudioLoader.prototype = Object.assign(Object.create(Loader.prototype), {
   constructor: AudioLoader,
   load: function(url, onLoad, onProgress, onError) {
@@ -24560,6 +25155,7 @@ function HemisphereLightProbe(skyColor, groundColor, intensity) {
   this.sh.coefficients[0].copy(sky).add(ground).multiplyScalar(c0);
   this.sh.coefficients[1].copy(sky).sub(ground).multiplyScalar(c1);
 }
+__name(HemisphereLightProbe, "HemisphereLightProbe");
 HemisphereLightProbe.prototype = Object.assign(Object.create(LightProbe.prototype), {
   constructor: HemisphereLightProbe,
   isHemisphereLightProbe: true,
@@ -24577,6 +25173,7 @@ function AmbientLightProbe(color, intensity) {
   const color1 = new Color().set(color);
   this.sh.coefficients[0].set(color1.r, color1.g, color1.b).multiplyScalar(2 * Math.sqrt(Math.PI));
 }
+__name(AmbientLightProbe, "AmbientLightProbe");
 AmbientLightProbe.prototype = Object.assign(Object.create(LightProbe.prototype), {
   constructor: AmbientLightProbe,
   isAmbientLightProbe: true,
@@ -24611,6 +25208,7 @@ function StereoCamera() {
     eyeSep: null
   };
 }
+__name(StereoCamera, "StereoCamera");
 Object.assign(StereoCamera.prototype, {
   update: function(camera) {
     const cache = this._cache;
@@ -24683,9 +25281,11 @@ var Clock = class {
     return diff;
   }
 };
+__name(Clock, "Clock");
 function now() {
   return (typeof performance === "undefined" ? Date : performance).now();
 }
+__name(now, "now");
 var _position$2 = /* @__PURE__ */ new Vector3();
 var _quaternion$3 = /* @__PURE__ */ new Quaternion();
 var _scale$1 = /* @__PURE__ */ new Vector3();
@@ -24759,6 +25359,7 @@ var AudioListener = class extends Object3D {
     }
   }
 };
+__name(AudioListener, "AudioListener");
 var Audio = class extends Object3D {
   constructor(listener) {
     super();
@@ -24976,6 +25577,7 @@ var Audio = class extends Object3D {
     return this;
   }
 };
+__name(Audio, "Audio");
 var _position$3 = /* @__PURE__ */ new Vector3();
 var _quaternion$4 = /* @__PURE__ */ new Quaternion();
 var _scale$2 = /* @__PURE__ */ new Vector3();
@@ -25045,6 +25647,7 @@ var PositionalAudio = class extends Audio {
     }
   }
 };
+__name(PositionalAudio, "PositionalAudio");
 var AudioAnalyser = class {
   constructor(audio, fftSize = 2048) {
     this.analyser = audio.context.createAnalyser();
@@ -25065,6 +25668,7 @@ var AudioAnalyser = class {
     return value / data.length;
   }
 };
+__name(AudioAnalyser, "AudioAnalyser");
 function PropertyMixer(binding, typeName, valueSize) {
   this.binding = binding;
   this.valueSize = valueSize;
@@ -25100,6 +25704,7 @@ function PropertyMixer(binding, typeName, valueSize) {
   this.useCount = 0;
   this.referenceCount = 0;
 }
+__name(PropertyMixer, "PropertyMixer");
 Object.assign(PropertyMixer.prototype, {
   accumulate: function(accuIndex, weight) {
     const buffer = this.buffer, stride = this.valueSize, offset = accuIndex * stride + stride;
@@ -25219,6 +25824,7 @@ function Composite(targetGroup, path, optionalParsedPath) {
   this._targetGroup = targetGroup;
   this._bindings = targetGroup.subscribe_(path, parsedPath);
 }
+__name(Composite, "Composite");
 Object.assign(Composite.prototype, {
   getValue: function(array, offset) {
     this.bind();
@@ -25251,6 +25857,7 @@ function PropertyBinding(rootNode, path, parsedPath) {
   this.node = PropertyBinding.findNode(rootNode, this.parsedPath.nodeName) || rootNode;
   this.rootNode = rootNode;
 }
+__name(PropertyBinding, "PropertyBinding");
 Object.assign(PropertyBinding, {
   Composite,
   create: function(root, path, parsedPath) {
@@ -25299,7 +25906,7 @@ Object.assign(PropertyBinding, {
       }
     }
     if (root.children) {
-      const searchNodeSubtree = function(children) {
+      const searchNodeSubtree = /* @__PURE__ */ __name(function(children) {
         for (let i = 0; i < children.length; i++) {
           const childNode = children[i];
           if (childNode.name === nodeName || childNode.uuid === nodeName) {
@@ -25310,7 +25917,7 @@ Object.assign(PropertyBinding, {
             return result;
         }
         return null;
-      };
+      }, "searchNodeSubtree");
       const subTreeNode = searchNodeSubtree(root.children);
       if (subTreeNode) {
         return subTreeNode;
@@ -25336,93 +25943,93 @@ Object.assign(PropertyBinding.prototype, {
     MatrixWorldNeedsUpdate: 2
   },
   GetterByBindingType: [
-    function getValue_direct(buffer, offset) {
+    /* @__PURE__ */ __name(function getValue_direct(buffer, offset) {
       buffer[offset] = this.node[this.propertyName];
-    },
-    function getValue_array(buffer, offset) {
+    }, "getValue_direct"),
+    /* @__PURE__ */ __name(function getValue_array(buffer, offset) {
       const source = this.resolvedProperty;
       for (let i = 0, n = source.length; i !== n; ++i) {
         buffer[offset++] = source[i];
       }
-    },
-    function getValue_arrayElement(buffer, offset) {
+    }, "getValue_array"),
+    /* @__PURE__ */ __name(function getValue_arrayElement(buffer, offset) {
       buffer[offset] = this.resolvedProperty[this.propertyIndex];
-    },
-    function getValue_toArray(buffer, offset) {
+    }, "getValue_arrayElement"),
+    /* @__PURE__ */ __name(function getValue_toArray(buffer, offset) {
       this.resolvedProperty.toArray(buffer, offset);
-    }
+    }, "getValue_toArray")
   ],
   SetterByBindingTypeAndVersioning: [
     [
-      function setValue_direct(buffer, offset) {
+      /* @__PURE__ */ __name(function setValue_direct(buffer, offset) {
         this.targetObject[this.propertyName] = buffer[offset];
-      },
-      function setValue_direct_setNeedsUpdate(buffer, offset) {
+      }, "setValue_direct"),
+      /* @__PURE__ */ __name(function setValue_direct_setNeedsUpdate(buffer, offset) {
         this.targetObject[this.propertyName] = buffer[offset];
         this.targetObject.needsUpdate = true;
-      },
-      function setValue_direct_setMatrixWorldNeedsUpdate(buffer, offset) {
+      }, "setValue_direct_setNeedsUpdate"),
+      /* @__PURE__ */ __name(function setValue_direct_setMatrixWorldNeedsUpdate(buffer, offset) {
         this.targetObject[this.propertyName] = buffer[offset];
         this.targetObject.matrixWorldNeedsUpdate = true;
-      }
+      }, "setValue_direct_setMatrixWorldNeedsUpdate")
     ],
     [
-      function setValue_array(buffer, offset) {
+      /* @__PURE__ */ __name(function setValue_array(buffer, offset) {
         const dest = this.resolvedProperty;
         for (let i = 0, n = dest.length; i !== n; ++i) {
           dest[i] = buffer[offset++];
         }
-      },
-      function setValue_array_setNeedsUpdate(buffer, offset) {
+      }, "setValue_array"),
+      /* @__PURE__ */ __name(function setValue_array_setNeedsUpdate(buffer, offset) {
         const dest = this.resolvedProperty;
         for (let i = 0, n = dest.length; i !== n; ++i) {
           dest[i] = buffer[offset++];
         }
         this.targetObject.needsUpdate = true;
-      },
-      function setValue_array_setMatrixWorldNeedsUpdate(buffer, offset) {
+      }, "setValue_array_setNeedsUpdate"),
+      /* @__PURE__ */ __name(function setValue_array_setMatrixWorldNeedsUpdate(buffer, offset) {
         const dest = this.resolvedProperty;
         for (let i = 0, n = dest.length; i !== n; ++i) {
           dest[i] = buffer[offset++];
         }
         this.targetObject.matrixWorldNeedsUpdate = true;
-      }
+      }, "setValue_array_setMatrixWorldNeedsUpdate")
     ],
     [
-      function setValue_arrayElement(buffer, offset) {
+      /* @__PURE__ */ __name(function setValue_arrayElement(buffer, offset) {
         this.resolvedProperty[this.propertyIndex] = buffer[offset];
-      },
-      function setValue_arrayElement_setNeedsUpdate(buffer, offset) {
+      }, "setValue_arrayElement"),
+      /* @__PURE__ */ __name(function setValue_arrayElement_setNeedsUpdate(buffer, offset) {
         this.resolvedProperty[this.propertyIndex] = buffer[offset];
         this.targetObject.needsUpdate = true;
-      },
-      function setValue_arrayElement_setMatrixWorldNeedsUpdate(buffer, offset) {
+      }, "setValue_arrayElement_setNeedsUpdate"),
+      /* @__PURE__ */ __name(function setValue_arrayElement_setMatrixWorldNeedsUpdate(buffer, offset) {
         this.resolvedProperty[this.propertyIndex] = buffer[offset];
         this.targetObject.matrixWorldNeedsUpdate = true;
-      }
+      }, "setValue_arrayElement_setMatrixWorldNeedsUpdate")
     ],
     [
-      function setValue_fromArray(buffer, offset) {
+      /* @__PURE__ */ __name(function setValue_fromArray(buffer, offset) {
         this.resolvedProperty.fromArray(buffer, offset);
-      },
-      function setValue_fromArray_setNeedsUpdate(buffer, offset) {
+      }, "setValue_fromArray"),
+      /* @__PURE__ */ __name(function setValue_fromArray_setNeedsUpdate(buffer, offset) {
         this.resolvedProperty.fromArray(buffer, offset);
         this.targetObject.needsUpdate = true;
-      },
-      function setValue_fromArray_setMatrixWorldNeedsUpdate(buffer, offset) {
+      }, "setValue_fromArray_setNeedsUpdate"),
+      /* @__PURE__ */ __name(function setValue_fromArray_setMatrixWorldNeedsUpdate(buffer, offset) {
         this.resolvedProperty.fromArray(buffer, offset);
         this.targetObject.matrixWorldNeedsUpdate = true;
-      }
+      }, "setValue_fromArray_setMatrixWorldNeedsUpdate")
     ]
   ],
-  getValue: function getValue_unbound(targetArray, offset) {
+  getValue: /* @__PURE__ */ __name(function getValue_unbound(targetArray, offset) {
     this.bind();
     this.getValue(targetArray, offset);
-  },
-  setValue: function getValue_unbound2(sourceArray, offset) {
+  }, "getValue_unbound"),
+  setValue: /* @__PURE__ */ __name(function getValue_unbound2(sourceArray, offset) {
     this.bind();
     this.setValue(sourceArray, offset);
-  },
+  }, "getValue_unbound"),
   bind: function() {
     let targetObject = this.node;
     const parsedPath = this.parsedPath;
@@ -25567,6 +26174,7 @@ function AnimationObjectGroup() {
     }
   };
 }
+__name(AnimationObjectGroup, "AnimationObjectGroup");
 Object.assign(AnimationObjectGroup.prototype, {
   isAnimationObjectGroup: true,
   add: function() {
@@ -26043,6 +26651,7 @@ var AnimationAction = class {
     return this;
   }
 };
+__name(AnimationAction, "AnimationAction");
 function AnimationMixer(root) {
   this._root = root;
   this._initMemoryManager();
@@ -26050,6 +26659,7 @@ function AnimationMixer(root) {
   this.time = 0;
   this.timeScale = 1;
 }
+__name(AnimationMixer, "AnimationMixer");
 AnimationMixer.prototype = Object.assign(Object.create(EventDispatcher.prototype), {
   constructor: AnimationMixer,
   _bindAction: function(action, prototypeAction) {
@@ -26389,10 +26999,12 @@ var Uniform = class {
     return new Uniform(this.value.clone === void 0 ? this.value : this.value.clone());
   }
 };
+__name(Uniform, "Uniform");
 function InstancedInterleavedBuffer(array, stride, meshPerAttribute) {
   InterleavedBuffer.call(this, array, stride);
   this.meshPerAttribute = meshPerAttribute || 1;
 }
+__name(InstancedInterleavedBuffer, "InstancedInterleavedBuffer");
 InstancedInterleavedBuffer.prototype = Object.assign(Object.create(InterleavedBuffer.prototype), {
   constructor: InstancedInterleavedBuffer,
   isInstancedInterleavedBuffer: true,
@@ -26421,6 +27033,7 @@ function GLBufferAttribute(buffer, type, itemSize, elementSize, count) {
   this.count = count;
   this.version = 0;
 }
+__name(GLBufferAttribute, "GLBufferAttribute");
 Object.defineProperty(GLBufferAttribute.prototype, "needsUpdate", {
   set: function(value) {
     if (value === true)
@@ -26469,9 +27082,11 @@ function Raycaster(origin, direction, near, far) {
     }
   });
 }
+__name(Raycaster, "Raycaster");
 function ascSort(a, b) {
   return a.distance - b.distance;
 }
+__name(ascSort, "ascSort");
 function intersectObject(object, raycaster, intersects2, recursive) {
   if (object.layers.test(raycaster.layers)) {
     object.raycast(raycaster, intersects2);
@@ -26483,6 +27098,7 @@ function intersectObject(object, raycaster, intersects2, recursive) {
     }
   }
 }
+__name(intersectObject, "intersectObject");
 Object.assign(Raycaster.prototype, {
   set: function(origin, direction) {
     this.ray.set(origin, direction);
@@ -26561,6 +27177,7 @@ var Spherical = class {
     return this;
   }
 };
+__name(Spherical, "Spherical");
 var Cylindrical = class {
   constructor(radius, theta, y) {
     this.radius = radius !== void 0 ? radius : 1;
@@ -26593,6 +27210,7 @@ var Cylindrical = class {
     return this;
   }
 };
+__name(Cylindrical, "Cylindrical");
 var _vector$7 = /* @__PURE__ */ new Vector2();
 var Box2 = class {
   constructor(min, max) {
@@ -26709,6 +27327,7 @@ var Box2 = class {
     return box.min.equals(this.min) && box.max.equals(this.max);
   }
 };
+__name(Box2, "Box2");
 var _startP = /* @__PURE__ */ new Vector3();
 var _startEnd = /* @__PURE__ */ new Vector3();
 var Line3 = class {
@@ -26784,6 +27403,7 @@ var Line3 = class {
     return line.start.equals(this.start) && line.end.equals(this.end);
   }
 };
+__name(Line3, "Line3");
 function ImmediateRenderObject(material) {
   Object3D.call(this);
   this.material = material;
@@ -26799,6 +27419,7 @@ function ImmediateRenderObject(material) {
   this.uvArray = null;
   this.count = 0;
 }
+__name(ImmediateRenderObject, "ImmediateRenderObject");
 ImmediateRenderObject.prototype = Object.create(Object3D.prototype);
 ImmediateRenderObject.prototype.constructor = ImmediateRenderObject;
 ImmediateRenderObject.prototype.isImmediateRenderObject = true;
@@ -26873,6 +27494,7 @@ var SpotLightHelper = class extends Object3D {
     }
   }
 };
+__name(SpotLightHelper, "SpotLightHelper");
 var _vector$9 = /* @__PURE__ */ new Vector3();
 var _boneMatrix = /* @__PURE__ */ new Matrix4();
 var _matrixWorldInv = /* @__PURE__ */ new Matrix4();
@@ -26925,6 +27547,7 @@ var SkeletonHelper = class extends LineSegments {
     super.updateMatrixWorld(force);
   }
 };
+__name(SkeletonHelper, "SkeletonHelper");
 function getBoneList(object) {
   const boneList = [];
   if (object && object.isBone) {
@@ -26935,6 +27558,7 @@ function getBoneList(object) {
   }
   return boneList;
 }
+__name(getBoneList, "getBoneList");
 var PointLightHelper = class extends Mesh {
   constructor(light, sphereSize, color) {
     const geometry = new SphereBufferGeometry(sphereSize, 4, 2);
@@ -26960,6 +27584,7 @@ var PointLightHelper = class extends Mesh {
     }
   }
 };
+__name(PointLightHelper, "PointLightHelper");
 var _vector$a = /* @__PURE__ */ new Vector3();
 var _color1 = /* @__PURE__ */ new Color();
 var _color2 = /* @__PURE__ */ new Color();
@@ -27003,6 +27628,7 @@ var HemisphereLightHelper = class extends Object3D {
     mesh.lookAt(_vector$a.setFromMatrixPosition(this.light.matrixWorld).negate());
   }
 };
+__name(HemisphereLightHelper, "HemisphereLightHelper");
 var GridHelper = class extends LineSegments {
   constructor(size = 10, divisions = 10, color1 = 4473924, color2 = 8947848) {
     color1 = new Color(color1);
@@ -27032,6 +27658,7 @@ var GridHelper = class extends LineSegments {
     this.type = "GridHelper";
   }
 };
+__name(GridHelper, "GridHelper");
 var PolarGridHelper = class extends LineSegments {
   constructor(radius = 10, radials = 16, circles = 8, divisions = 64, color1 = 4473924, color2 = 8947848) {
     color1 = new Color(color1);
@@ -27072,6 +27699,7 @@ var PolarGridHelper = class extends LineSegments {
     this.type = "PolarGridHelper";
   }
 };
+__name(PolarGridHelper, "PolarGridHelper");
 var _v1$6 = /* @__PURE__ */ new Vector3();
 var _v2$3 = /* @__PURE__ */ new Vector3();
 var _v3$1 = /* @__PURE__ */ new Vector3();
@@ -27134,6 +27762,7 @@ var DirectionalLightHelper = class extends Object3D {
     this.targetLine.scale.z = _v3$1.length();
   }
 };
+__name(DirectionalLightHelper, "DirectionalLightHelper");
 var _vector$b = /* @__PURE__ */ new Vector3();
 var _camera = /* @__PURE__ */ new Camera();
 var CameraHelper = class extends LineSegments {
@@ -27177,6 +27806,7 @@ var CameraHelper = class extends LineSegments {
       addPoint(a, color);
       addPoint(b, color);
     }
+    __name(addLine, "addLine");
     function addPoint(id, color) {
       vertices.push(0, 0, 0);
       colors.push(color.r, color.g, color.b);
@@ -27185,6 +27815,7 @@ var CameraHelper = class extends LineSegments {
       }
       pointMap[id].push(vertices.length / 3 - 1);
     }
+    __name(addPoint, "addPoint");
     geometry.setAttribute("position", new Float32BufferAttribute(vertices, 3));
     geometry.setAttribute("color", new Float32BufferAttribute(colors, 3));
     super(geometry, material);
@@ -27226,6 +27857,7 @@ var CameraHelper = class extends LineSegments {
     geometry.getAttribute("position").needsUpdate = true;
   }
 };
+__name(CameraHelper, "CameraHelper");
 function setPoint(point, pointMap, geometry, camera, x, y, z) {
   _vector$b.set(x, y, z).unproject(camera);
   const points = pointMap[point];
@@ -27236,6 +27868,7 @@ function setPoint(point, pointMap, geometry, camera, x, y, z) {
     }
   }
 }
+__name(setPoint, "setPoint");
 var _box$3 = /* @__PURE__ */ new Box3();
 var BoxHelper = class extends LineSegments {
   constructor(object, color = 16776960) {
@@ -27301,6 +27934,7 @@ var BoxHelper = class extends LineSegments {
     return this;
   }
 };
+__name(BoxHelper, "BoxHelper");
 var Box3Helper = class extends LineSegments {
   constructor(box, color = 16776960) {
     const indices = new Uint16Array([0, 1, 1, 2, 2, 3, 3, 0, 4, 5, 5, 6, 6, 7, 7, 4, 0, 4, 1, 5, 2, 6, 3, 7]);
@@ -27323,6 +27957,7 @@ var Box3Helper = class extends LineSegments {
     super.updateMatrixWorld(force);
   }
 };
+__name(Box3Helper, "Box3Helper");
 var PlaneHelper = class extends Line {
   constructor(plane, size = 1, hex = 16776960) {
     const color = hex;
@@ -27350,6 +27985,7 @@ var PlaneHelper = class extends Line {
     super.updateMatrixWorld(force);
   }
 };
+__name(PlaneHelper, "PlaneHelper");
 var _axis = /* @__PURE__ */ new Vector3();
 var _lineGeometry;
 var _coneGeometry;
@@ -27418,6 +28054,7 @@ var ArrowHelper = class extends Object3D {
     return this;
   }
 };
+__name(ArrowHelper, "ArrowHelper");
 var AxesHelper = class extends LineSegments {
   constructor(size = 1) {
     const vertices = [
@@ -27468,6 +28105,7 @@ var AxesHelper = class extends LineSegments {
     this.type = "AxesHelper";
   }
 };
+__name(AxesHelper, "AxesHelper");
 var _floatView = new Float32Array(1);
 var _int32View = new Int32Array(_floatView.buffer);
 var DataUtils = {
@@ -27740,11 +28378,13 @@ var PMREMGenerator = class {
     renderer.render(blurMesh, _flatCamera);
   }
 };
+__name(PMREMGenerator, "PMREMGenerator");
 function _isLDR(texture) {
   if (texture === void 0 || texture.type !== UnsignedByteType)
     return false;
   return texture.encoding === LinearEncoding || texture.encoding === sRGBEncoding || texture.encoding === GammaEncoding;
 }
+__name(_isLDR, "_isLDR");
 function _createPlanes() {
   const _lodPlanes2 = [];
   const _sizeLods2 = [];
@@ -27811,6 +28451,7 @@ function _createPlanes() {
   }
   return { _lodPlanes: _lodPlanes2, _sizeLods: _sizeLods2, _sigmas: _sigmas2 };
 }
+__name(_createPlanes, "_createPlanes");
 function _createRenderTarget(params) {
   const cubeUVRenderTarget = new WebGLRenderTarget(3 * SIZE_MAX, 3 * SIZE_MAX, params);
   cubeUVRenderTarget.texture.mapping = CubeUVReflectionMapping;
@@ -27818,10 +28459,12 @@ function _createRenderTarget(params) {
   cubeUVRenderTarget.scissorTest = true;
   return cubeUVRenderTarget;
 }
+__name(_createRenderTarget, "_createRenderTarget");
 function _setViewport(target, x, y, width, height) {
   target.viewport.set(x, y, width, height);
   target.scissor.set(x, y, width, height);
 }
+__name(_setViewport, "_setViewport");
 function _getBlurShader(maxSamples) {
   const weights = new Float32Array(maxSamples);
   const poleAxis = new Vector3(0, 1, 0);
@@ -27911,6 +28554,7 @@ function _getBlurShader(maxSamples) {
   });
   return shaderMaterial;
 }
+__name(_getBlurShader, "_getBlurShader");
 function _getEquirectShader() {
   const texelSize = new Vector2(1, 1);
   const shaderMaterial = new RawShaderMaterial({
@@ -27967,6 +28611,7 @@ function _getEquirectShader() {
   });
   return shaderMaterial;
 }
+__name(_getEquirectShader, "_getEquirectShader");
 function _getCubemapShader() {
   const shaderMaterial = new RawShaderMaterial({
     name: "CubemapToCubeUV",
@@ -28001,6 +28646,7 @@ function _getCubemapShader() {
   });
   return shaderMaterial;
 }
+__name(_getCubemapShader, "_getCubemapShader");
 function _getCommonVertexShader() {
   return `
 
@@ -28061,6 +28707,7 @@ function _getCommonVertexShader() {
 		}
 	`;
 }
+__name(_getCommonVertexShader, "_getCommonVertexShader");
 function _getEncodings() {
   return `
 
@@ -28144,10 +28791,12 @@ function _getEncodings() {
 		}
 	`;
 }
+__name(_getEncodings, "_getEncodings");
 function Face4(a, b, c, d, normal, color, materialIndex) {
   console.warn("THREE.Face4 has been removed. A THREE.Face3 will be created instead.");
   return new Face3(a, b, c, normal, color, materialIndex);
 }
+__name(Face4, "Face4");
 var LineStrip = 0;
 var LinePieces = 1;
 var NoColors = 0;
@@ -28157,6 +28806,7 @@ function MeshFaceMaterial(materials) {
   console.warn("THREE.MeshFaceMaterial has been removed. Use an Array instead.");
   return materials;
 }
+__name(MeshFaceMaterial, "MeshFaceMaterial");
 function MultiMaterial(materials = []) {
   console.warn("THREE.MultiMaterial has been removed. Use an Array instead.");
   materials.isMultiMaterial = true;
@@ -28166,74 +28816,92 @@ function MultiMaterial(materials = []) {
   };
   return materials;
 }
+__name(MultiMaterial, "MultiMaterial");
 function PointCloud(geometry, material) {
   console.warn("THREE.PointCloud has been renamed to THREE.Points.");
   return new Points(geometry, material);
 }
+__name(PointCloud, "PointCloud");
 function Particle(material) {
   console.warn("THREE.Particle has been renamed to THREE.Sprite.");
   return new Sprite(material);
 }
+__name(Particle, "Particle");
 function ParticleSystem(geometry, material) {
   console.warn("THREE.ParticleSystem has been renamed to THREE.Points.");
   return new Points(geometry, material);
 }
+__name(ParticleSystem, "ParticleSystem");
 function PointCloudMaterial(parameters) {
   console.warn("THREE.PointCloudMaterial has been renamed to THREE.PointsMaterial.");
   return new PointsMaterial(parameters);
 }
+__name(PointCloudMaterial, "PointCloudMaterial");
 function ParticleBasicMaterial(parameters) {
   console.warn("THREE.ParticleBasicMaterial has been renamed to THREE.PointsMaterial.");
   return new PointsMaterial(parameters);
 }
+__name(ParticleBasicMaterial, "ParticleBasicMaterial");
 function ParticleSystemMaterial(parameters) {
   console.warn("THREE.ParticleSystemMaterial has been renamed to THREE.PointsMaterial.");
   return new PointsMaterial(parameters);
 }
+__name(ParticleSystemMaterial, "ParticleSystemMaterial");
 function Vertex(x, y, z) {
   console.warn("THREE.Vertex has been removed. Use THREE.Vector3 instead.");
   return new Vector3(x, y, z);
 }
+__name(Vertex, "Vertex");
 function DynamicBufferAttribute(array, itemSize) {
   console.warn("THREE.DynamicBufferAttribute has been removed. Use new THREE.BufferAttribute().setUsage( THREE.DynamicDrawUsage ) instead.");
   return new BufferAttribute(array, itemSize).setUsage(DynamicDrawUsage);
 }
+__name(DynamicBufferAttribute, "DynamicBufferAttribute");
 function Int8Attribute(array, itemSize) {
   console.warn("THREE.Int8Attribute has been removed. Use new THREE.Int8BufferAttribute() instead.");
   return new Int8BufferAttribute(array, itemSize);
 }
+__name(Int8Attribute, "Int8Attribute");
 function Uint8Attribute(array, itemSize) {
   console.warn("THREE.Uint8Attribute has been removed. Use new THREE.Uint8BufferAttribute() instead.");
   return new Uint8BufferAttribute(array, itemSize);
 }
+__name(Uint8Attribute, "Uint8Attribute");
 function Uint8ClampedAttribute(array, itemSize) {
   console.warn("THREE.Uint8ClampedAttribute has been removed. Use new THREE.Uint8ClampedBufferAttribute() instead.");
   return new Uint8ClampedBufferAttribute(array, itemSize);
 }
+__name(Uint8ClampedAttribute, "Uint8ClampedAttribute");
 function Int16Attribute(array, itemSize) {
   console.warn("THREE.Int16Attribute has been removed. Use new THREE.Int16BufferAttribute() instead.");
   return new Int16BufferAttribute(array, itemSize);
 }
+__name(Int16Attribute, "Int16Attribute");
 function Uint16Attribute(array, itemSize) {
   console.warn("THREE.Uint16Attribute has been removed. Use new THREE.Uint16BufferAttribute() instead.");
   return new Uint16BufferAttribute(array, itemSize);
 }
+__name(Uint16Attribute, "Uint16Attribute");
 function Int32Attribute(array, itemSize) {
   console.warn("THREE.Int32Attribute has been removed. Use new THREE.Int32BufferAttribute() instead.");
   return new Int32BufferAttribute(array, itemSize);
 }
+__name(Int32Attribute, "Int32Attribute");
 function Uint32Attribute(array, itemSize) {
   console.warn("THREE.Uint32Attribute has been removed. Use new THREE.Uint32BufferAttribute() instead.");
   return new Uint32BufferAttribute(array, itemSize);
 }
+__name(Uint32Attribute, "Uint32Attribute");
 function Float32Attribute(array, itemSize) {
   console.warn("THREE.Float32Attribute has been removed. Use new THREE.Float32BufferAttribute() instead.");
   return new Float32BufferAttribute(array, itemSize);
 }
+__name(Float32Attribute, "Float32Attribute");
 function Float64Attribute(array, itemSize) {
   console.warn("THREE.Float64Attribute has been removed. Use new THREE.Float64BufferAttribute() instead.");
   return new Float64BufferAttribute(array, itemSize);
 }
+__name(Float64Attribute, "Float64Attribute");
 Curve.create = function(construct, getPoint) {
   console.log("THREE.Curve.create() has been deprecated");
   construct.prototype = Object.create(Curve.prototype);
@@ -28274,18 +28942,21 @@ function ClosedSplineCurve3(points) {
   this.type = "catmullrom";
   this.closed = true;
 }
+__name(ClosedSplineCurve3, "ClosedSplineCurve3");
 ClosedSplineCurve3.prototype = Object.create(CatmullRomCurve3.prototype);
 function SplineCurve3(points) {
   console.warn("THREE.SplineCurve3 has been deprecated. Use THREE.CatmullRomCurve3 instead.");
   CatmullRomCurve3.call(this, points);
   this.type = "catmullrom";
 }
+__name(SplineCurve3, "SplineCurve3");
 SplineCurve3.prototype = Object.create(CatmullRomCurve3.prototype);
 function Spline(points) {
   console.warn("THREE.Spline has been removed. Use THREE.CatmullRomCurve3 instead.");
   CatmullRomCurve3.call(this, points);
   this.type = "catmullrom";
 }
+__name(Spline, "Spline");
 Spline.prototype = Object.create(CatmullRomCurve3.prototype);
 Object.assign(Spline.prototype, {
   initFromArray: function() {
@@ -28302,14 +28973,17 @@ function AxisHelper(size) {
   console.warn("THREE.AxisHelper has been renamed to THREE.AxesHelper.");
   return new AxesHelper(size);
 }
+__name(AxisHelper, "AxisHelper");
 function BoundingBoxHelper(object, color) {
   console.warn("THREE.BoundingBoxHelper has been deprecated. Creating a THREE.BoxHelper instead.");
   return new BoxHelper(object, color);
 }
+__name(BoundingBoxHelper, "BoundingBoxHelper");
 function EdgesHelper(object, hex) {
   console.warn("THREE.EdgesHelper has been removed. Use THREE.EdgesGeometry instead.");
   return new LineSegments(new EdgesGeometry(object.geometry), new LineBasicMaterial({ color: hex !== void 0 ? hex : 16777215 }));
 }
+__name(EdgesHelper, "EdgesHelper");
 GridHelper.prototype.setColors = function() {
   console.error("THREE.GridHelper: setColors() has been deprecated, pass them in the constructor instead.");
 };
@@ -28320,6 +28994,7 @@ function WireframeHelper(object, hex) {
   console.warn("THREE.WireframeHelper has been removed. Use THREE.WireframeGeometry instead.");
   return new LineSegments(new WireframeGeometry(object.geometry), new LineBasicMaterial({ color: hex !== void 0 ? hex : 16777215 }));
 }
+__name(WireframeHelper, "WireframeHelper");
 Object.assign(Loader.prototype, {
   extractUrlBase: function(url) {
     console.warn("THREE.Loader: .extractUrlBase() has been deprecated. Use THREE.LoaderUtils.extractUrlBase() instead.");
@@ -28338,10 +29013,12 @@ function XHRLoader(manager) {
   console.warn("THREE.XHRLoader has been renamed to THREE.FileLoader.");
   return new FileLoader(manager);
 }
+__name(XHRLoader, "XHRLoader");
 function BinaryTextureLoader(manager) {
   console.warn("THREE.BinaryTextureLoader has been renamed to THREE.DataTextureLoader.");
   return new DataTextureLoader(manager);
 }
+__name(BinaryTextureLoader, "BinaryTextureLoader");
 Object.assign(Box2.prototype, {
   center: function(optionalTarget) {
     console.warn("THREE.Box2: .center() has been renamed to .getCenter().");
@@ -29256,6 +29933,7 @@ function WebGLRenderTargetCube(width, height, options) {
   console.warn("THREE.WebGLRenderTargetCube( width, height, options ) is now WebGLCubeRenderTarget( size, options ).");
   return new WebGLCubeRenderTarget(width, options);
 }
+__name(WebGLRenderTargetCube, "WebGLRenderTargetCube");
 Object.defineProperties(WebGLRenderTarget.prototype, {
   wrapS: {
     get: function() {
@@ -29432,9 +30110,11 @@ ImageUtils.loadCompressedTextureCube = function() {
 function CanvasRenderer() {
   console.error("THREE.CanvasRenderer has been removed");
 }
+__name(CanvasRenderer, "CanvasRenderer");
 function JSONLoader() {
   console.error("THREE.JSONLoader has been removed.");
 }
+__name(JSONLoader, "JSONLoader");
 var SceneUtils = {
   createMultiMaterialObject: function() {
     console.error("THREE.SceneUtils has been moved to /examples/jsm/utils/SceneUtils.js");
@@ -29449,15 +30129,117 @@ var SceneUtils = {
 function LensFlare() {
   console.error("THREE.LensFlare has been moved to /examples/jsm/objects/Lensflare.js");
 }
+__name(LensFlare, "LensFlare");
 if (typeof __THREE_DEVTOOLS__ !== "undefined") {
   __THREE_DEVTOOLS__.dispatchEvent(new CustomEvent("register", { detail: {
     revision: REVISION
   } }));
 }
 
+// src/Input.ts
+var Input = class {
+  constructor(runtime) {
+    this.keysDown = {};
+    this.keysUp = {};
+    this.mousePosition = new Vector2();
+    this.horizontalAxis = 0;
+    this.verticalAxis = 0;
+    this.previousTouch = new Vector2();
+    this.runtime = runtime;
+  }
+  OnTouchMove(event) {
+    event.preventDefault();
+    this.mousePosition.x = event.touches[0].clientX;
+    this.mousePosition.y = event.touches[0].clientY;
+    this.horizontalAxis = Math.round(this.mousePosition.x - this.previousTouch.x);
+    this.verticalAxis = Math.round(this.mousePosition.y - this.previousTouch.y);
+    this.previousTouch.set(this.mousePosition.x, this.mousePosition.y);
+  }
+  OnMouseMove(event) {
+    this.mousePosition.x = event.clientX;
+    this.mousePosition.y = event.clientY;
+    this.horizontalAxis = event.movementX;
+    this.verticalAxis = event.movementY;
+  }
+  OnKeyDown(event) {
+    if (this.keysDown[event.keyCode] === void 0) {
+      this.keysDown[event.keyCode] = this.runtime.currentFrame;
+      delete this.keysUp[event.keyCode];
+    }
+  }
+  OnKeyUp(event) {
+    this.keysUp[event.keyCode] = this.runtime.currentFrame;
+    delete this.keysDown[event.keyCode];
+  }
+  GetKeyDown(key) {
+    if (this.keysDown[key] == this.runtime.currentFrame) {
+      return true;
+    }
+    return false;
+  }
+  GetKeyUp(key) {
+    if (this.keysUp[key] == this.runtime.currentFrame) {
+      return true;
+    }
+    return false;
+  }
+  GetKey(key) {
+    if (this.keysDown[key] !== void 0) {
+      return true;
+    }
+    return false;
+  }
+  GetAxis(axisName) {
+    if (axisName == "Horizontal") {
+      return this.horizontalAxis;
+    } else if (axisName == "Vertical") {
+      return this.verticalAxis;
+    }
+  }
+  Tick() {
+  }
+};
+__name(Input, "Input");
+
+// src/InstantiationPool.ts
+var _InstantiationPool = class {
+  constructor() {
+    this.pendingAwakes = [];
+    this.pendingStarts = [];
+  }
+  add(component) {
+    this.pendingAwakes.push(component);
+    this.pendingStarts.push(component);
+  }
+  Load() {
+    for (let i = this.pendingAwakes.length; i > 0; i--) {
+      const component = this.pendingAwakes.pop();
+      component.Awake();
+      component.isAwake = true;
+    }
+    if (this.pendingAwakes.length > 0) {
+      this.Load();
+      return;
+    }
+    for (let i = this.pendingStarts.length; i > 0; i--) {
+      const component = this.pendingStarts.pop();
+      component.Start();
+      component.isStarted = true;
+      if (this.pendingAwakes.length != 0) {
+        this.Load();
+        break;
+      }
+    }
+    return true;
+  }
+};
+__name(_InstantiationPool, "_InstantiationPool");
+var InstantiationPool = new _InstantiationPool();
+
 // src/defaults/TransformDefaults.ts
 var TransformDefaults = class {
 };
+__name(TransformDefaults, "TransformDefaults");
 TransformDefaults.VectorUp = new Vector3(0, 1, 0);
 TransformDefaults.VectorRight = new Vector3(0, 0, 1);
 TransformDefaults.VectorForward = new Vector3(1, 0, 0);
@@ -29489,6 +30271,7 @@ var UUID = class {
     });
   }
 };
+__name(UUID, "UUID");
 
 // src/utils/Mathf.ts
 var Mathf = class {
@@ -29506,6 +30289,7 @@ var Mathf = class {
       return true;
   }
 };
+__name(Mathf, "Mathf");
 Mathf.Deg2Rad = Math.PI * 2 / 360;
 Mathf.Rad2Deg = 360 / (Math.PI * 2);
 Mathf.Epsilon = 1e-6;
@@ -29620,6 +30404,7 @@ var Object3DExtended = class extends Object3D {
     }
   }
 };
+__name(Object3DExtended, "Object3DExtended");
 
 // src/utils/SerializeField.ts
 var SerializableTypes = class {
@@ -29639,6 +30424,7 @@ var SerializableTypes = class {
     return this.types.size;
   }
 };
+__name(SerializableTypes, "SerializableTypes");
 var SerializableTypesInstance = new SerializableTypes();
 function SerializeField(type, propertyKey, descriptor) {
   if (descriptor) {
@@ -29654,8 +30440,10 @@ function SerializeField(type, propertyKey, descriptor) {
       }
     }
   }
+  __name(_SerializeField, "_SerializeField");
   return _SerializeField;
 }
+__name(SerializeField, "SerializeField");
 
 // src/components/Transform.ts
 var Transform = class {
@@ -29669,8 +30457,8 @@ var Transform = class {
     this.children = [];
     this.gameObject = gameObject;
     this.group = new Object3DExtended();
-    this.group["transform"] = this;
-    this.gameObject.scene.GetRenderer().scene.add(this.group);
+    this.group.userData = this;
+    this.gameObject.scene.rendererScene.add(this.group);
   }
   get position() {
     return this.group.worldPosition;
@@ -29735,7 +30523,7 @@ var Transform = class {
         }
         this._parent = null;
       }
-      this.gameObject.scene.GetRenderer().scene.attach(this.group);
+      this.gameObject.scene.rendererScene.attach(this.group);
       return;
     }
     this._parent = parent;
@@ -29756,12 +30544,6 @@ var Transform = class {
     this.group.position.add(point);
   }
   Tick() {
-  }
-  FixedUpdate() {
-  }
-  LateUpdate() {
-  }
-  Update() {
     this.up.copy(TransformDefaults.VectorUp);
     this.up.applyQuaternion(this.rotation);
     this.right.copy(TransformDefaults.VectorRight);
@@ -29769,19 +30551,16 @@ var Transform = class {
     this.forward.copy(TransformDefaults.VectorForward);
     this.forward.applyQuaternion(this.rotation);
   }
-  Start() {
-  }
-  Stop() {
-  }
   Destroy() {
     if (this.parent) {
       this.parent.group.remove(this.group);
     } else {
-      this.gameObject.scene.GetRenderer().scene.remove(this.group);
+      this.gameObject.scene.rendererScene.remove(this.group);
     }
     this.group.clear();
   }
 };
+__name(Transform, "Transform");
 __decorateClass([
   SerializeField
 ], Transform.prototype, "localPosition", 1);
@@ -29887,6 +30666,7 @@ var Component = class {
     this.gameObject.RemoveComponent(this);
   }
 };
+__name(Component, "Component");
 
 // src/components/Camera.ts
 var ProjectionTypes;
@@ -29899,8 +30679,7 @@ var Camera2 = class extends Component {
     super(gameObject, transform);
     this.camera = new PerspectiveCamera(60, 1, 0.1, 1e3);
     this.transform.group.add(this.camera);
-    this.gameObject.scene.SetActiveCamera(this);
-    const canvasDom = this.gameObject.scene.GetRenderer().renderer.domElement;
+    const canvasDom = Runtime.Renderer.renderer.domElement;
     const resizeObserver = new ResizeObserver(() => {
       this.OnResize();
     }).observe(canvasDom);
@@ -29931,7 +30710,7 @@ var Camera2 = class extends Component {
     return this.camera;
   }
   OnResize() {
-    const canvas = this.gameObject.scene.GetRenderer().renderer.domElement;
+    const canvas = Runtime.Renderer.renderer.domElement;
     this.camera.aspect = canvas.parentElement.offsetWidth / canvas.parentElement.offsetHeight;
     this.camera.updateProjectionMatrix();
   }
@@ -29951,6 +30730,7 @@ var Camera2 = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__name(Camera2, "Camera");
 __decorateClass([
   SerializeField
 ], Camera2.prototype, "far", 1);
@@ -29977,6 +30757,7 @@ var MeshFilter = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__name(MeshFilter, "MeshFilter");
 __decorateClass([
   SerializeField
 ], MeshFilter.prototype, "mesh", 1);
@@ -29987,24 +30768,15 @@ var MeshRenderer = class extends Component {
   constructor(gameObject, transform) {
     super(gameObject, transform);
     this._material = DefaultMaterial;
-    this.renderer = this.gameObject.scene.GetRenderer();
     this.AddMeshFromMeshFilter();
-  }
-  get mesh() {
-    return this._mesh;
-  }
-  set mesh(mesh) {
-    this.RemoveMesh();
-    this.AddMeshToViewer(mesh);
-    this._mesh = mesh;
   }
   get material() {
     return this._material;
   }
   set material(material) {
     this._material = material;
-    if (this._mesh) {
-      this._mesh.material = this._material;
+    if (this.mesh) {
+      this.mesh.material = this._material;
     }
   }
   get castShadows() {
@@ -30029,10 +30801,10 @@ var MeshRenderer = class extends Component {
     this.AddMeshFromMeshFilter();
   }
   RemoveMesh() {
-    if (this._mesh) {
-      this.transform.group.remove(this._mesh);
-      this.renderer.scene.remove(this._mesh);
-      const material = this._mesh.material;
+    if (this.mesh) {
+      this.transform.group.remove(this.mesh);
+      this.gameObject.scene.rendererScene.remove(this.mesh);
+      const material = this.mesh.material;
       if (material && material.dispose) {
         material.dispose();
       }
@@ -30041,17 +30813,16 @@ var MeshRenderer = class extends Component {
   AddMeshFromMeshFilter() {
     const geometry = this.GetMeshFromMeshFilter();
     if (geometry) {
-      this.mesh = new Mesh(geometry, this.material);
-      this.mesh.userData.transform = this.transform;
+      const mesh = new Mesh(geometry, this.material);
+      this.RemoveMesh();
+      if (mesh.name == "") {
+        mesh.name = mesh.uuid;
+      }
+      this.transform.group.add(mesh);
+      this.mesh = mesh;
       this.castShadows = true;
       this.receiveShadows = true;
     }
-  }
-  AddMeshToViewer(mesh) {
-    if (mesh.name == "") {
-      mesh.name = mesh.uuid;
-    }
-    this.transform.group.add(mesh);
   }
   GetMeshFromMeshFilter() {
     const meshFilter = this.gameObject.GetComponent(MeshFilter);
@@ -30065,6 +30836,7 @@ var MeshRenderer = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__name(MeshRenderer, "MeshRenderer");
 __decorateClass([
   SerializeField
 ], MeshRenderer.prototype, "material", 1);
@@ -30089,9 +30861,9 @@ var PhysXModule = (() => {
     var moduleOverrides = Object.assign({}, Module);
     var arguments_ = [];
     var thisProgram = "./this.program";
-    var quit_ = (status, toThrow) => {
+    var quit_ = /* @__PURE__ */ __name((status, toThrow) => {
       throw toThrow;
-    };
+    }, "quit_");
     var ENVIRONMENT_IS_WEB = true;
     var ENVIRONMENT_IS_WORKER = false;
     var ENVIRONMENT_IS_NODE = false;
@@ -30103,6 +30875,7 @@ var PhysXModule = (() => {
       }
       return scriptDirectory + path;
     }
+    __name(locateFile, "locateFile");
     var read_, readAsync, readBinary, setWindowTitle;
     if (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) {
       if (ENVIRONMENT_IS_WORKER) {
@@ -30119,22 +30892,22 @@ var PhysXModule = (() => {
         scriptDirectory = "";
       }
       {
-        read_ = (url) => {
+        read_ = /* @__PURE__ */ __name((url) => {
           var xhr = new XMLHttpRequest();
           xhr.open("GET", url, false);
           xhr.send(null);
           return xhr.responseText;
-        };
+        }, "read_");
         if (ENVIRONMENT_IS_WORKER) {
-          readBinary = (url) => {
+          readBinary = /* @__PURE__ */ __name((url) => {
             var xhr = new XMLHttpRequest();
             xhr.open("GET", url, false);
             xhr.responseType = "arraybuffer";
             xhr.send(null);
             return new Uint8Array(xhr.response);
-          };
+          }, "readBinary");
         }
-        readAsync = (url, onload, onerror) => {
+        readAsync = /* @__PURE__ */ __name((url, onload, onerror) => {
           var xhr = new XMLHttpRequest();
           xhr.open("GET", url, true);
           xhr.responseType = "arraybuffer";
@@ -30147,9 +30920,9 @@ var PhysXModule = (() => {
           };
           xhr.onerror = onerror;
           xhr.send(null);
-        };
+        }, "readAsync");
       }
-      setWindowTitle = (title) => document.title = title;
+      setWindowTitle = /* @__PURE__ */ __name((title) => document.title = title, "setWindowTitle");
     } else {
     }
     var out = Module["print"] || console.log.bind(console);
@@ -30192,6 +30965,7 @@ var PhysXModule = (() => {
         }
       }
     }
+    __name(getNativeTypeSize, "getNativeTypeSize");
     function warnOnce(text) {
       if (!warnOnce.shown)
         warnOnce.shown = {};
@@ -30200,12 +30974,14 @@ var PhysXModule = (() => {
         err(text);
       }
     }
+    __name(warnOnce, "warnOnce");
     function uleb128Encode(n) {
       if (n < 128) {
         return [n];
       }
       return [n % 128 | 128, n >> 7];
     }
+    __name(uleb128Encode, "uleb128Encode");
     function convertJsFunctionToWasm(func, sig) {
       if (typeof WebAssembly.Function == "function") {
         var typeNames = {
@@ -30281,6 +31057,7 @@ var PhysXModule = (() => {
       var wrappedFunc = instance.exports["f"];
       return wrappedFunc;
     }
+    __name(convertJsFunctionToWasm, "convertJsFunctionToWasm");
     var freeTableIndexes = [];
     var functionsInTableMap;
     function getEmptyTableSlot() {
@@ -30297,6 +31074,7 @@ var PhysXModule = (() => {
       }
       return wasmTable.length - 1;
     }
+    __name(getEmptyTableSlot, "getEmptyTableSlot");
     function updateTableMap(offset, count) {
       for (var i = offset; i < offset + count; i++) {
         var item = getWasmTableEntry(i);
@@ -30305,6 +31083,7 @@ var PhysXModule = (() => {
         }
       }
     }
+    __name(updateTableMap, "updateTableMap");
     function addFunction(func, sig) {
       if (!functionsInTableMap) {
         functionsInTableMap = /* @__PURE__ */ new WeakMap();
@@ -30326,15 +31105,17 @@ var PhysXModule = (() => {
       functionsInTableMap.set(func, ret);
       return ret;
     }
+    __name(addFunction, "addFunction");
     function removeFunction(index) {
       functionsInTableMap.delete(getWasmTableEntry(index));
       freeTableIndexes.push(index);
     }
+    __name(removeFunction, "removeFunction");
     var tempRet0 = 0;
-    var setTempRet0 = (value) => {
+    var setTempRet0 = /* @__PURE__ */ __name((value) => {
       tempRet0 = value;
-    };
-    var getTempRet0 = () => tempRet0;
+    }, "setTempRet0");
+    var getTempRet0 = /* @__PURE__ */ __name(() => tempRet0, "getTempRet0");
     var wasmBinary;
     if (Module["wasmBinary"])
       wasmBinary = Module["wasmBinary"];
@@ -30371,6 +31152,7 @@ var PhysXModule = (() => {
           abort("invalid type for setValue: " + type);
       }
     }
+    __name(setValue, "setValue");
     function getValue(ptr, type = "i8", noSafe) {
       if (type.charAt(type.length - 1) === "*")
         type = "i32";
@@ -30394,6 +31176,7 @@ var PhysXModule = (() => {
       }
       return null;
     }
+    __name(getValue, "getValue");
     var wasmMemory;
     var ABORT = false;
     var EXITSTATUS;
@@ -30402,10 +31185,12 @@ var PhysXModule = (() => {
         abort(text);
       }
     }
+    __name(assert, "assert");
     function getCFunc(ident) {
       var func = Module["_" + ident];
       return func;
     }
+    __name(getCFunc, "getCFunc");
     function ccall(ident, returnType, argTypes, args, opts) {
       var toC = {
         "string": function(str) {
@@ -30430,6 +31215,7 @@ var PhysXModule = (() => {
           return Boolean(ret2);
         return ret2;
       }
+      __name(convertReturnValue, "convertReturnValue");
       var func = getCFunc(ident);
       var cArgs = [];
       var stack = 0;
@@ -30451,9 +31237,11 @@ var PhysXModule = (() => {
           stackRestore(stack);
         return convertReturnValue(ret2);
       }
+      __name(onDone, "onDone");
       ret = onDone(ret);
       return ret;
     }
+    __name(ccall, "ccall");
     function cwrap(ident, returnType, argTypes, opts) {
       argTypes = argTypes || [];
       var numericArgs = argTypes.every(function(type) {
@@ -30467,6 +31255,7 @@ var PhysXModule = (() => {
         return ccall(ident, returnType, argTypes, arguments, opts);
       };
     }
+    __name(cwrap, "cwrap");
     var ALLOC_NORMAL = 0;
     var ALLOC_STACK = 1;
     function allocate(slab, allocator) {
@@ -30482,6 +31271,7 @@ var PhysXModule = (() => {
       HEAPU8.set(slab, ret);
       return ret;
     }
+    __name(allocate, "allocate");
     var UTF8Decoder = typeof TextDecoder != "undefined" ? new TextDecoder("utf8") : void 0;
     function UTF8ArrayToString(heapOrArray, idx, maxBytesToRead) {
       var endIdx = idx + maxBytesToRead;
@@ -30519,10 +31309,12 @@ var PhysXModule = (() => {
       }
       return str;
     }
+    __name(UTF8ArrayToString, "UTF8ArrayToString");
     function UTF8ToString(ptr, maxBytesToRead) {
       ;
       return ptr ? UTF8ArrayToString(HEAPU8, ptr, maxBytesToRead) : "";
     }
+    __name(UTF8ToString, "UTF8ToString");
     function stringToUTF8Array(str, heap, outIdx, maxBytesToWrite) {
       if (!(maxBytesToWrite > 0))
         return 0;
@@ -30561,9 +31353,11 @@ var PhysXModule = (() => {
       heap[outIdx] = 0;
       return outIdx - startIdx;
     }
+    __name(stringToUTF8Array, "stringToUTF8Array");
     function stringToUTF8(str, outPtr, maxBytesToWrite) {
       return stringToUTF8Array(str, HEAPU8, outPtr, maxBytesToWrite);
     }
+    __name(stringToUTF8, "stringToUTF8");
     function lengthBytesUTF8(str) {
       var len = 0;
       for (var i = 0; i < str.length; ++i) {
@@ -30581,6 +31375,7 @@ var PhysXModule = (() => {
       }
       return len;
     }
+    __name(lengthBytesUTF8, "lengthBytesUTF8");
     function AsciiToString(ptr) {
       var str = "";
       while (1) {
@@ -30590,9 +31385,11 @@ var PhysXModule = (() => {
         str += String.fromCharCode(ch);
       }
     }
+    __name(AsciiToString, "AsciiToString");
     function stringToAscii(str, outPtr) {
       return writeAsciiToMemory(str, outPtr, false);
     }
+    __name(stringToAscii, "stringToAscii");
     var UTF16Decoder = typeof TextDecoder != "undefined" ? new TextDecoder("utf-16le") : void 0;
     function UTF16ToString(ptr, maxBytesToRead) {
       var endPtr = ptr;
@@ -30614,6 +31411,7 @@ var PhysXModule = (() => {
         return str;
       }
     }
+    __name(UTF16ToString, "UTF16ToString");
     function stringToUTF16(str, outPtr, maxBytesToWrite) {
       if (maxBytesToWrite === void 0) {
         maxBytesToWrite = 2147483647;
@@ -30631,9 +31429,11 @@ var PhysXModule = (() => {
       HEAP16[outPtr >> 1] = 0;
       return outPtr - startPtr;
     }
+    __name(stringToUTF16, "stringToUTF16");
     function lengthBytesUTF16(str) {
       return str.length * 2;
     }
+    __name(lengthBytesUTF16, "lengthBytesUTF16");
     function UTF32ToString(ptr, maxBytesToRead) {
       var i = 0;
       var str = "";
@@ -30651,6 +31451,7 @@ var PhysXModule = (() => {
       }
       return str;
     }
+    __name(UTF32ToString, "UTF32ToString");
     function stringToUTF32(str, outPtr, maxBytesToWrite) {
       if (maxBytesToWrite === void 0) {
         maxBytesToWrite = 2147483647;
@@ -30673,6 +31474,7 @@ var PhysXModule = (() => {
       HEAP32[outPtr >> 2] = 0;
       return outPtr - startPtr;
     }
+    __name(stringToUTF32, "stringToUTF32");
     function lengthBytesUTF32(str) {
       var len = 0;
       for (var i = 0; i < str.length; ++i) {
@@ -30683,6 +31485,7 @@ var PhysXModule = (() => {
       }
       return len;
     }
+    __name(lengthBytesUTF32, "lengthBytesUTF32");
     function allocateUTF8(str) {
       var size = lengthBytesUTF8(str) + 1;
       var ret = _malloc(size);
@@ -30690,12 +31493,14 @@ var PhysXModule = (() => {
         stringToUTF8Array(str, HEAP8, ret, size);
       return ret;
     }
+    __name(allocateUTF8, "allocateUTF8");
     function allocateUTF8OnStack(str) {
       var size = lengthBytesUTF8(str) + 1;
       var ret = stackAlloc(size);
       stringToUTF8Array(str, HEAP8, ret, size);
       return ret;
     }
+    __name(allocateUTF8OnStack, "allocateUTF8OnStack");
     function writeStringToMemory(string, buffer2, dontAddNull) {
       warnOnce("writeStringToMemory is deprecated and should not be called! Use stringToUTF8() instead!");
       var lastChar, end;
@@ -30707,9 +31512,11 @@ var PhysXModule = (() => {
       if (dontAddNull)
         HEAP8[end] = lastChar;
     }
+    __name(writeStringToMemory, "writeStringToMemory");
     function writeArrayToMemory(array, buffer2) {
       HEAP8.set(array, buffer2);
     }
+    __name(writeArrayToMemory, "writeArrayToMemory");
     function writeAsciiToMemory(str, buffer2, dontAddNull) {
       for (var i = 0; i < str.length; ++i) {
         HEAP8[buffer2++ >> 0] = str.charCodeAt(i);
@@ -30717,6 +31524,7 @@ var PhysXModule = (() => {
       if (!dontAddNull)
         HEAP8[buffer2 >> 0] = 0;
     }
+    __name(writeAsciiToMemory, "writeAsciiToMemory");
     var HEAP, buffer, HEAP8, HEAPU8, HEAP16, HEAPU16, HEAP32, HEAPU32, HEAPF32, HEAPF64;
     function updateGlobalBufferAndViews(buf) {
       buffer = buf;
@@ -30729,6 +31537,7 @@ var PhysXModule = (() => {
       Module["HEAPF32"] = HEAPF32 = new Float32Array(buf);
       Module["HEAPF64"] = HEAPF64 = new Float64Array(buf);
     }
+    __name(updateGlobalBufferAndViews, "updateGlobalBufferAndViews");
     var TOTAL_STACK = 5242880;
     var INITIAL_MEMORY = Module["INITIAL_MEMORY"] || 268435456;
     var wasmTable;
@@ -30740,6 +31549,7 @@ var PhysXModule = (() => {
     function keepRuntimeAlive() {
       return noExitRuntime;
     }
+    __name(keepRuntimeAlive, "keepRuntimeAlive");
     function preRun() {
       if (Module["preRun"]) {
         if (typeof Module["preRun"] == "function")
@@ -30750,10 +31560,12 @@ var PhysXModule = (() => {
       }
       callRuntimeCallbacks(__ATPRERUN__);
     }
+    __name(preRun, "preRun");
     function initRuntime() {
       runtimeInitialized = true;
       callRuntimeCallbacks(__ATINIT__);
     }
+    __name(initRuntime, "initRuntime");
     function postRun() {
       if (Module["postRun"]) {
         if (typeof Module["postRun"] == "function")
@@ -30764,29 +31576,36 @@ var PhysXModule = (() => {
       }
       callRuntimeCallbacks(__ATPOSTRUN__);
     }
+    __name(postRun, "postRun");
     function addOnPreRun(cb) {
       __ATPRERUN__.unshift(cb);
     }
+    __name(addOnPreRun, "addOnPreRun");
     function addOnInit(cb) {
       __ATINIT__.unshift(cb);
     }
+    __name(addOnInit, "addOnInit");
     function addOnExit(cb) {
     }
+    __name(addOnExit, "addOnExit");
     function addOnPostRun(cb) {
       __ATPOSTRUN__.unshift(cb);
     }
+    __name(addOnPostRun, "addOnPostRun");
     var runDependencies = 0;
     var runDependencyWatcher = null;
     var dependenciesFulfilled = null;
     function getUniqueRunDependency(id) {
       return id;
     }
+    __name(getUniqueRunDependency, "getUniqueRunDependency");
     function addRunDependency(id) {
       runDependencies++;
       if (Module["monitorRunDependencies"]) {
         Module["monitorRunDependencies"](runDependencies);
       }
     }
+    __name(addRunDependency, "addRunDependency");
     function removeRunDependency(id) {
       runDependencies--;
       if (Module["monitorRunDependencies"]) {
@@ -30804,6 +31623,7 @@ var PhysXModule = (() => {
         }
       }
     }
+    __name(removeRunDependency, "removeRunDependency");
     function abort(what) {
       {
         if (Module["onAbort"]) {
@@ -30819,13 +31639,16 @@ var PhysXModule = (() => {
       readyPromiseReject(e);
       throw e;
     }
+    __name(abort, "abort");
     var dataURIPrefix = "data:application/octet-stream;base64,";
     function isDataURI(filename) {
       return filename.startsWith(dataURIPrefix);
     }
+    __name(isDataURI, "isDataURI");
     function isFileURI(filename) {
       return filename.startsWith("file://");
     }
+    __name(isFileURI, "isFileURI");
     var wasmBinaryFile;
     if (Module["locateFile"]) {
       wasmBinaryFile = "physx-js-webidl.wasm.wasm";
@@ -30849,6 +31672,7 @@ var PhysXModule = (() => {
         abort(err2);
       }
     }
+    __name(getBinary, "getBinary");
     function getBinaryPromise() {
       if (!wasmBinary && (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER)) {
         if (typeof fetch == "function") {
@@ -30866,6 +31690,7 @@ var PhysXModule = (() => {
         return getBinary(wasmBinaryFile);
       });
     }
+    __name(getBinaryPromise, "getBinaryPromise");
     function createWasm() {
       var info = {
         "env": asmLibraryArg,
@@ -30880,10 +31705,12 @@ var PhysXModule = (() => {
         addOnInit(Module["asm"]["__wasm_call_ctors"]);
         removeRunDependency("wasm-instantiate");
       }
+      __name(receiveInstance, "receiveInstance");
       addRunDependency("wasm-instantiate");
       function receiveInstantiationResult(result) {
         receiveInstance(result["instance"]);
       }
+      __name(receiveInstantiationResult, "receiveInstantiationResult");
       function instantiateArrayBuffer(receiver) {
         return getBinaryPromise().then(function(binary) {
           return WebAssembly.instantiate(binary, info);
@@ -30894,6 +31721,7 @@ var PhysXModule = (() => {
           abort(reason);
         });
       }
+      __name(instantiateArrayBuffer, "instantiateArrayBuffer");
       function instantiateAsync() {
         if (!wasmBinary && typeof WebAssembly.instantiateStreaming == "function" && !isDataURI(wasmBinaryFile) && typeof fetch == "function") {
           return fetch(wasmBinaryFile, { credentials: "same-origin" }).then(function(response) {
@@ -30908,6 +31736,7 @@ var PhysXModule = (() => {
           return instantiateArrayBuffer(receiveInstantiationResult);
         }
       }
+      __name(instantiateAsync, "instantiateAsync");
       if (Module["instantiateWasm"]) {
         try {
           var exports = Module["instantiateWasm"](info, receiveInstance);
@@ -30920,6 +31749,7 @@ var PhysXModule = (() => {
       instantiateAsync().catch(readyPromiseReject);
       return {};
     }
+    __name(createWasm, "createWasm");
     var tempDouble;
     var tempI64;
     var ASM_CONSTS = {
@@ -30993,6 +31823,7 @@ var PhysXModule = (() => {
     function array_bounds_check_error(idx, size) {
       throw "Array index " + idx + " out of bounds: [0," + size + ")";
     }
+    __name(array_bounds_check_error, "array_bounds_check_error");
     function callRuntimeCallbacks(callbacks) {
       while (callbacks.length > 0) {
         var callback = callbacks.shift();
@@ -31012,15 +31843,18 @@ var PhysXModule = (() => {
         }
       }
     }
+    __name(callRuntimeCallbacks, "callRuntimeCallbacks");
     function withStackSave(f) {
       var stack = stackSave();
       var ret = f();
       stackRestore(stack);
       return ret;
     }
+    __name(withStackSave, "withStackSave");
     function demangle(func) {
       return func;
     }
+    __name(demangle, "demangle");
     function demangleAll(text) {
       var regex = /\b_Z[\w\d_]+/g;
       return text.replace(regex, function(x) {
@@ -31028,6 +31862,7 @@ var PhysXModule = (() => {
         return x === y ? x : y + " [" + x + "]";
       });
     }
+    __name(demangleAll, "demangleAll");
     var wasmTableMirror = [];
     function getWasmTableEntry(funcPtr) {
       var func = wasmTableMirror[funcPtr];
@@ -31038,12 +31873,14 @@ var PhysXModule = (() => {
       }
       return func;
     }
+    __name(getWasmTableEntry, "getWasmTableEntry");
     function handleException(e) {
       if (e instanceof ExitStatus || e == "unwind") {
         return EXITSTATUS;
       }
       quit_(1, e);
     }
+    __name(handleException, "handleException");
     function jsStackTrace() {
       var error = new Error();
       if (!error.stack) {
@@ -31058,19 +31895,23 @@ var PhysXModule = (() => {
       }
       return error.stack.toString();
     }
+    __name(jsStackTrace, "jsStackTrace");
     function setWasmTableEntry(idx, func) {
       wasmTable.set(idx, func);
       wasmTableMirror[idx] = wasmTable.get(idx);
     }
+    __name(setWasmTableEntry, "setWasmTableEntry");
     function stackTrace() {
       var js = jsStackTrace();
       if (Module["extraStackTrace"])
         js += "\n" + Module["extraStackTrace"]();
       return demangleAll(js);
     }
+    __name(stackTrace, "stackTrace");
     function ___cxa_allocate_exception(size) {
       return _malloc(size + 24) + 24;
     }
+    __name(___cxa_allocate_exception, "___cxa_allocate_exception");
     function ExceptionInfo(excPtr) {
       this.excPtr = excPtr;
       this.ptr = excPtr - 24;
@@ -31137,6 +31978,7 @@ var PhysXModule = (() => {
         return this.excPtr;
       };
     }
+    __name(ExceptionInfo, "ExceptionInfo");
     var exceptionLast = 0;
     var uncaughtExceptionCount = 0;
     function ___cxa_throw(ptr, type, destructor) {
@@ -31146,17 +31988,21 @@ var PhysXModule = (() => {
       uncaughtExceptionCount++;
       throw ptr;
     }
+    __name(___cxa_throw, "___cxa_throw");
     function __emscripten_date_now() {
       return Date.now();
     }
+    __name(__emscripten_date_now, "__emscripten_date_now");
     var nowIsMonotonic = true;
     ;
     function __emscripten_get_now_is_monotonic() {
       return nowIsMonotonic;
     }
+    __name(__emscripten_get_now_is_monotonic, "__emscripten_get_now_is_monotonic");
     function _abort() {
       abort("");
     }
+    __name(_abort, "_abort");
     var readAsmConstArgsArray = [];
     function readAsmConstArgs(sigPtr, buf) {
       ;
@@ -31172,30 +32018,37 @@ var PhysXModule = (() => {
       }
       return readAsmConstArgsArray;
     }
+    __name(readAsmConstArgs, "readAsmConstArgs");
     function _emscripten_asm_const_int(code, sigPtr, argbuf) {
       var args = readAsmConstArgs(sigPtr, argbuf);
       return ASM_CONSTS[code].apply(null, args);
     }
+    __name(_emscripten_asm_const_int, "_emscripten_asm_const_int");
     var _emscripten_get_now;
-    _emscripten_get_now = () => performance.now();
+    _emscripten_get_now = /* @__PURE__ */ __name(() => performance.now(), "_emscripten_get_now");
     ;
     function _emscripten_memcpy_big(dest, src, num) {
       HEAPU8.copyWithin(dest, src, src + num);
     }
+    __name(_emscripten_memcpy_big, "_emscripten_memcpy_big");
     function _emscripten_get_heap_max() {
       return HEAPU8.length;
     }
+    __name(_emscripten_get_heap_max, "_emscripten_get_heap_max");
     function abortOnCannotGrowMemory(requestedSize) {
       abort("OOM");
     }
+    __name(abortOnCannotGrowMemory, "abortOnCannotGrowMemory");
     function _emscripten_resize_heap(requestedSize) {
       var oldSize = HEAPU8.length;
       requestedSize = requestedSize >>> 0;
       abortOnCannotGrowMemory(requestedSize);
     }
+    __name(_emscripten_resize_heap, "_emscripten_resize_heap");
     function _exit(status) {
       exit(status);
     }
+    __name(_exit, "_exit");
     function flush_NO_FILESYSTEM() {
       var buffers = SYSCALLS.buffers;
       if (buffers[1].length)
@@ -31203,6 +32056,7 @@ var PhysXModule = (() => {
       if (buffers[2].length)
         SYSCALLS.printChar(2, 10);
     }
+    __name(flush_NO_FILESYSTEM, "flush_NO_FILESYSTEM");
     var SYSCALLS = { buffers: [null, [], []], printChar: function(stream, curr) {
       var buffer2 = SYSCALLS.buffers[stream];
       if (curr === 0 || curr === 10) {
@@ -31234,9 +32088,11 @@ var PhysXModule = (() => {
       HEAP32[pnum >> 2] = num;
       return 0;
     }
+    __name(_fd_write, "_fd_write");
     function _setTempRet0(val) {
       setTempRet0(val);
     }
+    __name(_setTempRet0, "_setTempRet0");
     var ASSERTIONS = false;
     function intArrayFromString(stringy, dontAddNull, length) {
       var len = length > 0 ? length : lengthBytesUTF8(stringy) + 1;
@@ -31246,6 +32102,7 @@ var PhysXModule = (() => {
         u8array.length = numBytesWritten;
       return u8array;
     }
+    __name(intArrayFromString, "intArrayFromString");
     function intArrayToString(array) {
       var ret = [];
       for (var i = 0; i < array.length; i++) {
@@ -31260,6 +32117,7 @@ var PhysXModule = (() => {
       }
       return ret.join("");
     }
+    __name(intArrayToString, "intArrayToString");
     var asmLibraryArg = {
       "__cxa_allocate_exception": ___cxa_allocate_exception,
       "__cxa_throw": ___cxa_throw,
@@ -42013,13 +42871,14 @@ var PhysXModule = (() => {
       this.message = "Program terminated with exit(" + status + ")";
       this.status = status;
     }
+    __name(ExitStatus, "ExitStatus");
     var calledMain = false;
-    dependenciesFulfilled = function runCaller() {
+    dependenciesFulfilled = /* @__PURE__ */ __name(function runCaller() {
       if (!calledRun)
         run();
       if (!calledRun)
         dependenciesFulfilled = runCaller;
-    };
+    }, "runCaller");
     function run(args) {
       args = args || arguments_;
       if (runDependencies > 0) {
@@ -42042,6 +42901,7 @@ var PhysXModule = (() => {
           Module["onRuntimeInitialized"]();
         postRun();
       }
+      __name(doRun, "doRun");
       if (Module["setStatus"]) {
         Module["setStatus"]("Running...");
         setTimeout(function() {
@@ -42054,11 +42914,13 @@ var PhysXModule = (() => {
         doRun();
       }
     }
+    __name(run, "run");
     Module["run"] = run;
     function exit(status, implicit) {
       EXITSTATUS = status;
       procExit(status);
     }
+    __name(exit, "exit");
     function procExit(code) {
       EXITSTATUS = code;
       if (!keepRuntimeAlive()) {
@@ -42068,6 +42930,7 @@ var PhysXModule = (() => {
       }
       quit_(code, new ExitStatus(code));
     }
+    __name(procExit, "procExit");
     if (Module["preInit"]) {
       if (typeof Module["preInit"] == "function")
         Module["preInit"] = [Module["preInit"]];
@@ -42078,6 +42941,7 @@ var PhysXModule = (() => {
     run();
     function WrapperObject() {
     }
+    __name(WrapperObject, "WrapperObject");
     WrapperObject.prototype = Object.create(WrapperObject.prototype);
     WrapperObject.prototype.constructor = WrapperObject;
     WrapperObject.prototype.__class__ = WrapperObject;
@@ -42086,6 +42950,7 @@ var PhysXModule = (() => {
     function getCache(__class__) {
       return (__class__ || WrapperObject).__cache__;
     }
+    __name(getCache, "getCache");
     Module["getCache"] = getCache;
     function wrapPointer(ptr, __class__) {
       var cache = getCache(__class__);
@@ -42096,10 +42961,12 @@ var PhysXModule = (() => {
       ret.ptr = ptr;
       return cache[ptr] = ret;
     }
+    __name(wrapPointer, "wrapPointer");
     Module["wrapPointer"] = wrapPointer;
     function castObject(obj, __class__) {
       return wrapPointer(obj.ptr, __class__);
     }
+    __name(castObject, "castObject");
     Module["castObject"] = castObject;
     Module["NULL"] = wrapPointer(0);
     function destroy(obj) {
@@ -42108,18 +42975,22 @@ var PhysXModule = (() => {
       obj["__destroy__"]();
       delete getCache(obj.__class__)[obj.ptr];
     }
+    __name(destroy, "destroy");
     Module["destroy"] = destroy;
     function compare(obj1, obj2) {
       return obj1.ptr === obj2.ptr;
     }
+    __name(compare, "compare");
     Module["compare"] = compare;
     function getPointer(obj) {
       return obj.ptr;
     }
+    __name(getPointer, "getPointer");
     Module["getPointer"] = getPointer;
     function getClass(obj) {
       return obj.__class__;
     }
+    __name(getClass, "getClass");
     Module["getClass"] = getClass;
     var ensureCache = {
       buffer: 0,
@@ -42190,6 +43061,7 @@ var PhysXModule = (() => {
       }
       return value;
     }
+    __name(ensureString, "ensureString");
     function ensureInt8(value) {
       if (typeof value === "object") {
         var offset = ensureCache.alloc(value, HEAP8);
@@ -42198,6 +43070,7 @@ var PhysXModule = (() => {
       }
       return value;
     }
+    __name(ensureInt8, "ensureInt8");
     function ensureInt16(value) {
       if (typeof value === "object") {
         var offset = ensureCache.alloc(value, HEAP16);
@@ -42206,6 +43079,7 @@ var PhysXModule = (() => {
       }
       return value;
     }
+    __name(ensureInt16, "ensureInt16");
     function ensureInt32(value) {
       if (typeof value === "object") {
         var offset = ensureCache.alloc(value, HEAP32);
@@ -42214,6 +43088,7 @@ var PhysXModule = (() => {
       }
       return value;
     }
+    __name(ensureInt32, "ensureInt32");
     function ensureFloat32(value) {
       if (typeof value === "object") {
         var offset = ensureCache.alloc(value, HEAPF32);
@@ -42222,6 +43097,7 @@ var PhysXModule = (() => {
       }
       return value;
     }
+    __name(ensureFloat32, "ensureFloat32");
     function ensureFloat64(value) {
       if (typeof value === "object") {
         var offset = ensureCache.alloc(value, HEAPF64);
@@ -42230,9 +43106,11 @@ var PhysXModule = (() => {
       }
       return value;
     }
+    __name(ensureFloat64, "ensureFloat64");
     function PxBase() {
       throw "cannot construct a PxBase, no constructor in IDL";
     }
+    __name(PxBase, "PxBase");
     PxBase.prototype = Object.create(WrapperObject.prototype);
     PxBase.prototype.constructor = PxBase;
     PxBase.prototype.__class__ = PxBase;
@@ -42282,6 +43160,7 @@ var PhysXModule = (() => {
     function PxActor() {
       throw "cannot construct a PxActor, no constructor in IDL";
     }
+    __name(PxActor, "PxActor");
     PxActor.prototype = Object.create(PxBase.prototype);
     PxActor.prototype.constructor = PxActor;
     PxActor.prototype.__class__ = PxActor;
@@ -42413,6 +43292,7 @@ var PhysXModule = (() => {
     function PxActorShape() {
       throw "cannot construct a PxActorShape, no constructor in IDL";
     }
+    __name(PxActorShape, "PxActorShape");
     PxActorShape.prototype = Object.create(WrapperObject.prototype);
     PxActorShape.prototype.constructor = PxActorShape;
     PxActorShape.prototype.__class__ = PxActorShape;
@@ -42447,6 +43327,7 @@ var PhysXModule = (() => {
     function PxQueryHit() {
       throw "cannot construct a PxQueryHit, no constructor in IDL";
     }
+    __name(PxQueryHit, "PxQueryHit");
     PxQueryHit.prototype = Object.create(PxActorShape.prototype);
     PxQueryHit.prototype.constructor = PxQueryHit;
     PxQueryHit.prototype.__class__ = PxQueryHit;
@@ -42492,6 +43373,7 @@ var PhysXModule = (() => {
     function PxRigidActor() {
       throw "cannot construct a PxRigidActor, no constructor in IDL";
     }
+    __name(PxRigidActor, "PxRigidActor");
     PxRigidActor.prototype = Object.create(PxActor.prototype);
     PxRigidActor.prototype.constructor = PxRigidActor;
     PxRigidActor.prototype.__class__ = PxRigidActor;
@@ -42666,6 +43548,7 @@ var PhysXModule = (() => {
     function PxSimulationEventCallback() {
       throw "cannot construct a PxSimulationEventCallback, no constructor in IDL";
     }
+    __name(PxSimulationEventCallback, "PxSimulationEventCallback");
     PxSimulationEventCallback.prototype = Object.create(WrapperObject.prototype);
     PxSimulationEventCallback.prototype.constructor = PxSimulationEventCallback;
     PxSimulationEventCallback.prototype.__class__ = PxSimulationEventCallback;
@@ -42678,6 +43561,7 @@ var PhysXModule = (() => {
     function PxVehicleWheels() {
       throw "cannot construct a PxVehicleWheels, no constructor in IDL";
     }
+    __name(PxVehicleWheels, "PxVehicleWheels");
     PxVehicleWheels.prototype = Object.create(PxBase.prototype);
     PxVehicleWheels.prototype.constructor = PxVehicleWheels;
     PxVehicleWheels.prototype.__class__ = PxVehicleWheels;
@@ -42769,6 +43653,7 @@ var PhysXModule = (() => {
     function PxPvdTransport() {
       throw "cannot construct a PxPvdTransport, no constructor in IDL";
     }
+    __name(PxPvdTransport, "PxPvdTransport");
     PxPvdTransport.prototype = Object.create(WrapperObject.prototype);
     PxPvdTransport.prototype.constructor = PxPvdTransport;
     PxPvdTransport.prototype.__class__ = PxPvdTransport;
@@ -42792,6 +43677,7 @@ var PhysXModule = (() => {
     function PxArticulationBase() {
       throw "cannot construct a PxArticulationBase, no constructor in IDL";
     }
+    __name(PxArticulationBase, "PxArticulationBase");
     PxArticulationBase.prototype = Object.create(PxBase.prototype);
     PxArticulationBase.prototype.constructor = PxArticulationBase;
     PxArticulationBase.prototype.__class__ = PxArticulationBase;
@@ -42945,6 +43831,7 @@ var PhysXModule = (() => {
     function PxArticulationJointBase() {
       throw "cannot construct a PxArticulationJointBase, no constructor in IDL";
     }
+    __name(PxArticulationJointBase, "PxArticulationJointBase");
     PxArticulationJointBase.prototype = Object.create(PxBase.prototype);
     PxArticulationJointBase.prototype.constructor = PxArticulationJointBase;
     PxArticulationJointBase.prototype.__class__ = PxArticulationJointBase;
@@ -43028,6 +43915,7 @@ var PhysXModule = (() => {
     function PxLocationHit() {
       throw "cannot construct a PxLocationHit, no constructor in IDL";
     }
+    __name(PxLocationHit, "PxLocationHit");
     PxLocationHit.prototype = Object.create(PxQueryHit.prototype);
     PxLocationHit.prototype.constructor = PxLocationHit;
     PxLocationHit.prototype.__class__ = PxLocationHit;
@@ -43117,6 +44005,7 @@ var PhysXModule = (() => {
     function PxOverlapCallback() {
       throw "cannot construct a PxOverlapCallback, no constructor in IDL";
     }
+    __name(PxOverlapCallback, "PxOverlapCallback");
     PxOverlapCallback.prototype = Object.create(WrapperObject.prototype);
     PxOverlapCallback.prototype.constructor = PxOverlapCallback;
     PxOverlapCallback.prototype.__class__ = PxOverlapCallback;
@@ -43134,6 +44023,7 @@ var PhysXModule = (() => {
     function PxRaycastCallback() {
       throw "cannot construct a PxRaycastCallback, no constructor in IDL";
     }
+    __name(PxRaycastCallback, "PxRaycastCallback");
     PxRaycastCallback.prototype = Object.create(WrapperObject.prototype);
     PxRaycastCallback.prototype.constructor = PxRaycastCallback;
     PxRaycastCallback.prototype.__class__ = PxRaycastCallback;
@@ -43151,6 +44041,7 @@ var PhysXModule = (() => {
     function PxRigidBody() {
       throw "cannot construct a PxRigidBody, no constructor in IDL";
     }
+    __name(PxRigidBody, "PxRigidBody");
     PxRigidBody.prototype = Object.create(PxRigidActor.prototype);
     PxRigidBody.prototype.constructor = PxRigidBody;
     PxRigidBody.prototype.__class__ = PxRigidBody;
@@ -43584,6 +44475,7 @@ var PhysXModule = (() => {
     function SimpleSimulationEventCallback() {
       throw "cannot construct a SimpleSimulationEventCallback, no constructor in IDL";
     }
+    __name(SimpleSimulationEventCallback, "SimpleSimulationEventCallback");
     SimpleSimulationEventCallback.prototype = Object.create(PxSimulationEventCallback.prototype);
     SimpleSimulationEventCallback.prototype.constructor = SimpleSimulationEventCallback;
     SimpleSimulationEventCallback.prototype.__class__ = SimpleSimulationEventCallback;
@@ -43643,6 +44535,7 @@ var PhysXModule = (() => {
     function PxSweepCallback() {
       throw "cannot construct a PxSweepCallback, no constructor in IDL";
     }
+    __name(PxSweepCallback, "PxSweepCallback");
     PxSweepCallback.prototype = Object.create(WrapperObject.prototype);
     PxSweepCallback.prototype.constructor = PxSweepCallback;
     PxSweepCallback.prototype.__class__ = PxSweepCallback;
@@ -43660,6 +44553,7 @@ var PhysXModule = (() => {
     function PxVehicleDrive() {
       throw "cannot construct a PxVehicleDrive, no constructor in IDL";
     }
+    __name(PxVehicleDrive, "PxVehicleDrive");
     PxVehicleDrive.prototype = Object.create(PxVehicleWheels.prototype);
     PxVehicleDrive.prototype.constructor = PxVehicleDrive;
     PxVehicleDrive.prototype.__class__ = PxVehicleDrive;
@@ -43763,6 +44657,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleDriveSimData_PxVehicleDriveSimData_0();
       getCache(PxVehicleDriveSimData)[this.ptr] = this;
     }
+    __name(PxVehicleDriveSimData, "PxVehicleDriveSimData");
     ;
     ;
     PxVehicleDriveSimData.prototype = Object.create(WrapperObject.prototype);
@@ -43825,6 +44720,7 @@ var PhysXModule = (() => {
     function PxGeometry() {
       throw "cannot construct a PxGeometry, no constructor in IDL";
     }
+    __name(PxGeometry, "PxGeometry");
     PxGeometry.prototype = Object.create(WrapperObject.prototype);
     PxGeometry.prototype.constructor = PxGeometry;
     PxGeometry.prototype.__class__ = PxGeometry;
@@ -43843,6 +44739,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxSimpleTriangleMesh_PxSimpleTriangleMesh_0();
       getCache(PxSimpleTriangleMesh)[this.ptr] = this;
     }
+    __name(PxSimpleTriangleMesh, "PxSimpleTriangleMesh");
     ;
     ;
     PxSimpleTriangleMesh.prototype = Object.create(WrapperObject.prototype);
@@ -43900,6 +44797,7 @@ var PhysXModule = (() => {
     function PxCpuDispatcher() {
       throw "cannot construct a PxCpuDispatcher, no constructor in IDL";
     }
+    __name(PxCpuDispatcher, "PxCpuDispatcher");
     PxCpuDispatcher.prototype = Object.create(WrapperObject.prototype);
     PxCpuDispatcher.prototype.constructor = PxCpuDispatcher;
     PxCpuDispatcher.prototype.__class__ = PxCpuDispatcher;
@@ -43912,6 +44810,7 @@ var PhysXModule = (() => {
     function PxErrorCallback() {
       throw "cannot construct a PxErrorCallback, no constructor in IDL";
     }
+    __name(PxErrorCallback, "PxErrorCallback");
     PxErrorCallback.prototype = Object.create(WrapperObject.prototype);
     PxErrorCallback.prototype.constructor = PxErrorCallback;
     PxErrorCallback.prototype.__class__ = PxErrorCallback;
@@ -43942,6 +44841,7 @@ var PhysXModule = (() => {
     function PxInputData() {
       throw "cannot construct a PxInputData, no constructor in IDL";
     }
+    __name(PxInputData, "PxInputData");
     PxInputData.prototype = Object.create(WrapperObject.prototype);
     PxInputData.prototype.constructor = PxInputData;
     PxInputData.prototype.__class__ = PxInputData;
@@ -43954,6 +44854,7 @@ var PhysXModule = (() => {
     function PxOutputStream() {
       throw "cannot construct a PxOutputStream, no constructor in IDL";
     }
+    __name(PxOutputStream, "PxOutputStream");
     PxOutputStream.prototype = Object.create(WrapperObject.prototype);
     PxOutputStream.prototype.constructor = PxOutputStream;
     PxOutputStream.prototype.__class__ = PxOutputStream;
@@ -43966,6 +44867,7 @@ var PhysXModule = (() => {
     function PxJoint() {
       throw "cannot construct a PxJoint, no constructor in IDL";
     }
+    __name(PxJoint, "PxJoint");
     PxJoint.prototype = Object.create(PxBase.prototype);
     PxJoint.prototype.constructor = PxJoint;
     PxJoint.prototype.__class__ = PxJoint;
@@ -44134,6 +45036,7 @@ var PhysXModule = (() => {
     function PxJointLimitParameters() {
       throw "cannot construct a PxJointLimitParameters, no constructor in IDL";
     }
+    __name(PxJointLimitParameters, "PxJointLimitParameters");
     PxJointLimitParameters.prototype = Object.create(WrapperObject.prototype);
     PxJointLimitParameters.prototype.constructor = PxJointLimitParameters;
     PxJointLimitParameters.prototype.__class__ = PxJointLimitParameters;
@@ -44212,6 +45115,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxSpring_PxSpring_2(stiffness, damping);
       getCache(PxSpring)[this.ptr] = this;
     }
+    __name(PxSpring, "PxSpring");
     ;
     ;
     PxSpring.prototype = Object.create(WrapperObject.prototype);
@@ -44248,6 +45152,7 @@ var PhysXModule = (() => {
     function PxController() {
       throw "cannot construct a PxController, no constructor in IDL";
     }
+    __name(PxController, "PxController");
     PxController.prototype = Object.create(WrapperObject.prototype);
     PxController.prototype.constructor = PxController;
     PxController.prototype.__class__ = PxController;
@@ -44416,6 +45321,7 @@ var PhysXModule = (() => {
     function PxControllerDesc() {
       throw "cannot construct a PxControllerDesc, no constructor in IDL";
     }
+    __name(PxControllerDesc, "PxControllerDesc");
     PxControllerDesc.prototype = Object.create(WrapperObject.prototype);
     PxControllerDesc.prototype.constructor = PxControllerDesc;
     PxControllerDesc.prototype.__class__ = PxControllerDesc;
@@ -44599,6 +45505,7 @@ var PhysXModule = (() => {
     function PxControllerHit() {
       throw "cannot construct a PxControllerHit, no constructor in IDL";
     }
+    __name(PxControllerHit, "PxControllerHit");
     PxControllerHit.prototype = Object.create(WrapperObject.prototype);
     PxControllerHit.prototype.constructor = PxControllerHit;
     PxControllerHit.prototype.__class__ = PxControllerHit;
@@ -44666,6 +45573,7 @@ var PhysXModule = (() => {
     function PxObstacle() {
       throw "cannot construct a PxObstacle, no constructor in IDL";
     }
+    __name(PxObstacle, "PxObstacle");
     PxObstacle.prototype = Object.create(WrapperObject.prototype);
     PxObstacle.prototype.constructor = PxObstacle;
     PxObstacle.prototype.__class__ = PxObstacle;
@@ -44716,6 +45624,7 @@ var PhysXModule = (() => {
     function PxUserControllerHitReport() {
       throw "cannot construct a PxUserControllerHitReport, no constructor in IDL";
     }
+    __name(PxUserControllerHitReport, "PxUserControllerHitReport");
     PxUserControllerHitReport.prototype = Object.create(WrapperObject.prototype);
     PxUserControllerHitReport.prototype.constructor = PxUserControllerHitReport;
     PxUserControllerHitReport.prototype.__class__ = PxUserControllerHitReport;
@@ -44745,6 +45654,7 @@ var PhysXModule = (() => {
     function PxU8ConstPtr() {
       throw "cannot construct a PxU8ConstPtr, no constructor in IDL";
     }
+    __name(PxU8ConstPtr, "PxU8ConstPtr");
     PxU8ConstPtr.prototype = Object.create(WrapperObject.prototype);
     PxU8ConstPtr.prototype.constructor = PxU8ConstPtr;
     PxU8ConstPtr.prototype.__class__ = PxU8ConstPtr;
@@ -44757,6 +45667,7 @@ var PhysXModule = (() => {
     function PxU16ConstPtr() {
       throw "cannot construct a PxU16ConstPtr, no constructor in IDL";
     }
+    __name(PxU16ConstPtr, "PxU16ConstPtr");
     PxU16ConstPtr.prototype = Object.create(WrapperObject.prototype);
     PxU16ConstPtr.prototype.constructor = PxU16ConstPtr;
     PxU16ConstPtr.prototype.__class__ = PxU16ConstPtr;
@@ -44769,6 +45680,7 @@ var PhysXModule = (() => {
     function PxU32ConstPtr() {
       throw "cannot construct a PxU32ConstPtr, no constructor in IDL";
     }
+    __name(PxU32ConstPtr, "PxU32ConstPtr");
     PxU32ConstPtr.prototype = Object.create(WrapperObject.prototype);
     PxU32ConstPtr.prototype.constructor = PxU32ConstPtr;
     PxU32ConstPtr.prototype.__class__ = PxU32ConstPtr;
@@ -44781,6 +45693,7 @@ var PhysXModule = (() => {
     function SimplePvdTransport() {
       throw "cannot construct a SimplePvdTransport, no constructor in IDL";
     }
+    __name(SimplePvdTransport, "SimplePvdTransport");
     SimplePvdTransport.prototype = Object.create(PxPvdTransport.prototype);
     SimplePvdTransport.prototype.constructor = SimplePvdTransport;
     SimplePvdTransport.prototype.__class__ = SimplePvdTransport;
@@ -44817,6 +45730,7 @@ var PhysXModule = (() => {
     function VoidPtr() {
       throw "cannot construct a VoidPtr, no constructor in IDL";
     }
+    __name(VoidPtr, "VoidPtr");
     VoidPtr.prototype = Object.create(WrapperObject.prototype);
     VoidPtr.prototype.constructor = VoidPtr;
     VoidPtr.prototype.__class__ = VoidPtr;
@@ -44829,6 +45743,7 @@ var PhysXModule = (() => {
     function PxTopLevelFunctions() {
       throw "cannot construct a PxTopLevelFunctions, no constructor in IDL";
     }
+    __name(PxTopLevelFunctions, "PxTopLevelFunctions");
     PxTopLevelFunctions.prototype = Object.create(WrapperObject.prototype);
     PxTopLevelFunctions.prototype.constructor = PxTopLevelFunctions;
     PxTopLevelFunctions.prototype.__class__ = PxTopLevelFunctions;
@@ -45024,6 +45939,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxActorFlags_PxActorFlags_1(flags);
       getCache(PxActorFlags)[this.ptr] = this;
     }
+    __name(PxActorFlags, "PxActorFlags");
     ;
     ;
     PxActorFlags.prototype = Object.create(WrapperObject.prototype);
@@ -45062,6 +45978,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxActorTypeFlags_PxActorTypeFlags_1(flags);
       getCache(PxActorTypeFlags)[this.ptr] = this;
     }
+    __name(PxActorTypeFlags, "PxActorTypeFlags");
     ;
     ;
     PxActorTypeFlags.prototype = Object.create(WrapperObject.prototype);
@@ -45097,6 +46014,7 @@ var PhysXModule = (() => {
     function PxAggregate() {
       throw "cannot construct a PxAggregate, no constructor in IDL";
     }
+    __name(PxAggregate, "PxAggregate");
     PxAggregate.prototype = Object.create(PxBase.prototype);
     PxAggregate.prototype.constructor = PxAggregate;
     PxAggregate.prototype.__class__ = PxAggregate;
@@ -45199,6 +46117,7 @@ var PhysXModule = (() => {
     function PxArticulation() {
       throw "cannot construct a PxArticulation, no constructor in IDL";
     }
+    __name(PxArticulation, "PxArticulation");
     PxArticulation.prototype = Object.create(PxArticulationBase.prototype);
     PxArticulation.prototype.constructor = PxArticulation;
     PxArticulation.prototype.__class__ = PxArticulation;
@@ -45457,6 +46376,7 @@ var PhysXModule = (() => {
     function PxArticulationCache() {
       throw "cannot construct a PxArticulationCache, no constructor in IDL";
     }
+    __name(PxArticulationCache, "PxArticulationCache");
     PxArticulationCache.prototype = Object.create(WrapperObject.prototype);
     PxArticulationCache.prototype.constructor = PxArticulationCache;
     PxArticulationCache.prototype.__class__ = PxArticulationCache;
@@ -45468,6 +46388,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxArticulationCacheFlags_PxArticulationCacheFlags_1(flags);
       getCache(PxArticulationCacheFlags)[this.ptr] = this;
     }
+    __name(PxArticulationCacheFlags, "PxArticulationCacheFlags");
     ;
     ;
     PxArticulationCacheFlags.prototype = Object.create(WrapperObject.prototype);
@@ -45503,6 +46424,7 @@ var PhysXModule = (() => {
     function PxArticulationDriveCache() {
       throw "cannot construct a PxArticulationDriveCache, no constructor in IDL";
     }
+    __name(PxArticulationDriveCache, "PxArticulationDriveCache");
     PxArticulationDriveCache.prototype = Object.create(WrapperObject.prototype);
     PxArticulationDriveCache.prototype.constructor = PxArticulationDriveCache;
     PxArticulationDriveCache.prototype.__class__ = PxArticulationDriveCache;
@@ -45514,6 +46436,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxArticulationFlags_PxArticulationFlags_1(flags);
       getCache(PxArticulationFlags)[this.ptr] = this;
     }
+    __name(PxArticulationFlags, "PxArticulationFlags");
     ;
     ;
     PxArticulationFlags.prototype = Object.create(WrapperObject.prototype);
@@ -45549,6 +46472,7 @@ var PhysXModule = (() => {
     function PxArticulationJoint() {
       throw "cannot construct a PxArticulationJoint, no constructor in IDL";
     }
+    __name(PxArticulationJoint, "PxArticulationJoint");
     PxArticulationJoint.prototype = Object.create(PxArticulationJointBase.prototype);
     PxArticulationJoint.prototype.constructor = PxArticulationJoint;
     PxArticulationJoint.prototype.__class__ = PxArticulationJoint;
@@ -45806,6 +46730,7 @@ var PhysXModule = (() => {
     function PxArticulationJointReducedCoordinate() {
       throw "cannot construct a PxArticulationJointReducedCoordinate, no constructor in IDL";
     }
+    __name(PxArticulationJointReducedCoordinate, "PxArticulationJointReducedCoordinate");
     PxArticulationJointReducedCoordinate.prototype = Object.create(PxArticulationJointBase.prototype);
     PxArticulationJointReducedCoordinate.prototype.constructor = PxArticulationJointReducedCoordinate;
     PxArticulationJointReducedCoordinate.prototype.__class__ = PxArticulationJointReducedCoordinate;
@@ -46003,6 +46928,7 @@ var PhysXModule = (() => {
     function PxArticulationLink() {
       throw "cannot construct a PxArticulationLink, no constructor in IDL";
     }
+    __name(PxArticulationLink, "PxArticulationLink");
     PxArticulationLink.prototype = Object.create(PxRigidBody.prototype);
     PxArticulationLink.prototype.constructor = PxArticulationLink;
     PxArticulationLink.prototype.__class__ = PxArticulationLink;
@@ -46461,6 +47387,7 @@ var PhysXModule = (() => {
     function PxArticulationReducedCoordinate() {
       throw "cannot construct a PxArticulationReducedCoordinate, no constructor in IDL";
     }
+    __name(PxArticulationReducedCoordinate, "PxArticulationReducedCoordinate");
     PxArticulationReducedCoordinate.prototype = Object.create(PxArticulationBase.prototype);
     PxArticulationReducedCoordinate.prototype.constructor = PxArticulationReducedCoordinate;
     PxArticulationReducedCoordinate.prototype.__class__ = PxArticulationReducedCoordinate;
@@ -46820,6 +47747,7 @@ var PhysXModule = (() => {
     function PxBatchQuery() {
       throw "cannot construct a PxBatchQuery, no constructor in IDL";
     }
+    __name(PxBatchQuery, "PxBatchQuery");
     PxBatchQuery.prototype = Object.create(WrapperObject.prototype);
     PxBatchQuery.prototype.constructor = PxBatchQuery;
     PxBatchQuery.prototype.__class__ = PxBatchQuery;
@@ -46877,6 +47805,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxBatchQueryDesc_PxBatchQueryDesc_3(maxRaycastsPerExecute, maxSweepsPerExecute, maxOverlapsPerExecute);
       getCache(PxBatchQueryDesc)[this.ptr] = this;
     }
+    __name(PxBatchQueryDesc, "PxBatchQueryDesc");
     ;
     ;
     PxBatchQueryDesc.prototype = Object.create(WrapperObject.prototype);
@@ -46951,6 +47880,7 @@ var PhysXModule = (() => {
     function PxBatchQueryMemory() {
       throw "cannot construct a PxBatchQueryMemory, no constructor in IDL";
     }
+    __name(PxBatchQueryMemory, "PxBatchQueryMemory");
     PxBatchQueryMemory.prototype = Object.create(WrapperObject.prototype);
     PxBatchQueryMemory.prototype.constructor = PxBatchQueryMemory;
     PxBatchQueryMemory.prototype.__class__ = PxBatchQueryMemory;
@@ -47062,6 +47992,7 @@ var PhysXModule = (() => {
     function PxBatchQueryPostFilterShader() {
       throw "cannot construct a PxBatchQueryPostFilterShader, no constructor in IDL";
     }
+    __name(PxBatchQueryPostFilterShader, "PxBatchQueryPostFilterShader");
     PxBatchQueryPostFilterShader.prototype = Object.create(WrapperObject.prototype);
     PxBatchQueryPostFilterShader.prototype.constructor = PxBatchQueryPostFilterShader;
     PxBatchQueryPostFilterShader.prototype.__class__ = PxBatchQueryPostFilterShader;
@@ -47074,6 +48005,7 @@ var PhysXModule = (() => {
     function PxBatchQueryPreFilterShader() {
       throw "cannot construct a PxBatchQueryPreFilterShader, no constructor in IDL";
     }
+    __name(PxBatchQueryPreFilterShader, "PxBatchQueryPreFilterShader");
     PxBatchQueryPreFilterShader.prototype = Object.create(WrapperObject.prototype);
     PxBatchQueryPreFilterShader.prototype.constructor = PxBatchQueryPreFilterShader;
     PxBatchQueryPreFilterShader.prototype.__class__ = PxBatchQueryPreFilterShader;
@@ -47087,6 +48019,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxBroadPhaseCaps_PxBroadPhaseCaps_0();
       getCache(PxBroadPhaseCaps)[this.ptr] = this;
     }
+    __name(PxBroadPhaseCaps, "PxBroadPhaseCaps");
     ;
     ;
     PxBroadPhaseCaps.prototype = Object.create(WrapperObject.prototype);
@@ -47135,6 +48068,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxBroadPhaseRegion_PxBroadPhaseRegion_0();
       getCache(PxBroadPhaseRegion)[this.ptr] = this;
     }
+    __name(PxBroadPhaseRegion, "PxBroadPhaseRegion");
     ;
     ;
     PxBroadPhaseRegion.prototype = Object.create(WrapperObject.prototype);
@@ -47172,6 +48106,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxBroadPhaseRegionInfo_PxBroadPhaseRegionInfo_0();
       getCache(PxBroadPhaseRegionInfo)[this.ptr] = this;
     }
+    __name(PxBroadPhaseRegionInfo, "PxBroadPhaseRegionInfo");
     ;
     ;
     PxBroadPhaseRegionInfo.prototype = Object.create(WrapperObject.prototype);
@@ -47241,6 +48176,7 @@ var PhysXModule = (() => {
     function PxConstraint() {
       throw "cannot construct a PxConstraint, no constructor in IDL";
     }
+    __name(PxConstraint, "PxConstraint");
     PxConstraint.prototype = Object.create(PxBase.prototype);
     PxConstraint.prototype.constructor = PxConstraint;
     PxConstraint.prototype.__class__ = PxConstraint;
@@ -47368,6 +48304,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxConstraintFlags_PxConstraintFlags_1(flags);
       getCache(PxConstraintFlags)[this.ptr] = this;
     }
+    __name(PxConstraintFlags, "PxConstraintFlags");
     ;
     ;
     PxConstraintFlags.prototype = Object.create(WrapperObject.prototype);
@@ -47403,6 +48340,7 @@ var PhysXModule = (() => {
     function PxConstraintInfo() {
       throw "cannot construct a PxConstraintInfo, no constructor in IDL";
     }
+    __name(PxConstraintInfo, "PxConstraintInfo");
     PxConstraintInfo.prototype = Object.create(WrapperObject.prototype);
     PxConstraintInfo.prototype.constructor = PxConstraintInfo;
     PxConstraintInfo.prototype.__class__ = PxConstraintInfo;
@@ -47451,6 +48389,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxContactPairHeaderFlags_PxContactPairHeaderFlags_1(flags);
       getCache(PxContactPairHeaderFlags)[this.ptr] = this;
     }
+    __name(PxContactPairHeaderFlags, "PxContactPairHeaderFlags");
     ;
     ;
     PxContactPairHeaderFlags.prototype = Object.create(WrapperObject.prototype);
@@ -47486,6 +48425,7 @@ var PhysXModule = (() => {
     function PxContactPair() {
       throw "cannot construct a PxContactPair, no constructor in IDL";
     }
+    __name(PxContactPair, "PxContactPair");
     PxContactPair.prototype = Object.create(WrapperObject.prototype);
     PxContactPair.prototype.constructor = PxContactPair;
     PxContactPair.prototype.__class__ = PxContactPair;
@@ -47561,6 +48501,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxContactPairFlags_PxContactPairFlags_1(flags);
       getCache(PxContactPairFlags)[this.ptr] = this;
     }
+    __name(PxContactPairFlags, "PxContactPairFlags");
     ;
     ;
     PxContactPairFlags.prototype = Object.create(WrapperObject.prototype);
@@ -47596,6 +48537,7 @@ var PhysXModule = (() => {
     function PxContactPairHeader() {
       throw "cannot construct a PxContactPairHeader, no constructor in IDL";
     }
+    __name(PxContactPairHeader, "PxContactPairHeader");
     PxContactPairHeader.prototype = Object.create(WrapperObject.prototype);
     PxContactPairHeader.prototype.constructor = PxContactPairHeader;
     PxContactPairHeader.prototype.__class__ = PxContactPairHeader;
@@ -47662,6 +48604,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxDominanceGroupPair_PxDominanceGroupPair_2(a, b);
       getCache(PxDominanceGroupPair)[this.ptr] = this;
     }
+    __name(PxDominanceGroupPair, "PxDominanceGroupPair");
     ;
     ;
     PxDominanceGroupPair.prototype = Object.create(WrapperObject.prototype);
@@ -47699,6 +48642,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxgDynamicsMemoryConfig_PxgDynamicsMemoryConfig_0();
       getCache(PxgDynamicsMemoryConfig)[this.ptr] = this;
     }
+    __name(PxgDynamicsMemoryConfig, "PxgDynamicsMemoryConfig");
     ;
     ;
     PxgDynamicsMemoryConfig.prototype = Object.create(WrapperObject.prototype);
@@ -47830,6 +48774,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxFilterData_PxFilterData_4(w0, w1, w2, w3);
       getCache(PxFilterData)[this.ptr] = this;
     }
+    __name(PxFilterData, "PxFilterData");
     ;
     ;
     PxFilterData.prototype = Object.create(WrapperObject.prototype);
@@ -47891,6 +48836,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxHitFlags_PxHitFlags_1(flags);
       getCache(PxHitFlags)[this.ptr] = this;
     }
+    __name(PxHitFlags, "PxHitFlags");
     ;
     ;
     PxHitFlags.prototype = Object.create(WrapperObject.prototype);
@@ -47927,6 +48873,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxOverlapBuffer10_PxOverlapBuffer10_0();
       getCache(PxOverlapBuffer10)[this.ptr] = this;
     }
+    __name(PxOverlapBuffer10, "PxOverlapBuffer10");
     ;
     ;
     PxOverlapBuffer10.prototype = Object.create(PxOverlapCallback.prototype);
@@ -48002,6 +48949,7 @@ var PhysXModule = (() => {
     function PxOverlapHit() {
       throw "cannot construct a PxOverlapHit, no constructor in IDL";
     }
+    __name(PxOverlapHit, "PxOverlapHit");
     PxOverlapHit.prototype = Object.create(PxQueryHit.prototype);
     PxOverlapHit.prototype.constructor = PxOverlapHit;
     PxOverlapHit.prototype.__class__ = PxOverlapHit;
@@ -48047,6 +48995,7 @@ var PhysXModule = (() => {
     function PxOverlapQueryResult() {
       throw "cannot construct a PxOverlapQueryResult, no constructor in IDL";
     }
+    __name(PxOverlapQueryResult, "PxOverlapQueryResult");
     PxOverlapQueryResult.prototype = Object.create(WrapperObject.prototype);
     PxOverlapQueryResult.prototype.constructor = PxOverlapQueryResult;
     PxOverlapQueryResult.prototype.__class__ = PxOverlapQueryResult;
@@ -48137,6 +49086,7 @@ var PhysXModule = (() => {
     function PxMaterial() {
       throw "cannot construct a PxMaterial, no constructor in IDL";
     }
+    __name(PxMaterial, "PxMaterial");
     PxMaterial.prototype = Object.create(PxBase.prototype);
     PxMaterial.prototype.constructor = PxMaterial;
     PxMaterial.prototype.__class__ = PxMaterial;
@@ -48195,6 +49145,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxPairFlags_PxPairFlags_1(flags);
       getCache(PxPairFlags)[this.ptr] = this;
     }
+    __name(PxPairFlags, "PxPairFlags");
     ;
     ;
     PxPairFlags.prototype = Object.create(WrapperObject.prototype);
@@ -48230,6 +49181,7 @@ var PhysXModule = (() => {
     function PxPhysics() {
       throw "cannot construct a PxPhysics, no constructor in IDL";
     }
+    __name(PxPhysics, "PxPhysics");
     PxPhysics.prototype = Object.create(WrapperObject.prototype);
     PxPhysics.prototype.constructor = PxPhysics;
     PxPhysics.prototype.__class__ = PxPhysics;
@@ -48352,6 +49304,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxQueryFilterData_PxQueryFilterData_2(fd, f);
       getCache(PxQueryFilterData)[this.ptr] = this;
     }
+    __name(PxQueryFilterData, "PxQueryFilterData");
     ;
     ;
     PxQueryFilterData.prototype = Object.create(WrapperObject.prototype);
@@ -48391,6 +49344,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxQueryFlags_PxQueryFlags_1(flags);
       getCache(PxQueryFlags)[this.ptr] = this;
     }
+    __name(PxQueryFlags, "PxQueryFlags");
     ;
     ;
     PxQueryFlags.prototype = Object.create(WrapperObject.prototype);
@@ -48427,6 +49381,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxRaycastBuffer10_PxRaycastBuffer10_0();
       getCache(PxRaycastBuffer10)[this.ptr] = this;
     }
+    __name(PxRaycastBuffer10, "PxRaycastBuffer10");
     ;
     ;
     PxRaycastBuffer10.prototype = Object.create(PxRaycastCallback.prototype);
@@ -48503,6 +49458,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxRaycastHit_PxRaycastHit_0();
       getCache(PxRaycastHit)[this.ptr] = this;
     }
+    __name(PxRaycastHit, "PxRaycastHit");
     ;
     ;
     PxRaycastHit.prototype = Object.create(PxLocationHit.prototype);
@@ -48616,6 +49572,7 @@ var PhysXModule = (() => {
     function PxRaycastQueryResult() {
       throw "cannot construct a PxRaycastQueryResult, no constructor in IDL";
     }
+    __name(PxRaycastQueryResult, "PxRaycastQueryResult");
     PxRaycastQueryResult.prototype = Object.create(WrapperObject.prototype);
     PxRaycastQueryResult.prototype.constructor = PxRaycastQueryResult;
     PxRaycastQueryResult.prototype.__class__ = PxRaycastQueryResult;
@@ -48709,6 +49666,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxRigidBodyFlags_PxRigidBodyFlags_1(flags);
       getCache(PxRigidBodyFlags)[this.ptr] = this;
     }
+    __name(PxRigidBodyFlags, "PxRigidBodyFlags");
     ;
     ;
     PxRigidBodyFlags.prototype = Object.create(WrapperObject.prototype);
@@ -48744,6 +49702,7 @@ var PhysXModule = (() => {
     function PxRigidDynamic() {
       throw "cannot construct a PxRigidDynamic, no constructor in IDL";
     }
+    __name(PxRigidDynamic, "PxRigidDynamic");
     PxRigidDynamic.prototype = Object.create(PxRigidBody.prototype);
     PxRigidDynamic.prototype.constructor = PxRigidDynamic;
     PxRigidDynamic.prototype.__class__ = PxRigidDynamic;
@@ -49286,6 +50245,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxRigidDynamicLockFlags_PxRigidDynamicLockFlags_1(flags);
       getCache(PxRigidDynamicLockFlags)[this.ptr] = this;
     }
+    __name(PxRigidDynamicLockFlags, "PxRigidDynamicLockFlags");
     ;
     ;
     PxRigidDynamicLockFlags.prototype = Object.create(WrapperObject.prototype);
@@ -49321,6 +50281,7 @@ var PhysXModule = (() => {
     function PxRigidStatic() {
       throw "cannot construct a PxRigidStatic, no constructor in IDL";
     }
+    __name(PxRigidStatic, "PxRigidStatic");
     PxRigidStatic.prototype = Object.create(PxRigidActor.prototype);
     PxRigidStatic.prototype.constructor = PxRigidStatic;
     PxRigidStatic.prototype.__class__ = PxRigidStatic;
@@ -49490,6 +50451,7 @@ var PhysXModule = (() => {
     function PxScene() {
       throw "cannot construct a PxScene, no constructor in IDL";
     }
+    __name(PxScene, "PxScene");
     PxScene.prototype = Object.create(WrapperObject.prototype);
     PxScene.prototype.constructor = PxScene;
     PxScene.prototype.__class__ = PxScene;
@@ -50227,6 +51189,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxSceneDesc_PxSceneDesc_1(scale);
       getCache(PxSceneDesc)[this.ptr] = this;
     }
+    __name(PxSceneDesc, "PxSceneDesc");
     ;
     ;
     PxSceneDesc.prototype = Object.create(WrapperObject.prototype);
@@ -50641,6 +51604,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxSceneFlags_PxSceneFlags_1(flags);
       getCache(PxSceneFlags)[this.ptr] = this;
     }
+    __name(PxSceneFlags, "PxSceneFlags");
     ;
     ;
     PxSceneFlags.prototype = Object.create(WrapperObject.prototype);
@@ -50677,6 +51641,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxSceneLimits_PxSceneLimits_0();
       getCache(PxSceneLimits)[this.ptr] = this;
     }
+    __name(PxSceneLimits, "PxSceneLimits");
     ;
     ;
     PxSceneLimits.prototype = Object.create(WrapperObject.prototype);
@@ -50789,6 +51754,7 @@ var PhysXModule = (() => {
     function PxShape() {
       throw "cannot construct a PxShape, no constructor in IDL";
     }
+    __name(PxShape, "PxShape");
     PxShape.prototype = Object.create(PxBase.prototype);
     PxShape.prototype.constructor = PxShape;
     PxShape.prototype.__class__ = PxShape;
@@ -51085,6 +52051,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxShapeFlags_PxShapeFlags_1(flags);
       getCache(PxShapeFlags)[this.ptr] = this;
     }
+    __name(PxShapeFlags, "PxShapeFlags");
     ;
     ;
     PxShapeFlags.prototype = Object.create(WrapperObject.prototype);
@@ -51121,6 +52088,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_JavaSimulationEventCallback_JavaSimulationEventCallback_0();
       getCache(JavaSimulationEventCallback)[this.ptr] = this;
     }
+    __name(JavaSimulationEventCallback, "JavaSimulationEventCallback");
     ;
     ;
     JavaSimulationEventCallback.prototype = Object.create(SimpleSimulationEventCallback.prototype);
@@ -51182,6 +52150,7 @@ var PhysXModule = (() => {
     function PxSimulationFilterShader() {
       throw "cannot construct a PxSimulationFilterShader, no constructor in IDL";
     }
+    __name(PxSimulationFilterShader, "PxSimulationFilterShader");
     PxSimulationFilterShader.prototype = Object.create(WrapperObject.prototype);
     PxSimulationFilterShader.prototype.constructor = PxSimulationFilterShader;
     PxSimulationFilterShader.prototype.__class__ = PxSimulationFilterShader;
@@ -51194,6 +52163,7 @@ var PhysXModule = (() => {
     function PxSimulationStatistics() {
       throw "cannot construct a PxSimulationStatistics, no constructor in IDL";
     }
+    __name(PxSimulationStatistics, "PxSimulationStatistics");
     PxSimulationStatistics.prototype = Object.create(WrapperObject.prototype);
     PxSimulationStatistics.prototype.constructor = PxSimulationStatistics;
     PxSimulationStatistics.prototype.__class__ = PxSimulationStatistics;
@@ -51464,6 +52434,7 @@ var PhysXModule = (() => {
     function PxSpatialVelocity() {
       throw "cannot construct a PxSpatialVelocity, no constructor in IDL";
     }
+    __name(PxSpatialVelocity, "PxSpatialVelocity");
     PxSpatialVelocity.prototype = Object.create(WrapperObject.prototype);
     PxSpatialVelocity.prototype.constructor = PxSpatialVelocity;
     PxSpatialVelocity.prototype.__class__ = PxSpatialVelocity;
@@ -51499,6 +52470,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxSweepBuffer10_PxSweepBuffer10_0();
       getCache(PxSweepBuffer10)[this.ptr] = this;
     }
+    __name(PxSweepBuffer10, "PxSweepBuffer10");
     ;
     ;
     PxSweepBuffer10.prototype = Object.create(PxSweepCallback.prototype);
@@ -51574,6 +52546,7 @@ var PhysXModule = (() => {
     function PxSweepHit() {
       throw "cannot construct a PxSweepHit, no constructor in IDL";
     }
+    __name(PxSweepHit, "PxSweepHit");
     PxSweepHit.prototype = Object.create(PxLocationHit.prototype);
     PxSweepHit.prototype.constructor = PxSweepHit;
     PxSweepHit.prototype.__class__ = PxSweepHit;
@@ -51663,6 +52636,7 @@ var PhysXModule = (() => {
     function PxSweepQueryResult() {
       throw "cannot construct a PxSweepQueryResult, no constructor in IDL";
     }
+    __name(PxSweepQueryResult, "PxSweepQueryResult");
     PxSweepQueryResult.prototype = Object.create(WrapperObject.prototype);
     PxSweepQueryResult.prototype.constructor = PxSweepQueryResult;
     PxSweepQueryResult.prototype.__class__ = PxSweepQueryResult;
@@ -51753,6 +52727,7 @@ var PhysXModule = (() => {
     function PxTriggerPair() {
       throw "cannot construct a PxTriggerPair, no constructor in IDL";
     }
+    __name(PxTriggerPair, "PxTriggerPair");
     PxTriggerPair.prototype = Object.create(WrapperObject.prototype);
     PxTriggerPair.prototype.constructor = PxTriggerPair;
     PxTriggerPair.prototype.__class__ = PxTriggerPair;
@@ -51834,6 +52809,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxTriggerPairFlags_PxTriggerPairFlags_1(flags);
       getCache(PxTriggerPairFlags)[this.ptr] = this;
     }
+    __name(PxTriggerPairFlags, "PxTriggerPairFlags");
     ;
     ;
     PxTriggerPairFlags.prototype = Object.create(WrapperObject.prototype);
@@ -51869,6 +52845,7 @@ var PhysXModule = (() => {
     function PxVehicleTopLevelFunctions() {
       throw "cannot construct a PxVehicleTopLevelFunctions, no constructor in IDL";
     }
+    __name(PxVehicleTopLevelFunctions, "PxVehicleTopLevelFunctions");
     PxVehicleTopLevelFunctions.prototype = Object.create(WrapperObject.prototype);
     PxVehicleTopLevelFunctions.prototype.constructor = PxVehicleTopLevelFunctions;
     PxVehicleTopLevelFunctions.prototype.__class__ = PxVehicleTopLevelFunctions;
@@ -51984,6 +52961,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleAckermannGeometryData_PxVehicleAckermannGeometryData_0();
       getCache(PxVehicleAckermannGeometryData)[this.ptr] = this;
     }
+    __name(PxVehicleAckermannGeometryData, "PxVehicleAckermannGeometryData");
     ;
     ;
     PxVehicleAckermannGeometryData.prototype = Object.create(WrapperObject.prototype);
@@ -52043,6 +53021,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleAntiRollBarData_PxVehicleAntiRollBarData_0();
       getCache(PxVehicleAntiRollBarData)[this.ptr] = this;
     }
+    __name(PxVehicleAntiRollBarData, "PxVehicleAntiRollBarData");
     ;
     ;
     PxVehicleAntiRollBarData.prototype = Object.create(WrapperObject.prototype);
@@ -52091,6 +53070,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleAutoBoxData_PxVehicleAutoBoxData_0();
       getCache(PxVehicleAutoBoxData)[this.ptr] = this;
     }
+    __name(PxVehicleAutoBoxData, "PxVehicleAutoBoxData");
     ;
     ;
     PxVehicleAutoBoxData.prototype = Object.create(WrapperObject.prototype);
@@ -52182,6 +53162,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleChassisData_PxVehicleChassisData_0();
       getCache(PxVehicleChassisData)[this.ptr] = this;
     }
+    __name(PxVehicleChassisData, "PxVehicleChassisData");
     ;
     ;
     PxVehicleChassisData.prototype = Object.create(WrapperObject.prototype);
@@ -52230,6 +53211,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleClutchData_PxVehicleClutchData_0();
       getCache(PxVehicleClutchData)[this.ptr] = this;
     }
+    __name(PxVehicleClutchData, "PxVehicleClutchData");
     ;
     ;
     PxVehicleClutchData.prototype = Object.create(WrapperObject.prototype);
@@ -52278,6 +53260,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleDifferential4WData_PxVehicleDifferential4WData_0();
       getCache(PxVehicleDifferential4WData)[this.ptr] = this;
     }
+    __name(PxVehicleDifferential4WData, "PxVehicleDifferential4WData");
     ;
     ;
     PxVehicleDifferential4WData.prototype = Object.create(WrapperObject.prototype);
@@ -52370,6 +53353,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleDifferentialNWData_PxVehicleDifferentialNWData_0();
       getCache(PxVehicleDifferentialNWData)[this.ptr] = this;
     }
+    __name(PxVehicleDifferentialNWData, "PxVehicleDifferentialNWData");
     ;
     ;
     PxVehicleDifferentialNWData.prototype = Object.create(WrapperObject.prototype);
@@ -52412,6 +53396,7 @@ var PhysXModule = (() => {
     function PxVehicleDrivableSurfaceToTireFrictionPairs() {
       throw "cannot construct a PxVehicleDrivableSurfaceToTireFrictionPairs, no constructor in IDL";
     }
+    __name(PxVehicleDrivableSurfaceToTireFrictionPairs, "PxVehicleDrivableSurfaceToTireFrictionPairs");
     PxVehicleDrivableSurfaceToTireFrictionPairs.prototype = Object.create(WrapperObject.prototype);
     PxVehicleDrivableSurfaceToTireFrictionPairs.prototype.constructor = PxVehicleDrivableSurfaceToTireFrictionPairs;
     PxVehicleDrivableSurfaceToTireFrictionPairs.prototype.__class__ = PxVehicleDrivableSurfaceToTireFrictionPairs;
@@ -52478,6 +53463,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleDrivableSurfaceType_PxVehicleDrivableSurfaceType_0();
       getCache(PxVehicleDrivableSurfaceType)[this.ptr] = this;
     }
+    __name(PxVehicleDrivableSurfaceType, "PxVehicleDrivableSurfaceType");
     ;
     ;
     PxVehicleDrivableSurfaceType.prototype = Object.create(WrapperObject.prototype);
@@ -52503,6 +53489,7 @@ var PhysXModule = (() => {
     function PxVehicleDrive4W() {
       throw "cannot construct a PxVehicleDrive4W, no constructor in IDL";
     }
+    __name(PxVehicleDrive4W, "PxVehicleDrive4W");
     PxVehicleDrive4W.prototype = Object.create(PxVehicleDrive.prototype);
     PxVehicleDrive4W.prototype.constructor = PxVehicleDrive4W;
     PxVehicleDrive4W.prototype.__class__ = PxVehicleDrive4W;
@@ -52648,6 +53635,7 @@ var PhysXModule = (() => {
     function PxVehicleDriveDynData() {
       throw "cannot construct a PxVehicleDriveDynData, no constructor in IDL";
     }
+    __name(PxVehicleDriveDynData, "PxVehicleDriveDynData");
     PxVehicleDriveDynData.prototype = Object.create(WrapperObject.prototype);
     PxVehicleDriveDynData.prototype.constructor = PxVehicleDriveDynData;
     PxVehicleDriveDynData.prototype.__class__ = PxVehicleDriveDynData;
@@ -52917,6 +53905,7 @@ var PhysXModule = (() => {
     function PxVehicleDriveNW() {
       throw "cannot construct a PxVehicleDriveNW, no constructor in IDL";
     }
+    __name(PxVehicleDriveNW, "PxVehicleDriveNW");
     PxVehicleDriveNW.prototype = Object.create(PxVehicleDrive.prototype);
     PxVehicleDriveNW.prototype.constructor = PxVehicleDriveNW;
     PxVehicleDriveNW.prototype.__class__ = PxVehicleDriveNW;
@@ -53063,6 +54052,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleDriveSimData4W_PxVehicleDriveSimData4W_0();
       getCache(PxVehicleDriveSimData4W)[this.ptr] = this;
     }
+    __name(PxVehicleDriveSimData4W, "PxVehicleDriveSimData4W");
     ;
     ;
     PxVehicleDriveSimData4W.prototype = Object.create(PxVehicleDriveSimData.prototype);
@@ -53150,6 +54140,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleDriveSimDataNW_PxVehicleDriveSimDataNW_0();
       getCache(PxVehicleDriveSimDataNW)[this.ptr] = this;
     }
+    __name(PxVehicleDriveSimDataNW, "PxVehicleDriveSimDataNW");
     ;
     ;
     PxVehicleDriveSimDataNW.prototype = Object.create(PxVehicleDriveSimData.prototype);
@@ -53224,6 +54215,7 @@ var PhysXModule = (() => {
     function PxVehicleDriveTank() {
       throw "cannot construct a PxVehicleDriveTank, no constructor in IDL";
     }
+    __name(PxVehicleDriveTank, "PxVehicleDriveTank");
     PxVehicleDriveTank.prototype = Object.create(PxVehicleDrive.prototype);
     PxVehicleDriveTank.prototype.constructor = PxVehicleDriveTank;
     PxVehicleDriveTank.prototype.__class__ = PxVehicleDriveTank;
@@ -53382,6 +54374,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleEngineData_PxVehicleEngineData_0();
       getCache(PxVehicleEngineData)[this.ptr] = this;
     }
+    __name(PxVehicleEngineData, "PxVehicleEngineData");
     ;
     ;
     PxVehicleEngineData.prototype = Object.create(WrapperObject.prototype);
@@ -53474,6 +54467,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxEngineTorqueLookupTable_PxEngineTorqueLookupTable_0();
       getCache(PxEngineTorqueLookupTable)[this.ptr] = this;
     }
+    __name(PxEngineTorqueLookupTable, "PxEngineTorqueLookupTable");
     ;
     ;
     PxEngineTorqueLookupTable.prototype = Object.create(WrapperObject.prototype);
@@ -53556,6 +54550,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleGearsData_PxVehicleGearsData_0();
       getCache(PxVehicleGearsData)[this.ptr] = this;
     }
+    __name(PxVehicleGearsData, "PxVehicleGearsData");
     ;
     ;
     PxVehicleGearsData.prototype = Object.create(WrapperObject.prototype);
@@ -53635,6 +54630,7 @@ var PhysXModule = (() => {
     function PxVehicleNoDrive() {
       throw "cannot construct a PxVehicleNoDrive, no constructor in IDL";
     }
+    __name(PxVehicleNoDrive, "PxVehicleNoDrive");
     PxVehicleNoDrive.prototype = Object.create(PxVehicleWheels.prototype);
     PxVehicleNoDrive.prototype.constructor = PxVehicleNoDrive;
     PxVehicleNoDrive.prototype.__class__ = PxVehicleNoDrive;
@@ -53818,6 +54814,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleSuspensionData_PxVehicleSuspensionData_0();
       getCache(PxVehicleSuspensionData)[this.ptr] = this;
     }
+    __name(PxVehicleSuspensionData, "PxVehicleSuspensionData");
     ;
     ;
     PxVehicleSuspensionData.prototype = Object.create(WrapperObject.prototype);
@@ -53928,6 +54925,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleTireData_PxVehicleTireData_0();
       getCache(PxVehicleTireData)[this.ptr] = this;
     }
+    __name(PxVehicleTireData, "PxVehicleTireData");
     ;
     ;
     PxVehicleTireData.prototype = Object.create(WrapperObject.prototype);
@@ -53998,6 +54996,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleTireLoadFilterData_PxVehicleTireLoadFilterData_0();
       getCache(PxVehicleTireLoadFilterData)[this.ptr] = this;
     }
+    __name(PxVehicleTireLoadFilterData, "PxVehicleTireLoadFilterData");
     ;
     ;
     PxVehicleTireLoadFilterData.prototype = Object.create(WrapperObject.prototype);
@@ -54062,6 +55061,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleWheelData_PxVehicleWheelData_0();
       getCache(PxVehicleWheelData)[this.ptr] = this;
     }
+    __name(PxVehicleWheelData, "PxVehicleWheelData");
     ;
     ;
     PxVehicleWheelData.prototype = Object.create(WrapperObject.prototype);
@@ -54176,6 +55176,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleWheelQueryResult_PxVehicleWheelQueryResult_0();
       getCache(PxVehicleWheelQueryResult)[this.ptr] = this;
     }
+    __name(PxVehicleWheelQueryResult, "PxVehicleWheelQueryResult");
     ;
     ;
     PxVehicleWheelQueryResult.prototype = Object.create(WrapperObject.prototype);
@@ -54212,6 +55213,7 @@ var PhysXModule = (() => {
     function PxVehicleWheelsDynData() {
       throw "cannot construct a PxVehicleWheelsDynData, no constructor in IDL";
     }
+    __name(PxVehicleWheelsDynData, "PxVehicleWheelsDynData");
     PxVehicleWheelsDynData.prototype = Object.create(WrapperObject.prototype);
     PxVehicleWheelsDynData.prototype.constructor = PxVehicleWheelsDynData;
     PxVehicleWheelsDynData.prototype.__class__ = PxVehicleWheelsDynData;
@@ -54282,6 +55284,7 @@ var PhysXModule = (() => {
     function PxVehicleWheelsSimData() {
       throw "cannot construct a PxVehicleWheelsSimData, no constructor in IDL";
     }
+    __name(PxVehicleWheelsSimData, "PxVehicleWheelsSimData");
     PxVehicleWheelsSimData.prototype = Object.create(WrapperObject.prototype);
     PxVehicleWheelsSimData.prototype.constructor = PxVehicleWheelsSimData;
     PxVehicleWheelsSimData.prototype.__class__ = PxVehicleWheelsSimData;
@@ -54689,6 +55692,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVehicleWheelsSimFlags_PxVehicleWheelsSimFlags_1(flags);
       getCache(PxVehicleWheelsSimFlags)[this.ptr] = this;
     }
+    __name(PxVehicleWheelsSimFlags, "PxVehicleWheelsSimFlags");
     ;
     ;
     PxVehicleWheelsSimFlags.prototype = Object.create(WrapperObject.prototype);
@@ -54725,6 +55729,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxWheelQueryResult_PxWheelQueryResult_0();
       getCache(PxWheelQueryResult)[this.ptr] = this;
     }
+    __name(PxWheelQueryResult, "PxWheelQueryResult");
     ;
     ;
     PxWheelQueryResult.prototype = Object.create(WrapperObject.prototype);
@@ -54955,6 +55960,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxBoxGeometry_PxBoxGeometry_3(hx, hy, hz);
       getCache(PxBoxGeometry)[this.ptr] = this;
     }
+    __name(PxBoxGeometry, "PxBoxGeometry");
     ;
     ;
     PxBoxGeometry.prototype = Object.create(PxGeometry.prototype);
@@ -54990,6 +55996,7 @@ var PhysXModule = (() => {
     function PxBVHStructure() {
       throw "cannot construct a PxBVHStructure, no constructor in IDL";
     }
+    __name(PxBVHStructure, "PxBVHStructure");
     PxBVHStructure.prototype = Object.create(PxBase.prototype);
     PxBVHStructure.prototype.constructor = PxBVHStructure;
     PxBVHStructure.prototype.__class__ = PxBVHStructure;
@@ -55039,6 +56046,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxCapsuleGeometry_PxCapsuleGeometry_2(radius, halfHeight);
       getCache(PxCapsuleGeometry)[this.ptr] = this;
     }
+    __name(PxCapsuleGeometry, "PxCapsuleGeometry");
     ;
     ;
     PxCapsuleGeometry.prototype = Object.create(PxGeometry.prototype);
@@ -55085,6 +56093,7 @@ var PhysXModule = (() => {
     function PxConvexMesh() {
       throw "cannot construct a PxConvexMesh, no constructor in IDL";
     }
+    __name(PxConvexMesh, "PxConvexMesh");
     PxConvexMesh.prototype = Object.create(PxBase.prototype);
     PxConvexMesh.prototype.constructor = PxConvexMesh;
     PxConvexMesh.prototype.__class__ = PxConvexMesh;
@@ -55195,6 +56204,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxConvexMeshGeometry_PxConvexMeshGeometry_3(mesh, scaling, flags);
       getCache(PxConvexMeshGeometry)[this.ptr] = this;
     }
+    __name(PxConvexMeshGeometry, "PxConvexMeshGeometry");
     ;
     ;
     PxConvexMeshGeometry.prototype = Object.create(PxGeometry.prototype);
@@ -55233,6 +56243,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxConvexMeshGeometryFlags_PxConvexMeshGeometryFlags_1(flags);
       getCache(PxConvexMeshGeometryFlags)[this.ptr] = this;
     }
+    __name(PxConvexMeshGeometryFlags, "PxConvexMeshGeometryFlags");
     ;
     ;
     PxConvexMeshGeometryFlags.prototype = Object.create(WrapperObject.prototype);
@@ -55276,6 +56287,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxGeometryHolder_PxGeometryHolder_1(geometry);
       getCache(PxGeometryHolder)[this.ptr] = this;
     }
+    __name(PxGeometryHolder, "PxGeometryHolder");
     ;
     ;
     PxGeometryHolder.prototype = Object.create(WrapperObject.prototype);
@@ -55337,6 +56349,7 @@ var PhysXModule = (() => {
     function PxGeometryQuery() {
       throw "cannot construct a PxGeometryQuery, no constructor in IDL";
     }
+    __name(PxGeometryQuery, "PxGeometryQuery");
     PxGeometryQuery.prototype = Object.create(WrapperObject.prototype);
     PxGeometryQuery.prototype.constructor = PxGeometryQuery;
     PxGeometryQuery.prototype.__class__ = PxGeometryQuery;
@@ -55449,6 +56462,7 @@ var PhysXModule = (() => {
     function PxHeightField() {
       throw "cannot construct a PxHeightField, no constructor in IDL";
     }
+    __name(PxHeightField, "PxHeightField");
     PxHeightField.prototype = Object.create(PxBase.prototype);
     PxHeightField.prototype.constructor = PxHeightField;
     PxHeightField.prototype.__class__ = PxHeightField;
@@ -55596,6 +56610,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxHeightFieldDesc_PxHeightFieldDesc_0();
       getCache(PxHeightFieldDesc)[this.ptr] = this;
     }
+    __name(PxHeightFieldDesc, "PxHeightFieldDesc");
     ;
     ;
     PxHeightFieldDesc.prototype = Object.create(WrapperObject.prototype);
@@ -55689,6 +56704,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxHeightFieldFlags_PxHeightFieldFlags_1(flags);
       getCache(PxHeightFieldFlags)[this.ptr] = this;
     }
+    __name(PxHeightFieldFlags, "PxHeightFieldFlags");
     ;
     ;
     PxHeightFieldFlags.prototype = Object.create(WrapperObject.prototype);
@@ -55760,6 +56776,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxHeightFieldGeometry_PxHeightFieldGeometry_5(hf, flags, heightScale, rowScale, columnScale);
       getCache(PxHeightFieldGeometry)[this.ptr] = this;
     }
+    __name(PxHeightFieldGeometry, "PxHeightFieldGeometry");
     ;
     ;
     PxHeightFieldGeometry.prototype = Object.create(PxGeometry.prototype);
@@ -55839,6 +56856,7 @@ var PhysXModule = (() => {
     function PxHeightFieldSample() {
       throw "cannot construct a PxHeightFieldSample, no constructor in IDL";
     }
+    __name(PxHeightFieldSample, "PxHeightFieldSample");
     PxHeightFieldSample.prototype = Object.create(WrapperObject.prototype);
     PxHeightFieldSample.prototype.constructor = PxHeightFieldSample;
     PxHeightFieldSample.prototype.__class__ = PxHeightFieldSample;
@@ -55885,6 +56903,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxHullPolygon_PxHullPolygon_0();
       getCache(PxHullPolygon)[this.ptr] = this;
     }
+    __name(PxHullPolygon, "PxHullPolygon");
     ;
     ;
     PxHullPolygon.prototype = Object.create(WrapperObject.prototype);
@@ -55940,6 +56959,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxMeshFlags_PxMeshFlags_1(flags);
       getCache(PxMeshFlags)[this.ptr] = this;
     }
+    __name(PxMeshFlags, "PxMeshFlags");
     ;
     ;
     PxMeshFlags.prototype = Object.create(WrapperObject.prototype);
@@ -55978,6 +56998,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxMeshGeometryFlags_PxMeshGeometryFlags_1(flags);
       getCache(PxMeshGeometryFlags)[this.ptr] = this;
     }
+    __name(PxMeshGeometryFlags, "PxMeshGeometryFlags");
     ;
     ;
     PxMeshGeometryFlags.prototype = Object.create(WrapperObject.prototype);
@@ -56028,6 +57049,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxMeshScale_PxMeshScale_2(s, r);
       getCache(PxMeshScale)[this.ptr] = this;
     }
+    __name(PxMeshScale, "PxMeshScale");
     ;
     ;
     PxMeshScale.prototype = Object.create(WrapperObject.prototype);
@@ -56065,6 +57087,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxPlaneGeometry_PxPlaneGeometry_0();
       getCache(PxPlaneGeometry)[this.ptr] = this;
     }
+    __name(PxPlaneGeometry, "PxPlaneGeometry");
     ;
     ;
     PxPlaneGeometry.prototype = Object.create(PxGeometry.prototype);
@@ -56087,6 +57110,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxSphereGeometry_PxSphereGeometry_1(ir);
       getCache(PxSphereGeometry)[this.ptr] = this;
     }
+    __name(PxSphereGeometry, "PxSphereGeometry");
     ;
     ;
     PxSphereGeometry.prototype = Object.create(PxGeometry.prototype);
@@ -56144,6 +57168,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxTriangle_PxTriangle_3(p0, p1, p2);
       getCache(PxTriangle)[this.ptr] = this;
     }
+    __name(PxTriangle, "PxTriangle");
     ;
     ;
     PxTriangle.prototype = Object.create(WrapperObject.prototype);
@@ -56186,6 +57211,7 @@ var PhysXModule = (() => {
     function PxTriangleMesh() {
       throw "cannot construct a PxTriangleMesh, no constructor in IDL";
     }
+    __name(PxTriangleMesh, "PxTriangleMesh");
     PxTriangleMesh.prototype = Object.create(PxBase.prototype);
     PxTriangleMesh.prototype.constructor = PxTriangleMesh;
     PxTriangleMesh.prototype.__class__ = PxTriangleMesh;
@@ -56295,6 +57321,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxTriangleMeshFlags_PxTriangleMeshFlags_1(flags);
       getCache(PxTriangleMeshFlags)[this.ptr] = this;
     }
+    __name(PxTriangleMeshFlags, "PxTriangleMeshFlags");
     ;
     ;
     PxTriangleMeshFlags.prototype = Object.create(WrapperObject.prototype);
@@ -56347,6 +57374,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxTriangleMeshGeometry_PxTriangleMeshGeometry_3(mesh, scaling, flags);
       getCache(PxTriangleMeshGeometry)[this.ptr] = this;
     }
+    __name(PxTriangleMeshGeometry, "PxTriangleMeshGeometry");
     ;
     ;
     PxTriangleMeshGeometry.prototype = Object.create(PxGeometry.prototype);
@@ -56382,6 +57410,7 @@ var PhysXModule = (() => {
     function PxBVH33MidphaseDesc() {
       throw "cannot construct a PxBVH33MidphaseDesc, no constructor in IDL";
     }
+    __name(PxBVH33MidphaseDesc, "PxBVH33MidphaseDesc");
     PxBVH33MidphaseDesc.prototype = Object.create(WrapperObject.prototype);
     PxBVH33MidphaseDesc.prototype.constructor = PxBVH33MidphaseDesc;
     PxBVH33MidphaseDesc.prototype.__class__ = PxBVH33MidphaseDesc;
@@ -56426,6 +57455,7 @@ var PhysXModule = (() => {
     function PxBVH34MidphaseDesc() {
       throw "cannot construct a PxBVH34MidphaseDesc, no constructor in IDL";
     }
+    __name(PxBVH34MidphaseDesc, "PxBVH34MidphaseDesc");
     PxBVH34MidphaseDesc.prototype = Object.create(WrapperObject.prototype);
     PxBVH34MidphaseDesc.prototype.constructor = PxBVH34MidphaseDesc;
     PxBVH34MidphaseDesc.prototype.__class__ = PxBVH34MidphaseDesc;
@@ -56462,6 +57492,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxConvexFlags_PxConvexFlags_1(flags);
       getCache(PxConvexFlags)[this.ptr] = this;
     }
+    __name(PxConvexFlags, "PxConvexFlags");
     ;
     ;
     PxConvexFlags.prototype = Object.create(WrapperObject.prototype);
@@ -56498,6 +57529,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxConvexMeshDesc_PxConvexMeshDesc_0();
       getCache(PxConvexMeshDesc)[this.ptr] = this;
     }
+    __name(PxConvexMeshDesc, "PxConvexMeshDesc");
     ;
     ;
     PxConvexMeshDesc.prototype = Object.create(WrapperObject.prototype);
@@ -56534,6 +57566,7 @@ var PhysXModule = (() => {
     function PxCooking() {
       throw "cannot construct a PxCooking, no constructor in IDL";
     }
+    __name(PxCooking, "PxCooking");
     PxCooking.prototype = Object.create(WrapperObject.prototype);
     PxCooking.prototype.constructor = PxCooking;
     PxCooking.prototype.__class__ = PxCooking;
@@ -56577,6 +57610,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxCookingParams_PxCookingParams_1(sc);
       getCache(PxCookingParams)[this.ptr] = this;
     }
+    __name(PxCookingParams, "PxCookingParams");
     ;
     ;
     PxCookingParams.prototype = Object.create(WrapperObject.prototype);
@@ -56715,6 +57749,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxMeshPreprocessingFlags_PxMeshPreprocessingFlags_1(flags);
       getCache(PxMeshPreprocessingFlags)[this.ptr] = this;
     }
+    __name(PxMeshPreprocessingFlags, "PxMeshPreprocessingFlags");
     ;
     ;
     PxMeshPreprocessingFlags.prototype = Object.create(WrapperObject.prototype);
@@ -56751,6 +57786,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxMidphaseDesc_PxMidphaseDesc_0();
       getCache(PxMidphaseDesc)[this.ptr] = this;
     }
+    __name(PxMidphaseDesc, "PxMidphaseDesc");
     ;
     ;
     PxMidphaseDesc.prototype = Object.create(WrapperObject.prototype);
@@ -56805,6 +57841,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxTriangleMeshDesc_PxTriangleMeshDesc_0();
       getCache(PxTriangleMeshDesc)[this.ptr] = this;
     }
+    __name(PxTriangleMeshDesc, "PxTriangleMeshDesc");
     ;
     ;
     PxTriangleMeshDesc.prototype = Object.create(PxSimpleTriangleMesh.prototype);
@@ -56876,6 +57913,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxBaseFlags_PxBaseFlags_1(flags);
       getCache(PxBaseFlags)[this.ptr] = this;
     }
+    __name(PxBaseFlags, "PxBaseFlags");
     ;
     ;
     PxBaseFlags.prototype = Object.create(WrapperObject.prototype);
@@ -56911,6 +57949,7 @@ var PhysXModule = (() => {
     function PxBaseTask() {
       throw "cannot construct a PxBaseTask, no constructor in IDL";
     }
+    __name(PxBaseTask, "PxBaseTask");
     PxBaseTask.prototype = Object.create(WrapperObject.prototype);
     PxBaseTask.prototype.constructor = PxBaseTask;
     PxBaseTask.prototype.__class__ = PxBaseTask;
@@ -56924,6 +57963,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxBoundedData_PxBoundedData_0();
       getCache(PxBoundedData)[this.ptr] = this;
     }
+    __name(PxBoundedData, "PxBoundedData");
     ;
     ;
     PxBoundedData.prototype = Object.create(WrapperObject.prototype);
@@ -56986,6 +58026,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxBounds3_PxBounds3_2(minimum, maximum);
       getCache(PxBounds3)[this.ptr] = this;
     }
+    __name(PxBounds3, "PxBounds3");
     ;
     ;
     PxBounds3.prototype = Object.create(WrapperObject.prototype);
@@ -57127,6 +58168,7 @@ var PhysXModule = (() => {
     function PxCollection() {
       throw "cannot construct a PxCollection, no constructor in IDL";
     }
+    __name(PxCollection, "PxCollection");
     PxCollection.prototype = Object.create(WrapperObject.prototype);
     PxCollection.prototype.constructor = PxCollection;
     PxCollection.prototype.__class__ = PxCollection;
@@ -57214,6 +58256,7 @@ var PhysXModule = (() => {
     function PxCudaContextManager() {
       throw "cannot construct a PxCudaContextManager, no constructor in IDL";
     }
+    __name(PxCudaContextManager, "PxCudaContextManager");
     PxCudaContextManager.prototype = Object.create(WrapperObject.prototype);
     PxCudaContextManager.prototype.constructor = PxCudaContextManager;
     PxCudaContextManager.prototype.__class__ = PxCudaContextManager;
@@ -57345,6 +58388,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxCudaContextManagerDesc_PxCudaContextManagerDesc_0();
       getCache(PxCudaContextManagerDesc)[this.ptr] = this;
     }
+    __name(PxCudaContextManagerDesc, "PxCudaContextManagerDesc");
     ;
     ;
     PxCudaContextManagerDesc.prototype = Object.create(WrapperObject.prototype);
@@ -57430,6 +58474,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxDefaultErrorCallback_PxDefaultErrorCallback_0();
       getCache(PxDefaultErrorCallback)[this.ptr] = this;
     }
+    __name(PxDefaultErrorCallback, "PxDefaultErrorCallback");
     ;
     ;
     PxDefaultErrorCallback.prototype = Object.create(PxErrorCallback.prototype);
@@ -57463,6 +58508,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_JavaErrorCallback_JavaErrorCallback_0();
       getCache(JavaErrorCallback)[this.ptr] = this;
     }
+    __name(JavaErrorCallback, "JavaErrorCallback");
     ;
     ;
     JavaErrorCallback.prototype = Object.create(PxErrorCallback.prototype);
@@ -57495,6 +58541,7 @@ var PhysXModule = (() => {
     function PxFoundation() {
       throw "cannot construct a PxFoundation, no constructor in IDL";
     }
+    __name(PxFoundation, "PxFoundation");
     PxFoundation.prototype = Object.create(WrapperObject.prototype);
     PxFoundation.prototype.constructor = PxFoundation;
     PxFoundation.prototype.__class__ = PxFoundation;
@@ -57508,6 +58555,7 @@ var PhysXModule = (() => {
     function PxPhysicsInsertionCallback() {
       throw "cannot construct a PxPhysicsInsertionCallback, no constructor in IDL";
     }
+    __name(PxPhysicsInsertionCallback, "PxPhysicsInsertionCallback");
     PxPhysicsInsertionCallback.prototype = Object.create(WrapperObject.prototype);
     PxPhysicsInsertionCallback.prototype.constructor = PxPhysicsInsertionCallback;
     PxPhysicsInsertionCallback.prototype.__class__ = PxPhysicsInsertionCallback;
@@ -57545,6 +58593,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxQuat_PxQuat_4(x, y, z, w);
       getCache(PxQuat)[this.ptr] = this;
     }
+    __name(PxQuat, "PxQuat");
     ;
     ;
     PxQuat.prototype = Object.create(WrapperObject.prototype);
@@ -57604,6 +58653,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxTolerancesScale_PxTolerancesScale_0();
       getCache(PxTolerancesScale)[this.ptr] = this;
     }
+    __name(PxTolerancesScale, "PxTolerancesScale");
     ;
     ;
     PxTolerancesScale.prototype = Object.create(WrapperObject.prototype);
@@ -57628,6 +58678,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxTransform_PxTransform_2(p0, q0);
       getCache(PxTransform)[this.ptr] = this;
     }
+    __name(PxTransform, "PxTransform");
     ;
     ;
     PxTransform.prototype = Object.create(WrapperObject.prototype);
@@ -57664,6 +58715,7 @@ var PhysXModule = (() => {
     function PxStridedData() {
       throw "cannot construct a PxStridedData, no constructor in IDL";
     }
+    __name(PxStridedData, "PxStridedData");
     PxStridedData.prototype = Object.create(WrapperObject.prototype);
     PxStridedData.prototype.constructor = PxStridedData;
     PxStridedData.prototype.__class__ = PxStridedData;
@@ -57698,6 +58750,7 @@ var PhysXModule = (() => {
     function PxU16StridedData() {
       throw "cannot construct a PxU16StridedData, no constructor in IDL";
     }
+    __name(PxU16StridedData, "PxU16StridedData");
     PxU16StridedData.prototype = Object.create(WrapperObject.prototype);
     PxU16StridedData.prototype.constructor = PxU16StridedData;
     PxU16StridedData.prototype.__class__ = PxU16StridedData;
@@ -57754,6 +58807,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxVec3_PxVec3_3(x, y, z);
       getCache(PxVec3)[this.ptr] = this;
     }
+    __name(PxVec3, "PxVec3");
     ;
     ;
     PxVec3.prototype = Object.create(WrapperObject.prototype);
@@ -57801,6 +58855,7 @@ var PhysXModule = (() => {
     function PxCollectionExt() {
       throw "cannot construct a PxCollectionExt, no constructor in IDL";
     }
+    __name(PxCollectionExt, "PxCollectionExt");
     PxCollectionExt.prototype = Object.create(WrapperObject.prototype);
     PxCollectionExt.prototype.constructor = PxCollectionExt;
     PxCollectionExt.prototype.__class__ = PxCollectionExt;
@@ -57848,6 +58903,7 @@ var PhysXModule = (() => {
     function PxD6Joint() {
       throw "cannot construct a PxD6Joint, no constructor in IDL";
     }
+    __name(PxD6Joint, "PxD6Joint");
     PxD6Joint.prototype = Object.create(WrapperObject.prototype);
     PxD6Joint.prototype.constructor = PxD6Joint;
     PxD6Joint.prototype.__class__ = PxD6Joint;
@@ -58033,6 +59089,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxD6JointDrive_PxD6JointDrive_4(driveStiffness, driveDamping, driveForceLimit, isAcceleration);
       getCache(PxD6JointDrive)[this.ptr] = this;
     }
+    __name(PxD6JointDrive, "PxD6JointDrive");
     ;
     ;
     PxD6JointDrive.prototype = Object.create(PxSpring.prototype);
@@ -58094,6 +59151,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxD6JointDriveFlags_PxD6JointDriveFlags_1(flags);
       getCache(PxD6JointDriveFlags)[this.ptr] = this;
     }
+    __name(PxD6JointDriveFlags, "PxD6JointDriveFlags");
     ;
     ;
     PxD6JointDriveFlags.prototype = Object.create(WrapperObject.prototype);
@@ -58130,6 +59188,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxDefaultAllocator_PxDefaultAllocator_0();
       getCache(PxDefaultAllocator)[this.ptr] = this;
     }
+    __name(PxDefaultAllocator, "PxDefaultAllocator");
     ;
     ;
     PxDefaultAllocator.prototype = Object.create(WrapperObject.prototype);
@@ -58144,6 +59203,7 @@ var PhysXModule = (() => {
     function PxDefaultCpuDispatcher() {
       throw "cannot construct a PxDefaultCpuDispatcher, no constructor in IDL";
     }
+    __name(PxDefaultCpuDispatcher, "PxDefaultCpuDispatcher");
     PxDefaultCpuDispatcher.prototype = Object.create(PxCpuDispatcher.prototype);
     PxDefaultCpuDispatcher.prototype.constructor = PxDefaultCpuDispatcher;
     PxDefaultCpuDispatcher.prototype.__class__ = PxDefaultCpuDispatcher;
@@ -58161,6 +59221,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxDefaultMemoryInputData_PxDefaultMemoryInputData_2(data, length);
       getCache(PxDefaultMemoryInputData)[this.ptr] = this;
     }
+    __name(PxDefaultMemoryInputData, "PxDefaultMemoryInputData");
     ;
     ;
     PxDefaultMemoryInputData.prototype = Object.create(PxInputData.prototype);
@@ -58202,6 +59263,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxDefaultMemoryOutputStream_PxDefaultMemoryOutputStream_0();
       getCache(PxDefaultMemoryOutputStream)[this.ptr] = this;
     }
+    __name(PxDefaultMemoryOutputStream, "PxDefaultMemoryOutputStream");
     ;
     ;
     PxDefaultMemoryOutputStream.prototype = Object.create(PxOutputStream.prototype);
@@ -58235,6 +59297,7 @@ var PhysXModule = (() => {
     function PxDistanceJoint() {
       throw "cannot construct a PxDistanceJoint, no constructor in IDL";
     }
+    __name(PxDistanceJoint, "PxDistanceJoint");
     PxDistanceJoint.prototype = Object.create(PxJoint.prototype);
     PxDistanceJoint.prototype.constructor = PxDistanceJoint;
     PxDistanceJoint.prototype.__class__ = PxDistanceJoint;
@@ -58496,6 +59559,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxDistanceJointFlags_PxDistanceJointFlags_1(flags);
       getCache(PxDistanceJointFlags)[this.ptr] = this;
     }
+    __name(PxDistanceJointFlags, "PxDistanceJointFlags");
     ;
     ;
     PxDistanceJointFlags.prototype = Object.create(WrapperObject.prototype);
@@ -58531,6 +59595,7 @@ var PhysXModule = (() => {
     function PxFixedJoint() {
       throw "cannot construct a PxFixedJoint, no constructor in IDL";
     }
+    __name(PxFixedJoint, "PxFixedJoint");
     PxFixedJoint.prototype = Object.create(PxJoint.prototype);
     PxFixedJoint.prototype.constructor = PxFixedJoint;
     PxFixedJoint.prototype.__class__ = PxFixedJoint;
@@ -58734,6 +59799,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxJointAngularLimitPair_PxJointAngularLimitPair_3(lowerLimit, upperLimit, spring);
       getCache(PxJointAngularLimitPair)[this.ptr] = this;
     }
+    __name(PxJointAngularLimitPair, "PxJointAngularLimitPair");
     ;
     ;
     PxJointAngularLimitPair.prototype = Object.create(PxJointLimitParameters.prototype);
@@ -58842,6 +59908,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxJointLimitCone_PxJointLimitCone_3(yLimitAngle, zLimitAngle, spring);
       getCache(PxJointLimitCone)[this.ptr] = this;
     }
+    __name(PxJointLimitCone, "PxJointLimitCone");
     ;
     ;
     PxJointLimitCone.prototype = Object.create(PxJointLimitParameters.prototype);
@@ -58954,6 +60021,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxJointLimitPyramid_PxJointLimitPyramid_5(yLimitAngleMin, yLimitAngleMax, zLimitAngleMin, zLimitAngleMax, spring);
       getCache(PxJointLimitPyramid)[this.ptr] = this;
     }
+    __name(PxJointLimitPyramid, "PxJointLimitPyramid");
     ;
     ;
     PxJointLimitPyramid.prototype = Object.create(PxJointLimitParameters.prototype);
@@ -59082,6 +60150,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxJointLinearLimit_PxJointLinearLimit_2(extent, spring);
       getCache(PxJointLinearLimit)[this.ptr] = this;
     }
+    __name(PxJointLinearLimit, "PxJointLinearLimit");
     ;
     ;
     PxJointLinearLimit.prototype = Object.create(WrapperObject.prototype);
@@ -59114,6 +60183,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxJointLinearLimitPair_PxJointLinearLimitPair_3(lowerLimit, upperLimit, spring);
       getCache(PxJointLinearLimitPair)[this.ptr] = this;
     }
+    __name(PxJointLinearLimitPair, "PxJointLinearLimitPair");
     ;
     ;
     PxJointLinearLimitPair.prototype = Object.create(PxJointLimitParameters.prototype);
@@ -59215,6 +60285,7 @@ var PhysXModule = (() => {
     function PxPrismaticJoint() {
       throw "cannot construct a PxPrismaticJoint, no constructor in IDL";
     }
+    __name(PxPrismaticJoint, "PxPrismaticJoint");
     PxPrismaticJoint.prototype = Object.create(PxJoint.prototype);
     PxPrismaticJoint.prototype.constructor = PxPrismaticJoint;
     PxPrismaticJoint.prototype.__class__ = PxPrismaticJoint;
@@ -59452,6 +60523,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxPrismaticJointFlags_PxPrismaticJointFlags_1(flags);
       getCache(PxPrismaticJointFlags)[this.ptr] = this;
     }
+    __name(PxPrismaticJointFlags, "PxPrismaticJointFlags");
     ;
     ;
     PxPrismaticJointFlags.prototype = Object.create(WrapperObject.prototype);
@@ -59487,6 +60559,7 @@ var PhysXModule = (() => {
     function PxRigidActorExt() {
       throw "cannot construct a PxRigidActorExt, no constructor in IDL";
     }
+    __name(PxRigidActorExt, "PxRigidActorExt");
     PxRigidActorExt.prototype = Object.create(WrapperObject.prototype);
     PxRigidActorExt.prototype.constructor = PxRigidActorExt;
     PxRigidActorExt.prototype.__class__ = PxRigidActorExt;
@@ -59515,6 +60588,7 @@ var PhysXModule = (() => {
     function PxRigidBodyExt() {
       throw "cannot construct a PxRigidBodyExt, no constructor in IDL";
     }
+    __name(PxRigidBodyExt, "PxRigidBodyExt");
     PxRigidBodyExt.prototype = Object.create(WrapperObject.prototype);
     PxRigidBodyExt.prototype.constructor = PxRigidBodyExt;
     PxRigidBodyExt.prototype.__class__ = PxRigidBodyExt;
@@ -59738,6 +60812,7 @@ var PhysXModule = (() => {
     function PxRevoluteJoint() {
       throw "cannot construct a PxRevoluteJoint, no constructor in IDL";
     }
+    __name(PxRevoluteJoint, "PxRevoluteJoint");
     PxRevoluteJoint.prototype = Object.create(PxJoint.prototype);
     PxRevoluteJoint.prototype.constructor = PxRevoluteJoint;
     PxRevoluteJoint.prototype.__class__ = PxRevoluteJoint;
@@ -60017,6 +61092,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxRevoluteJointFlags_PxRevoluteJointFlags_1(flags);
       getCache(PxRevoluteJointFlags)[this.ptr] = this;
     }
+    __name(PxRevoluteJointFlags, "PxRevoluteJointFlags");
     ;
     ;
     PxRevoluteJointFlags.prototype = Object.create(WrapperObject.prototype);
@@ -60052,6 +61128,7 @@ var PhysXModule = (() => {
     function PxSerialization() {
       throw "cannot construct a PxSerialization, no constructor in IDL";
     }
+    __name(PxSerialization, "PxSerialization");
     PxSerialization.prototype = Object.create(WrapperObject.prototype);
     PxSerialization.prototype.constructor = PxSerialization;
     PxSerialization.prototype.__class__ = PxSerialization;
@@ -60187,6 +61264,7 @@ var PhysXModule = (() => {
     function PxSerializationRegistry() {
       throw "cannot construct a PxSerializationRegistry, no constructor in IDL";
     }
+    __name(PxSerializationRegistry, "PxSerializationRegistry");
     PxSerializationRegistry.prototype = Object.create(WrapperObject.prototype);
     PxSerializationRegistry.prototype.constructor = PxSerializationRegistry;
     PxSerializationRegistry.prototype.__class__ = PxSerializationRegistry;
@@ -60200,6 +61278,7 @@ var PhysXModule = (() => {
     function PxSphericalJoint() {
       throw "cannot construct a PxSphericalJoint, no constructor in IDL";
     }
+    __name(PxSphericalJoint, "PxSphericalJoint");
     PxSphericalJoint.prototype = Object.create(PxJoint.prototype);
     PxSphericalJoint.prototype.constructor = PxSphericalJoint;
     PxSphericalJoint.prototype.__class__ = PxSphericalJoint;
@@ -60425,6 +61504,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxSphericalJointFlags_PxSphericalJointFlags_1(flags);
       getCache(PxSphericalJointFlags)[this.ptr] = this;
     }
+    __name(PxSphericalJointFlags, "PxSphericalJointFlags");
     ;
     ;
     PxSphericalJointFlags.prototype = Object.create(WrapperObject.prototype);
@@ -60461,6 +61541,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_BatchVehicleUpdateDesc_BatchVehicleUpdateDesc_0();
       getCache(BatchVehicleUpdateDesc)[this.ptr] = this;
     }
+    __name(BatchVehicleUpdateDesc, "BatchVehicleUpdateDesc");
     ;
     ;
     BatchVehicleUpdateDesc.prototype = Object.create(WrapperObject.prototype);
@@ -60588,6 +61669,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_BatchVehicleUpdate_BatchVehicleUpdate_1(desc);
       getCache(BatchVehicleUpdate)[this.ptr] = this;
     }
+    __name(BatchVehicleUpdate, "BatchVehicleUpdate");
     ;
     ;
     BatchVehicleUpdate.prototype = Object.create(WrapperObject.prototype);
@@ -60644,6 +61726,7 @@ var PhysXModule = (() => {
     function PxBoxController() {
       throw "cannot construct a PxBoxController, no constructor in IDL";
     }
+    __name(PxBoxController, "PxBoxController");
     PxBoxController.prototype = Object.create(PxController.prototype);
     PxBoxController.prototype.constructor = PxBoxController;
     PxBoxController.prototype.__class__ = PxBoxController;
@@ -60849,6 +61932,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxBoxControllerDesc_PxBoxControllerDesc_0();
       getCache(PxBoxControllerDesc)[this.ptr] = this;
     }
+    __name(PxBoxControllerDesc, "PxBoxControllerDesc");
     ;
     ;
     PxBoxControllerDesc.prototype = Object.create(PxControllerDesc.prototype);
@@ -61077,6 +62161,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxBoxObstacle_PxBoxObstacle_0();
       getCache(PxBoxObstacle)[this.ptr] = this;
     }
+    __name(PxBoxObstacle, "PxBoxObstacle");
     ;
     ;
     PxBoxObstacle.prototype = Object.create(PxObstacle.prototype);
@@ -61140,6 +62225,7 @@ var PhysXModule = (() => {
     function PxCapsuleController() {
       throw "cannot construct a PxCapsuleController, no constructor in IDL";
     }
+    __name(PxCapsuleController, "PxCapsuleController");
     PxCapsuleController.prototype = Object.create(PxController.prototype);
     PxCapsuleController.prototype.constructor = PxCapsuleController;
     PxCapsuleController.prototype.__class__ = PxCapsuleController;
@@ -61345,6 +62431,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxCapsuleControllerDesc_PxCapsuleControllerDesc_0();
       getCache(PxCapsuleControllerDesc)[this.ptr] = this;
     }
+    __name(PxCapsuleControllerDesc, "PxCapsuleControllerDesc");
     ;
     ;
     PxCapsuleControllerDesc.prototype = Object.create(PxControllerDesc.prototype);
@@ -61573,6 +62660,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxCapsuleObstacle_PxCapsuleObstacle_0();
       getCache(PxCapsuleObstacle)[this.ptr] = this;
     }
+    __name(PxCapsuleObstacle, "PxCapsuleObstacle");
     ;
     ;
     PxCapsuleObstacle.prototype = Object.create(PxObstacle.prototype);
@@ -61650,6 +62738,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxControllerCollisionFlags_PxControllerCollisionFlags_1(flags);
       getCache(PxControllerCollisionFlags)[this.ptr] = this;
     }
+    __name(PxControllerCollisionFlags, "PxControllerCollisionFlags");
     ;
     ;
     PxControllerCollisionFlags.prototype = Object.create(WrapperObject.prototype);
@@ -61693,6 +62782,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxControllerFilters_PxControllerFilters_1(filterData);
       getCache(PxControllerFilters)[this.ptr] = this;
     }
+    __name(PxControllerFilters, "PxControllerFilters");
     ;
     ;
     PxControllerFilters.prototype = Object.create(WrapperObject.prototype);
@@ -61729,6 +62819,7 @@ var PhysXModule = (() => {
     function PxControllerManager() {
       throw "cannot construct a PxControllerManager, no constructor in IDL";
     }
+    __name(PxControllerManager, "PxControllerManager");
     PxControllerManager.prototype = Object.create(WrapperObject.prototype);
     PxControllerManager.prototype.constructor = PxControllerManager;
     PxControllerManager.prototype.__class__ = PxControllerManager;
@@ -61832,6 +62923,7 @@ var PhysXModule = (() => {
     function PxControllerObstacleHit() {
       throw "cannot construct a PxControllerObstacleHit, no constructor in IDL";
     }
+    __name(PxControllerObstacleHit, "PxControllerObstacleHit");
     PxControllerObstacleHit.prototype = Object.create(PxControllerHit.prototype);
     PxControllerObstacleHit.prototype.constructor = PxControllerObstacleHit;
     PxControllerObstacleHit.prototype.__class__ = PxControllerObstacleHit;
@@ -61910,6 +63002,7 @@ var PhysXModule = (() => {
     function PxControllerShapeHit() {
       throw "cannot construct a PxControllerShapeHit, no constructor in IDL";
     }
+    __name(PxControllerShapeHit, "PxControllerShapeHit");
     PxControllerShapeHit.prototype = Object.create(PxControllerHit.prototype);
     PxControllerShapeHit.prototype.constructor = PxControllerShapeHit;
     PxControllerShapeHit.prototype.__class__ = PxControllerShapeHit;
@@ -62010,6 +63103,7 @@ var PhysXModule = (() => {
     function PxControllersHit() {
       throw "cannot construct a PxControllersHit, no constructor in IDL";
     }
+    __name(PxControllersHit, "PxControllersHit");
     PxControllersHit.prototype = Object.create(PxControllerHit.prototype);
     PxControllersHit.prototype.constructor = PxControllersHit;
     PxControllersHit.prototype.__class__ = PxControllersHit;
@@ -62089,6 +63183,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxControllerState_PxControllerState_0();
       getCache(PxControllerState)[this.ptr] = this;
     }
+    __name(PxControllerState, "PxControllerState");
     ;
     ;
     PxControllerState.prototype = Object.create(WrapperObject.prototype);
@@ -62191,6 +63286,7 @@ var PhysXModule = (() => {
     function PxControllerStats() {
       throw "cannot construct a PxControllerStats, no constructor in IDL";
     }
+    __name(PxControllerStats, "PxControllerStats");
     PxControllerStats.prototype = Object.create(WrapperObject.prototype);
     PxControllerStats.prototype.constructor = PxControllerStats;
     PxControllerStats.prototype.__class__ = PxControllerStats;
@@ -62269,6 +63365,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxExtendedVec3_PxExtendedVec3_3(x, y, z);
       getCache(PxExtendedVec3)[this.ptr] = this;
     }
+    __name(PxExtendedVec3, "PxExtendedVec3");
     ;
     ;
     PxExtendedVec3.prototype = Object.create(WrapperObject.prototype);
@@ -62316,6 +63413,7 @@ var PhysXModule = (() => {
     function PxObstacleContext() {
       throw "cannot construct a PxObstacleContext, no constructor in IDL";
     }
+    __name(PxObstacleContext, "PxObstacleContext");
     PxObstacleContext.prototype = Object.create(WrapperObject.prototype);
     PxObstacleContext.prototype.constructor = PxObstacleContext;
     PxObstacleContext.prototype.__class__ = PxObstacleContext;
@@ -62381,6 +63479,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_JavaUserControllerHitReport_JavaUserControllerHitReport_0();
       getCache(JavaUserControllerHitReport)[this.ptr] = this;
     }
+    __name(JavaUserControllerHitReport, "JavaUserControllerHitReport");
     ;
     ;
     JavaUserControllerHitReport.prototype = Object.create(PxUserControllerHitReport.prototype);
@@ -62416,6 +63515,7 @@ var PhysXModule = (() => {
     function SupportFunctions() {
       throw "cannot construct a SupportFunctions, no constructor in IDL";
     }
+    __name(SupportFunctions, "SupportFunctions");
     SupportFunctions.prototype = Object.create(WrapperObject.prototype);
     SupportFunctions.prototype.constructor = SupportFunctions;
     SupportFunctions.prototype.__class__ = SupportFunctions;
@@ -62437,6 +63537,7 @@ var PhysXModule = (() => {
     function PxActorPtr() {
       throw "cannot construct a PxActorPtr, no constructor in IDL";
     }
+    __name(PxActorPtr, "PxActorPtr");
     PxActorPtr.prototype = Object.create(WrapperObject.prototype);
     PxActorPtr.prototype.constructor = PxActorPtr;
     PxActorPtr.prototype.__class__ = PxActorPtr;
@@ -62449,6 +63550,7 @@ var PhysXModule = (() => {
     function PxMaterialPtr() {
       throw "cannot construct a PxMaterialPtr, no constructor in IDL";
     }
+    __name(PxMaterialPtr, "PxMaterialPtr");
     PxMaterialPtr.prototype = Object.create(WrapperObject.prototype);
     PxMaterialPtr.prototype.constructor = PxMaterialPtr;
     PxMaterialPtr.prototype.__class__ = PxMaterialPtr;
@@ -62461,6 +63563,7 @@ var PhysXModule = (() => {
     function PxMaterialConstPtr() {
       throw "cannot construct a PxMaterialConstPtr, no constructor in IDL";
     }
+    __name(PxMaterialConstPtr, "PxMaterialConstPtr");
     PxMaterialConstPtr.prototype = Object.create(WrapperObject.prototype);
     PxMaterialConstPtr.prototype.constructor = PxMaterialConstPtr;
     PxMaterialConstPtr.prototype.__class__ = PxMaterialConstPtr;
@@ -62473,6 +63576,7 @@ var PhysXModule = (() => {
     function PxVehicleWheelsPtr() {
       throw "cannot construct a PxVehicleWheelsPtr, no constructor in IDL";
     }
+    __name(PxVehicleWheelsPtr, "PxVehicleWheelsPtr");
     PxVehicleWheelsPtr.prototype = Object.create(WrapperObject.prototype);
     PxVehicleWheelsPtr.prototype.constructor = PxVehicleWheelsPtr;
     PxVehicleWheelsPtr.prototype.__class__ = PxVehicleWheelsPtr;
@@ -62485,6 +63589,7 @@ var PhysXModule = (() => {
     function PxRealPtr() {
       throw "cannot construct a PxRealPtr, no constructor in IDL";
     }
+    __name(PxRealPtr, "PxRealPtr");
     PxRealPtr.prototype = Object.create(WrapperObject.prototype);
     PxRealPtr.prototype.constructor = PxRealPtr;
     PxRealPtr.prototype.__class__ = PxRealPtr;
@@ -62497,6 +63602,7 @@ var PhysXModule = (() => {
     function PxU8Ptr() {
       throw "cannot construct a PxU8Ptr, no constructor in IDL";
     }
+    __name(PxU8Ptr, "PxU8Ptr");
     PxU8Ptr.prototype = Object.create(PxU8ConstPtr.prototype);
     PxU8Ptr.prototype.constructor = PxU8Ptr;
     PxU8Ptr.prototype.__class__ = PxU8Ptr;
@@ -62509,6 +63615,7 @@ var PhysXModule = (() => {
     function PxU16Ptr() {
       throw "cannot construct a PxU16Ptr, no constructor in IDL";
     }
+    __name(PxU16Ptr, "PxU16Ptr");
     PxU16Ptr.prototype = Object.create(PxU16ConstPtr.prototype);
     PxU16Ptr.prototype.constructor = PxU16Ptr;
     PxU16Ptr.prototype.__class__ = PxU16Ptr;
@@ -62521,6 +63628,7 @@ var PhysXModule = (() => {
     function PxU32Ptr() {
       throw "cannot construct a PxU32Ptr, no constructor in IDL";
     }
+    __name(PxU32Ptr, "PxU32Ptr");
     PxU32Ptr.prototype = Object.create(PxU32ConstPtr.prototype);
     PxU32Ptr.prototype.constructor = PxU32Ptr;
     PxU32Ptr.prototype.__class__ = PxU32Ptr;
@@ -62533,6 +63641,7 @@ var PhysXModule = (() => {
     function TypeHelpers() {
       throw "cannot construct a TypeHelpers, no constructor in IDL";
     }
+    __name(TypeHelpers, "TypeHelpers");
     TypeHelpers.prototype = Object.create(WrapperObject.prototype);
     TypeHelpers.prototype.constructor = TypeHelpers;
     TypeHelpers.prototype.__class__ = TypeHelpers;
@@ -62658,6 +63767,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxMaterialConst_Vector_PxMaterialConst_1(size);
       getCache(Vector_PxMaterialConst)[this.ptr] = this;
     }
+    __name(Vector_PxMaterialConst, "Vector_PxMaterialConst");
     ;
     ;
     Vector_PxMaterialConst.prototype = Object.create(WrapperObject.prototype);
@@ -62709,6 +63819,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxHeightFieldSample_Vector_PxHeightFieldSample_1(size);
       getCache(Vector_PxHeightFieldSample)[this.ptr] = this;
     }
+    __name(Vector_PxHeightFieldSample, "Vector_PxHeightFieldSample");
     ;
     ;
     Vector_PxHeightFieldSample.prototype = Object.create(WrapperObject.prototype);
@@ -62760,6 +63871,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxReal_Vector_PxReal_1(size);
       getCache(Vector_PxReal)[this.ptr] = this;
     }
+    __name(Vector_PxReal, "Vector_PxReal");
     ;
     ;
     Vector_PxReal.prototype = Object.create(WrapperObject.prototype);
@@ -62811,6 +63923,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxU8_Vector_PxU8_1(size);
       getCache(Vector_PxU8)[this.ptr] = this;
     }
+    __name(Vector_PxU8, "Vector_PxU8");
     ;
     ;
     Vector_PxU8.prototype = Object.create(WrapperObject.prototype);
@@ -62862,6 +63975,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxU16_Vector_PxU16_1(size);
       getCache(Vector_PxU16)[this.ptr] = this;
     }
+    __name(Vector_PxU16, "Vector_PxU16");
     ;
     ;
     Vector_PxU16.prototype = Object.create(WrapperObject.prototype);
@@ -62913,6 +64027,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxU32_Vector_PxU32_1(size);
       getCache(Vector_PxU32)[this.ptr] = this;
     }
+    __name(Vector_PxU32, "Vector_PxU32");
     ;
     ;
     Vector_PxU32.prototype = Object.create(WrapperObject.prototype);
@@ -62964,6 +64079,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxVec3_Vector_PxVec3_1(size);
       getCache(Vector_PxVec3)[this.ptr] = this;
     }
+    __name(Vector_PxVec3, "Vector_PxVec3");
     ;
     ;
     Vector_PxVec3.prototype = Object.create(WrapperObject.prototype);
@@ -63015,6 +64131,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxRaycastQueryResult_Vector_PxRaycastQueryResult_1(size);
       getCache(Vector_PxRaycastQueryResult)[this.ptr] = this;
     }
+    __name(Vector_PxRaycastQueryResult, "Vector_PxRaycastQueryResult");
     ;
     ;
     Vector_PxRaycastQueryResult.prototype = Object.create(WrapperObject.prototype);
@@ -63066,6 +64183,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxSweepQueryResult_Vector_PxSweepQueryResult_1(size);
       getCache(Vector_PxSweepQueryResult)[this.ptr] = this;
     }
+    __name(Vector_PxSweepQueryResult, "Vector_PxSweepQueryResult");
     ;
     ;
     Vector_PxSweepQueryResult.prototype = Object.create(WrapperObject.prototype);
@@ -63117,6 +64235,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxRaycastHit_Vector_PxRaycastHit_1(size);
       getCache(Vector_PxRaycastHit)[this.ptr] = this;
     }
+    __name(Vector_PxRaycastHit, "Vector_PxRaycastHit");
     ;
     ;
     Vector_PxRaycastHit.prototype = Object.create(WrapperObject.prototype);
@@ -63168,6 +64287,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxSweepHit_Vector_PxSweepHit_1(size);
       getCache(Vector_PxSweepHit)[this.ptr] = this;
     }
+    __name(Vector_PxSweepHit, "Vector_PxSweepHit");
     ;
     ;
     Vector_PxSweepHit.prototype = Object.create(WrapperObject.prototype);
@@ -63219,6 +64339,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxVehicleDrivableSurfaceType_Vector_PxVehicleDrivableSurfaceType_1(size);
       getCache(Vector_PxVehicleDrivableSurfaceType)[this.ptr] = this;
     }
+    __name(Vector_PxVehicleDrivableSurfaceType, "Vector_PxVehicleDrivableSurfaceType");
     ;
     ;
     Vector_PxVehicleDrivableSurfaceType.prototype = Object.create(WrapperObject.prototype);
@@ -63270,6 +64391,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxWheelQueryResult_Vector_PxWheelQueryResult_1(size);
       getCache(Vector_PxWheelQueryResult)[this.ptr] = this;
     }
+    __name(Vector_PxWheelQueryResult, "Vector_PxWheelQueryResult");
     ;
     ;
     Vector_PxWheelQueryResult.prototype = Object.create(WrapperObject.prototype);
@@ -63321,6 +64443,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_Vector_PxVehicleWheels_Vector_PxVehicleWheels_1(size);
       getCache(Vector_PxVehicleWheels)[this.ptr] = this;
     }
+    __name(Vector_PxVehicleWheels, "Vector_PxVehicleWheels");
     ;
     ;
     Vector_PxVehicleWheels.prototype = Object.create(WrapperObject.prototype);
@@ -63365,6 +64488,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_JSPvdTransport_JSPvdTransport_0();
       getCache(JSPvdTransport)[this.ptr] = this;
     }
+    __name(JSPvdTransport, "JSPvdTransport");
     ;
     ;
     JSPvdTransport.prototype = Object.create(SimplePvdTransport.prototype);
@@ -63396,6 +64520,7 @@ var PhysXModule = (() => {
       this.ptr = _emscripten_bind_PxPvdInstrumentationFlags_PxPvdInstrumentationFlags_1(flags);
       getCache(PxPvdInstrumentationFlags)[this.ptr] = this;
     }
+    __name(PxPvdInstrumentationFlags, "PxPvdInstrumentationFlags");
     ;
     ;
     PxPvdInstrumentationFlags.prototype = Object.create(WrapperObject.prototype);
@@ -63431,6 +64556,7 @@ var PhysXModule = (() => {
     function PxPvd() {
       throw "cannot construct a PxPvd, no constructor in IDL";
     }
+    __name(PxPvd, "PxPvd");
     PxPvd.prototype = Object.create(WrapperObject.prototype);
     PxPvd.prototype.constructor = PxPvd;
     PxPvd.prototype.__class__ = PxPvd;
@@ -63758,6 +64884,7 @@ var PhysXModule = (() => {
         Module["eMEMORY"] = _emscripten_enum_PxPvdInstrumentationFlagEnum_eMEMORY();
         Module["eALL"] = _emscripten_enum_PxPvdInstrumentationFlagEnum_eALL();
       }
+      __name(setupEnums, "setupEnums");
       if (runtimeInitialized)
         setupEnums();
       else
@@ -63768,6 +64895,21 @@ var PhysXModule = (() => {
 })();
 var trident_physx_js_webidl_wasm_default = PhysXModule;
 var PhysX = trident_physx_js_webidl_wasm_default;
+function FixEnums(PhysX2) {
+  const enums = Object.keys(PhysX2).filter((key) => {
+    return key.includes("_emscripten_enum_");
+  }).map((enumString) => {
+    const split = enumString.split("_emscripten_enum_")[1].split("();")[0].split("_e");
+    return { enumName: split[0], entryName: split[1], emscript: enumString };
+  });
+  for (const enumEntry of enums) {
+    if (!PhysX2[enumEntry.enumName]) {
+      PhysX2[enumEntry.enumName] = {};
+    }
+    PhysX2[enumEntry.enumName][enumEntry.entryName] = PhysX2[enumEntry.emscript]();
+  }
+}
+__name(FixEnums, "FixEnums");
 function PhysXLoader(wasmLocation) {
   return new Promise((resolve, reject) => {
     fetch(wasmLocation).then((response) => {
@@ -63777,6 +64919,7 @@ function PhysXLoader(wasmLocation) {
         };
         trident_physx_js_webidl_wasm_default(PhysXModuleClone).then((instance) => {
           PhysX = instance;
+          FixEnums(PhysX);
           resolve(PhysX);
         }).catch((error) => {
           reject(error);
@@ -63787,15 +64930,18 @@ function PhysXLoader(wasmLocation) {
     });
   });
 }
+__name(PhysXLoader, "PhysXLoader");
 
 // src/components/Collider.ts
 var Collider = class extends Component {
-  constructor() {
-    super(...arguments);
+  constructor(gameObject, transform) {
+    super(gameObject, transform);
     this.position = new Vector3();
     this.rotation = new Quaternion();
     this.localScale = new Vector3();
     this.previousLayer = LayerMask.LAYER0;
+    this.physxPhysics = Runtime.Physics.GetPhysics();
+    this.physxScene = gameObject.scene.physicsScene;
   }
   Start() {
     if (this.body) {
@@ -63827,15 +64973,18 @@ var Collider = class extends Component {
     }
   }
   Destroy() {
-    if (this.body && this.body.rigidbody) {
+    if (this.body && this.body.rigidbody && this.body.shape && this.body.rigidbody.getNbShapes() > 0) {
       this.body.rigidbody.detachShape(this.body.shape);
       this.body.shape.release();
       this.body.rigidbody.release();
+      this.body.rigidbody = null;
+      this.body.shape = null;
       this.body = null;
     }
     this.gameObject.RemoveComponent(this);
   }
 };
+__name(Collider, "Collider");
 
 // src/physics/PhysicsScale.ts
 var PxGeometryTypeEnum;
@@ -63903,6 +65052,7 @@ var PhysicsScale = class {
     return shape;
   }
 };
+__name(PhysicsScale, "PhysicsScale");
 
 // src/physics/PhysicsRigidbody.ts
 var PhysicsRigidbody = class {
@@ -63978,6 +65128,7 @@ var PhysicsRigidbody = class {
     return true;
   }
 };
+__name(PhysicsRigidbody, "PhysicsRigidbody");
 
 // src/physics/PhysicsShape.ts
 var PhysicsShape = class {
@@ -63985,7 +65136,7 @@ var PhysicsShape = class {
     return physics.createMaterial(0.6, 0.6, 0);
   }
   static DefaultFlags() {
-    return new PhysX.PxShapeFlags(PhysX._emscripten_enum_PxShapeFlagEnum_eSCENE_QUERY_SHAPE() | PhysX._emscripten_enum_PxShapeFlagEnum_eSIMULATION_SHAPE());
+    return new PhysX.PxShapeFlags(PhysX.PxShapeFlagEnum.SCENE_QUERY_SHAPE | PhysX.PxShapeFlagEnum.SIMULATION_SHAPE);
   }
   static DefaultFilterData() {
     return new PhysX.PxFilterData(1, 1, 0, 0);
@@ -64026,7 +65177,7 @@ var PhysicsShape = class {
   }
   static CreateConvex(physics, cooking, vertices) {
     const desc = new PhysX.PxConvexMeshDesc();
-    desc.flags = new PhysX.PxConvexFlags(PhysX._emscripten_enum_PxConvexFlagEnum_eCOMPUTE_CONVEX());
+    desc.flags = new PhysX.PxConvexFlags(PhysX.PxConvexFlagEnum.COMPUTE_CONVEX);
     desc.points.count = vertices.length / 3;
     desc.points.stride = 12;
     desc.points.data = this.putIntoPhysXHeap(PhysX.HEAPF32, vertices);
@@ -64064,6 +65215,7 @@ var PhysicsShape = class {
     return shape;
   }
 };
+__name(PhysicsShape, "PhysicsShape");
 
 // src/physics/PhysicsUtils.ts
 var PhysicsUtils = class {
@@ -64073,6 +65225,7 @@ var PhysicsUtils = class {
     return new PhysX.PxTransform(pxPosition, pxRotation);
   }
 };
+__name(PhysicsUtils, "PhysicsUtils");
 
 // src/enums/ForceMode.ts
 var ForceMode;
@@ -64098,20 +65251,6 @@ var RigidbodyConstraints;
   RigidbodyConstraints2[RigidbodyConstraints2["FreezeAll"] = 256] = "FreezeAll";
 })(RigidbodyConstraints || (RigidbodyConstraints = {}));
 
-// src/enums/RigidbodyFlags.ts
-var RigidBodyFlags;
-(function(RigidBodyFlags2) {
-  RigidBodyFlags2[RigidBodyFlags2["None"] = 0] = "None";
-  RigidBodyFlags2[RigidBodyFlags2["KINEMATIC"] = 1] = "KINEMATIC";
-  RigidBodyFlags2[RigidBodyFlags2["USE_KINEMATIC_TARGET_FOR_SCENE_QUERIES"] = 2] = "USE_KINEMATIC_TARGET_FOR_SCENE_QUERIES";
-  RigidBodyFlags2[RigidBodyFlags2["ENABLE_CCD"] = 4] = "ENABLE_CCD";
-  RigidBodyFlags2[RigidBodyFlags2["ENABLE_CCD_FRICTION"] = 8] = "ENABLE_CCD_FRICTION";
-  RigidBodyFlags2[RigidBodyFlags2["ENABLE_POSE_INTEGRATION_PREVIEW"] = 16] = "ENABLE_POSE_INTEGRATION_PREVIEW";
-  RigidBodyFlags2[RigidBodyFlags2["ENABLE_SPECULATIVE_CCD"] = 32] = "ENABLE_SPECULATIVE_CCD";
-  RigidBodyFlags2[RigidBodyFlags2["ENABLE_CCD_MAX_CONTACT_IMPULSE"] = 64] = "ENABLE_CCD_MAX_CONTACT_IMPULSE";
-  RigidBodyFlags2[RigidBodyFlags2["RETAIN_ACCELERATIONS"] = 128] = "RETAIN_ACCELERATIONS";
-})(RigidBodyFlags || (RigidBodyFlags = {}));
-
 // src/components/Rigidbody.ts
 var Rigidbody = class extends Component {
   constructor(gameObject, transform) {
@@ -64120,8 +65259,8 @@ var Rigidbody = class extends Component {
     this.rotation = new Quaternion();
     this.localScale = new Vector3();
     this.previousLayer = LayerMask.LAYER0;
-    this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-    this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
+    this.physxPhysics = Runtime.Physics.GetPhysics();
+    this.physxScene = gameObject.scene.physicsScene;
     const collider = this.gameObject.GetComponent(Collider);
     if (collider && collider.body) {
       this.body = collider.body;
@@ -64143,10 +65282,10 @@ var Rigidbody = class extends Component {
   }
   get isKinematic() {
     const flags = this.rigidbody.getRigidBodyFlags();
-    return flags.isSet(RigidBodyFlags.KINEMATIC.valueOf());
+    return flags.isSet(PhysX.PxRigidBodyFlagEnum.KINEMATIC.valueOf());
   }
   set isKinematic(kinematic) {
-    this.rigidbody.setRigidBodyFlag(RigidBodyFlags.KINEMATIC.valueOf(), kinematic);
+    this.rigidbody.setRigidBodyFlag(PhysX.PxRigidBodyFlagEnum.KINEMATIC.valueOf(), kinematic);
   }
   get mass() {
     return this.rigidbody.getMass();
@@ -64256,13 +65395,14 @@ var Rigidbody = class extends Component {
   }
   Destroy() {
     const collider = this.gameObject.GetComponent(Collider);
-    if (collider && collider.body) {
+    if (collider && collider.body && collider.body.rigidbody && collider.body.rigidbody.getNbShapes() > 0) {
       this.body = collider.body;
       this.body.ConvertToStatic();
     }
     this.gameObject.RemoveComponent(this);
   }
 };
+__name(Rigidbody, "Rigidbody");
 __decorateClass([
   SerializeField
 ], Rigidbody.prototype, "isKinematic", 1);
@@ -64280,8 +65420,6 @@ __decorateClass([
 var BoxCollider = class extends Collider {
   constructor(gameObject, transform) {
     super(gameObject, transform);
-    this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-    this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
     const shape = PhysicsShape.CreateBox(this.physxPhysics, this.transform.localScale);
     const geometry = shape.getGeometry().box();
     const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
@@ -64295,13 +65433,12 @@ var BoxCollider = class extends Collider {
     this.gameObject.BroadcastMessage("CreatedCollider", this.body);
   }
 };
+__name(BoxCollider, "BoxCollider");
 
 // src/components/SphereCollider.ts
 var SphereCollider = class extends Collider {
   constructor(gameObject, transform) {
     super(gameObject, transform);
-    this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-    this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
     const shape = PhysicsShape.CreateSphere(this.physxPhysics, this.transform.localScale.length());
     const geometry = shape.getGeometry().sphere();
     const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
@@ -64315,49 +65452,48 @@ var SphereCollider = class extends Collider {
     this.gameObject.BroadcastMessage("CreatedCollider", this.body);
   }
 };
+__name(SphereCollider, "SphereCollider");
 
 // src/components/CapsuleCollider.ts
 var CapsuleCollider = class extends Collider {
   constructor(gameObject, transform) {
     super(gameObject, transform);
-    const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-    const physxScene = this.gameObject.scene.GetPhysics().GetScene();
-    const shape = PhysicsShape.CreateCapsule(physxPhysics, this.transform.localScale.x, this.transform.localScale.y + 1);
+    const shape = PhysicsShape.CreateCapsule(this.physxPhysics, this.transform.localScale.x, this.transform.localScale.y + 1);
     const geometry = shape.getGeometry().capsule();
     const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-    const rigidbody = physxPhysics.createRigidStatic(physxTransform);
+    const rigidbody = this.physxPhysics.createRigidStatic(physxTransform);
     const physicsBody = {
       rigidbody,
       geometry,
       shape
     };
-    this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
+    this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
     this.gameObject.BroadcastMessage("CreatedCollider", this.body);
   }
 };
+__name(CapsuleCollider, "CapsuleCollider");
 
 // src/components/PlaneCollider.ts
 var PlaneCollider = class extends Collider {
   constructor(gameObject, transform) {
     super(gameObject, transform);
-    const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-    const physxScene = this.gameObject.scene.GetPhysics().GetScene();
-    const shape = PhysicsShape.CreatePlane(physxPhysics, this.transform.localScale.x, this.transform.localScale.z);
+    const shape = PhysicsShape.CreatePlane(this.physxPhysics, this.transform.localScale.x, this.transform.localScale.z);
     const geometry = shape.getGeometry().box();
     const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-    const rigidbody = physxPhysics.createRigidStatic(physxTransform);
+    const rigidbody = this.physxPhysics.createRigidStatic(physxTransform);
     const physicsBody = {
       rigidbody,
       geometry,
       shape
     };
-    this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
+    this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
     this.gameObject.BroadcastMessage("CreatedCollider", this.body);
   }
   Update() {
     this.transform.localScale.y = 0.01;
   }
 };
+__name(PlaneCollider, "PlaneCollider");
 
 // src/utils/ConvertGeometryToIndexed.ts
 var TrianglesModeEnum;
@@ -64420,14 +65556,13 @@ function ConvertGeometryToIndexed(geometry, drawMode) {
     return geometry;
   }
 }
+__name(ConvertGeometryToIndexed, "ConvertGeometryToIndexed");
 
 // src/components/MeshCollider.ts
 var MeshCollider = class extends Collider {
   constructor(gameObject, transform) {
     super(gameObject, transform);
-    this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-    this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
-    this.physxCooking = this.gameObject.scene.GetPhysics().GetCooking();
+    this.physxCooking = Runtime.Physics.GetCooking();
     this.CreateCollider();
   }
   MeshFilterModelChanged(mesh) {
@@ -64487,6 +65622,7 @@ var MeshCollider = class extends Collider {
     return true;
   }
 };
+__name(MeshCollider, "MeshCollider");
 
 // src/components/Animation.ts
 var Animation = class extends Component {
@@ -64526,6 +65662,7 @@ var Animation = class extends Component {
     }
   }
 };
+__name(Animation, "Animation");
 
 // src/components/LineRenderer.ts
 var LineRenderer = class extends Component {
@@ -64562,6 +65699,7 @@ var LineRenderer = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__name(LineRenderer, "LineRenderer");
 
 // src/components/Gizmo.ts
 var Gizmo = class extends Component {
@@ -64591,6 +65729,7 @@ var Gizmo = class extends Component {
     this.forwardLine.to.copy(this.forwardLine.from).add(this.target.forward.clone().multiplyScalar(this.length));
   }
 };
+__name(Gizmo, "Gizmo");
 
 // src/components/PointLight.ts
 var PointLight2 = class extends Component {
@@ -64641,6 +65780,7 @@ var PointLight2 = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__name(PointLight2, "PointLight");
 __decorateClass([
   SerializeField
 ], PointLight2.prototype, "range", 1);
@@ -64693,11 +65833,11 @@ var DirectionalLight2 = class extends Component {
       this.helper.dispose();
       this.helper = void 0;
     }
-    console.log("HERE");
     this.transform.group.remove(this.light);
     this.gameObject.RemoveComponent(this);
   }
 };
+__name(DirectionalLight2, "DirectionalLight");
 __decorateClass([
   SerializeField
 ], DirectionalLight2.prototype, "color", 1);
@@ -64769,6 +65909,7 @@ var SpotLight2 = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__name(SpotLight2, "SpotLight");
 __decorateClass([
   SerializeField
 ], SpotLight2.prototype, "spotAngle", 1);
@@ -64803,6 +65944,7 @@ function RectAreaLightHelper(light, color) {
   this.add(new Mesh(geometry2, new MeshBasicMaterial({ side: BackSide, fog: false })));
   this.update();
 }
+__name(RectAreaLightHelper, "RectAreaLightHelper");
 RectAreaLightHelper.prototype = Object.create(Line.prototype);
 RectAreaLightHelper.prototype.constructor = RectAreaLightHelper;
 RectAreaLightHelper.prototype.update = function() {
@@ -64881,6 +66023,7 @@ var AreaLight = class extends Component {
     this.gameObject.RemoveComponent(this);
   }
 };
+__name(AreaLight, "AreaLight");
 __decorateClass([
   SerializeField
 ], AreaLight.prototype, "width", 1);
@@ -64896,35 +66039,6 @@ __decorateClass([
 __decorateClass([
   SerializeField
 ], AreaLight.prototype, "shadows", 1);
-
-// src/enums/ArticulationAxis.ts
-var ArticulationAxis;
-(function(ArticulationAxis2) {
-  ArticulationAxis2[ArticulationAxis2["TWIST"] = 0] = "TWIST";
-  ArticulationAxis2[ArticulationAxis2["SWING1"] = 1] = "SWING1";
-  ArticulationAxis2[ArticulationAxis2["SWING2"] = 2] = "SWING2";
-  ArticulationAxis2[ArticulationAxis2["X"] = 3] = "X";
-  ArticulationAxis2[ArticulationAxis2["Y"] = 4] = "Y";
-  ArticulationAxis2[ArticulationAxis2["Z"] = 5] = "Z";
-  ArticulationAxis2[ArticulationAxis2["COUNT"] = 6] = "COUNT";
-})(ArticulationAxis || (ArticulationAxis = {}));
-
-// src/enums/ArticulationJointType.ts
-var ArticulationJointType;
-(function(ArticulationJointType2) {
-  ArticulationJointType2[ArticulationJointType2["FixedJoint"] = 0] = "FixedJoint";
-  ArticulationJointType2[ArticulationJointType2["PrismaticJoint"] = 1] = "PrismaticJoint";
-  ArticulationJointType2[ArticulationJointType2["RevoluteJoint"] = 2] = "RevoluteJoint";
-  ArticulationJointType2[ArticulationJointType2["SphericalJoint"] = 3] = "SphericalJoint";
-})(ArticulationJointType || (ArticulationJointType = {}));
-
-// src/enums/ArticulationDofLock.ts
-var ArticulationDofLock;
-(function(ArticulationDofLock2) {
-  ArticulationDofLock2[ArticulationDofLock2["LockedMotion"] = 0] = "LockedMotion";
-  ArticulationDofLock2[ArticulationDofLock2["LimitedMotion"] = 1] = "LimitedMotion";
-  ArticulationDofLock2[ArticulationDofLock2["FreeMotion"] = 2] = "FreeMotion";
-})(ArticulationDofLock || (ArticulationDofLock = {}));
 
 // src/components/ArticulationBody.ts
 var JointDriver = class {
@@ -64985,6 +66099,7 @@ var JointDriver = class {
     this.joint.setDriveVelocity(this.axis, targetVelocity);
   }
 };
+__name(JointDriver, "JointDriver");
 __decorateClass([
   SerializeField
 ], JointDriver.prototype, "lowerLimit", 1);
@@ -65011,8 +66126,8 @@ var _ArticulationBody = class extends Component {
     super(gameObject, transform);
     this.hasAttachedShape = false;
     this.isRootArticulation = false;
-    this.physics = this.gameObject.scene.GetPhysics().GetPhysics();
-    this.physicsScene = this.gameObject.scene.GetPhysics().GetScene();
+    this.physics = Runtime.Physics.GetPhysics();
+    this.physicsScene = this.gameObject.scene.physicsScene;
     const parentArticulation = this.transform.parent ? this.transform.parent.gameObject.GetComponent(_ArticulationBody) : null;
     if (parentArticulation) {
       const position = new PhysX.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
@@ -65029,7 +66144,7 @@ var _ArticulationBody = class extends Component {
       const localRotation = new PhysX.PxQuat(this.transform.localRotation.x, this.transform.localRotation.y, this.transform.localRotation.z, this.transform.localRotation.w);
       const localPose = new PhysX.PxTransform(localPosition, localRotation);
       this.inboundJoint.setParentPose(localPose);
-      this.jointType = ArticulationJointType.FixedJoint;
+      this.jointType = PhysX.PxArticulationJointTypeEnum.FIX;
       this.physicsScene.addArticulation(this.articulation);
     } else {
       const position = new PhysX.PxVec3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
@@ -65050,47 +66165,47 @@ var _ArticulationBody = class extends Component {
   }
   get immovable() {
     const flags = this.articulation.getArticulationFlags();
-    return flags.isSet(PhysX.eFIX_BASE);
+    return flags.isSet(PhysX.PxArticulationFlagEnum.FIX_BASE);
   }
   set immovable(immovable) {
-    this.articulation.setArticulationFlag(PhysX.eFIX_BASE, immovable);
+    this.articulation.setArticulationFlag(PhysX.PxArticulationFlagEnum.FIX_BASE, immovable);
   }
   get jointType() {
     return this.inboundJoint.getJointType();
   }
   set jointType(jointType) {
     if (this.inboundJoint) {
-      if (jointType == ArticulationJointType.FixedJoint) {
-        this.inboundJoint.setJointType(ArticulationJointType.FixedJoint);
-      } else if (jointType == ArticulationJointType.PrismaticJoint) {
-        this.inboundJoint.setJointType(ArticulationJointType.PrismaticJoint);
-        this.xDrive = new JointDriver(this.inboundJoint, ArticulationAxis.X);
-        this.yDrive = new JointDriver(this.inboundJoint, ArticulationAxis.Y);
-        this.zDrive = new JointDriver(this.inboundJoint, ArticulationAxis.Z);
-        this.linearLockX = ArticulationDofLock.FreeMotion;
-      } else if (jointType == ArticulationJointType.RevoluteJoint) {
-        this.inboundJoint.setJointType(ArticulationJointType.RevoluteJoint);
-        this.xDrive = new JointDriver(this.inboundJoint, ArticulationAxis.SWING1);
+      if (jointType == PhysX.PxArticulationJointTypeEnum.FIX) {
+        this.inboundJoint.setJointType(PhysX.PxArticulationJointTypeEnum.FIX);
+      } else if (jointType == PhysX.PxArticulationJointTypeEnum.PRISMATIC) {
+        this.inboundJoint.setJointType(PhysX.PxArticulationJointTypeEnum.PRISMATIC);
+        this.xDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.X);
+        this.yDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.Y);
+        this.zDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.Z);
+        this.linearLockX = PhysX.PxArticulationMotionEnum.FREE;
+      } else if (jointType == PhysX.PxArticulationJointTypeEnum.REVOLUTE) {
+        this.inboundJoint.setJointType(PhysX.PxArticulationJointTypeEnum.REVOLUTE);
+        this.xDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.SWING1);
         this.yDrive = void 0;
         this.zDrive = void 0;
-        this.swingZLock = ArticulationDofLock.FreeMotion;
-      } else if (jointType == ArticulationJointType.SphericalJoint) {
-        this.inboundJoint.setJointType(ArticulationJointType.SphericalJoint);
-        this.xDrive = new JointDriver(this.inboundJoint, ArticulationAxis.TWIST);
-        this.yDrive = new JointDriver(this.inboundJoint, ArticulationAxis.SWING2);
-        this.zDrive = new JointDriver(this.inboundJoint, ArticulationAxis.SWING1);
-        this.twistLock = ArticulationDofLock.FreeMotion;
-        this.swingYLock = ArticulationDofLock.FreeMotion;
-        this.swingZLock = ArticulationDofLock.FreeMotion;
+        this.swingZLock = PhysX.PxArticulationMotionEnum.FREE;
+      } else if (jointType == PhysX.PxArticulationJointTypeEnum.SPHERICAL) {
+        this.inboundJoint.setJointType(PhysX.PxArticulationJointTypeEnum.SPHERICAL);
+        this.xDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.TWIST);
+        this.yDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.SWING2);
+        this.zDrive = new JointDriver(this.inboundJoint, PhysX.PxArticulationAxisEnum.SWING1);
+        this.twistLock = PhysX.PxArticulationMotionEnum.FREE;
+        this.swingYLock = PhysX.PxArticulationMotionEnum.FREE;
+        this.swingZLock = PhysX.PxArticulationMotionEnum.FREE;
       }
     }
   }
   setLinearLock(axis, motion) {
-    if (this.jointType == ArticulationJointType.PrismaticJoint) {
+    if (this.jointType == PhysX.PxArticulationJointTypeEnum.PRISMATIC) {
       this.physicsScene.removeArticulation(this.articulation);
-      this.inboundJoint.setMotion(ArticulationAxis.X, ArticulationDofLock.LockedMotion);
-      this.inboundJoint.setMotion(ArticulationAxis.Y, ArticulationDofLock.LockedMotion);
-      this.inboundJoint.setMotion(ArticulationAxis.Z, ArticulationDofLock.LockedMotion);
+      this.inboundJoint.setMotion(PhysX.PxArticulationAxisEnum.X, PhysX.PxArticulationMotionEnum.LOCKED);
+      this.inboundJoint.setMotion(PhysX.PxArticulationAxisEnum.Y, PhysX.PxArticulationMotionEnum.LOCKED);
+      this.inboundJoint.setMotion(PhysX.PxArticulationAxisEnum.Z, PhysX.PxArticulationMotionEnum.LOCKED);
       this.inboundJoint.setMotion(axis, motion);
       this.physicsScene.addArticulation(this.articulation);
       return;
@@ -65098,25 +66213,25 @@ var _ArticulationBody = class extends Component {
     this.inboundJoint.setMotion(axis, motion);
   }
   get linearLockX() {
-    return this.inboundJoint.getMotion(ArticulationAxis.X);
+    return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.X);
   }
   set linearLockX(linearLockX) {
-    this.setLinearLock(ArticulationAxis.X, linearLockX);
+    this.setLinearLock(PhysX.PxArticulationAxisEnum.X, linearLockX);
   }
   get linearLockY() {
-    return this.inboundJoint.getMotion(ArticulationAxis.Y);
+    return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.Y);
   }
   set linearLockY(linearLockY) {
-    this.setLinearLock(ArticulationAxis.Y, linearLockY);
+    this.setLinearLock(PhysX.PxArticulationAxisEnum.Y, linearLockY);
   }
   get linearLockZ() {
-    return this.inboundJoint.getMotion(ArticulationAxis.Z);
+    return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.Z);
   }
   set linearLockZ(linearLockZ) {
-    this.setLinearLock(ArticulationAxis.Z, linearLockZ);
+    this.setLinearLock(PhysX.PxArticulationAxisEnum.Z, linearLockZ);
   }
   setSwingLock(axis, motion) {
-    if (this.jointType == ArticulationJointType.SphericalJoint) {
+    if (this.jointType == PhysX.PxArticulationJointTypeEnum.SPHERICAL) {
       this.physicsScene.removeArticulation(this.articulation);
       this.inboundJoint.setMotion(axis, motion);
       this.physicsScene.addArticulation(this.articulation);
@@ -65125,22 +66240,22 @@ var _ArticulationBody = class extends Component {
     this.inboundJoint.setMotion(axis, motion);
   }
   get swingYLock() {
-    return this.inboundJoint.getMotion(ArticulationAxis.SWING2);
+    return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.SWING2);
   }
   set swingYLock(swingYLock) {
-    this.setSwingLock(ArticulationAxis.SWING2, swingYLock);
+    this.setSwingLock(PhysX.PxArticulationAxisEnum.SWING2, swingYLock);
   }
   get swingZLock() {
-    return this.inboundJoint.getMotion(ArticulationAxis.SWING1);
+    return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.SWING1);
   }
   set swingZLock(swingZLock) {
-    this.setSwingLock(ArticulationAxis.SWING1, swingZLock);
+    this.setSwingLock(PhysX.PxArticulationAxisEnum.SWING1, swingZLock);
   }
   get twistLock() {
-    return this.inboundJoint.getMotion(ArticulationAxis.TWIST);
+    return this.inboundJoint.getMotion(PhysX.PxArticulationAxisEnum.TWIST);
   }
   set twistLock(twistLock) {
-    this.setSwingLock(ArticulationAxis.TWIST, twistLock);
+    this.setSwingLock(PhysX.PxArticulationAxisEnum.TWIST, twistLock);
   }
   get mass() {
     return this.link.getMass();
@@ -65172,11 +66287,11 @@ var _ArticulationBody = class extends Component {
       this.hasAttachedShape = true;
     }
     const pose = this.link.getGlobalPose();
-    if (this.inboundJoint && this.jointType && this.jointType == ArticulationJointType.PrismaticJoint) {
+    if (this.inboundJoint && this.jointType && this.jointType == PhysX.PxArticulationJointTypeEnum.PRISMATIC) {
       this.transform.position.set(pose.p.x, pose.p.y, pose.p.z);
     }
     this.transform.rotation.set(pose.q.x, pose.q.y, pose.q.z, pose.q.w);
-    if (this.articulation) {
+    if (this.articulation.isSleeping()) {
       this.articulation.wakeUp();
     }
   }
@@ -65198,6 +66313,7 @@ var _ArticulationBody = class extends Component {
   }
 };
 var ArticulationBody = _ArticulationBody;
+__name(ArticulationBody, "ArticulationBody");
 __decorateClass([
   SerializeField(JointDriver)
 ], ArticulationBody.prototype, "xDrive", 2);
@@ -65214,22 +66330,22 @@ __decorateClass([
   SerializeField(ArticulationJointType)
 ], ArticulationBody.prototype, "jointType", 1);
 __decorateClass([
-  SerializeField(ArticulationDofLock)
+  SerializeField(ArticulationMotion)
 ], ArticulationBody.prototype, "linearLockX", 1);
 __decorateClass([
-  SerializeField(ArticulationDofLock)
+  SerializeField(ArticulationMotion)
 ], ArticulationBody.prototype, "linearLockY", 1);
 __decorateClass([
-  SerializeField(ArticulationDofLock)
+  SerializeField(ArticulationMotion)
 ], ArticulationBody.prototype, "linearLockZ", 1);
 __decorateClass([
-  SerializeField(ArticulationDofLock)
+  SerializeField(ArticulationMotion)
 ], ArticulationBody.prototype, "swingYLock", 1);
 __decorateClass([
-  SerializeField(ArticulationDofLock)
+  SerializeField(ArticulationMotion)
 ], ArticulationBody.prototype, "swingZLock", 1);
 __decorateClass([
-  SerializeField(ArticulationDofLock)
+  SerializeField(ArticulationMotion)
 ], ArticulationBody.prototype, "twistLock", 1);
 __decorateClass([
   SerializeField
@@ -65251,6 +66367,7 @@ var Cube = class {
     const colllider = gameObject.AddComponent(BoxCollider);
   }
 };
+__name(Cube, "Cube");
 
 // src/utils/CapsuleGeometry.ts
 function CapsuleBufferGeometry(radiusTop, radiusBottom, height, radialSegments, heightSegments, capsTopSegments, capsBottomSegments, thetaStart, thetaLength) {
@@ -65282,10 +66399,12 @@ function CapsuleBufferGeometry(radiusTop, radiusBottom, height, radialSegments, 
     var count = (radialSegments + 1) * (heightSegments + 1 + capsBottomSegments + capsTopSegments);
     return count;
   }
+  __name(calculateVertexCount, "calculateVertexCount");
   function calculateIndexCount() {
     var count = radialSegments * (heightSegments + capsBottomSegments + capsTopSegments) * 2 * 3;
     return count;
   }
+  __name(calculateIndexCount, "calculateIndexCount");
   function generateTorso() {
     var x, y;
     var normal = new Vector3();
@@ -65389,8 +66508,10 @@ function CapsuleBufferGeometry(radiusTop, radiusBottom, height, radialSegments, 
       }
     }
   }
+  __name(generateTorso, "generateTorso");
   return bufferGeometry;
 }
+__name(CapsuleBufferGeometry, "CapsuleBufferGeometry");
 
 // src/primitives/Capsule.ts
 var Capsule = class {
@@ -65403,6 +66524,7 @@ var Capsule = class {
     const colllider = gameObject.AddComponent(CapsuleCollider);
   }
 };
+__name(Capsule, "Capsule");
 
 // src/primitives/Plane.ts
 var Plane2 = class {
@@ -65415,6 +66537,7 @@ var Plane2 = class {
     const colllider = gameObject.AddComponent(PlaneCollider);
   }
 };
+__name(Plane2, "Plane");
 
 // src/primitives/Sphere.ts
 var Sphere2 = class {
@@ -65426,6 +66549,7 @@ var Sphere2 = class {
     const colllider = gameObject.AddComponent(SphereCollider);
   }
 };
+__name(Sphere2, "Sphere");
 
 // src/primitives/Cylinder.ts
 var Cylinder = class {
@@ -65438,40 +66562,7 @@ var Cylinder = class {
     const colllider = gameObject.AddComponent(CapsuleCollider);
   }
 };
-
-// src/InstantiationPool.ts
-var _InstantiationPool = class {
-  constructor() {
-    this.pendingAwakes = [];
-    this.pendingStarts = [];
-  }
-  add(component) {
-    this.pendingAwakes.push(component);
-    this.pendingStarts.push(component);
-  }
-  Load() {
-    for (let i = this.pendingAwakes.length; i > 0; i--) {
-      const component = this.pendingAwakes.pop();
-      component.Awake();
-      component.isAwake = true;
-    }
-    if (this.pendingAwakes.length > 0) {
-      this.Load();
-      return;
-    }
-    for (let i = this.pendingStarts.length; i > 0; i--) {
-      const component = this.pendingStarts.pop();
-      component.Start();
-      component.isStarted = true;
-      if (this.pendingAwakes.length != 0) {
-        this.Load();
-        break;
-      }
-    }
-    return true;
-  }
-};
-var InstantiationPool = new _InstantiationPool();
+__name(Cylinder, "Cylinder");
 
 // src/components/GameObject.ts
 var GameObject6 = class {
@@ -65482,7 +66573,7 @@ var GameObject6 = class {
     this.layer = LayerMask.LAYER0;
     this.hideFlags = HideFlags.None;
     if (!scene) {
-      console.error("Invalid scene provided");
+      console.error("Invalid scene provided.");
       return;
     }
     this.scene = scene;
@@ -65566,31 +66657,29 @@ var GameObject6 = class {
     }
     return matches;
   }
+  Tick() {
+    this.transform.Tick();
+  }
   FixedUpdate() {
-    this.transform.FixedUpdate();
     for (let component of this.components) {
       component.FixedUpdate();
     }
   }
   Update() {
-    this.transform.Update();
-    if (this.scene.isPlaying) {
-      for (let component of this.components) {
-        if (component.isAwake && component.isStarted) {
-          component.Update();
-        }
-      }
-    }
-  }
-  LateUpdate() {
-    this.transform.LateUpdate();
     for (let component of this.components) {
-      component.LateUpdate();
+      if (component.isAwake && component.isStarted) {
+        component.Update();
+      }
     }
   }
   OnDrawGizmos() {
     for (let component of this.components) {
       component.OnDrawGizmos();
+    }
+  }
+  LateUpdate() {
+    for (let component of this.components) {
+      component.LateUpdate();
     }
   }
   Destroy() {
@@ -65607,115 +66696,17 @@ var GameObject6 = class {
     this.scene.RemoveGameObject(this);
   }
 };
-
-// src/Input.ts
-var Input = class {
-  constructor(scene) {
-    this.keysDown = {};
-    this.keysUp = {};
-    this.mousePosition = new Vector2();
-    this.horizontalAxis = 0;
-    this.verticalAxis = 0;
-    this.previousTouch = new Vector2();
-    this.scene = scene;
-    const canvas = this.scene.GetRenderer().renderer.domElement;
-    document.onkeydown = (event) => {
-      this.OnKeyDown(event);
-    };
-    document.onkeyup = (event) => {
-      this.OnKeyUp(event);
-    };
-    canvas.onmousemove = (event) => {
-      this.OnMouseMove(event);
-    };
-    canvas.ontouchmove = (event) => {
-      this.OnTouchMove(event);
-    };
-  }
-  OnTouchMove(event) {
-    event.preventDefault();
-    this.mousePosition.x = event.touches[0].clientX;
-    this.mousePosition.y = event.touches[0].clientY;
-    this.horizontalAxis = Math.round(this.mousePosition.x - this.previousTouch.x);
-    this.verticalAxis = Math.round(this.mousePosition.y - this.previousTouch.y);
-    this.previousTouch.set(this.mousePosition.x, this.mousePosition.y);
-  }
-  OnMouseMove(event) {
-    this.mousePosition.x = event.clientX;
-    this.mousePosition.y = event.clientY;
-    this.horizontalAxis = event.movementX;
-    this.verticalAxis = event.movementY;
-  }
-  OnKeyDown(event) {
-    if (this.keysDown[event.keyCode] === void 0) {
-      this.keysDown[event.keyCode] = this.scene.currentFrame;
-      delete this.keysUp[event.keyCode];
-    }
-  }
-  OnKeyUp(event) {
-    this.keysUp[event.keyCode] = this.scene.currentFrame;
-    delete this.keysDown[event.keyCode];
-  }
-  GetKeyDown(key) {
-    if (this.keysDown[key] == this.scene.currentFrame) {
-      return true;
-    }
-    return false;
-  }
-  GetKeyUp(key) {
-    if (this.keysUp[key] == this.scene.currentFrame) {
-      return true;
-    }
-    return false;
-  }
-  GetKey(key) {
-    if (this.keysDown[key] !== void 0) {
-      return true;
-    }
-    return false;
-  }
-  GetAxis(axisName) {
-    if (axisName == "Horizontal") {
-      return this.horizontalAxis;
-    } else if (axisName == "Vertical") {
-      return this.verticalAxis;
-    }
-  }
-  Tick() {
-  }
-};
+__name(GameObject6, "GameObject");
 
 // src/Scene.ts
 var Scene2 = class {
-  constructor(renderer, physics) {
-    this.isPlaying = false;
-    this.currentFrame = 0;
-    this.gizmosEnabled = false;
+  constructor(name) {
     this.gameObjects = [];
-    this.renderer = renderer;
-    this.physics = physics;
-    this.physics.FixedUpdate = () => {
-      this.FixedUpdate();
-    };
-    this.input = new Input(this);
-    requestAnimationFrame((now2) => {
-      this.Update();
-    });
-  }
-  GetRenderer() {
-    return this.renderer;
-  }
-  GetPhysics() {
-    return this.physics;
-  }
-  GetInput() {
-    return this.input;
-  }
-  GetActiveCamera() {
-    return this.camera;
-  }
-  SetActiveCamera(camera) {
-    this.camera = camera;
+    this.name = name;
+    this.rendererScene = Runtime.Renderer.CreateScene();
+    this.physicsScene = Runtime.Physics.CreateScene();
+    const ambientLight = new AmbientLight(16777215, 0.3);
+    this.rendererScene.add(ambientLight);
   }
   AddGameObject(gameObject) {
     this.gameObjects.push(gameObject);
@@ -65734,43 +66725,196 @@ var Scene2 = class {
     this.gameObjects.splice(gameObjectIndex, 1);
     return true;
   }
+  GetActiveCamera() {
+    return this.activeCamera;
+  }
+  SetActiveCamera(camera) {
+    this.activeCamera = camera;
+  }
   FixedUpdate() {
     for (let gameObject of this.gameObjects) {
       gameObject.FixedUpdate();
     }
   }
   Update() {
-    if (this.isPlaying) {
-      this.physics.Update();
-      for (let gameObject of this.gameObjects) {
-        gameObject.Update();
-        if (this.gizmosEnabled) {
-          gameObject.OnDrawGizmos();
-        }
-      }
+    for (let gameObject of this.gameObjects) {
+      gameObject.Update();
     }
-    if (this.camera) {
-      this.renderer.Tick(this.camera.GetCamera());
-    }
+  }
+  LateUpdate() {
     for (let gameObject of this.gameObjects) {
       gameObject.LateUpdate();
     }
-    this.input.Tick();
-    this.currentFrame++;
-    requestAnimationFrame(() => {
-      this.Update();
-    });
   }
-  Load() {
-    return InstantiationPool.Load();
+  OnDrawGizmos() {
+    for (let gameObject of this.gameObjects) {
+      gameObject.OnDrawGizmos();
+    }
   }
-  Play() {
-    this.isPlaying = true;
+  UpdatePhysics() {
+    Runtime.Physics.Update(this.physicsScene);
   }
-  Stop() {
-    this.isPlaying = false;
+  Render() {
+    if (this.GetActiveCamera()) {
+      Runtime.Renderer.Tick(this.rendererScene, this.GetActiveCamera().GetCamera());
+    }
   }
 };
+__name(Scene2, "Scene");
+
+// src/serializer/PropertyTypes.ts
+var PropertyTypes;
+(function(PropertyTypes2) {
+  PropertyTypes2["BOOLEAN"] = "BOOLEAN";
+  PropertyTypes2["NUMBER"] = "NUMBER";
+  PropertyTypes2["STRING"] = "STRING";
+  PropertyTypes2["OBJECT"] = "OBJECT";
+  PropertyTypes2["COLOR"] = "COLOR";
+  PropertyTypes2["VECTOR3"] = "VECTOR3";
+  PropertyTypes2["VECTOR2"] = "VECTOR2";
+  PropertyTypes2["MESH"] = "MESH";
+  PropertyTypes2["MATERIAL"] = "MATERIAL";
+  PropertyTypes2["COMPONENT"] = "COMPONENT";
+  PropertyTypes2["CUSTOM_FUNCTION"] = "CUSTOM_FUNCTION";
+  PropertyTypes2["CUSTOM_OBJECT"] = "CUSTOM_OBJECT";
+})(PropertyTypes || (PropertyTypes = {}));
+
+// src/interfaces/IFile.ts
+var FileType;
+(function(FileType2) {
+  FileType2[FileType2["MATERIAL"] = 0] = "MATERIAL";
+  FileType2[FileType2["MESH"] = 1] = "MESH";
+  FileType2[FileType2["COMPONENT"] = 2] = "COMPONENT";
+})(FileType || (FileType = {}));
+
+// src/serializer/SceneDeserializer.ts
+var SceneDeserializer = class {
+  static async LoadFile(file) {
+    return Resources.LoadAsync(file.fileId);
+  }
+  static DeserializeComponentProperty(component, property) {
+    const classname = component.constructor.name;
+    const customType = SerializableTypesInstance.get(classname, property.name);
+    if (customType) {
+      if (typeof customType == "function") {
+        this.DeserializeComponentClassProperties(component[property.name], property.value);
+      } else if (typeof customType == "object") {
+        component[property.name] = property.value;
+      }
+    }
+    if (property.type == PropertyTypes.VECTOR3) {
+      const vector3 = new Vector3(property.value.x, property.value.y, property.value.z);
+      component[property.name] = vector3;
+    } else if (property.type == PropertyTypes.VECTOR2) {
+      const vector2 = new Vector2(property.value.x, property.value.y);
+      component[property.name] = vector2;
+    } else if (property.type == PropertyTypes.COLOR) {
+      const color = new Color(property.value);
+      component[property.name] = color;
+    } else if (property.type == PropertyTypes.MESH) {
+      if (property.file && property.file.type == FileType.MESH) {
+        this.LoadFile(property.file).then((geometry) => {
+          if (geometry instanceof BufferGeometry) {
+            component[property.name] = geometry;
+          }
+        });
+      } else {
+        component[property.name] = new BoxGeometry(1, 1, 1);
+      }
+    } else if (property.type == PropertyTypes.MATERIAL) {
+      if (property.file && property.file.type == FileType.MATERIAL) {
+        this.LoadFile(property.file).then((material) => {
+          if (material instanceof Material) {
+            component[property.name] = material;
+          }
+        });
+      } else {
+        component[property.name] = new MeshStandardMaterial();
+      }
+    } else if (property.type == PropertyTypes.NUMBER) {
+      component[property.name] = property.value;
+    } else if (property.type == PropertyTypes.BOOLEAN) {
+      component[property.name] = property.value;
+    } else if (property.type == PropertyTypes.OBJECT) {
+    }
+  }
+  static DeserializeComponentClassProperties(componentClass, componentClassProperties) {
+    for (let property of componentClassProperties.properties) {
+      try {
+        const componentPropertyElement = this.DeserializeComponentProperty(componentClass, property);
+      } catch (error) {
+      }
+    }
+    return componentClass;
+  }
+  static async DeserializeComponent(gameObject, componentSerialized) {
+    const componentCast = componentSerialized.file ? await this.LoadFile(componentSerialized.file) : components_exports[componentSerialized.component];
+    const component = gameObject.AddComponent(componentCast);
+    component.uuid = componentSerialized.uuid;
+    for (let property of componentSerialized.properties) {
+      try {
+        const componentPropertyElement = this.DeserializeComponentProperty(component, property);
+      } catch (error) {
+      }
+    }
+    return component;
+  }
+  static FindTransformByUUID(scene, uuid) {
+    for (let gameObject of scene.gameObjects) {
+      if (gameObject.transform.uuid === uuid)
+        return gameObject.transform;
+    }
+  }
+  static DeserializeTransform(scene, transform, transformSerialized) {
+    transform.uuid = transformSerialized.uuid;
+    if (transformSerialized.parent != "") {
+      transform.parent = this.FindTransformByUUID(scene, transformSerialized.parent);
+    }
+    transform.position.set(transformSerialized.position.x, transformSerialized.position.y, transformSerialized.position.z);
+    transform.eulerAngles.set(transformSerialized.rotation.x, transformSerialized.rotation.y, transformSerialized.rotation.z);
+    transform.localScale.set(transformSerialized.scale.x, transformSerialized.scale.y, transformSerialized.scale.z);
+  }
+  static async DeserializeGameObject(scene, gameObjectSerialized) {
+    const gameObject = new GameObject6(scene);
+    gameObject.uuid = gameObjectSerialized.uuid;
+    gameObject.name = gameObjectSerialized.name;
+    this.DeserializeTransform(scene, gameObject.transform, gameObjectSerialized.transform);
+    for (let componentSerialized of gameObjectSerialized.components) {
+      const component = await this.DeserializeComponent(gameObject, componentSerialized);
+    }
+    return gameObject;
+  }
+  static async Deserialize(sceneSerialized) {
+    const scene = new Scene2(sceneSerialized.name);
+    scene.userData = sceneSerialized.file ? sceneSerialized.file : null;
+    for (let gameObjectSerialized of sceneSerialized.gameObjects) {
+      const gameObject = await this.DeserializeGameObject(scene, gameObjectSerialized);
+    }
+    return scene;
+  }
+};
+__name(SceneDeserializer, "SceneDeserializer");
+
+// src/SceneManager.ts
+var SceneManager = class {
+  constructor() {
+    this.activeScene = null;
+  }
+  CreateScene(name) {
+    return new Scene2(name);
+  }
+  async LoadSceneAsync(sceneSerialized) {
+    const scene = SceneDeserializer.Deserialize(sceneSerialized);
+    return scene;
+  }
+  SetActiveScene(scene) {
+    this.activeScene = scene;
+  }
+  GetActiveScene() {
+    return this.activeScene;
+  }
+};
+__name(SceneManager, "SceneManager");
 
 // src/defaults/ConfigurationDefaults.ts
 var ConfigurationDefaults = {
@@ -65797,8 +66941,8 @@ var ConfigurationDefaults = {
 // src/Renderer.ts
 var Renderer = class {
   constructor(config) {
-    this.OnLoaded = () => {
-    };
+    this.OnLoaded = /* @__PURE__ */ __name(() => {
+    }, "OnLoaded");
     this.now = 0;
     this.then = 0;
     this.elapsed = 0;
@@ -65817,67 +66961,43 @@ var Renderer = class {
     renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
     renderer.setPixelRatio(window.devicePixelRatio * this.config.pixelRatio);
     renderer.shadowMap.enabled = true;
-    this.scene = scene;
     this.renderer = renderer;
-    this.ambientLight = new AmbientLight(16777215, 0.3);
-    this.scene.add(this.ambientLight);
     this.fpsInterval = 1e3 / this.config.targetFrameRate;
     this.then = Date.now();
     this.startTime = this.then;
     new ResizeObserver(() => {
       this.OnResize();
-    }).observe(this.renderer.domElement);
+    }).observe(this.renderer.domElement.parentElement);
     setTimeout(() => {
       this.OnLoaded();
     }, 50);
   }
+  CreateScene() {
+    return new Scene();
+  }
   OnResize() {
     this.renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
   }
-  Tick(camera) {
+  Tick(scene, camera) {
     this.now = Date.now();
     this.elapsed = this.now - this.then;
     if (this.elapsed > this.fpsInterval) {
       this.then = this.now - this.elapsed % this.fpsInterval;
       if (camera) {
-        this.renderer.render(this.scene, camera);
+        this.renderer.render(scene, camera);
       }
       var sinceStart = this.now - this.startTime;
       this.currentFps = Math.round(1e3 / (sinceStart / ++this.frameCount) * 100) / 100;
     }
   }
 };
-
-// src/physics/PhysicsRaycast.ts
-var PhysicsRaycast = class {
-  constructor(physxScene) {
-    this.physxScene = physxScene;
-    this._origin = new PhysX.PxVec3();
-    this._direction = new PhysX.PxVec3();
-    this._filterData = new PhysX.PxQueryFilterData();
-    this._hitFlags = new PhysX.PxHitFlags(PhysX.ePOSITION | PhysX.eNORMAL);
-  }
-  Raycast(origin, direction, maxDistance, layerMask = 0) {
-    this._origin.x = origin.x;
-    this._origin.y = origin.y;
-    this._origin.z = origin.z;
-    this._direction.x = direction.x;
-    this._direction.y = direction.y;
-    this._direction.z = direction.z;
-    const callback = new PhysX.PxRaycastBuffer10();
-    this._filterData.data.word2 = layerMask;
-    this.physxScene.raycast(this._origin, this._direction, maxDistance, callback, this._hitFlags, this._filterData);
-    return callback;
-  }
-};
+__name(Renderer, "Renderer");
 
 // src/Physics.ts
 var Physics = class {
   constructor(config) {
-    this.OnLoaded = () => {
-    };
-    this.FixedUpdate = () => {
-    };
+    this.OnLoaded = /* @__PURE__ */ __name(() => {
+    }, "OnLoaded");
     this.config = Object.assign({}, ConfigurationDefaults.physics, config);
     this.InitPhysX();
   }
@@ -65905,22 +67025,24 @@ var Physics = class {
       }
       const cooking = PhysX.PxTopLevelFunctions.prototype.CreateCooking(version, foundation, cookingParamas);
       PhysX.PxTopLevelFunctions.prototype.InitExtensions(physics);
-      const sceneDesc = new PhysX.PxSceneDesc(tolerance);
-      sceneDesc.gravity = new PhysX.PxVec3(this.config.gravity.x, this.config.gravity.y, this.config.gravity.z);
-      sceneDesc.cpuDispatcher = PhysX.PxTopLevelFunctions.prototype.DefaultCpuDispatcherCreate(0);
-      sceneDesc.filterShader = PhysX.PxTopLevelFunctions.prototype.DefaultFilterShader();
-      sceneDesc.kineKineFilteringMode = 0;
-      sceneDesc.staticKineFilteringMode = 0;
-      sceneDesc.solverType = PhysX.ePGS;
-      sceneDesc.flags = new PhysX.PxSceneFlags(PhysX.eENABLE_PCM);
-      const sceneFlags = new PhysX.PxSceneFlags(PhysX.ENABLE_CCD);
-      const physicsScene = physics.createScene(sceneDesc);
       this.physxPhysics = physics;
-      this.physxScene = physicsScene;
       this.physxCooking = cooking;
-      this.physicsRaycast = new PhysicsRaycast(this.physxScene);
       this.OnLoaded();
     });
+  }
+  CreateScene() {
+    const tolerance = new PhysX.PxTolerancesScale();
+    const sceneDesc = new PhysX.PxSceneDesc(tolerance);
+    sceneDesc.gravity = new PhysX.PxVec3(this.config.gravity.x, this.config.gravity.y, this.config.gravity.z);
+    sceneDesc.cpuDispatcher = PhysX.PxTopLevelFunctions.prototype.DefaultCpuDispatcherCreate(0);
+    sceneDesc.filterShader = PhysX.PxTopLevelFunctions.prototype.DefaultFilterShader();
+    sceneDesc.kineKineFilteringMode = 0;
+    sceneDesc.staticKineFilteringMode = 0;
+    sceneDesc.solverType = PhysX.ePGS;
+    sceneDesc.flags = new PhysX.PxSceneFlags(PhysX.eENABLE_PCM);
+    const sceneFlags = new PhysX.PxSceneFlags(PhysX.ENABLE_CCD);
+    const physicsScene = this.physxPhysics.createScene(sceneDesc);
+    return physicsScene;
   }
   createPhysXDebugger(host = "localhost", port = 8090) {
     const pvdTransport = new PhysX.JSPvdTransport();
@@ -65965,9 +67087,6 @@ var Physics = class {
   GetPhysics() {
     return this.physxPhysics;
   }
-  GetScene() {
-    return this.physxScene;
-  }
   GetCooking() {
     return this.physxCooking;
   }
@@ -65977,14 +67096,74 @@ var Physics = class {
   }
   Start() {
   }
-  Update() {
-    if (this.physxScene) {
-      this.FixedUpdate();
-      this.physxScene.simulate(1 / this.config.framerate, null);
-      this.physxScene.fetchResults();
+  Update(scene) {
+    if (scene) {
+      scene.simulate(1 / this.config.framerate, null);
+      scene.fetchResults();
     }
   }
 };
+__name(Physics, "Physics");
+
+// src/Runtime.ts
+var Runtime = class {
+  constructor(config) {
+    this.OnLoaded = /* @__PURE__ */ __name(() => {
+    }, "OnLoaded");
+    this.isPlaying = false;
+    this.currentFrame = 0;
+    this.gizmosEnabled = false;
+    Runtime.Config = config;
+    Runtime.Input = new Input(this);
+    Runtime.SceneManager = new SceneManager();
+    Runtime.Renderer = new Renderer(Runtime.Config.renderer);
+    Runtime.Renderer.OnLoaded = () => {
+      Runtime.Physics = new Physics(Runtime.Config.physics);
+      Runtime.Physics.OnLoaded = () => {
+        this.OnLoaded();
+        requestAnimationFrame((now2) => {
+          this.Run();
+        });
+      };
+    };
+  }
+  Load() {
+    if (!Runtime.SceneManager.GetActiveScene()) {
+      return console.warn("No active scene set, nothing to load.");
+    }
+    return InstantiationPool.Load();
+  }
+  Play() {
+    if (!Runtime.SceneManager.GetActiveScene()) {
+      return console.warn("No active scene set, nothing to Play.");
+    }
+    this.isPlaying = true;
+  }
+  Stop() {
+    this.isPlaying = false;
+  }
+  Run() {
+    const activeScene = Runtime.SceneManager.GetActiveScene();
+    if (activeScene) {
+      if (this.isPlaying) {
+        activeScene.FixedUpdate();
+        activeScene.UpdatePhysics();
+        activeScene.Update();
+        if (this.gizmosEnabled) {
+          activeScene.OnDrawGizmos();
+        }
+      }
+      activeScene.Render();
+      activeScene.LateUpdate();
+    }
+    Runtime.Input.Tick();
+    this.currentFrame++;
+    requestAnimationFrame(() => {
+      this.Run();
+    });
+  }
+};
+__name(Runtime, "Runtime");
 
 // src/enums/KeyCodes.ts
 var KeyCodes;
@@ -66106,6 +67285,23 @@ var KeyCodes;
   KeyCodes2[KeyCodes2["META"] = 224] = "META";
 })(KeyCodes || (KeyCodes = {}));
 
+// src/enums/ArticulationJointType.ts
+var ArticulationJointType;
+(function(ArticulationJointType2) {
+  ArticulationJointType2[ArticulationJointType2["FixedJoint"] = 0] = "FixedJoint";
+  ArticulationJointType2[ArticulationJointType2["PrismaticJoint"] = 1] = "PrismaticJoint";
+  ArticulationJointType2[ArticulationJointType2["RevoluteJoint"] = 2] = "RevoluteJoint";
+  ArticulationJointType2[ArticulationJointType2["SphericalJoint"] = 3] = "SphericalJoint";
+})(ArticulationJointType || (ArticulationJointType = {}));
+
+// src/enums/ArticulationMotion.ts
+var ArticulationMotion;
+(function(ArticulationMotion2) {
+  ArticulationMotion2[ArticulationMotion2["LockedMotion"] = 0] = "LockedMotion";
+  ArticulationMotion2[ArticulationMotion2["LimitedMotion"] = 1] = "LimitedMotion";
+  ArticulationMotion2[ArticulationMotion2["FreeMotion"] = 2] = "FreeMotion";
+})(ArticulationMotion || (ArticulationMotion = {}));
+
 // src/resources/ResourcesCache.ts
 var _ResourcesCache = class {
   constructor() {
@@ -66131,6 +67327,7 @@ var _ResourcesCache = class {
     this.cache.clear();
   }
 };
+__name(_ResourcesCache, "_ResourcesCache");
 var ResourcesCache = new _ResourcesCache();
 
 // node_modules/three/examples/jsm/loaders/OBJLoader.js
@@ -66378,10 +67575,12 @@ var OBJLoader = function() {
     state.startObject("", false);
     return state;
   }
+  __name(ParserState, "ParserState");
   function OBJLoader2(manager) {
     Loader.call(this, manager);
     this.materials = null;
   }
+  __name(OBJLoader2, "OBJLoader");
   OBJLoader2.prototype = Object.assign(Object.create(Loader.prototype), {
     constructor: OBJLoader2,
     load: function(url, onLoad, onProgress, onError) {
@@ -66614,20 +67813,13 @@ var OBJLoader = function() {
   return OBJLoader2;
 }();
 
-// src/interfaces/IFile.ts
-var FileType;
-(function(FileType2) {
-  FileType2[FileType2["MATERIAL"] = 0] = "MATERIAL";
-  FileType2[FileType2["MESH"] = 1] = "MESH";
-  FileType2[FileType2["COMPONENT"] = 2] = "COMPONENT";
-})(FileType || (FileType = {}));
-
 // src/resources/Resources.ts
 var ResourceExtensions;
 (function(ResourceExtensions2) {
   ResourceExtensions2["MATERIAL"] = "MAT";
   ResourceExtensions2["MESH_OBJ"] = "OBJ";
   ResourceExtensions2["COMPONENT"] = "JS";
+  ResourceExtensions2["SCENE"] = "SCENE";
 })(ResourceExtensions || (ResourceExtensions = {}));
 var Resources = class {
   static LoadMeshAsync(path, type, fileId) {
@@ -66652,7 +67844,7 @@ var Resources = class {
           reject(err);
         });
       });
-      ResourcesCache.set(path, promise);
+      ResourcesCache.set(fileId, promise);
       return promise;
     }
   }
@@ -66671,7 +67863,7 @@ var Resources = class {
         reject(err);
       });
     });
-    ResourcesCache.set(path, promise);
+    ResourcesCache.set(fileId, promise);
     return promise;
   }
   static LoadComponentAsync(path, fileId) {
@@ -66689,7 +67881,25 @@ var Resources = class {
         }
       });
     });
-    ResourcesCache.set(path, promise);
+    ResourcesCache.set(fileId, promise);
+    return promise;
+  }
+  static LoadSceneAsync(path, fileId) {
+    const promise = new Promise((resolve, reject) => {
+      fetch(path).then((response) => response.json()).then((sceneSerialized) => {
+        SceneDeserializer.Deserialize(sceneSerialized).then((scene) => {
+          const userData = {
+            type: FileType.COMPONENT,
+            fileId
+          };
+          scene.userData = userData;
+          resolve(scene);
+        });
+      }).catch((error) => {
+        reject(error);
+      });
+    });
+    ResourcesCache.set(fileId, promise);
     return promise;
   }
   static async LoadAsync(path) {
@@ -66703,26 +67913,12 @@ var Resources = class {
       return Resources.LoadMeshAsync(path, ResourceExtensions.MESH_OBJ, path);
     } else if (extension == ResourceExtensions.COMPONENT) {
       return Resources.LoadComponentAsync(path, path);
+    } else if (extension == ResourceExtensions.SCENE) {
+      return Resources.LoadSceneAsync(path, path);
     }
   }
 };
-
-// src/serializer/PropertyTypes.ts
-var PropertyTypes;
-(function(PropertyTypes2) {
-  PropertyTypes2["BOOLEAN"] = "BOOLEAN";
-  PropertyTypes2["NUMBER"] = "NUMBER";
-  PropertyTypes2["STRING"] = "STRING";
-  PropertyTypes2["OBJECT"] = "OBJECT";
-  PropertyTypes2["COLOR"] = "COLOR";
-  PropertyTypes2["VECTOR3"] = "VECTOR3";
-  PropertyTypes2["VECTOR2"] = "VECTOR2";
-  PropertyTypes2["MESH"] = "MESH";
-  PropertyTypes2["MATERIAL"] = "MATERIAL";
-  PropertyTypes2["COMPONENT"] = "COMPONENT";
-  PropertyTypes2["CUSTOM_FUNCTION"] = "CUSTOM_FUNCTION";
-  PropertyTypes2["CUSTOM_OBJECT"] = "CUSTOM_OBJECT";
-})(PropertyTypes || (PropertyTypes = {}));
+__name(Resources, "Resources");
 
 // src/serializer/SceneSerializer.ts
 var SceneSerializer = class {
@@ -66774,7 +67970,6 @@ var SceneSerializer = class {
         file: component[property].userData ? component[property].userData : null
       };
     } else if (component[property] instanceof BufferGeometry || component[property] instanceof Geometry) {
-      console.log("BUFFER");
       return {
         name: property,
         value: "BufferGeometry",
@@ -66821,10 +68016,6 @@ var SceneSerializer = class {
     return componentSerialized;
   }
   static SerializeTransform(transform) {
-    if (transform.parent) {
-      console.warn(transform.gameObject.name, transform.parent.gameObject.name);
-    }
-    ;
     return {
       uuid: transform.uuid,
       position: { x: transform.position.x, y: transform.position.y, z: transform.position.z },
@@ -66850,7 +68041,11 @@ var SceneSerializer = class {
     return gameObjectSerialized;
   }
   static Serialize(scene) {
-    let sceneSerialized = { gameObjects: [] };
+    let sceneSerialized = {
+      name: scene.name,
+      gameObjects: [],
+      file: scene.userData ? scene.userData : null
+    };
     for (let gameObject of scene.gameObjects) {
       if (gameObject.hideFlags == HideFlags.HideAndDontSave)
         continue;
@@ -66860,119 +68055,13 @@ var SceneSerializer = class {
     return sceneSerialized;
   }
 };
-
-// src/serializer/SceneDeserializer.ts
-var SceneDeserializer = class {
-  static async LoadFile(file) {
-    return Resources.LoadAsync(file.fileId);
-  }
-  static getInstanceParentInstance(instance) {
-    const prototype = Object.getPrototypeOf(instance);
-    const prototypeParent = Object.getPrototypeOf(prototype);
-    if (prototypeParent.constructor.name == "Object" || prototypeParent.constructor.name == "EventDispatcher") {
-      return prototype.constructor;
-    }
-    return this.getInstanceParentInstance(prototype);
-  }
-  static DeserializeComponentProperty(component, property, checkCustomTypeOnly = false) {
-    const classname = component.constructor.name;
-    const customType = SerializableTypesInstance.get(classname, property.name);
-    if (customType) {
-      if (typeof customType == "function") {
-        console.log("CUSTOM TYPE", property.name);
-      } else if (typeof customType == "object") {
-        component[property.name] = property.value;
-      }
-    }
-    if (checkCustomTypeOnly)
-      return;
-    if (property.type == PropertyTypes.VECTOR3) {
-      const vector3 = new Vector3(property.value.x, property.value.y, property.value.z);
-      component[property.name] = vector3;
-    } else if (property.type == PropertyTypes.COLOR) {
-      const color = new Color(property.value);
-      component[property.name] = color;
-    } else if (property.type == PropertyTypes.VECTOR2) {
-      const vector2 = new Vector2(property.value.x, property.value.y);
-      component[property.name] = vector2;
-    } else if (property.type == PropertyTypes.MESH) {
-      if (property.file && property.file.type == FileType.MESH) {
-        this.LoadFile(property.file).then((geometry) => {
-          if (geometry instanceof BufferGeometry) {
-            component[property.name] = geometry;
-          }
-        });
-      } else {
-        component[property.name] = new BoxGeometry(1, 1, 1);
-      }
-    } else if (property.type == PropertyTypes.MATERIAL) {
-      if (property.file && property.file.type == FileType.MATERIAL) {
-        this.LoadFile(property.file).then((material) => {
-          if (material instanceof Material) {
-            component[property.name] = material;
-          }
-        });
-      } else {
-        component[property.name] = new MeshStandardMaterial();
-      }
-    } else if (property.type == PropertyTypes.NUMBER) {
-      component[property.name] = property.value;
-    } else if (property.type == PropertyTypes.BOOLEAN) {
-      component[property.name] = property.value;
-    } else if (property.type == PropertyTypes.OBJECT) {
-    }
-  }
-  static async DeserializeComponent(gameObject, componentSerialized) {
-    const componentCast = componentSerialized.file ? await this.LoadFile(componentSerialized.file) : components_exports[componentSerialized.component];
-    const component = gameObject.AddComponent(componentCast);
-    component.uuid = componentSerialized.uuid;
-    for (let property of componentSerialized.properties) {
-      try {
-        const componentPropertyElement = this.DeserializeComponentProperty(component, property);
-      } catch (error) {
-      }
-    }
-    return component;
-  }
-  static FindTransformByUUID(scene, uuid) {
-    for (let gameObject of scene.gameObjects) {
-      if (gameObject.transform.uuid === uuid)
-        return gameObject.transform;
-    }
-  }
-  static DeserializeTransform(transform, transformSerialized) {
-    transform.uuid = transformSerialized.uuid;
-    if (transformSerialized.parent != "") {
-      transform.parent = this.FindTransformByUUID(transform.gameObject.scene, transformSerialized.parent);
-    }
-    transform.position.set(transformSerialized.position.x, transformSerialized.position.y, transformSerialized.position.z);
-    transform.eulerAngles.set(transformSerialized.rotation.x, transformSerialized.rotation.y, transformSerialized.rotation.z);
-    transform.localScale.set(transformSerialized.scale.x, transformSerialized.scale.y, transformSerialized.scale.z);
-  }
-  static DeserializeGameObject(scene, gameObjectSerialized) {
-    const gameObject = new GameObject6(scene);
-    gameObject.uuid = gameObjectSerialized.uuid;
-    gameObject.name = gameObjectSerialized.name;
-    this.DeserializeTransform(gameObject.transform, gameObjectSerialized.transform);
-    for (let componentSerialized of gameObjectSerialized.components) {
-      const component = this.DeserializeComponent(gameObject, componentSerialized);
-    }
-    return gameObject;
-  }
-  static Deserialize(scene, sceneSerialized) {
-    for (let gameObjectSerialized of sceneSerialized.gameObjects) {
-      const gameObject = this.DeserializeGameObject(scene, gameObjectSerialized);
-    }
-    console.log("scene", scene);
-  }
-};
+__name(SceneSerializer, "SceneSerializer");
 export {
-  ArticulationDofLock,
   ArticulationJointType,
+  ArticulationMotion,
   components_exports as Components,
   GameObject6 as GameObject,
   HideFlags,
-  Input,
   KeyCodes,
   LayerMask,
   Physics,
@@ -66980,6 +68069,7 @@ export {
   Renderer,
   Resources,
   ResourcesCache,
+  Runtime,
   Scene2 as Scene,
   SceneDeserializer,
   SceneSerializer,

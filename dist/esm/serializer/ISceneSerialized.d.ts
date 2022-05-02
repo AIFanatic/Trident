@@ -38,5 +38,7 @@ export interface IGameObjectSerialized {
     components: IComponentSerialized[];
 }
 export interface ISceneSerialized {
+    name: string;
     gameObjects: IGameObjectSerialized[];
+    file?: IFile;
 }

@@ -2,11 +2,13 @@ import { MaterialLoader, Mesh } from "three";
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { FileType } from "../interfaces/IFile";
 import { ResourcesCache } from "./ResourcesCache";
+import { SceneDeserializer } from "..";
 export var ResourceExtensions;
 (function (ResourceExtensions) {
     ResourceExtensions["MATERIAL"] = "MAT";
     ResourceExtensions["MESH_OBJ"] = "OBJ";
     ResourceExtensions["COMPONENT"] = "JS";
+    ResourceExtensions["SCENE"] = "SCENE";
 })(ResourceExtensions || (ResourceExtensions = {}));
 ;
 export class Resources {
@@ -38,7 +40,7 @@ export class Resources {
                     reject(err);
                 });
             });
-            ResourcesCache.set(path, promise);
+            ResourcesCache.set(fileId, promise);
             return promise;
         }
     }
@@ -63,7 +65,7 @@ export class Resources {
                 reject(err);
             });
         });
-        ResourcesCache.set(path, promise);
+        ResourcesCache.set(fileId, promise);
         return promise;
     }
     static LoadComponentAsync(path, fileId) {
@@ -81,7 +83,29 @@ export class Resources {
                 }
             });
         });
-        ResourcesCache.set(path, promise);
+        ResourcesCache.set(fileId, promise);
+        return promise;
+    }
+    static LoadSceneAsync(path, fileId) {
+        const promise = new Promise((resolve, reject) => {
+            fetch(path)
+                .then(response => response.json())
+                .then((sceneSerialized) => {
+                SceneDeserializer.Deserialize(sceneSerialized)
+                    .then(scene => {
+                    const userData = {
+                        type: FileType.COMPONENT,
+                        fileId: fileId
+                    };
+                    scene.userData = userData;
+                    resolve(scene);
+                });
+            })
+                .catch(error => {
+                reject(error);
+            });
+        });
+        ResourcesCache.set(fileId, promise);
         return promise;
     }
     static async LoadAsync(path) {
@@ -97,6 +121,9 @@ export class Resources {
         }
         else if (extension == ResourceExtensions.COMPONENT) {
             return Resources.LoadComponentAsync(path, path);
+        }
+        else if (extension == ResourceExtensions.SCENE) {
+            return Resources.LoadSceneAsync(path, path);
         }
     }
 }

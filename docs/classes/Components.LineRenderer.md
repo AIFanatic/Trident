@@ -34,7 +34,7 @@ Creates a line from point A (from) to point B (to).
 
 #### Defined in
 
-[components/LineRenderer.ts:12](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/LineRenderer.ts#L12)
+[components/LineRenderer.ts:12](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/LineRenderer.ts#L12)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[components/LineRenderer.ts:10](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/LineRenderer.ts#L10)
+[components/LineRenderer.ts:10](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/LineRenderer.ts#L10)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[components/LineRenderer.ts:11](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/LineRenderer.ts#L11)
+[components/LineRenderer.ts:11](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/LineRenderer.ts#L11)
 
 ## Methods
 
@@ -74,7 +74,7 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/LineRenderer.ts:21](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/LineRenderer.ts#L21)
+[components/LineRenderer.ts:21](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/LineRenderer.ts#L21)
 
 ___
 
@@ -94,7 +94,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/LineRenderer.ts:47](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/LineRenderer.ts#L47)
+[components/LineRenderer.ts:47](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/LineRenderer.ts#L47)
 
 ___
 
@@ -114,4 +114,4 @@ Called before every Renderer update.
 
 #### Defined in
 
-[components/LineRenderer.ts:31](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/LineRenderer.ts#L31)
+[components/LineRenderer.ts:31](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/LineRenderer.ts#L31)

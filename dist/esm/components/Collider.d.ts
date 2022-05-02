@@ -1,6 +1,8 @@
 import { Component } from "./Component";
 import { PhysX } from "trident-physx-js-webidl";
 import { PhysicsRigidbody } from "../physics/PhysicsRigidbody";
+import { GameObject } from "./GameObject";
+import { Transform } from "./Transform";
 /**
  * Base collider class that all colliders extend.
  *
@@ -14,6 +16,7 @@ export declare class Collider extends Component {
     private rotation;
     private localScale;
     private previousLayer;
+    constructor(gameObject: GameObject, transform: Transform);
     Start(): void;
     private HandleTransformChanges;
     FixedUpdate(): void;

@@ -52,7 +52,7 @@ Use scene.SetActiveCamera(camera) to set it as the main camera.
 
 #### Defined in
 
-[components/Camera.ts:52](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Camera.ts#L52)
+[components/Camera.ts:53](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Camera.ts#L53)
 
 ## Accessors
 
@@ -66,7 +66,7 @@ Use scene.SetActiveCamera(camera) to set it as the main camera.
 
 #### Defined in
 
-[components/Camera.ts:23](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Camera.ts#L23)
+[components/Camera.ts:24](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Camera.ts#L24)
 
 • `set` **far**(`far`): `void`
 
@@ -82,7 +82,7 @@ Use scene.SetActiveCamera(camera) to set it as the main camera.
 
 #### Defined in
 
-[components/Camera.ts:27](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Camera.ts#L27)
+[components/Camera.ts:28](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Camera.ts#L28)
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 #### Defined in
 
-[components/Camera.ts:43](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Camera.ts#L43)
+[components/Camera.ts:44](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Camera.ts#L44)
 
 • `set` **fieldOfView**(`fieldOfView`): `void`
 
@@ -112,7 +112,7 @@ ___
 
 #### Defined in
 
-[components/Camera.ts:47](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Camera.ts#L47)
+[components/Camera.ts:48](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Camera.ts#L48)
 
 ___
 
@@ -126,7 +126,7 @@ ___
 
 #### Defined in
 
-[components/Camera.ts:33](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Camera.ts#L33)
+[components/Camera.ts:34](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Camera.ts#L34)
 
 • `set` **near**(`near`): `void`
 
@@ -142,7 +142,7 @@ ___
 
 #### Defined in
 
-[components/Camera.ts:37](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Camera.ts#L37)
+[components/Camera.ts:38](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Camera.ts#L38)
 
 ## Methods
 
@@ -162,7 +162,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/Camera.ts:82](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Camera.ts#L82)
+[components/Camera.ts:81](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Camera.ts#L81)
 
 ___
 
@@ -176,7 +176,7 @@ ___
 
 #### Defined in
 
-[components/Camera.ts:63](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Camera.ts#L63)
+[components/Camera.ts:62](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Camera.ts#L62)
 
 ___
 
@@ -196,7 +196,7 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-[components/Camera.ts:73](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Camera.ts#L73)
+[components/Camera.ts:72](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Camera.ts#L72)
 
 ___
 
@@ -210,4 +210,4 @@ ___
 
 #### Defined in
 
-[components/Camera.ts:67](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/Camera.ts#L67)
+[components/Camera.ts:66](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Camera.ts#L66)

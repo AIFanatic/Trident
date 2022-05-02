@@ -10,7 +10,8 @@
              */
             import { SceneHelper } from './assets/SceneHelper.js';
             import { GameObject, Components, Resources, THREE } from '../dist/esm/trident-esm-bundle.js';
-            SceneHelper.CreateScene({}, (scene) => {
+            SceneHelper.CreateRuntime({}).then(runtime => {
+                const scene = SceneHelper.CreateScene();
                 SceneHelper.CreateCamera(scene);
                 SceneHelper.CreateSunlight(scene);
                 const shipGameobject = new GameObject(scene);
@@ -23,8 +24,8 @@
                         meshFilter.mesh = geometry;
                     }
                 });
-                scene.Load();
-                scene.Play();
+                runtime.Load();
+                runtime.Play();
             });
             
         </script>

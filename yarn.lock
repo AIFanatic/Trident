@@ -186,10 +186,10 @@ three@0.123.0:
   resolved "https://registry.npmjs.org/three/-/three-0.123.0.tgz"
   integrity sha512-KNnx/IbilvoHRkxOtL0ouozoDoElyuvAXhFB21RK7F5IPWSmqyFelICK6x3hJerLNSlAdHxR0hkuvMMhH9pqXg==
 
-trident-physx-js-webidl@^0.4.12:
-  version "0.4.12"
-  resolved "https://registry.yarnpkg.com/trident-physx-js-webidl/-/trident-physx-js-webidl-0.4.12.tgz#74125edd85fea351f33f3db8c13ce6932a23f329"
-  integrity sha512-YoUvbbrlRZGxXQ3i0Gbzj9+1as3NzePnc3fi+Slqy98VkPQzipe1fWf3GCTZ4d8fHkE+6Y9F/Ffq/nUS0Oo31A==
+trident-physx-js-webidl@^0.4.13:
+  version "0.4.13"
+  resolved "https://registry.yarnpkg.com/trident-physx-js-webidl/-/trident-physx-js-webidl-0.4.13.tgz#4ac2859919d2370f5974ea6cd9c7a4c027a4bbef"
+  integrity sha512-N2NB3WO/gSvonoui5+Z/lThOt0I3PcdlCyAKcy0jJ7sjXHSvGISYfjV/zv2ZlYb/pjeNX68wR2Y/vereYnPf6w==
 
 typedoc-default-themes@^0.12.10:
   version "0.12.10"

@@ -33,7 +33,8 @@
                     performanceCooking: true
                 }
             };
-            SceneHelper.CreateScene(config, (scene) => {
+            SceneHelper.CreateRuntime(config).then(runtime => {
+                const scene = SceneHelper.CreateScene();
                 SceneHelper.CreateCamera(scene, 0, 0, 40);
                 SceneHelper.CreateSunlight(scene);
                 const floorGameObject = new GameObject(scene);
@@ -42,8 +43,8 @@
                 floorGameObject.transform.position.y = -10;
                 const meshGameObject = new GameObject(scene);
                 const meshComponent = meshGameObject.AddComponent(Spaceship);
-                scene.Load();
-                scene.Play();
+                runtime.Load();
+                runtime.Play();
             });
             
         </script>

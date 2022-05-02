@@ -1,9 +1,7 @@
 import { PhysX } from "trident-physx-js-webidl";
-import { ArticulationAxis } from "../enums/ArticulationAxis";
-import { ArticulationJointType } from "../enums/ArticulationJointType";
-import { ArticulationDofLock } from "../enums/ArticulationDofLock";
 import { Component } from "./Component";
 import { GameObject, Transform } from ".";
+import { ArticulationJointType, ArticulationMotion } from "..";
 declare class JointDriver {
     private joint;
     private axis;
@@ -26,7 +24,7 @@ declare class JointDriver {
     set target(target: number);
     get targetVelocity(): number;
     set targetVelocity(targetVelocity: number);
-    constructor(joint: PhysX.PxArticulationJointReducedCoordinate, axis: ArticulationAxis);
+    constructor(joint: PhysX.PxArticulationJointReducedCoordinate, axis: PhysX.PxArticulationAxisEnum);
 }
 /**
  * An ArticulationBody is a joint chain that obbeys physics.
@@ -46,22 +44,22 @@ export declare class ArticulationBody extends Component {
     private physicsScene;
     get immovable(): boolean;
     set immovable(immovable: boolean);
-    get jointType(): ArticulationJointType;
-    set jointType(jointType: ArticulationJointType);
+    get jointType(): ArticulationJointType | PhysX.PxArticulationJointTypeEnum;
+    set jointType(jointType: ArticulationJointType | PhysX.PxArticulationJointTypeEnum);
     private setLinearLock;
-    get linearLockX(): ArticulationDofLock;
-    set linearLockX(linearLockX: ArticulationDofLock);
-    get linearLockY(): ArticulationDofLock;
-    set linearLockY(linearLockY: ArticulationDofLock);
-    get linearLockZ(): ArticulationDofLock;
-    set linearLockZ(linearLockZ: ArticulationDofLock);
+    get linearLockX(): ArticulationMotion | PhysX.PxArticulationMotionEnum;
+    set linearLockX(linearLockX: ArticulationMotion | PhysX.PxArticulationMotionEnum);
+    get linearLockY(): ArticulationMotion | PhysX.PxArticulationMotionEnum;
+    set linearLockY(linearLockY: ArticulationMotion | PhysX.PxArticulationMotionEnum);
+    get linearLockZ(): ArticulationMotion | PhysX.PxArticulationMotionEnum;
+    set linearLockZ(linearLockZ: ArticulationMotion | PhysX.PxArticulationMotionEnum);
     private setSwingLock;
-    get swingYLock(): ArticulationDofLock;
-    set swingYLock(swingYLock: ArticulationDofLock);
-    get swingZLock(): ArticulationDofLock;
-    set swingZLock(swingZLock: ArticulationDofLock);
-    get twistLock(): ArticulationDofLock;
-    set twistLock(twistLock: ArticulationDofLock);
+    get swingYLock(): ArticulationMotion | PhysX.PxArticulationMotionEnum;
+    set swingYLock(swingYLock: ArticulationMotion | PhysX.PxArticulationMotionEnum);
+    get swingZLock(): ArticulationMotion | PhysX.PxArticulationMotionEnum;
+    set swingZLock(swingZLock: ArticulationMotion | PhysX.PxArticulationMotionEnum);
+    get twistLock(): ArticulationMotion | PhysX.PxArticulationMotionEnum;
+    set twistLock(twistLock: ArticulationMotion | PhysX.PxArticulationMotionEnum);
     get mass(): number;
     set mass(mass: number);
     get linearDamping(): number;

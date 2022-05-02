@@ -50,7 +50,6 @@ export class DirectionalLight extends Component {
             this.helper.dispose();
             this.helper = undefined;
         }
-        console.log("HERE");
         this.transform.group.remove(this.light);
         this.gameObject.RemoveComponent(this);
     }

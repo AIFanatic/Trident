@@ -4,6 +4,7 @@ import { PhysicsRigidbody } from '../physics/PhysicsRigidbody';
 import { PhysicsShape } from "../physics/PhysicsShape";
 import { PhysicsUtils } from "../physics/PhysicsUtils";
 import { ConvertGeometryToIndexed, TrianglesModeEnum } from '../utils/ConvertGeometryToIndexed';
+import { Runtime } from '../Runtime';
 /**
  * Adds a static mesh collider to the GameObject.
  *
@@ -14,9 +15,7 @@ import { ConvertGeometryToIndexed, TrianglesModeEnum } from '../utils/ConvertGeo
 export class MeshCollider extends Collider {
     constructor(gameObject, transform) {
         super(gameObject, transform);
-        this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-        this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
-        this.physxCooking = this.gameObject.scene.GetPhysics().GetCooking();
+        this.physxCooking = Runtime.Physics.GetCooking();
         this.CreateCollider();
     }
     MeshFilterModelChanged(mesh) {

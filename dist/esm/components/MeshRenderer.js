@@ -18,24 +18,15 @@ export class MeshRenderer extends Component {
     constructor(gameObject, transform) {
         super(gameObject, transform);
         this._material = DefaultMaterial;
-        this.renderer = this.gameObject.scene.GetRenderer();
         this.AddMeshFromMeshFilter();
-    }
-    get mesh() {
-        return this._mesh;
-    }
-    set mesh(mesh) {
-        this.RemoveMesh();
-        this.AddMeshToViewer(mesh);
-        this._mesh = mesh;
     }
     get material() {
         return this._material;
     }
     set material(material) {
         this._material = material;
-        if (this._mesh) {
-            this._mesh.material = this._material;
+        if (this.mesh) {
+            this.mesh.material = this._material;
         }
     }
     get castShadows() {
@@ -60,10 +51,10 @@ export class MeshRenderer extends Component {
         this.AddMeshFromMeshFilter();
     }
     RemoveMesh() {
-        if (this._mesh) {
-            this.transform.group.remove(this._mesh);
-            this.renderer.scene.remove(this._mesh);
-            const material = this._mesh.material;
+        if (this.mesh) {
+            this.transform.group.remove(this.mesh);
+            this.gameObject.scene.rendererScene.remove(this.mesh);
+            const material = this.mesh.material;
             if (material && material.dispose) {
                 material.dispose();
             }
@@ -72,17 +63,16 @@ export class MeshRenderer extends Component {
     AddMeshFromMeshFilter() {
         const geometry = this.GetMeshFromMeshFilter();
         if (geometry) {
-            this.mesh = new Mesh(geometry, this.material);
-            this.mesh.userData.transform = this.transform;
+            const mesh = new Mesh(geometry, this.material);
+            this.RemoveMesh();
+            if (mesh.name == "") {
+                mesh.name = mesh.uuid;
+            }
+            this.transform.group.add(mesh);
+            this.mesh = mesh;
             this.castShadows = true;
             this.receiveShadows = true;
         }
-    }
-    AddMeshToViewer(mesh) {
-        if (mesh.name == "") {
-            mesh.name = mesh.uuid;
-        }
-        this.transform.group.add(mesh);
     }
     GetMeshFromMeshFilter() {
         const meshFilter = this.gameObject.GetComponent(MeshFilter);

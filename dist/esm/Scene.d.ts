@@ -1,41 +1,28 @@
+import { Camera } from "./components";
 import { GameObject } from "./components/GameObject";
-import { Renderer } from './Renderer';
-import { Physics } from './Physics';
-import { Input } from './Input';
-import { Camera } from "./components/Camera";
+import { Scene as THREEScene } from 'three';
+import { PhysX } from "trident-physx-js-webidl";
 /**
  * The scene that holds all GameObjects.
  */
 export declare class Scene {
-    private config;
-    private renderer;
-    private physics;
-    private input;
-    private camera;
-    isPlaying: boolean;
-    currentFrame: number;
-    gizmosEnabled: boolean;
+    name: string;
     gameObjects: GameObject[];
+    private activeCamera;
+    userData: any;
+    readonly rendererScene: THREEScene;
+    readonly physicsScene: PhysX.PxScene;
+    constructor(name: string);
     /**
-     * @param {Renderer} renderer - Initialized Renderer instance.
-     * @param {Physics} physics - Initialized Physics instance.
+     * Adds a new GameObject to the scene.
+     * @param {GameObject} gameObject - GameObject to be added to the scene.
      */
-    constructor(renderer: Renderer, physics: Physics);
+    AddGameObject(gameObject: GameObject): boolean;
     /**
-     * Get the renderer for this scene.
-     * @returns {Renderer} Renderer attached to this scene.
+     * Remove a GameObject from the scene
+     * @returns {boolean} - True if GameObject was successfully removed, false otherwise.
      */
-    GetRenderer(): Renderer;
-    /**
-     * Get the physics for this scene.
-     * @returns {Physics} - Physics attached to this scene.
-     */
-    GetPhysics(): Physics;
-    /**
-     * Get the input for this scene.
-     * @returns {Input} - Input attached to this scene.
-     */
-    GetInput(): Input;
+    RemoveGameObject(gameObject: GameObject): boolean;
     /**
      * Get the current main camera.
      * The main camera is the camera that the client is viewing the scene from.
@@ -49,37 +36,13 @@ export declare class Scene {
      */
     SetActiveCamera(camera: Camera): void;
     /**
-     * Adds a new GameObject to the scene.
-     * @param {GameObject} gameObject - GameObject to be added to the scene.
-     */
-    AddGameObject(gameObject: GameObject): boolean;
-    /**
-     * Remove a GameObject from the scene
-     * @returns {boolean} - True if GameObject was successfully removed, false otherwise.
-     */
-    RemoveGameObject(gameObject: GameObject): boolean;
-    /**
      * Called before every Physics update.
      * Calls FixedUpdate on all attached components.
      */
     FixedUpdate(): void;
-    /**
-     * Called before every Renderer update.
-     * Calls Update on all attached components.
-     */
     Update(): void;
-    /**
-     * Load the Scene.
-     * Instanciates all Components
-     */
-    Load(): boolean;
-    /**
-     * Called when the scene starts.
-     */
-    Play(): void;
-    /**
-     * Called when the scene stops.
-     * Calls Stop on all attached components.
-     */
-    Stop(): void;
+    LateUpdate(): void;
+    OnDrawGizmos(): void;
+    UpdatePhysics(): void;
+    Render(): void;
 }

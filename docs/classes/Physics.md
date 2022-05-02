@@ -10,15 +10,14 @@
 
 ### Properties
 
-- [FixedUpdate](Physics.md#fixedupdate)
 - [OnLoaded](Physics.md#onloaded)
 
 ### Methods
 
+- [CreateScene](Physics.md#createscene)
 - [GetCooking](Physics.md#getcooking)
 - [GetPhysX](Physics.md#getphysx)
 - [GetPhysics](Physics.md#getphysics)
-- [GetScene](Physics.md#getscene)
 - [Raycast](Physics.md#raycast)
 - [Start](Physics.md#start)
 - [Update](Physics.md#update)
@@ -37,27 +36,9 @@
 
 #### Defined in
 
-[Physics.ts:22](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Physics.ts#L22)
+[Physics.ts:19](https://github.com/AIFanatic/Trident/blob/44c915e/src/Physics.ts#L19)
 
 ## Properties
-
-### FixedUpdate
-
-• **FixedUpdate**: () => `void`
-
-#### Type declaration
-
-▸ (): `void`
-
-##### Returns
-
-`void`
-
-#### Defined in
-
-[Physics.ts:10](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Physics.ts#L10)
-
-___
 
 ### OnLoaded
 
@@ -73,9 +54,23 @@ ___
 
 #### Defined in
 
-[Physics.ts:9](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Physics.ts#L9)
+[Physics.ts:9](https://github.com/AIFanatic/Trident/blob/44c915e/src/Physics.ts#L9)
 
 ## Methods
+
+### CreateScene
+
+▸ **CreateScene**(): `PxScene`
+
+#### Returns
+
+`PxScene`
+
+#### Defined in
+
+[Physics.ts:85](https://github.com/AIFanatic/Trident/blob/44c915e/src/Physics.ts#L85)
+
+___
 
 ### GetCooking
 
@@ -87,7 +82,7 @@ ___
 
 #### Defined in
 
-[Physics.ts:269](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Physics.ts#L269)
+[Physics.ts:168](https://github.com/AIFanatic/Trident/blob/44c915e/src/Physics.ts#L168)
 
 ___
 
@@ -101,7 +96,7 @@ typeof `PhysX`
 
 #### Defined in
 
-[Physics.ts:257](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Physics.ts#L257)
+[Physics.ts:160](https://github.com/AIFanatic/Trident/blob/44c915e/src/Physics.ts#L160)
 
 ___
 
@@ -115,21 +110,7 @@ ___
 
 #### Defined in
 
-[Physics.ts:261](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Physics.ts#L261)
-
-___
-
-### GetScene
-
-▸ **GetScene**(): `PxScene`
-
-#### Returns
-
-`PxScene`
-
-#### Defined in
-
-[Physics.ts:265](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Physics.ts#L265)
+[Physics.ts:164](https://github.com/AIFanatic/Trident/blob/44c915e/src/Physics.ts#L164)
 
 ___
 
@@ -152,7 +133,7 @@ ___
 
 #### Defined in
 
-[Physics.ts:273](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Physics.ts#L273)
+[Physics.ts:172](https://github.com/AIFanatic/Trident/blob/44c915e/src/Physics.ts#L172)
 
 ___
 
@@ -166,13 +147,19 @@ ___
 
 #### Defined in
 
-[Physics.ts:278](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Physics.ts#L278)
+[Physics.ts:177](https://github.com/AIFanatic/Trident/blob/44c915e/src/Physics.ts#L177)
 
 ___
 
 ### Update
 
-▸ **Update**(): `void`
+▸ **Update**(`scene`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `scene` | `PxScene` |
 
 #### Returns
 
@@ -180,4 +167,4 @@ ___
 
 #### Defined in
 
-[Physics.ts:281](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/Physics.ts#L281)
+[Physics.ts:180](https://github.com/AIFanatic/Trident/blob/44c915e/src/Physics.ts#L180)

@@ -10,8 +10,8 @@
 
 ### Enumerations
 
-- [ArticulationDofLock](enums/ArticulationDofLock.md)
 - [ArticulationJointType](enums/ArticulationJointType.md)
+- [ArticulationMotion](enums/ArticulationMotion.md)
 - [HideFlags](enums/HideFlags.md)
 - [KeyCodes](enums/KeyCodes.md)
 - [LayerMask](enums/LayerMask.md)
@@ -20,10 +20,10 @@
 ### Classes
 
 - [GameObject](classes/GameObject.md)
-- [Input](classes/Input.md)
 - [Physics](classes/Physics.md)
 - [Renderer](classes/Renderer.md)
 - [Resources](classes/Resources.md)
+- [Runtime](classes/Runtime.md)
 - [Scene](classes/Scene.md)
 - [SceneDeserializer](classes/SceneDeserializer.md)
 - [SceneSerializer](classes/SceneSerializer.md)
@@ -44,7 +44,7 @@
 
 #### Defined in
 
-[resources/ResourcesCache.ts:40](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/resources/ResourcesCache.ts#L40)
+[resources/ResourcesCache.ts:41](https://github.com/AIFanatic/Trident/blob/44c915e/src/resources/ResourcesCache.ts#L41)
 
 ## Functions
 
@@ -66,4 +66,4 @@
 
 #### Defined in
 
-[utils/SerializeField.ts:25](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/utils/SerializeField.ts#L25)
+[utils/SerializeField.ts:25](https://github.com/AIFanatic/Trident/blob/44c915e/src/utils/SerializeField.ts#L25)

@@ -140,10 +140,5 @@ export declare class Transform implements IComponent {
      */
     RotateAround(point: Vector3, axis: Vector3, angle: number): void;
     Tick(): void;
-    FixedUpdate(): void;
-    LateUpdate(): void;
-    Update(): void;
-    Start(): void;
-    Stop(): void;
     Destroy(): void;
 }

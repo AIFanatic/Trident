@@ -37,4 +37,4 @@ Collider.constructor
 
 #### Defined in
 
-[components/SphereCollider.ts:15](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/SphereCollider.ts#L15)
+[components/SphereCollider.ts:16](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/SphereCollider.ts#L16)

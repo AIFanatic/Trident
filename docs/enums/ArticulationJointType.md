@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[enums/ArticulationJointType.ts:3](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/enums/ArticulationJointType.ts#L3)
+[enums/ArticulationJointType.ts:3](https://github.com/AIFanatic/Trident/blob/44c915e/src/enums/ArticulationJointType.ts#L3)
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 #### Defined in
 
-[enums/ArticulationJointType.ts:4](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/enums/ArticulationJointType.ts#L4)
+[enums/ArticulationJointType.ts:4](https://github.com/AIFanatic/Trident/blob/44c915e/src/enums/ArticulationJointType.ts#L4)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[enums/ArticulationJointType.ts:5](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/enums/ArticulationJointType.ts#L5)
+[enums/ArticulationJointType.ts:5](https://github.com/AIFanatic/Trident/blob/44c915e/src/enums/ArticulationJointType.ts#L5)
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 #### Defined in
 
-[enums/ArticulationJointType.ts:6](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/enums/ArticulationJointType.ts#L6)
+[enums/ArticulationJointType.ts:6](https://github.com/AIFanatic/Trident/blob/44c915e/src/enums/ArticulationJointType.ts#L6)

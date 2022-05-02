@@ -13,10 +13,10 @@ import { PhysicsShape } from '../physics/PhysicsShape';
 import { PhysicsUtils } from '../physics/PhysicsUtils';
 import { ForceMode } from '../enums/ForceMode';
 import { RigidbodyConstraints } from '../enums/RigidbodyConstraints';
-import { RigidBodyFlags } from '../enums/RigidbodyFlags';
 import { LayerMask } from '../enums/LayerMask';
 import { Mathf } from '../utils/Mathf';
 import { SerializeField } from '../utils/SerializeField';
+import { Runtime } from '../Runtime';
 /**
  * RigidBody adds physics properties to an object.
  *
@@ -34,8 +34,8 @@ export class Rigidbody extends Component {
         this.rotation = new Quaternion();
         this.localScale = new Vector3();
         this.previousLayer = LayerMask.LAYER0;
-        this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-        this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
+        this.physxPhysics = Runtime.Physics.GetPhysics();
+        this.physxScene = gameObject.scene.physicsScene;
         const collider = this.gameObject.GetComponent(Collider);
         if (collider && collider.body) {
             this.body = collider.body;
@@ -64,10 +64,10 @@ export class Rigidbody extends Component {
      */
     get isKinematic() {
         const flags = this.rigidbody.getRigidBodyFlags();
-        return flags.isSet(RigidBodyFlags.KINEMATIC.valueOf());
+        return flags.isSet(PhysX.PxRigidBodyFlagEnum.KINEMATIC.valueOf());
     }
     set isKinematic(kinematic) {
-        this.rigidbody.setRigidBodyFlag(RigidBodyFlags.KINEMATIC.valueOf(), kinematic);
+        this.rigidbody.setRigidBodyFlag(PhysX.PxRigidBodyFlagEnum.KINEMATIC.valueOf(), kinematic);
     }
     get mass() {
         return this.rigidbody.getMass();
@@ -197,7 +197,7 @@ export class Rigidbody extends Component {
     }
     Destroy() {
         const collider = this.gameObject.GetComponent(Collider);
-        if (collider && collider.body) {
+        if (collider && collider.body && collider.body.rigidbody && collider.body.rigidbody.getNbShapes() > 0) {
             this.body = collider.body;
             this.body.ConvertToStatic();
         }

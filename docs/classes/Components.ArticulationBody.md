@@ -64,7 +64,7 @@ Joint links can be FIXED, PRISMATIC, REVOLUTE and SPHERICAL.
 
 #### Defined in
 
-[components/ArticulationBody.ts:312](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L312)
+[components/ArticulationBody.ts:282](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L282)
 
 ## Properties
 
@@ -74,7 +74,7 @@ Joint links can be FIXED, PRISMATIC, REVOLUTE and SPHERICAL.
 
 #### Defined in
 
-[components/ArticulationBody.ts:112](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L112)
+[components/ArticulationBody.ts:103](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L103)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:114](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L114)
+[components/ArticulationBody.ts:105](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L105)
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:116](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L116)
+[components/ArticulationBody.ts:107](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L107)
 
 ## Accessors
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:299](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L299)
+[components/ArticulationBody.ts:269](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L269)
 
 • `set` **angularDamping**(`angularDamping`): `void`
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:303](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L303)
+[components/ArticulationBody.ts:273](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L273)
 
 ___
 
@@ -138,7 +138,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:126](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L126)
+[components/ArticulationBody.ts:117](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L117)
 
 • `set` **immovable**(`immovable`): `void`
 
@@ -154,21 +154,21 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:132](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L132)
+[components/ArticulationBody.ts:122](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L122)
 
 ___
 
 ### jointType
 
-• `get` **jointType**(): [`ArticulationJointType`](../enums/ArticulationJointType.md)
+• `get` **jointType**(): [`FixedJoint`](../enums/ArticulationJointType.md#fixedjoint) \| [`PrismaticJoint`](../enums/ArticulationJointType.md#prismaticjoint) \| [`RevoluteJoint`](../enums/ArticulationJointType.md#revolutejoint) \| [`SphericalJoint`](../enums/ArticulationJointType.md#sphericaljoint) \| `PxArticulationJointTypeEnum`
 
 #### Returns
 
-[`ArticulationJointType`](../enums/ArticulationJointType.md)
+[`FixedJoint`](../enums/ArticulationJointType.md#fixedjoint) \| [`PrismaticJoint`](../enums/ArticulationJointType.md#prismaticjoint) \| [`RevoluteJoint`](../enums/ArticulationJointType.md#revolutejoint) \| [`SphericalJoint`](../enums/ArticulationJointType.md#sphericaljoint) \| `PxArticulationJointTypeEnum`
 
 #### Defined in
 
-[components/ArticulationBody.ts:138](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L138)
+[components/ArticulationBody.ts:127](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L127)
 
 • `set` **jointType**(`jointType`): `void`
 
@@ -176,7 +176,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `jointType` | [`ArticulationJointType`](../enums/ArticulationJointType.md) |
+| `jointType` | [`FixedJoint`](../enums/ArticulationJointType.md#fixedjoint) \| [`PrismaticJoint`](../enums/ArticulationJointType.md#prismaticjoint) \| [`RevoluteJoint`](../enums/ArticulationJointType.md#revolutejoint) \| [`SphericalJoint`](../enums/ArticulationJointType.md#sphericaljoint) \| `PxArticulationJointTypeEnum` |
 
 #### Returns
 
@@ -184,7 +184,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:143](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L143)
+[components/ArticulationBody.ts:131](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L131)
 
 ___
 
@@ -198,7 +198,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:290](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L290)
+[components/ArticulationBody.ts:260](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L260)
 
 • `set` **linearDamping**(`linearDamping`): `void`
 
@@ -214,21 +214,21 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:294](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L294)
+[components/ArticulationBody.ts:264](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L264)
 
 ___
 
 ### linearLockX
 
-• `get` **linearLockX**(): [`ArticulationDofLock`](../enums/ArticulationDofLock.md)
+• `get` **linearLockX**(): `PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion)
 
 #### Returns
 
-[`ArticulationDofLock`](../enums/ArticulationDofLock.md)
+`PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion)
 
 #### Defined in
 
-[components/ArticulationBody.ts:204](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L204)
+[components/ArticulationBody.ts:183](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L183)
 
 • `set` **linearLockX**(`linearLockX`): `void`
 
@@ -236,7 +236,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `linearLockX` | [`ArticulationDofLock`](../enums/ArticulationDofLock.md) |
+| `linearLockX` | `PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion) |
 
 #### Returns
 
@@ -244,21 +244,21 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:209](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L209)
+[components/ArticulationBody.ts:187](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L187)
 
 ___
 
 ### linearLockY
 
-• `get` **linearLockY**(): [`ArticulationDofLock`](../enums/ArticulationDofLock.md)
+• `get` **linearLockY**(): `PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion)
 
 #### Returns
 
-[`ArticulationDofLock`](../enums/ArticulationDofLock.md)
+`PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion)
 
 #### Defined in
 
-[components/ArticulationBody.ts:214](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L214)
+[components/ArticulationBody.ts:192](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L192)
 
 • `set` **linearLockY**(`linearLockY`): `void`
 
@@ -266,7 +266,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `linearLockY` | [`ArticulationDofLock`](../enums/ArticulationDofLock.md) |
+| `linearLockY` | `PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion) |
 
 #### Returns
 
@@ -274,21 +274,21 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:219](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L219)
+[components/ArticulationBody.ts:196](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L196)
 
 ___
 
 ### linearLockZ
 
-• `get` **linearLockZ**(): [`ArticulationDofLock`](../enums/ArticulationDofLock.md)
+• `get` **linearLockZ**(): `PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion)
 
 #### Returns
 
-[`ArticulationDofLock`](../enums/ArticulationDofLock.md)
+`PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion)
 
 #### Defined in
 
-[components/ArticulationBody.ts:224](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L224)
+[components/ArticulationBody.ts:201](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L201)
 
 • `set` **linearLockZ**(`linearLockZ`): `void`
 
@@ -296,7 +296,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `linearLockZ` | [`ArticulationDofLock`](../enums/ArticulationDofLock.md) |
+| `linearLockZ` | `PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion) |
 
 #### Returns
 
@@ -304,7 +304,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:229](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L229)
+[components/ArticulationBody.ts:205](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L205)
 
 ___
 
@@ -318,7 +318,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:281](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L281)
+[components/ArticulationBody.ts:251](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L251)
 
 • `set` **mass**(`mass`): `void`
 
@@ -334,21 +334,21 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:285](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L285)
+[components/ArticulationBody.ts:255](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L255)
 
 ___
 
 ### swingYLock
 
-• `get` **swingYLock**(): [`ArticulationDofLock`](../enums/ArticulationDofLock.md)
+• `get` **swingYLock**(): `PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion)
 
 #### Returns
 
-[`ArticulationDofLock`](../enums/ArticulationDofLock.md)
+`PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion)
 
 #### Defined in
 
-[components/ArticulationBody.ts:250](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L250)
+[components/ArticulationBody.ts:224](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L224)
 
 • `set` **swingYLock**(`swingYLock`): `void`
 
@@ -356,7 +356,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `swingYLock` | [`ArticulationDofLock`](../enums/ArticulationDofLock.md) |
+| `swingYLock` | `PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion) |
 
 #### Returns
 
@@ -364,21 +364,21 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:255](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L255)
+[components/ArticulationBody.ts:228](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L228)
 
 ___
 
 ### swingZLock
 
-• `get` **swingZLock**(): [`ArticulationDofLock`](../enums/ArticulationDofLock.md)
+• `get` **swingZLock**(): `PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion)
 
 #### Returns
 
-[`ArticulationDofLock`](../enums/ArticulationDofLock.md)
+`PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion)
 
 #### Defined in
 
-[components/ArticulationBody.ts:260](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L260)
+[components/ArticulationBody.ts:233](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L233)
 
 • `set` **swingZLock**(`swingZLock`): `void`
 
@@ -386,7 +386,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `swingZLock` | [`ArticulationDofLock`](../enums/ArticulationDofLock.md) |
+| `swingZLock` | `PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion) |
 
 #### Returns
 
@@ -394,21 +394,21 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:265](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L265)
+[components/ArticulationBody.ts:237](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L237)
 
 ___
 
 ### twistLock
 
-• `get` **twistLock**(): [`ArticulationDofLock`](../enums/ArticulationDofLock.md)
+• `get` **twistLock**(): `PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion)
 
 #### Returns
 
-[`ArticulationDofLock`](../enums/ArticulationDofLock.md)
+`PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion)
 
 #### Defined in
 
-[components/ArticulationBody.ts:271](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L271)
+[components/ArticulationBody.ts:242](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L242)
 
 • `set` **twistLock**(`twistLock`): `void`
 
@@ -416,7 +416,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `twistLock` | [`ArticulationDofLock`](../enums/ArticulationDofLock.md) |
+| `twistLock` | `PxArticulationMotionEnum` \| [`LockedMotion`](../enums/ArticulationMotion.md#lockedmotion) \| [`LimitedMotion`](../enums/ArticulationMotion.md#limitedmotion) \| [`FreeMotion`](../enums/ArticulationMotion.md#freemotion) |
 
 #### Returns
 
@@ -424,7 +424,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:276](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L276)
+[components/ArticulationBody.ts:246](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L246)
 
 ## Methods
 
@@ -444,7 +444,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/ArticulationBody.ts:400](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L400)
+[components/ArticulationBody.ts:370](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L370)
 
 ___
 
@@ -464,4 +464,4 @@ Called before every Physics update.
 
 #### Defined in
 
-[components/ArticulationBody.ts:373](https://github.com/AIFanatic/Trident/blob/b94bc4e/src/components/ArticulationBody.ts#L373)
+[components/ArticulationBody.ts:343](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/ArticulationBody.ts#L343)

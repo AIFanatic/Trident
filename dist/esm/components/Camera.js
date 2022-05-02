@@ -5,6 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { PerspectiveCamera, CameraHelper } from "three";
+import { Runtime } from "..";
 import { SerializeField } from "../utils/SerializeField";
 import { Component } from "./Component";
 export var ProjectionTypes;
@@ -24,8 +25,7 @@ export class Camera extends Component {
         super(gameObject, transform);
         this.camera = new PerspectiveCamera(60, 1, 0.1, 1000);
         this.transform.group.add(this.camera);
-        this.gameObject.scene.SetActiveCamera(this);
-        const canvasDom = this.gameObject.scene.GetRenderer().renderer.domElement;
+        const canvasDom = Runtime.Renderer.renderer.domElement;
         const resizeObserver = new ResizeObserver(() => { this.OnResize(); }).observe(canvasDom);
         this.OnResize();
     }
@@ -54,7 +54,7 @@ export class Camera extends Component {
         return this.camera;
     }
     OnResize() {
-        const canvas = this.gameObject.scene.GetRenderer().renderer.domElement;
+        const canvas = Runtime.Renderer.renderer.domElement;
         this.camera.aspect = canvas.parentElement.offsetWidth / canvas.parentElement.offsetHeight;
         this.camera.updateProjectionMatrix();
     }

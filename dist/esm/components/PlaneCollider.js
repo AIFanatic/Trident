@@ -12,18 +12,16 @@ import { PhysicsUtils } from "../physics/PhysicsUtils";
 export class PlaneCollider extends Collider {
     constructor(gameObject, transform) {
         super(gameObject, transform);
-        const physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-        const physxScene = this.gameObject.scene.GetPhysics().GetScene();
-        const shape = PhysicsShape.CreatePlane(physxPhysics, this.transform.localScale.x, this.transform.localScale.z);
+        const shape = PhysicsShape.CreatePlane(this.physxPhysics, this.transform.localScale.x, this.transform.localScale.z);
         const geometry = shape.getGeometry().box();
         const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
-        const rigidbody = physxPhysics.createRigidStatic(physxTransform);
+        const rigidbody = this.physxPhysics.createRigidStatic(physxTransform);
         const physicsBody = {
             rigidbody: rigidbody,
             geometry: geometry,
             shape: shape
         };
-        this.body = new PhysicsRigidbody(physxPhysics, physxScene, physicsBody);
+        this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
         this.gameObject.BroadcastMessage("CreatedCollider", this.body);
     }
     // Hacky, but plane is a box therefore PhysicsScale will treat it as a box and forcing Y scale

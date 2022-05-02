@@ -19,9 +19,6 @@ export interface IRendererConfiguration {
     pixelRatio?: number;
     physicallyCorrectLights?: boolean;
 }
-export interface IApplicationConfiguration {
-    rootPath: string;
-}
 export interface IConfiguration {
     renderer: IRendererConfiguration;
     physics: IPhysicsConfiguration;

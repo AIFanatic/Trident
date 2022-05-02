@@ -5,8 +5,7 @@ export class PhysicsRaycast {
         this._origin = new PhysX.PxVec3();
         this._direction = new PhysX.PxVec3();
         this._filterData = new PhysX.PxQueryFilterData();
-        // @ts-ignore
-        this._hitFlags = new PhysX.PxHitFlags(PhysX.ePOSITION | PhysX.eNORMAL);
+        this._hitFlags = new PhysX.PxHitFlags(PhysX.PxHitFlagEnum.POSITION | PhysX.PxHitFlagEnum.NORMAL);
     }
     Raycast(origin, direction, maxDistance, layerMask = 0) {
         this._origin.x = origin.x;

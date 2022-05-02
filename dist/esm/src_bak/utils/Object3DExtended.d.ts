@@ -1,0 +1,32 @@
+import { Object3D, Quaternion, Vector3 } from "three";
+export declare class Object3DExtended extends Object3D {
+    worldPosition: Vector3;
+    worldEuler: Vector3;
+    worldRotation: Quaternion;
+    worldScale: Vector3;
+    euler: Vector3;
+    private previousWorldPosition;
+    private previousWorldEuler;
+    private previousWorldRotation;
+    private previousEuler;
+    private _e1;
+    private _v1;
+    private _v2;
+    private _q1;
+    private _q2;
+    constructor();
+    updateMatrix(): void;
+    updateMatrixWorld(force: any): void;
+    getWorldEuler(): Vector3;
+    setWorldEuler(x: any, y: any, z: any): void;
+    getWorldPositiona(): Vector3;
+    setWorldPosition(x: any, y: any, z: any): void;
+    getWorldRotation(): Quaternion;
+    setWorldRotation(x: any, y: any, z: any, w: any): void;
+    getEuler(): Vector3;
+    setEuler(x: any, y: any, z: any): void;
+    CheckWorldPosition(): void;
+    CheckWorldEuler(): void;
+    CheckWorldRotation(): void;
+    CheckEuler(): void;
+}

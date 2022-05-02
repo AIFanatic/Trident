@@ -10,8 +10,6 @@ import { PhysicsUtils } from "../physics/PhysicsUtils";
 export class BoxCollider extends Collider {
     constructor(gameObject, transform) {
         super(gameObject, transform);
-        this.physxPhysics = this.gameObject.scene.GetPhysics().GetPhysics();
-        this.physxScene = this.gameObject.scene.GetPhysics().GetScene();
         const shape = PhysicsShape.CreateBox(this.physxPhysics, this.transform.localScale);
         const geometry = shape.getGeometry().box();
         const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
