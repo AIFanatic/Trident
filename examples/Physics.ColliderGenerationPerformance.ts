@@ -29,7 +29,8 @@ const config = {
         performanceCooking: true
     }
 }
-SceneHelper.CreateScene(config, (scene: Scene) => {
+SceneHelper.CreateRuntime(config).then(runtime => {
+    const scene = SceneHelper.CreateScene();
     SceneHelper.CreateCamera(scene, 0, 0, 40);
     SceneHelper.CreateSunlight(scene);
     
@@ -41,6 +42,6 @@ SceneHelper.CreateScene(config, (scene: Scene) => {
     const meshGameObject = new GameObject(scene);
     const meshComponent = meshGameObject.AddComponent(Spaceship);
     
-    scene.Load();
-    scene.Play();
+    runtime.Load();
+    runtime.Play();
 });

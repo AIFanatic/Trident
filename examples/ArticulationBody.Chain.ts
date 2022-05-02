@@ -2,7 +2,7 @@
  * @description Create a chain of Spherical joints.
  */
 import { SceneHelper } from './assets/SceneHelper.js';
-import { Scene, GameObject, Components, ArticulationJointType, ArticulationDofLock, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
+import { Scene, GameObject, Components, ArticulationJointType, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
 
 class BlockerCube extends Components.Component {
     public Awake() {
@@ -11,7 +11,8 @@ class BlockerCube extends Components.Component {
     }
 }
 
-SceneHelper.CreateScene({}, (scene: Scene) => {
+SceneHelper.CreateRuntime({}).then(runtime => {
+    const scene = SceneHelper.CreateScene();
     const camera = SceneHelper.CreateCamera(scene);
     camera.transform.position.set(0, 0, 30);
     SceneHelper.CreateSunlight(scene);
@@ -41,6 +42,6 @@ SceneHelper.CreateScene({}, (scene: Scene) => {
         parentGameobject = articulationGameobject
     }
     
-    scene.Load();
-    scene.Play();
+    runtime.Load();
+    runtime.Play();
 });

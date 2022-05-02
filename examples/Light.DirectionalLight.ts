@@ -4,8 +4,9 @@
 import { SceneHelper } from './assets/SceneHelper.js';
 import { Scene, GameObject, Components, PrimitiveType, THREE } from '../dist/esm/trident-esm-bundle.js';
 
-const scene = SceneHelper.CreateScene({}, (scene: Scene) => {
-    scene.gizmosEnabled = true;
+const scene = SceneHelper.CreateRuntime({}).then(runtime => {
+    const scene = SceneHelper.CreateScene();
+    runtime.gizmosEnabled = true;
 
     const camera = SceneHelper.CreateCamera(scene);
     camera.transform.position.set(-8, 0, 7);
@@ -28,8 +29,8 @@ const scene = SceneHelper.CreateScene({}, (scene: Scene) => {
     lightGameobject.transform.localScale.set(0.3, 0.3, 0.3);
     const lightComponent = lightGameobject.AddComponent(Components.DirectionalLight);
     
-    scene.Load();
-    scene.Play();
+    runtime.Load();
+    runtime.Play();
     
     setInterval(() => {
         const color = Math.random() * 0xffffff;

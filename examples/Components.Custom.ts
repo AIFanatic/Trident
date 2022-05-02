@@ -14,7 +14,8 @@ class CustomComponent extends Components.Component {
     }
 }
 
-SceneHelper.CreateScene({}, (scene: Scene) => {
+SceneHelper.CreateRuntime({}).then(runtime => {
+    const scene = SceneHelper.CreateScene();
     SceneHelper.CreateCamera(scene);
     SceneHelper.CreateSunlight(scene);
     
@@ -22,6 +23,6 @@ SceneHelper.CreateScene({}, (scene: Scene) => {
     const cubeComponent = cubeGameobject.AddComponent(CustomComponent);
     cubeComponent.transform.position.set(0, -2, -10);
     
-    scene.Load();
-    scene.Play();
+    runtime.Load();
+    runtime.Play();
 });

@@ -4,7 +4,8 @@
 import { SceneHelper } from './assets/SceneHelper.js';
 import { Scene, GameObject, Components, Resources, THREE } from '../dist/esm/trident-esm-bundle.js';
 
-SceneHelper.CreateScene({}, (scene: Scene) => {
+SceneHelper.CreateRuntime({}).then(runtime => {
+    const scene = SceneHelper.CreateScene();
     SceneHelper.CreateCamera(scene);
     SceneHelper.CreateSunlight(scene);
     
@@ -21,6 +22,6 @@ SceneHelper.CreateScene({}, (scene: Scene) => {
     })
     
     
-    scene.Load();
-    scene.Play();
+    runtime.Load();
+    runtime.Play();
 });

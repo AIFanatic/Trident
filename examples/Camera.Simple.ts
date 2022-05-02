@@ -5,8 +5,9 @@ import { SceneHelper } from './assets/SceneHelper.js';
 import { Scene, GameObject, Components } from '../dist/esm/trident-esm-bundle.js';
 
 let farLimitReached = false;
-const scene = SceneHelper.CreateScene({}, (scene: Scene) => {
-    scene.gizmosEnabled = true;
+SceneHelper.CreateRuntime({}).then(runtime => {
+    const scene = SceneHelper.CreateScene();
+    runtime.gizmosEnabled = true;
 
     const camera = SceneHelper.CreateCamera(scene);
     camera.transform.position.z = 60;
@@ -28,6 +29,6 @@ const scene = SceneHelper.CreateScene({}, (scene: Scene) => {
         farLimitReached = !farLimitReached;
     }, 1000);
     
-    scene.Load();
-    scene.Play();
+    runtime.Load();
+    runtime.Play();
 });

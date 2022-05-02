@@ -2,7 +2,7 @@
  * @description Create and move a Prismatic joint.
  */
 import { SceneHelper } from './assets/SceneHelper.js';
-import { Scene, GameObject, Components, ArticulationJointType, ArticulationDofLock, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
+import { Scene, GameObject, Components, ArticulationMotion, ArticulationJointType, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
 
 class BlockerCube extends Components.Component {
     public Awake() {
@@ -11,7 +11,8 @@ class BlockerCube extends Components.Component {
     }
 }
 
-SceneHelper.CreateScene({}, (scene: Scene) => {
+SceneHelper.CreateRuntime({}).then(runtime => {
+    const scene = SceneHelper.CreateScene();
 
     const camera = SceneHelper.CreateCamera(scene);
     camera.transform.position.set(0, 0, 10);
@@ -43,17 +44,17 @@ SceneHelper.CreateScene({}, (scene: Scene) => {
     articulation1.xDrive.target = 1;
     
     setTimeout(() => {
-        articulation1.linearLockY = ArticulationDofLock.FreeMotion;
+        articulation1.linearLockY = ArticulationMotion.FreeMotion;
         articulation1.yDrive.stiffness = 100;
         articulation1.yDrive.target = 2;
         setTimeout(() => {
-            articulation1.linearLockZ = ArticulationDofLock.FreeMotion;
+            articulation1.linearLockZ = ArticulationMotion.FreeMotion;
             ;
             articulation1.zDrive.stiffness = 100;
             articulation1.zDrive.target = 2;
         }, 3000);
     }, 3000);
     
-    scene.Load();
-    scene.Play();
+    runtime.Load();
+    runtime.Play();
 });

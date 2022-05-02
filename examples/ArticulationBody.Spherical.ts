@@ -2,7 +2,7 @@
  * @description Create and rotate a Spherical joint.
  */
 import { SceneHelper } from './assets/SceneHelper.js';
-import { Scene, GameObject, Components, ArticulationJointType, ArticulationDofLock, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
+import { Scene, GameObject, Components, ArticulationJointType, ArticulationMotion, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
 
 class BlockerCube extends Components.Component {
     public Awake() {
@@ -11,7 +11,8 @@ class BlockerCube extends Components.Component {
     }
 }
 
-const scene = SceneHelper.CreateScene({}, (scene: Scene) => {
+SceneHelper.CreateRuntime({}).then(runtime => {
+    const scene = SceneHelper.CreateScene();
 
     const camera = SceneHelper.CreateCamera(scene);
     camera.transform.position.set(0, 0, 10);
@@ -43,15 +44,15 @@ const scene = SceneHelper.CreateScene({}, (scene: Scene) => {
     articulation1.xDrive.target = 1;
     
     setTimeout(() => {
-        articulation1.twistLock = ArticulationDofLock.LockedMotion;
+        articulation1.twistLock = ArticulationMotion.LockedMotion;
         articulation1.yDrive.target = 1;
     
         setTimeout(() => {
-            articulation1.swingYLock = ArticulationDofLock.LockedMotion;
+            articulation1.swingYLock = ArticulationMotion.LockedMotion;
             articulation1.zDrive.target = -1;
         }, 3000);
     }, 3000);
     
-    scene.Load();
-    scene.Play();
+    runtime.Load();
+    runtime.Play();
 });

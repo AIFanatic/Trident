@@ -11,7 +11,8 @@ class BlockerCube extends Components.Component {
     }
 }
 
-const scene = SceneHelper.CreateScene({}, (scene: Scene) => {
+SceneHelper.CreateRuntime({}).then(runtime => {
+    const scene = SceneHelper.CreateScene();
 
     const camera = SceneHelper.CreateCamera(scene);
     camera.transform.position.set(0, 0, 10);
@@ -36,6 +37,6 @@ const scene = SceneHelper.CreateScene({}, (scene: Scene) => {
     articulation1.xDrive.stiffness = 100;
     articulation1.xDrive.target = 1;
     
-    scene.Load();
-    scene.Play();
+    runtime.Load();
+    runtime.Play();
 });

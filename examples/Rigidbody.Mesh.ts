@@ -20,7 +20,8 @@ class Spaceship extends Components.Component {
     }
 }
 
-const scene = SceneHelper.CreateScene({}, (scene: Scene) => {
+const scene = SceneHelper.CreateRuntime({}).then(runtime => {
+    const scene = SceneHelper.CreateScene();
     SceneHelper.CreateCamera(scene, 0, 0, 40);
     SceneHelper.CreateSunlight(scene);
     
@@ -32,6 +33,6 @@ const scene = SceneHelper.CreateScene({}, (scene: Scene) => {
     const meshGameObject = new GameObject(scene);
     const meshComponent = meshGameObject.AddComponent(Spaceship);
     
-    scene.Load();
-    scene.Play();
+    runtime.Load();
+    runtime.Play();
 });

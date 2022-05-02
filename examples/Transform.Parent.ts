@@ -2,18 +2,19 @@
  * @description Manipulate child Transform with parent.
  */
 import { SceneHelper } from './assets/SceneHelper.js';
-import { Scene, Components, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
+import { Scene, Components, GameObject, PrimitiveType } from '../dist/esm/trident-esm-bundle.js';
 
-const scene = SceneHelper.CreateScene({}, (scene: Scene) => {
+const scene = SceneHelper.CreateRuntime({}).then(runtime => {
+    const scene = SceneHelper.CreateScene();
 
     SceneHelper.CreateCamera(scene, 0, 0, 20);
     SceneHelper.CreateSunlight(scene);
     
-    const cube = new Components.GameObject(scene);
+    const cube = new GameObject(scene);
     cube.CreatePrimitive(PrimitiveType.Cube);
     cube.transform.position.y = 0;
     
-    const cube1 = new Components.GameObject(scene);
+    const cube1 = new GameObject(scene);
     cube1.CreatePrimitive(PrimitiveType.Cube);
     cube1.transform.parent = cube.transform;
     cube1.transform.position.y = 2;
@@ -37,6 +38,6 @@ const scene = SceneHelper.CreateScene({}, (scene: Scene) => {
     setInterval(() => {
         goingUp = !goingUp;
     }, 5000);
-    scene.Load();
-    scene.Play();
+    runtime.Load();
+    runtime.Play();
 });

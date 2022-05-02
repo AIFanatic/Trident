@@ -4,8 +4,9 @@
 import { SceneHelper } from './assets/SceneHelper.js';
 import { Scene, GameObject, Components, PrimitiveType, THREE } from '../dist/esm/trident-esm-bundle.js';
 
-SceneHelper.CreateScene({}, (scene: Scene) => {
-    scene.gizmosEnabled = true;
+SceneHelper.CreateRuntime({}).then(runtime => {
+    const scene = SceneHelper.CreateScene();
+    runtime.gizmosEnabled = true;
 
     const camera = SceneHelper.CreateCamera(scene);
     camera.transform.position.set(-8, 0, 7);
@@ -38,6 +39,6 @@ SceneHelper.CreateScene({}, (scene: Scene) => {
         lightSphereMaterial.color.setHex(color);
     }, 3000);
     
-    scene.Load();
-    scene.Play();
+    runtime.Load();
+    runtime.Play();
 });
