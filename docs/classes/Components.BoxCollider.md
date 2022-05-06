@@ -37,4 +37,4 @@ Collider.constructor
 
 #### Defined in
 
-[components/BoxCollider.ts:17](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/BoxCollider.ts#L17)
+[components/BoxCollider.ts:17](https://github.com/AIFanatic/Trident/blob/b587800/src/components/BoxCollider.ts#L17)

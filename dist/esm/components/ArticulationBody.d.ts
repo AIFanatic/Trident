@@ -1,7 +1,8 @@
 import { PhysX } from "trident-physx-js-webidl";
 import { Component } from "./Component";
 import { GameObject, Transform } from ".";
-import { ArticulationJointType, ArticulationMotion } from "..";
+import { ArticulationJointType } from "../enums/ArticulationJointType";
+import { ArticulationMotion } from "../enums/ArticulationMotion";
 declare class JointDriver {
     private joint;
     private axis;

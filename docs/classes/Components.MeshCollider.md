@@ -44,7 +44,7 @@ Collider.constructor
 
 #### Defined in
 
-[components/MeshCollider.ts:28](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/MeshCollider.ts#L28)
+[components/MeshCollider.ts:28](https://github.com/AIFanatic/Trident/blob/b587800/src/components/MeshCollider.ts#L28)
 
 ## Methods
 
@@ -58,7 +58,7 @@ Collider.constructor
 
 #### Defined in
 
-[components/MeshCollider.ts:40](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/MeshCollider.ts#L40)
+[components/MeshCollider.ts:40](https://github.com/AIFanatic/Trident/blob/b587800/src/components/MeshCollider.ts#L40)
 
 ___
 
@@ -78,4 +78,4 @@ ___
 
 #### Defined in
 
-[components/MeshCollider.ts:36](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/MeshCollider.ts#L36)
+[components/MeshCollider.ts:36](https://github.com/AIFanatic/Trident/blob/b587800/src/components/MeshCollider.ts#L36)

@@ -8,7 +8,6 @@ import { MeshFilter } from "./MeshFilter";
 import { Component } from "./Component";
 import { Mesh, MeshStandardMaterial } from "three";
 import { SerializeField } from "../utils/SerializeField";
-export const DefaultMaterial = new MeshStandardMaterial();
 /**
  * Renders a geometry from MeshFilter into the scene.
  *
@@ -17,13 +16,16 @@ export const DefaultMaterial = new MeshStandardMaterial();
 export class MeshRenderer extends Component {
     constructor(gameObject, transform) {
         super(gameObject, transform);
-        this._material = DefaultMaterial;
+        this._material = new MeshStandardMaterial();
         this.AddMeshFromMeshFilter();
     }
     get material() {
         return this._material;
     }
     set material(material) {
+        if (material === null) {
+            material = new MeshStandardMaterial();
+        }
         this._material = material;
         if (this.mesh) {
             this.mesh.material = this._material;

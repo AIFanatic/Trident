@@ -24,7 +24,7 @@ export class MeshCollider extends Collider {
     CreateCollider() {
         const meshFilter = this.gameObject.GetComponent(MeshFilter);
         const bufferGeometry = meshFilter.mesh;
-        if (!bufferGeometry)
+        if (!bufferGeometry || Object.keys(bufferGeometry.attributes).length === 0)
             return;
         let createdCollider = false;
         if (this.isConvex) {

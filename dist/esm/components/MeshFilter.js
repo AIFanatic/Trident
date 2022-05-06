@@ -5,6 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Component } from "./Component";
+import { BufferGeometry } from "three";
 import { SerializeField } from "../utils/SerializeField";
 /**
  * Stores a geometry that later can be rendered to the scene.
@@ -12,10 +13,17 @@ import { SerializeField } from "../utils/SerializeField";
  * @noInheritDoc
  */
 export class MeshFilter extends Component {
+    constructor() {
+        super(...arguments);
+        this._mesh = new BufferGeometry();
+    }
     get mesh() {
         return this._mesh;
     }
     set mesh(mesh) {
+        if (mesh === null) {
+            mesh = new BufferGeometry();
+        }
         this._mesh = mesh;
         this.gameObject.BroadcastMessage("MeshFilterModelChanged", this._mesh);
     }

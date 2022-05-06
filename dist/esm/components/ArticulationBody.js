@@ -9,7 +9,8 @@ import { Collider } from "./Collider";
 import { Component } from "./Component";
 import { SerializeField } from "../utils/SerializeField";
 import { Runtime } from "../Runtime";
-import { ArticulationJointType, ArticulationMotion } from "..";
+import { ArticulationJointType } from "../enums/ArticulationJointType";
+import { ArticulationMotion } from "../enums/ArticulationMotion";
 class JointDriver {
     constructor(joint, axis) {
         this._stiffness = 0;

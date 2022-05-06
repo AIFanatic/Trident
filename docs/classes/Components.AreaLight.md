@@ -50,7 +50,7 @@ A rectangle area light.
 
 #### Defined in
 
-[components/AreaLight.ts:64](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/AreaLight.ts#L64)
+[components/AreaLight.ts:64](https://github.com/AIFanatic/Trident/blob/b587800/src/components/AreaLight.ts#L64)
 
 ## Accessors
 
@@ -64,7 +64,7 @@ A rectangle area light.
 
 #### Defined in
 
-[components/AreaLight.ts:38](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/AreaLight.ts#L38)
+[components/AreaLight.ts:38](https://github.com/AIFanatic/Trident/blob/b587800/src/components/AreaLight.ts#L38)
 
 • `set` **color**(`color`): `void`
 
@@ -80,7 +80,7 @@ A rectangle area light.
 
 #### Defined in
 
-[components/AreaLight.ts:42](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/AreaLight.ts#L42)
+[components/AreaLight.ts:42](https://github.com/AIFanatic/Trident/blob/b587800/src/components/AreaLight.ts#L42)
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:29](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/AreaLight.ts#L29)
+[components/AreaLight.ts:29](https://github.com/AIFanatic/Trident/blob/b587800/src/components/AreaLight.ts#L29)
 
 • `set` **height**(`height`): `void`
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:33](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/AreaLight.ts#L33)
+[components/AreaLight.ts:33](https://github.com/AIFanatic/Trident/blob/b587800/src/components/AreaLight.ts#L33)
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:47](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/AreaLight.ts#L47)
+[components/AreaLight.ts:47](https://github.com/AIFanatic/Trident/blob/b587800/src/components/AreaLight.ts#L47)
 
 • `set` **intensity**(`intensity`): `void`
 
@@ -140,7 +140,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:51](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/AreaLight.ts#L51)
+[components/AreaLight.ts:51](https://github.com/AIFanatic/Trident/blob/b587800/src/components/AreaLight.ts#L51)
 
 ___
 
@@ -154,7 +154,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:56](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/AreaLight.ts#L56)
+[components/AreaLight.ts:56](https://github.com/AIFanatic/Trident/blob/b587800/src/components/AreaLight.ts#L56)
 
 • `set` **shadows**(`shadows`): `void`
 
@@ -170,7 +170,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:60](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/AreaLight.ts#L60)
+[components/AreaLight.ts:60](https://github.com/AIFanatic/Trident/blob/b587800/src/components/AreaLight.ts#L60)
 
 ___
 
@@ -184,7 +184,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:20](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/AreaLight.ts#L20)
+[components/AreaLight.ts:20](https://github.com/AIFanatic/Trident/blob/b587800/src/components/AreaLight.ts#L20)
 
 • `set` **width**(`width`): `void`
 
@@ -200,7 +200,7 @@ ___
 
 #### Defined in
 
-[components/AreaLight.ts:24](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/AreaLight.ts#L24)
+[components/AreaLight.ts:24](https://github.com/AIFanatic/Trident/blob/b587800/src/components/AreaLight.ts#L24)
 
 ## Methods
 
@@ -220,7 +220,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/AreaLight.ts:81](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/AreaLight.ts#L81)
+[components/AreaLight.ts:81](https://github.com/AIFanatic/Trident/blob/b587800/src/components/AreaLight.ts#L81)
 
 ___
 
@@ -240,4 +240,4 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-[components/AreaLight.ts:73](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/AreaLight.ts#L73)
+[components/AreaLight.ts:73](https://github.com/AIFanatic/Trident/blob/b587800/src/components/AreaLight.ts#L73)

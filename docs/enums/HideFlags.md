@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[enums/HideFlags.ts:3](https://github.com/AIFanatic/Trident/blob/44c915e/src/enums/HideFlags.ts#L3)
+[enums/HideFlags.ts:3](https://github.com/AIFanatic/Trident/blob/b587800/src/enums/HideFlags.ts#L3)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[enums/HideFlags.ts:2](https://github.com/AIFanatic/Trident/blob/44c915e/src/enums/HideFlags.ts#L2)
+[enums/HideFlags.ts:2](https://github.com/AIFanatic/Trident/blob/b587800/src/enums/HideFlags.ts#L2)

@@ -1,7 +1,6 @@
 import { Component } from "./Component";
-import { BufferGeometry, Geometry, Material, Mesh, MeshStandardMaterial } from "three";
+import { BufferGeometry, Geometry, Material, Mesh } from "three";
 import { GameObject, Transform } from ".";
-export declare const DefaultMaterial: MeshStandardMaterial;
 /**
  * Renders a geometry from MeshFilter into the scene.
  *

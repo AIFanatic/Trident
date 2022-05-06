@@ -12,9 +12,11 @@
 
 - [LoadAsync](Resources.md#loadasync)
 - [LoadComponentAsync](Resources.md#loadcomponentasync)
+- [LoadFile](Resources.md#loadfile)
 - [LoadMaterialAsync](Resources.md#loadmaterialasync)
 - [LoadMeshAsync](Resources.md#loadmeshasync)
 - [LoadSceneAsync](Resources.md#loadsceneasync)
+- [LoadTextureAsync](Resources.md#loadtextureasync)
 
 ## Constructors
 
@@ -40,7 +42,7 @@
 
 #### Defined in
 
-[resources/Resources.ts:128](https://github.com/AIFanatic/Trident/blob/44c915e/src/resources/Resources.ts#L128)
+[resources/Resources.ts:221](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L221)
 
 ___
 
@@ -61,7 +63,27 @@ ___
 
 #### Defined in
 
-[resources/Resources.ts:84](https://github.com/AIFanatic/Trident/blob/44c915e/src/resources/Resources.ts#L84)
+[resources/Resources.ts:142](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L142)
+
+___
+
+### LoadFile
+
+▸ `Static` **LoadFile**(`path`): `Promise`<`Blob`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `path` | `any` |
+
+#### Returns
+
+`Promise`<`Blob`\>
+
+#### Defined in
+
+[resources/Resources.ts:26](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L26)
 
 ___
 
@@ -82,7 +104,7 @@ ___
 
 #### Defined in
 
-[resources/Resources.ts:55](https://github.com/AIFanatic/Trident/blob/44c915e/src/resources/Resources.ts#L55)
+[resources/Resources.ts:80](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L80)
 
 ___
 
@@ -104,7 +126,7 @@ ___
 
 #### Defined in
 
-[resources/Resources.ts:19](https://github.com/AIFanatic/Trident/blob/44c915e/src/resources/Resources.ts#L19)
+[resources/Resources.ts:44](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L44)
 
 ___
 
@@ -125,4 +147,26 @@ ___
 
 #### Defined in
 
-[resources/Resources.ts:105](https://github.com/AIFanatic/Trident/blob/44c915e/src/resources/Resources.ts#L105)
+[resources/Resources.ts:163](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L163)
+
+___
+
+### LoadTextureAsync
+
+▸ `Static` **LoadTextureAsync**(`path`, `fileId`, `type`): `Promise`<`Texture`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `path` | `string` |
+| `fileId` | `string` |
+| `type` | `ResourceExtensions` |
+
+#### Returns
+
+`Promise`<`Texture`\>
+
+#### Defined in
+
+[resources/Resources.ts:183](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L183)

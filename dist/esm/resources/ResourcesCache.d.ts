@@ -1,7 +1,7 @@
-import { BufferGeometry, Material } from "three";
+import { BufferGeometry, Material, Texture } from "three";
 import { Component } from "../components";
 import { Scene } from "../Scene";
-export declare type ResourcesCacheEntry = Promise<BufferGeometry | Material | Component | Scene>;
+export declare type ResourcesCacheEntry = Promise<BufferGeometry | Material | Component | Scene | Texture>;
 declare class _ResourcesCache {
     private cache;
     constructor();

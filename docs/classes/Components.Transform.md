@@ -67,7 +67,7 @@ Transforms can be have a parent which allows for simultaneous control of parents
 
 #### Defined in
 
-[components/Transform.ts:224](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L224)
+[components/Transform.ts:224](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L224)
 
 ## Properties
 
@@ -77,7 +77,7 @@ Transforms can be have a parent which allows for simultaneous control of parents
 
 #### Defined in
 
-[components/Transform.ts:47](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L47)
+[components/Transform.ts:47](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L47)
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 #### Defined in
 
-[components/Transform.ts:26](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L26)
+[components/Transform.ts:26](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L26)
 
 ___
 
@@ -99,7 +99,7 @@ The local forward vector for this transform.
 
 #### Defined in
 
-[components/Transform.ts:45](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L45)
+[components/Transform.ts:45](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L45)
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 #### Defined in
 
-[components/Transform.ts:30](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L30)
+[components/Transform.ts:30](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L30)
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[components/Transform.ts:49](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L49)
+[components/Transform.ts:49](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L49)
 
 ___
 
@@ -129,7 +129,7 @@ ___
 
 #### Defined in
 
-[components/Transform.ts:27](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L27)
+[components/Transform.ts:27](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L27)
 
 ___
 
@@ -141,7 +141,7 @@ The local right vector for this transform.
 
 #### Defined in
 
-[components/Transform.ts:40](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L40)
+[components/Transform.ts:40](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L40)
 
 ___
 
@@ -151,7 +151,7 @@ ___
 
 #### Defined in
 
-[components/Transform.ts:28](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L28)
+[components/Transform.ts:28](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L28)
 
 ___
 
@@ -163,7 +163,7 @@ The local up vector for this transform.
 
 #### Defined in
 
-[components/Transform.ts:35](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L35)
+[components/Transform.ts:35](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L35)
 
 ___
 
@@ -177,7 +177,7 @@ IComponent.uuid
 
 #### Defined in
 
-[components/Transform.ts:25](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L25)
+[components/Transform.ts:25](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L25)
 
 ## Accessors
 
@@ -195,7 +195,7 @@ The number of children this Transform has.
 
 #### Defined in
 
-[components/Transform.ts:187](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L187)
+[components/Transform.ts:187](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L187)
 
 ___
 
@@ -214,7 +214,7 @@ The transform world euler angles.
 
 #### Defined in
 
-[components/Transform.ts:121](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L121)
+[components/Transform.ts:121](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L121)
 
 • `set` **eulerAngles**(`eulerAngles`): `void`
 
@@ -235,7 +235,7 @@ The transform world euler angles.
 
 #### Defined in
 
-[components/Transform.ts:130](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L130)
+[components/Transform.ts:130](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L130)
 
 ___
 
@@ -254,7 +254,7 @@ The transform local euler angles.
 
 #### Defined in
 
-[components/Transform.ts:140](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L140)
+[components/Transform.ts:140](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L140)
 
 • `set` **localEulerAngles**(`localEulerAngles`): `void`
 
@@ -275,7 +275,7 @@ The transform local euler angles.
 
 #### Defined in
 
-[components/Transform.ts:149](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L149)
+[components/Transform.ts:149](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L149)
 
 ___
 
@@ -293,7 +293,7 @@ The transform local position.
 
 #### Defined in
 
-[components/Transform.ts:72](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L72)
+[components/Transform.ts:72](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L72)
 
 • `set` **localPosition**(`localPosition`): `void`
 
@@ -313,7 +313,7 @@ The transform local position.
 
 #### Defined in
 
-[components/Transform.ts:80](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L80)
+[components/Transform.ts:80](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L80)
 
 ___
 
@@ -331,7 +331,7 @@ The transform local rotation.
 
 #### Defined in
 
-[components/Transform.ts:104](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L104)
+[components/Transform.ts:104](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L104)
 
 • `set` **localRotation**(`localRotation`): `void`
 
@@ -351,7 +351,7 @@ The transform local rotation.
 
 #### Defined in
 
-[components/Transform.ts:112](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L112)
+[components/Transform.ts:112](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L112)
 
 ___
 
@@ -369,7 +369,7 @@ The transform local scale.
 
 #### Defined in
 
-[components/Transform.ts:158](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L158)
+[components/Transform.ts:158](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L158)
 
 • `set` **localScale**(`localScale`): `void`
 
@@ -389,7 +389,7 @@ The transform local scale.
 
 #### Defined in
 
-[components/Transform.ts:166](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L166)
+[components/Transform.ts:166](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L166)
 
 ___
 
@@ -407,7 +407,7 @@ The transform parent.
 
 #### Defined in
 
-[components/Transform.ts:195](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L195)
+[components/Transform.ts:195](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L195)
 
 • `set` **parent**(`parent`): `void`
 
@@ -428,7 +428,7 @@ The transform parent.
 
 #### Defined in
 
-[components/Transform.ts:204](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L204)
+[components/Transform.ts:204](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L204)
 
 ___
 
@@ -446,7 +446,7 @@ The transform world position.
 
 #### Defined in
 
-[components/Transform.ts:55](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L55)
+[components/Transform.ts:55](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L55)
 
 • `set` **position**(`position`): `void`
 
@@ -466,7 +466,7 @@ The transform world position.
 
 #### Defined in
 
-[components/Transform.ts:63](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L63)
+[components/Transform.ts:63](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L63)
 
 ___
 
@@ -484,7 +484,7 @@ The transform world rotation.
 
 #### Defined in
 
-[components/Transform.ts:88](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L88)
+[components/Transform.ts:88](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L88)
 
 • `set` **rotation**(`rotation`): `void`
 
@@ -504,7 +504,7 @@ The transform world rotation.
 
 #### Defined in
 
-[components/Transform.ts:96](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L96)
+[components/Transform.ts:96](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L96)
 
 ## Methods
 
@@ -518,7 +518,7 @@ The transform world rotation.
 
 #### Defined in
 
-[components/Transform.ts:269](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L269)
+[components/Transform.ts:269](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L269)
 
 ___
 
@@ -542,7 +542,7 @@ Returns the child Transform or null if not found.
 
 #### Defined in
 
-[components/Transform.ts:176](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L176)
+[components/Transform.ts:176](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L176)
 
 ___
 
@@ -567,7 +567,7 @@ This method changes both the transform position and rotation.
 
 #### Defined in
 
-[components/Transform.ts:247](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L247)
+[components/Transform.ts:247](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L247)
 
 ___
 
@@ -581,7 +581,7 @@ ___
 
 #### Defined in
 
-[components/Transform.ts:258](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L258)
+[components/Transform.ts:258](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L258)
 
 ___
 
@@ -601,4 +601,4 @@ ___
 
 #### Defined in
 
-[components/Transform.ts:233](https://github.com/AIFanatic/Trident/blob/44c915e/src/components/Transform.ts#L233)
+[components/Transform.ts:233](https://github.com/AIFanatic/Trident/blob/b587800/src/components/Transform.ts#L233)

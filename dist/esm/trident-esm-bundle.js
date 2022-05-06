@@ -30606,7 +30606,6 @@ __export(components_exports, {
   Camera: () => Camera2,
   CapsuleCollider: () => CapsuleCollider,
   Component: () => Component,
-  DefaultMaterial: () => DefaultMaterial,
   DirectionalLight: () => DirectionalLight2,
   GameObject: () => GameObject6,
   Gizmo: () => Gizmo,
@@ -30743,10 +30742,17 @@ __decorateClass([
 
 // src/components/MeshFilter.ts
 var MeshFilter = class extends Component {
+  constructor() {
+    super(...arguments);
+    this._mesh = new BufferGeometry();
+  }
   get mesh() {
     return this._mesh;
   }
   set mesh(mesh) {
+    if (mesh === null) {
+      mesh = new BufferGeometry();
+    }
     this._mesh = mesh;
     this.gameObject.BroadcastMessage("MeshFilterModelChanged", this._mesh);
   }
@@ -30763,17 +30769,19 @@ __decorateClass([
 ], MeshFilter.prototype, "mesh", 1);
 
 // src/components/MeshRenderer.ts
-var DefaultMaterial = new MeshStandardMaterial();
 var MeshRenderer = class extends Component {
   constructor(gameObject, transform) {
     super(gameObject, transform);
-    this._material = DefaultMaterial;
+    this._material = new MeshStandardMaterial();
     this.AddMeshFromMeshFilter();
   }
   get material() {
     return this._material;
   }
   set material(material) {
+    if (material === null) {
+      material = new MeshStandardMaterial();
+    }
     this._material = material;
     if (this.mesh) {
       this.mesh.material = this._material;
@@ -65571,7 +65579,7 @@ var MeshCollider = class extends Collider {
   CreateCollider() {
     const meshFilter = this.gameObject.GetComponent(MeshFilter);
     const bufferGeometry = meshFilter.mesh;
-    if (!bufferGeometry)
+    if (!bufferGeometry || Object.keys(bufferGeometry.attributes).length === 0)
       return;
     let createdCollider = false;
     if (this.isConvex) {
@@ -66039,6 +66047,23 @@ __decorateClass([
 __decorateClass([
   SerializeField
 ], AreaLight.prototype, "shadows", 1);
+
+// src/enums/ArticulationJointType.ts
+var ArticulationJointType;
+(function(ArticulationJointType2) {
+  ArticulationJointType2[ArticulationJointType2["FixedJoint"] = 0] = "FixedJoint";
+  ArticulationJointType2[ArticulationJointType2["PrismaticJoint"] = 1] = "PrismaticJoint";
+  ArticulationJointType2[ArticulationJointType2["RevoluteJoint"] = 2] = "RevoluteJoint";
+  ArticulationJointType2[ArticulationJointType2["SphericalJoint"] = 3] = "SphericalJoint";
+})(ArticulationJointType || (ArticulationJointType = {}));
+
+// src/enums/ArticulationMotion.ts
+var ArticulationMotion;
+(function(ArticulationMotion2) {
+  ArticulationMotion2[ArticulationMotion2["LockedMotion"] = 0] = "LockedMotion";
+  ArticulationMotion2[ArticulationMotion2["LimitedMotion"] = 1] = "LimitedMotion";
+  ArticulationMotion2[ArticulationMotion2["FreeMotion"] = 2] = "FreeMotion";
+})(ArticulationMotion || (ArticulationMotion = {}));
 
 // src/components/ArticulationBody.ts
 var JointDriver = class {
@@ -66785,6 +66810,7 @@ var FileType;
   FileType2[FileType2["MATERIAL"] = 0] = "MATERIAL";
   FileType2[FileType2["MESH"] = 1] = "MESH";
   FileType2[FileType2["COMPONENT"] = 2] = "COMPONENT";
+  FileType2[FileType2["TEXTURE"] = 3] = "TEXTURE";
 })(FileType || (FileType = {}));
 
 // src/serializer/SceneDeserializer.ts
@@ -67284,23 +67310,6 @@ var KeyCodes;
   KeyCodes2[KeyCodes2["QUOTE"] = 222] = "QUOTE";
   KeyCodes2[KeyCodes2["META"] = 224] = "META";
 })(KeyCodes || (KeyCodes = {}));
-
-// src/enums/ArticulationJointType.ts
-var ArticulationJointType;
-(function(ArticulationJointType2) {
-  ArticulationJointType2[ArticulationJointType2["FixedJoint"] = 0] = "FixedJoint";
-  ArticulationJointType2[ArticulationJointType2["PrismaticJoint"] = 1] = "PrismaticJoint";
-  ArticulationJointType2[ArticulationJointType2["RevoluteJoint"] = 2] = "RevoluteJoint";
-  ArticulationJointType2[ArticulationJointType2["SphericalJoint"] = 3] = "SphericalJoint";
-})(ArticulationJointType || (ArticulationJointType = {}));
-
-// src/enums/ArticulationMotion.ts
-var ArticulationMotion;
-(function(ArticulationMotion2) {
-  ArticulationMotion2[ArticulationMotion2["LockedMotion"] = 0] = "LockedMotion";
-  ArticulationMotion2[ArticulationMotion2["LimitedMotion"] = 1] = "LimitedMotion";
-  ArticulationMotion2[ArticulationMotion2["FreeMotion"] = 2] = "FreeMotion";
-})(ArticulationMotion || (ArticulationMotion = {}));
 
 // src/resources/ResourcesCache.ts
 var _ResourcesCache = class {
@@ -67813,6 +67822,575 @@ var OBJLoader = function() {
   return OBJLoader2;
 }();
 
+// node_modules/three/examples/jsm/loaders/RGBELoader.js
+var RGBELoader = /* @__PURE__ */ __name(function(manager) {
+  DataTextureLoader.call(this, manager);
+  this.type = UnsignedByteType;
+}, "RGBELoader");
+RGBELoader.prototype = Object.assign(Object.create(DataTextureLoader.prototype), {
+  constructor: RGBELoader,
+  parse: function(buffer) {
+    var RGBE_RETURN_FAILURE = -1, rgbe_read_error = 1, rgbe_write_error = 2, rgbe_format_error = 3, rgbe_memory_error = 4, rgbe_error = /* @__PURE__ */ __name(function(rgbe_error_code, msg) {
+      switch (rgbe_error_code) {
+        case rgbe_read_error:
+          console.error("RGBELoader Read Error: " + (msg || ""));
+          break;
+        case rgbe_write_error:
+          console.error("RGBELoader Write Error: " + (msg || ""));
+          break;
+        case rgbe_format_error:
+          console.error("RGBELoader Bad File Format: " + (msg || ""));
+          break;
+        default:
+        case rgbe_memory_error:
+          console.error("RGBELoader: Error: " + (msg || ""));
+      }
+      return RGBE_RETURN_FAILURE;
+    }, "rgbe_error"), RGBE_VALID_PROGRAMTYPE = 1, RGBE_VALID_FORMAT = 2, RGBE_VALID_DIMENSIONS = 4, NEWLINE = "\n", fgets = /* @__PURE__ */ __name(function(buffer2, lineLimit, consume) {
+      lineLimit = !lineLimit ? 1024 : lineLimit;
+      var p = buffer2.pos, i = -1, len = 0, s = "", chunkSize = 128, chunk = String.fromCharCode.apply(null, new Uint16Array(buffer2.subarray(p, p + chunkSize)));
+      while (0 > (i = chunk.indexOf(NEWLINE)) && len < lineLimit && p < buffer2.byteLength) {
+        s += chunk;
+        len += chunk.length;
+        p += chunkSize;
+        chunk += String.fromCharCode.apply(null, new Uint16Array(buffer2.subarray(p, p + chunkSize)));
+      }
+      if (-1 < i) {
+        if (consume !== false)
+          buffer2.pos += len + i + 1;
+        return s + chunk.slice(0, i);
+      }
+      return false;
+    }, "fgets"), RGBE_ReadHeader = /* @__PURE__ */ __name(function(buffer2) {
+      var line, match, magic_token_re = /^#\?(\S+)$/, gamma_re = /^\s*GAMMA\s*=\s*(\d+(\.\d+)?)\s*$/, exposure_re = /^\s*EXPOSURE\s*=\s*(\d+(\.\d+)?)\s*$/, format_re = /^\s*FORMAT=(\S+)\s*$/, dimensions_re = /^\s*\-Y\s+(\d+)\s+\+X\s+(\d+)\s*$/, header = {
+        valid: 0,
+        string: "",
+        comments: "",
+        programtype: "RGBE",
+        format: "",
+        gamma: 1,
+        exposure: 1,
+        width: 0,
+        height: 0
+      };
+      if (buffer2.pos >= buffer2.byteLength || !(line = fgets(buffer2))) {
+        return rgbe_error(rgbe_read_error, "no header found");
+      }
+      if (!(match = line.match(magic_token_re))) {
+        return rgbe_error(rgbe_format_error, "bad initial token");
+      }
+      header.valid |= RGBE_VALID_PROGRAMTYPE;
+      header.programtype = match[1];
+      header.string += line + "\n";
+      while (true) {
+        line = fgets(buffer2);
+        if (line === false)
+          break;
+        header.string += line + "\n";
+        if (line.charAt(0) === "#") {
+          header.comments += line + "\n";
+          continue;
+        }
+        if (match = line.match(gamma_re)) {
+          header.gamma = parseFloat(match[1], 10);
+        }
+        if (match = line.match(exposure_re)) {
+          header.exposure = parseFloat(match[1], 10);
+        }
+        if (match = line.match(format_re)) {
+          header.valid |= RGBE_VALID_FORMAT;
+          header.format = match[1];
+        }
+        if (match = line.match(dimensions_re)) {
+          header.valid |= RGBE_VALID_DIMENSIONS;
+          header.height = parseInt(match[1], 10);
+          header.width = parseInt(match[2], 10);
+        }
+        if (header.valid & RGBE_VALID_FORMAT && header.valid & RGBE_VALID_DIMENSIONS)
+          break;
+      }
+      if (!(header.valid & RGBE_VALID_FORMAT)) {
+        return rgbe_error(rgbe_format_error, "missing format specifier");
+      }
+      if (!(header.valid & RGBE_VALID_DIMENSIONS)) {
+        return rgbe_error(rgbe_format_error, "missing image size specifier");
+      }
+      return header;
+    }, "RGBE_ReadHeader"), RGBE_ReadPixels_RLE = /* @__PURE__ */ __name(function(buffer2, w2, h2) {
+      var data_rgba, offset, pos, count, byteValue, scanline_buffer, ptr, ptr_end, i, l, off, isEncodedRun, scanline_width = w2, num_scanlines = h2, rgbeStart;
+      if (scanline_width < 8 || scanline_width > 32767 || (buffer2[0] !== 2 || buffer2[1] !== 2 || buffer2[2] & 128)) {
+        return new Uint8Array(buffer2);
+      }
+      if (scanline_width !== (buffer2[2] << 8 | buffer2[3])) {
+        return rgbe_error(rgbe_format_error, "wrong scanline width");
+      }
+      data_rgba = new Uint8Array(4 * w2 * h2);
+      if (!data_rgba.length) {
+        return rgbe_error(rgbe_memory_error, "unable to allocate buffer space");
+      }
+      offset = 0;
+      pos = 0;
+      ptr_end = 4 * scanline_width;
+      rgbeStart = new Uint8Array(4);
+      scanline_buffer = new Uint8Array(ptr_end);
+      while (num_scanlines > 0 && pos < buffer2.byteLength) {
+        if (pos + 4 > buffer2.byteLength) {
+          return rgbe_error(rgbe_read_error);
+        }
+        rgbeStart[0] = buffer2[pos++];
+        rgbeStart[1] = buffer2[pos++];
+        rgbeStart[2] = buffer2[pos++];
+        rgbeStart[3] = buffer2[pos++];
+        if (rgbeStart[0] != 2 || rgbeStart[1] != 2 || (rgbeStart[2] << 8 | rgbeStart[3]) != scanline_width) {
+          return rgbe_error(rgbe_format_error, "bad rgbe scanline format");
+        }
+        ptr = 0;
+        while (ptr < ptr_end && pos < buffer2.byteLength) {
+          count = buffer2[pos++];
+          isEncodedRun = count > 128;
+          if (isEncodedRun)
+            count -= 128;
+          if (count === 0 || ptr + count > ptr_end) {
+            return rgbe_error(rgbe_format_error, "bad scanline data");
+          }
+          if (isEncodedRun) {
+            byteValue = buffer2[pos++];
+            for (i = 0; i < count; i++) {
+              scanline_buffer[ptr++] = byteValue;
+            }
+          } else {
+            scanline_buffer.set(buffer2.subarray(pos, pos + count), ptr);
+            ptr += count;
+            pos += count;
+          }
+        }
+        l = scanline_width;
+        for (i = 0; i < l; i++) {
+          off = 0;
+          data_rgba[offset] = scanline_buffer[i + off];
+          off += scanline_width;
+          data_rgba[offset + 1] = scanline_buffer[i + off];
+          off += scanline_width;
+          data_rgba[offset + 2] = scanline_buffer[i + off];
+          off += scanline_width;
+          data_rgba[offset + 3] = scanline_buffer[i + off];
+          offset += 4;
+        }
+        num_scanlines--;
+      }
+      return data_rgba;
+    }, "RGBE_ReadPixels_RLE");
+    var RGBEByteToRGBFloat = /* @__PURE__ */ __name(function(sourceArray, sourceOffset, destArray, destOffset) {
+      var e = sourceArray[sourceOffset + 3];
+      var scale = Math.pow(2, e - 128) / 255;
+      destArray[destOffset + 0] = sourceArray[sourceOffset + 0] * scale;
+      destArray[destOffset + 1] = sourceArray[sourceOffset + 1] * scale;
+      destArray[destOffset + 2] = sourceArray[sourceOffset + 2] * scale;
+    }, "RGBEByteToRGBFloat");
+    var RGBEByteToRGBHalf = /* @__PURE__ */ __name(function(sourceArray, sourceOffset, destArray, destOffset) {
+      var e = sourceArray[sourceOffset + 3];
+      var scale = Math.pow(2, e - 128) / 255;
+      destArray[destOffset + 0] = DataUtils.toHalfFloat(sourceArray[sourceOffset + 0] * scale);
+      destArray[destOffset + 1] = DataUtils.toHalfFloat(sourceArray[sourceOffset + 1] * scale);
+      destArray[destOffset + 2] = DataUtils.toHalfFloat(sourceArray[sourceOffset + 2] * scale);
+    }, "RGBEByteToRGBHalf");
+    var byteArray = new Uint8Array(buffer);
+    byteArray.pos = 0;
+    var rgbe_header_info = RGBE_ReadHeader(byteArray);
+    if (RGBE_RETURN_FAILURE !== rgbe_header_info) {
+      var w = rgbe_header_info.width, h = rgbe_header_info.height, image_rgba_data = RGBE_ReadPixels_RLE(byteArray.subarray(byteArray.pos), w, h);
+      if (RGBE_RETURN_FAILURE !== image_rgba_data) {
+        switch (this.type) {
+          case UnsignedByteType:
+            var data = image_rgba_data;
+            var format = RGBEFormat;
+            var type = UnsignedByteType;
+            break;
+          case FloatType:
+            var numElements = image_rgba_data.length / 4 * 3;
+            var floatArray = new Float32Array(numElements);
+            for (var j = 0; j < numElements; j++) {
+              RGBEByteToRGBFloat(image_rgba_data, j * 4, floatArray, j * 3);
+            }
+            var data = floatArray;
+            var format = RGBFormat;
+            var type = FloatType;
+            break;
+          case HalfFloatType:
+            var numElements = image_rgba_data.length / 4 * 3;
+            var halfArray = new Uint16Array(numElements);
+            for (var j = 0; j < numElements; j++) {
+              RGBEByteToRGBHalf(image_rgba_data, j * 4, halfArray, j * 3);
+            }
+            var data = halfArray;
+            var format = RGBFormat;
+            var type = HalfFloatType;
+            break;
+          default:
+            console.error("THREE.RGBELoader: unsupported type: ", this.type);
+            break;
+        }
+        return {
+          width: w,
+          height: h,
+          data,
+          header: rgbe_header_info.string,
+          gamma: rgbe_header_info.gamma,
+          exposure: rgbe_header_info.exposure,
+          format,
+          type
+        };
+      }
+    }
+    return null;
+  },
+  setDataType: function(value) {
+    this.type = value;
+    return this;
+  },
+  load: function(url, onLoad, onProgress, onError) {
+    function onLoadCallback(texture, texData) {
+      switch (texture.type) {
+        case UnsignedByteType:
+          texture.encoding = RGBEEncoding;
+          texture.minFilter = NearestFilter;
+          texture.magFilter = NearestFilter;
+          texture.generateMipmaps = false;
+          texture.flipY = true;
+          break;
+        case FloatType:
+          texture.encoding = LinearEncoding;
+          texture.minFilter = LinearFilter;
+          texture.magFilter = LinearFilter;
+          texture.generateMipmaps = false;
+          texture.flipY = true;
+          break;
+        case HalfFloatType:
+          texture.encoding = LinearEncoding;
+          texture.minFilter = LinearFilter;
+          texture.magFilter = LinearFilter;
+          texture.generateMipmaps = false;
+          texture.flipY = true;
+          break;
+      }
+      if (onLoad)
+        onLoad(texture, texData);
+    }
+    __name(onLoadCallback, "onLoadCallback");
+    return DataTextureLoader.prototype.load.call(this, url, onLoadCallback, onProgress, onError);
+  }
+});
+
+// node_modules/three/examples/jsm/loaders/TGALoader.js
+var TGALoader = /* @__PURE__ */ __name(function(manager) {
+  Loader.call(this, manager);
+}, "TGALoader");
+TGALoader.prototype = Object.assign(Object.create(Loader.prototype), {
+  constructor: TGALoader,
+  load: function(url, onLoad, onProgress, onError) {
+    var scope = this;
+    var texture = new Texture();
+    var loader = new FileLoader(this.manager);
+    loader.setResponseType("arraybuffer");
+    loader.setPath(this.path);
+    loader.setWithCredentials(this.withCredentials);
+    loader.load(url, function(buffer) {
+      texture.image = scope.parse(buffer);
+      texture.needsUpdate = true;
+      if (onLoad !== void 0) {
+        onLoad(texture);
+      }
+    }, onProgress, onError);
+    return texture;
+  },
+  parse: function(buffer) {
+    function tgaCheckHeader(header2) {
+      switch (header2.image_type) {
+        case TGA_TYPE_INDEXED:
+        case TGA_TYPE_RLE_INDEXED:
+          if (header2.colormap_length > 256 || header2.colormap_size !== 24 || header2.colormap_type !== 1) {
+            console.error("THREE.TGALoader: Invalid type colormap data for indexed type.");
+          }
+          break;
+        case TGA_TYPE_RGB:
+        case TGA_TYPE_GREY:
+        case TGA_TYPE_RLE_RGB:
+        case TGA_TYPE_RLE_GREY:
+          if (header2.colormap_type) {
+            console.error("THREE.TGALoader: Invalid type colormap data for colormap type.");
+          }
+          break;
+        case TGA_TYPE_NO_DATA:
+          console.error("THREE.TGALoader: No data.");
+        default:
+          console.error('THREE.TGALoader: Invalid type "%s".', header2.image_type);
+      }
+      if (header2.width <= 0 || header2.height <= 0) {
+        console.error("THREE.TGALoader: Invalid image size.");
+      }
+      if (header2.pixel_size !== 8 && header2.pixel_size !== 16 && header2.pixel_size !== 24 && header2.pixel_size !== 32) {
+        console.error('THREE.TGALoader: Invalid pixel size "%s".', header2.pixel_size);
+      }
+    }
+    __name(tgaCheckHeader, "tgaCheckHeader");
+    function tgaParse(use_rle2, use_pal2, header2, offset2, data) {
+      var pixel_data, pixel_size, pixel_total, palettes;
+      pixel_size = header2.pixel_size >> 3;
+      pixel_total = header2.width * header2.height * pixel_size;
+      if (use_pal2) {
+        palettes = data.subarray(offset2, offset2 += header2.colormap_length * (header2.colormap_size >> 3));
+      }
+      if (use_rle2) {
+        pixel_data = new Uint8Array(pixel_total);
+        var c, count, i;
+        var shift = 0;
+        var pixels = new Uint8Array(pixel_size);
+        while (shift < pixel_total) {
+          c = data[offset2++];
+          count = (c & 127) + 1;
+          if (c & 128) {
+            for (i = 0; i < pixel_size; ++i) {
+              pixels[i] = data[offset2++];
+            }
+            for (i = 0; i < count; ++i) {
+              pixel_data.set(pixels, shift + i * pixel_size);
+            }
+            shift += pixel_size * count;
+          } else {
+            count *= pixel_size;
+            for (i = 0; i < count; ++i) {
+              pixel_data[shift + i] = data[offset2++];
+            }
+            shift += count;
+          }
+        }
+      } else {
+        pixel_data = data.subarray(offset2, offset2 += use_pal2 ? header2.width * header2.height : pixel_total);
+      }
+      return {
+        pixel_data,
+        palettes
+      };
+    }
+    __name(tgaParse, "tgaParse");
+    function tgaGetImageData8bits(imageData2, y_start, y_step, y_end, x_start, x_step, x_end, image, palettes) {
+      var colormap = palettes;
+      var color, i = 0, x, y;
+      var width = header.width;
+      for (y = y_start; y !== y_end; y += y_step) {
+        for (x = x_start; x !== x_end; x += x_step, i++) {
+          color = image[i];
+          imageData2[(x + width * y) * 4 + 3] = 255;
+          imageData2[(x + width * y) * 4 + 2] = colormap[color * 3 + 0];
+          imageData2[(x + width * y) * 4 + 1] = colormap[color * 3 + 1];
+          imageData2[(x + width * y) * 4 + 0] = colormap[color * 3 + 2];
+        }
+      }
+      return imageData2;
+    }
+    __name(tgaGetImageData8bits, "tgaGetImageData8bits");
+    function tgaGetImageData16bits(imageData2, y_start, y_step, y_end, x_start, x_step, x_end, image) {
+      var color, i = 0, x, y;
+      var width = header.width;
+      for (y = y_start; y !== y_end; y += y_step) {
+        for (x = x_start; x !== x_end; x += x_step, i += 2) {
+          color = image[i + 0] + (image[i + 1] << 8);
+          imageData2[(x + width * y) * 4 + 0] = (color & 31744) >> 7;
+          imageData2[(x + width * y) * 4 + 1] = (color & 992) >> 2;
+          imageData2[(x + width * y) * 4 + 2] = (color & 31) >> 3;
+          imageData2[(x + width * y) * 4 + 3] = color & 32768 ? 0 : 255;
+        }
+      }
+      return imageData2;
+    }
+    __name(tgaGetImageData16bits, "tgaGetImageData16bits");
+    function tgaGetImageData24bits(imageData2, y_start, y_step, y_end, x_start, x_step, x_end, image) {
+      var i = 0, x, y;
+      var width = header.width;
+      for (y = y_start; y !== y_end; y += y_step) {
+        for (x = x_start; x !== x_end; x += x_step, i += 3) {
+          imageData2[(x + width * y) * 4 + 3] = 255;
+          imageData2[(x + width * y) * 4 + 2] = image[i + 0];
+          imageData2[(x + width * y) * 4 + 1] = image[i + 1];
+          imageData2[(x + width * y) * 4 + 0] = image[i + 2];
+        }
+      }
+      return imageData2;
+    }
+    __name(tgaGetImageData24bits, "tgaGetImageData24bits");
+    function tgaGetImageData32bits(imageData2, y_start, y_step, y_end, x_start, x_step, x_end, image) {
+      var i = 0, x, y;
+      var width = header.width;
+      for (y = y_start; y !== y_end; y += y_step) {
+        for (x = x_start; x !== x_end; x += x_step, i += 4) {
+          imageData2[(x + width * y) * 4 + 2] = image[i + 0];
+          imageData2[(x + width * y) * 4 + 1] = image[i + 1];
+          imageData2[(x + width * y) * 4 + 0] = image[i + 2];
+          imageData2[(x + width * y) * 4 + 3] = image[i + 3];
+        }
+      }
+      return imageData2;
+    }
+    __name(tgaGetImageData32bits, "tgaGetImageData32bits");
+    function tgaGetImageDataGrey8bits(imageData2, y_start, y_step, y_end, x_start, x_step, x_end, image) {
+      var color, i = 0, x, y;
+      var width = header.width;
+      for (y = y_start; y !== y_end; y += y_step) {
+        for (x = x_start; x !== x_end; x += x_step, i++) {
+          color = image[i];
+          imageData2[(x + width * y) * 4 + 0] = color;
+          imageData2[(x + width * y) * 4 + 1] = color;
+          imageData2[(x + width * y) * 4 + 2] = color;
+          imageData2[(x + width * y) * 4 + 3] = 255;
+        }
+      }
+      return imageData2;
+    }
+    __name(tgaGetImageDataGrey8bits, "tgaGetImageDataGrey8bits");
+    function tgaGetImageDataGrey16bits(imageData2, y_start, y_step, y_end, x_start, x_step, x_end, image) {
+      var i = 0, x, y;
+      var width = header.width;
+      for (y = y_start; y !== y_end; y += y_step) {
+        for (x = x_start; x !== x_end; x += x_step, i += 2) {
+          imageData2[(x + width * y) * 4 + 0] = image[i + 0];
+          imageData2[(x + width * y) * 4 + 1] = image[i + 0];
+          imageData2[(x + width * y) * 4 + 2] = image[i + 0];
+          imageData2[(x + width * y) * 4 + 3] = image[i + 1];
+        }
+      }
+      return imageData2;
+    }
+    __name(tgaGetImageDataGrey16bits, "tgaGetImageDataGrey16bits");
+    function getTgaRGBA(data, width, height, image, palette) {
+      var x_start, y_start, x_step, y_step, x_end, y_end;
+      switch ((header.flags & TGA_ORIGIN_MASK) >> TGA_ORIGIN_SHIFT) {
+        default:
+        case TGA_ORIGIN_UL:
+          x_start = 0;
+          x_step = 1;
+          x_end = width;
+          y_start = 0;
+          y_step = 1;
+          y_end = height;
+          break;
+        case TGA_ORIGIN_BL:
+          x_start = 0;
+          x_step = 1;
+          x_end = width;
+          y_start = height - 1;
+          y_step = -1;
+          y_end = -1;
+          break;
+        case TGA_ORIGIN_UR:
+          x_start = width - 1;
+          x_step = -1;
+          x_end = -1;
+          y_start = 0;
+          y_step = 1;
+          y_end = height;
+          break;
+        case TGA_ORIGIN_BR:
+          x_start = width - 1;
+          x_step = -1;
+          x_end = -1;
+          y_start = height - 1;
+          y_step = -1;
+          y_end = -1;
+          break;
+      }
+      if (use_grey) {
+        switch (header.pixel_size) {
+          case 8:
+            tgaGetImageDataGrey8bits(data, y_start, y_step, y_end, x_start, x_step, x_end, image);
+            break;
+          case 16:
+            tgaGetImageDataGrey16bits(data, y_start, y_step, y_end, x_start, x_step, x_end, image);
+            break;
+          default:
+            console.error("THREE.TGALoader: Format not supported.");
+            break;
+        }
+      } else {
+        switch (header.pixel_size) {
+          case 8:
+            tgaGetImageData8bits(data, y_start, y_step, y_end, x_start, x_step, x_end, image, palette);
+            break;
+          case 16:
+            tgaGetImageData16bits(data, y_start, y_step, y_end, x_start, x_step, x_end, image);
+            break;
+          case 24:
+            tgaGetImageData24bits(data, y_start, y_step, y_end, x_start, x_step, x_end, image);
+            break;
+          case 32:
+            tgaGetImageData32bits(data, y_start, y_step, y_end, x_start, x_step, x_end, image);
+            break;
+          default:
+            console.error("THREE.TGALoader: Format not supported.");
+            break;
+        }
+      }
+      return data;
+    }
+    __name(getTgaRGBA, "getTgaRGBA");
+    var TGA_TYPE_NO_DATA = 0, TGA_TYPE_INDEXED = 1, TGA_TYPE_RGB = 2, TGA_TYPE_GREY = 3, TGA_TYPE_RLE_INDEXED = 9, TGA_TYPE_RLE_RGB = 10, TGA_TYPE_RLE_GREY = 11, TGA_ORIGIN_MASK = 48, TGA_ORIGIN_SHIFT = 4, TGA_ORIGIN_BL = 0, TGA_ORIGIN_BR = 1, TGA_ORIGIN_UL = 2, TGA_ORIGIN_UR = 3;
+    if (buffer.length < 19)
+      console.error("THREE.TGALoader: Not enough data to contain header.");
+    var content = new Uint8Array(buffer), offset = 0, header = {
+      id_length: content[offset++],
+      colormap_type: content[offset++],
+      image_type: content[offset++],
+      colormap_index: content[offset++] | content[offset++] << 8,
+      colormap_length: content[offset++] | content[offset++] << 8,
+      colormap_size: content[offset++],
+      origin: [
+        content[offset++] | content[offset++] << 8,
+        content[offset++] | content[offset++] << 8
+      ],
+      width: content[offset++] | content[offset++] << 8,
+      height: content[offset++] | content[offset++] << 8,
+      pixel_size: content[offset++],
+      flags: content[offset++]
+    };
+    tgaCheckHeader(header);
+    if (header.id_length + offset > buffer.length) {
+      console.error("THREE.TGALoader: No data.");
+    }
+    offset += header.id_length;
+    var use_rle = false, use_pal = false, use_grey = false;
+    switch (header.image_type) {
+      case TGA_TYPE_RLE_INDEXED:
+        use_rle = true;
+        use_pal = true;
+        break;
+      case TGA_TYPE_INDEXED:
+        use_pal = true;
+        break;
+      case TGA_TYPE_RLE_RGB:
+        use_rle = true;
+        break;
+      case TGA_TYPE_RGB:
+        break;
+      case TGA_TYPE_RLE_GREY:
+        use_rle = true;
+        use_grey = true;
+        break;
+      case TGA_TYPE_GREY:
+        use_grey = true;
+        break;
+    }
+    var useOffscreen = typeof OffscreenCanvas !== "undefined";
+    var canvas = useOffscreen ? new OffscreenCanvas(header.width, header.height) : document.createElement("canvas");
+    canvas.width = header.width;
+    canvas.height = header.height;
+    var context = canvas.getContext("2d");
+    var imageData = context.createImageData(header.width, header.height);
+    var result = tgaParse(use_rle, use_pal, header, offset, content);
+    getTgaRGBA(imageData.data, header.width, header.height, result.pixel_data, result.palettes);
+    context.putImageData(imageData, 0, 0);
+    return canvas;
+  }
+});
+
 // src/resources/Resources.ts
 var ResourceExtensions;
 (function(ResourceExtensions2) {
@@ -67820,8 +68398,27 @@ var ResourceExtensions;
   ResourceExtensions2["MESH_OBJ"] = "OBJ";
   ResourceExtensions2["COMPONENT"] = "JS";
   ResourceExtensions2["SCENE"] = "SCENE";
+  ResourceExtensions2["TEXTURE_HDR"] = "HDR";
+  ResourceExtensions2["TEXTURE_TGA"] = "TGA";
+  ResourceExtensions2["TEXTURE_JPG"] = "JPG";
+  ResourceExtensions2["TEXTURE_BMP"] = "BMP";
+  ResourceExtensions2["TEXTURE_PNG"] = "PNG";
 })(ResourceExtensions || (ResourceExtensions = {}));
 var Resources = class {
+  static LoadFile(path) {
+    return new Promise((resolve, reject) => {
+      fetch(path).then((response) => {
+        if (!response.ok) {
+          reject(new Error("Network response was not OK"));
+        }
+        return response.blob();
+      }).then((blob) => {
+        resolve(blob);
+      }).catch((error) => {
+        reject(error);
+      });
+    });
+  }
   static LoadMeshAsync(path, type, fileId) {
     if (type == ResourceExtensions.MESH_OBJ) {
       const loader = new OBJLoader();
@@ -67851,16 +68448,33 @@ var Resources = class {
   static LoadMaterialAsync(path, fileId) {
     const loader = new MaterialLoader();
     const promise = new Promise((resolve, reject) => {
-      loader.load(path, (material) => {
+      this.LoadFile(path).then(async (blob) => {
+        const text = await blob.text();
+        const json = JSON.parse(text);
+        const material = loader.parse(json);
         const userData = {
           type: FileType.MATERIAL,
           fileId
         };
         material.userData = userData;
-        resolve(material);
-      }, (xhr) => {
-      }, (err) => {
-        reject(err);
+        let promises = [];
+        const maps = ["map", "metalnessMap", "normalMap", "bumpMap", "aoMap", "emissiveMap"];
+        for (let map of maps) {
+          if (json[map]) {
+            const promise2 = this.LoadAsync(json[map].fileId).then((texture) => {
+              if (texture instanceof Texture) {
+                texture.wrapS = RepeatWrapping;
+                texture.wrapT = RepeatWrapping;
+                material[map] = texture;
+              }
+            });
+            promises.push(promise2);
+          }
+        }
+        Promise.all(promises).then(() => {
+          material.needsUpdate = true;
+          resolve(material);
+        });
       });
     });
     ResourcesCache.set(fileId, promise);
@@ -67886,7 +68500,9 @@ var Resources = class {
   }
   static LoadSceneAsync(path, fileId) {
     const promise = new Promise((resolve, reject) => {
-      fetch(path).then((response) => response.json()).then((sceneSerialized) => {
+      this.LoadFile(path).then(async (blob) => {
+        const text = await blob.text();
+        const sceneSerialized = JSON.parse(text);
         SceneDeserializer.Deserialize(sceneSerialized).then((scene) => {
           const userData = {
             type: FileType.COMPONENT,
@@ -67895,9 +68511,36 @@ var Resources = class {
           scene.userData = userData;
           resolve(scene);
         });
-      }).catch((error) => {
-        reject(error);
       });
+    });
+    ResourcesCache.set(fileId, promise);
+    return promise;
+  }
+  static LoadTextureAsync(path, fileId, type) {
+    const promise = new Promise((resolve, reject) => {
+      const userData = {
+        type: FileType.TEXTURE,
+        fileId
+      };
+      if (type == ResourceExtensions.TEXTURE_HDR) {
+        const loader = new RGBELoader();
+        loader.load(path, (hdrTexture) => {
+          hdrTexture["userData"] = userData;
+          resolve(hdrTexture);
+        });
+      } else if (type == ResourceExtensions.TEXTURE_TGA) {
+        const loader = new TGALoader();
+        loader.load(path, (texture) => {
+          texture["userData"] = userData;
+          resolve(texture);
+        });
+      } else if (type == ResourceExtensions.TEXTURE_BMP || type == ResourceExtensions.TEXTURE_JPG || type == ResourceExtensions.TEXTURE_PNG) {
+        const loader = new TextureLoader();
+        loader.load(path, (texture) => {
+          texture["userData"] = userData;
+          resolve(texture);
+        });
+      }
     });
     ResourcesCache.set(fileId, promise);
     return promise;
@@ -67915,6 +68558,16 @@ var Resources = class {
       return Resources.LoadComponentAsync(path, path);
     } else if (extension == ResourceExtensions.SCENE) {
       return Resources.LoadSceneAsync(path, path);
+    } else if (extension == ResourceExtensions.TEXTURE_HDR) {
+      return Resources.LoadTextureAsync(path, path, ResourceExtensions.TEXTURE_HDR);
+    } else if (extension == ResourceExtensions.TEXTURE_TGA) {
+      return Resources.LoadTextureAsync(path, path, ResourceExtensions.TEXTURE_TGA);
+    } else if (extension == ResourceExtensions.TEXTURE_JPG) {
+      return Resources.LoadTextureAsync(path, path, ResourceExtensions.TEXTURE_JPG);
+    } else if (extension == ResourceExtensions.TEXTURE_BMP) {
+      return Resources.LoadTextureAsync(path, path, ResourceExtensions.TEXTURE_BMP);
+    } else if (extension == ResourceExtensions.TEXTURE_PNG) {
+      return Resources.LoadTextureAsync(path, path, ResourceExtensions.TEXTURE_PNG);
     }
   }
 };
