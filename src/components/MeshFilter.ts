@@ -9,7 +9,7 @@ import { SerializeField } from "../utils/SerializeField";
  * @noInheritDoc
  */
 export class MeshFilter extends Component {
-    public _mesh: Geometry | BufferGeometry;
+    public _mesh: Geometry | BufferGeometry = new BufferGeometry();
     
     @SerializeField
     public get mesh(): Geometry | BufferGeometry {
@@ -17,6 +17,9 @@ export class MeshFilter extends Component {
     }
 
     public set mesh(mesh: Geometry | BufferGeometry) {
+        if (mesh === null) {
+            mesh = new BufferGeometry();
+        }
         this._mesh = mesh;
 
         this.gameObject.BroadcastMessage("MeshFilterModelChanged", this._mesh);

@@ -29,7 +29,7 @@ export function SerializeField(type?: any, propertyKey?: string, descriptor?: Pr
         descriptor.enumerable = true;
         return;
     }
-
+    
     // When arguments are passed type will be defined and nothing else will
     function _SerializeField(target: any, propertyKey: string, descriptor: PropertyDescriptor): void {
         const classname = target.constructor.name;

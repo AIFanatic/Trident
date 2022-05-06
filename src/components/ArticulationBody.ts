@@ -4,7 +4,8 @@ import { Component } from "./Component";
 import { SerializeField } from "../utils/SerializeField";
 import { GameObject, Transform } from ".";
 import { Runtime } from "../Runtime";
-import { ArticulationJointType, ArticulationMotion } from "..";
+import { ArticulationJointType } from "../enums/ArticulationJointType";
+import { ArticulationMotion } from "../enums/ArticulationMotion";
 import { ArticulationAxis } from "../enums/ArticulationAxis";
 
 class JointDriver {

@@ -5,15 +5,13 @@ import { BufferGeometry, Geometry, Material, Mesh, MeshStandardMaterial } from "
 import { SerializeField } from "../utils/SerializeField";
 import { GameObject, Transform } from ".";
 
-export const DefaultMaterial = new MeshStandardMaterial();
-
 /**
  * Renders a geometry from MeshFilter into the scene.
  * 
  * @noInheritDoc
  */
 export class MeshRenderer extends Component {
-    private _material: Material = DefaultMaterial;
+    private _material: Material = new MeshStandardMaterial();
     public mesh: Mesh;
 
     @SerializeField
@@ -22,6 +20,10 @@ export class MeshRenderer extends Component {
     }
 
     public set material(material: Material) {
+        if (material === null) {
+            material = new MeshStandardMaterial();
+        }
+
         this._material = material;
         
         if (this.mesh) {

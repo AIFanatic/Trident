@@ -1,8 +1,8 @@
-import { BufferGeometry, Material } from "three";
+import { BufferGeometry, Material, Texture } from "three";
 import { Component } from "../components";
 import { Scene } from "../Scene";
 
-export type ResourcesCacheEntry = Promise<BufferGeometry | Material | Component | Scene>;
+export type ResourcesCacheEntry = Promise<BufferGeometry | Material | Component | Scene | Texture>;
 
 class _ResourcesCache {
     private cache: Map<string, ResourcesCacheEntry>;
@@ -12,12 +12,10 @@ class _ResourcesCache {
     }
     
     public get(name: string): ResourcesCacheEntry {
-        // console.log("get", name)
         return this.cache.get(name);
     }
 
     public set(name: string, value: ResourcesCacheEntry) {
-        console.log("set", name)
         this.cache.set(name, value);
     }
 

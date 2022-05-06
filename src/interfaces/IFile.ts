@@ -1,10 +1,8 @@
-import { BufferGeometry, Material } from "three";
-import { Component } from "../components";
-
 export enum FileType {
     MATERIAL,
     MESH,
-    COMPONENT
+    COMPONENT,
+    TEXTURE
 };
 
 export interface IFile {
