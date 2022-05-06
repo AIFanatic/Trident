@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[enums/ArticulationMotion.ts:4](https://github.com/AIFanatic/Trident/blob/b587800/src/enums/ArticulationMotion.ts#L4)
+[enums/ArticulationMotion.ts:4](https://github.com/AIFanatic/Trident/blob/456b6ba/src/enums/ArticulationMotion.ts#L4)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[enums/ArticulationMotion.ts:3](https://github.com/AIFanatic/Trident/blob/b587800/src/enums/ArticulationMotion.ts#L3)
+[enums/ArticulationMotion.ts:3](https://github.com/AIFanatic/Trident/blob/456b6ba/src/enums/ArticulationMotion.ts#L3)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[enums/ArticulationMotion.ts:2](https://github.com/AIFanatic/Trident/blob/b587800/src/enums/ArticulationMotion.ts#L2)
+[enums/ArticulationMotion.ts:2](https://github.com/AIFanatic/Trident/blob/456b6ba/src/enums/ArticulationMotion.ts#L2)

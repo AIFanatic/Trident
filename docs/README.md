@@ -44,7 +44,7 @@
 
 #### Defined in
 
-[resources/ResourcesCache.ts:41](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/ResourcesCache.ts#L41)
+[resources/ResourcesCache.ts:39](https://github.com/AIFanatic/Trident/blob/456b6ba/src/resources/ResourcesCache.ts#L39)
 
 ## Functions
 
@@ -66,4 +66,4 @@
 
 #### Defined in
 
-[utils/SerializeField.ts:25](https://github.com/AIFanatic/Trident/blob/b587800/src/utils/SerializeField.ts#L25)
+[utils/SerializeField.ts:25](https://github.com/AIFanatic/Trident/blob/456b6ba/src/utils/SerializeField.ts#L25)

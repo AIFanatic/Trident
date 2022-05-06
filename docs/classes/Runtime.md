@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[Runtime.ts:25](https://github.com/AIFanatic/Trident/blob/b587800/src/Runtime.ts#L25)
+[Runtime.ts:25](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Runtime.ts#L25)
 
 ## Properties
 
@@ -58,7 +58,7 @@
 
 #### Defined in
 
-[Runtime.ts:9](https://github.com/AIFanatic/Trident/blob/b587800/src/Runtime.ts#L9)
+[Runtime.ts:9](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Runtime.ts#L9)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-[Runtime.ts:18](https://github.com/AIFanatic/Trident/blob/b587800/src/Runtime.ts#L18)
+[Runtime.ts:18](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Runtime.ts#L18)
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 #### Defined in
 
-[Runtime.ts:19](https://github.com/AIFanatic/Trident/blob/b587800/src/Runtime.ts#L19)
+[Runtime.ts:19](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Runtime.ts#L19)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-[Runtime.ts:17](https://github.com/AIFanatic/Trident/blob/b587800/src/Runtime.ts#L17)
+[Runtime.ts:17](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Runtime.ts#L17)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[Runtime.ts:13](https://github.com/AIFanatic/Trident/blob/b587800/src/Runtime.ts#L13)
+[Runtime.ts:13](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Runtime.ts#L13)
 
 ___
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-[Runtime.ts:14](https://github.com/AIFanatic/Trident/blob/b587800/src/Runtime.ts#L14)
+[Runtime.ts:14](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Runtime.ts#L14)
 
 ___
 
@@ -118,7 +118,7 @@ ___
 
 #### Defined in
 
-[Runtime.ts:12](https://github.com/AIFanatic/Trident/blob/b587800/src/Runtime.ts#L12)
+[Runtime.ts:12](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Runtime.ts#L12)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[Runtime.ts:11](https://github.com/AIFanatic/Trident/blob/b587800/src/Runtime.ts#L11)
+[Runtime.ts:11](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Runtime.ts#L11)
 
 ___
 
@@ -138,7 +138,7 @@ ___
 
 #### Defined in
 
-[Runtime.ts:15](https://github.com/AIFanatic/Trident/blob/b587800/src/Runtime.ts#L15)
+[Runtime.ts:15](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Runtime.ts#L15)
 
 ## Methods
 
@@ -155,7 +155,7 @@ Instanciates all Components
 
 #### Defined in
 
-[Runtime.ts:44](https://github.com/AIFanatic/Trident/blob/b587800/src/Runtime.ts#L44)
+[Runtime.ts:44](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Runtime.ts#L44)
 
 ___
 
@@ -171,7 +171,7 @@ Called when the scene starts.
 
 #### Defined in
 
-[Runtime.ts:54](https://github.com/AIFanatic/Trident/blob/b587800/src/Runtime.ts#L54)
+[Runtime.ts:54](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Runtime.ts#L54)
 
 ___
 
@@ -188,4 +188,4 @@ Calls Stop on all attached components.
 
 #### Defined in
 
-[Runtime.ts:65](https://github.com/AIFanatic/Trident/blob/b587800/src/Runtime.ts#L65)
+[Runtime.ts:65](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Runtime.ts#L65)

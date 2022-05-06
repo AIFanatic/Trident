@@ -64,7 +64,7 @@ Joint links can be FIXED, PRISMATIC, REVOLUTE and SPHERICAL.
 
 #### Defined in
 
-[components/ArticulationBody.ts:283](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L283)
+[components/ArticulationBody.ts:283](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L283)
 
 ## Properties
 
@@ -74,7 +74,7 @@ Joint links can be FIXED, PRISMATIC, REVOLUTE and SPHERICAL.
 
 #### Defined in
 
-[components/ArticulationBody.ts:104](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L104)
+[components/ArticulationBody.ts:104](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L104)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:106](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L106)
+[components/ArticulationBody.ts:106](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L106)
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:108](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L108)
+[components/ArticulationBody.ts:108](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L108)
 
 ## Accessors
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:270](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L270)
+[components/ArticulationBody.ts:270](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L270)
 
 • `set` **angularDamping**(`angularDamping`): `void`
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:274](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L274)
+[components/ArticulationBody.ts:274](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L274)
 
 ___
 
@@ -138,7 +138,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:118](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L118)
+[components/ArticulationBody.ts:118](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L118)
 
 • `set` **immovable**(`immovable`): `void`
 
@@ -154,7 +154,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:123](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L123)
+[components/ArticulationBody.ts:123](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L123)
 
 ___
 
@@ -168,7 +168,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:128](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L128)
+[components/ArticulationBody.ts:128](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L128)
 
 • `set` **jointType**(`jointType`): `void`
 
@@ -184,7 +184,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:132](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L132)
+[components/ArticulationBody.ts:132](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L132)
 
 ___
 
@@ -198,7 +198,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:261](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L261)
+[components/ArticulationBody.ts:261](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L261)
 
 • `set` **linearDamping**(`linearDamping`): `void`
 
@@ -214,7 +214,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:265](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L265)
+[components/ArticulationBody.ts:265](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L265)
 
 ___
 
@@ -228,7 +228,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:184](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L184)
+[components/ArticulationBody.ts:184](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L184)
 
 • `set` **linearLockX**(`linearLockX`): `void`
 
@@ -244,7 +244,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:188](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L188)
+[components/ArticulationBody.ts:188](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L188)
 
 ___
 
@@ -258,7 +258,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:193](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L193)
+[components/ArticulationBody.ts:193](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L193)
 
 • `set` **linearLockY**(`linearLockY`): `void`
 
@@ -274,7 +274,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:197](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L197)
+[components/ArticulationBody.ts:197](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L197)
 
 ___
 
@@ -288,7 +288,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:202](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L202)
+[components/ArticulationBody.ts:202](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L202)
 
 • `set` **linearLockZ**(`linearLockZ`): `void`
 
@@ -304,7 +304,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:206](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L206)
+[components/ArticulationBody.ts:206](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L206)
 
 ___
 
@@ -318,7 +318,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:252](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L252)
+[components/ArticulationBody.ts:252](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L252)
 
 • `set` **mass**(`mass`): `void`
 
@@ -334,7 +334,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:256](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L256)
+[components/ArticulationBody.ts:256](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L256)
 
 ___
 
@@ -348,7 +348,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:225](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L225)
+[components/ArticulationBody.ts:225](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L225)
 
 • `set` **swingYLock**(`swingYLock`): `void`
 
@@ -364,7 +364,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:229](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L229)
+[components/ArticulationBody.ts:229](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L229)
 
 ___
 
@@ -378,7 +378,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:234](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L234)
+[components/ArticulationBody.ts:234](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L234)
 
 • `set` **swingZLock**(`swingZLock`): `void`
 
@@ -394,7 +394,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:238](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L238)
+[components/ArticulationBody.ts:238](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L238)
 
 ___
 
@@ -408,7 +408,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:243](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L243)
+[components/ArticulationBody.ts:243](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L243)
 
 • `set` **twistLock**(`twistLock`): `void`
 
@@ -424,7 +424,7 @@ ___
 
 #### Defined in
 
-[components/ArticulationBody.ts:247](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L247)
+[components/ArticulationBody.ts:247](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L247)
 
 ## Methods
 
@@ -444,7 +444,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/ArticulationBody.ts:371](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L371)
+[components/ArticulationBody.ts:371](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L371)
 
 ___
 
@@ -464,4 +464,4 @@ Called before every Physics update.
 
 #### Defined in
 
-[components/ArticulationBody.ts:344](https://github.com/AIFanatic/Trident/blob/b587800/src/components/ArticulationBody.ts#L344)
+[components/ArticulationBody.ts:344](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/ArticulationBody.ts#L344)

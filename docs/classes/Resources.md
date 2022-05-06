@@ -42,7 +42,7 @@
 
 #### Defined in
 
-[resources/Resources.ts:221](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L221)
+[resources/Resources.ts:221](https://github.com/AIFanatic/Trident/blob/456b6ba/src/resources/Resources.ts#L221)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[resources/Resources.ts:142](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L142)
+[resources/Resources.ts:142](https://github.com/AIFanatic/Trident/blob/456b6ba/src/resources/Resources.ts#L142)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[resources/Resources.ts:26](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L26)
+[resources/Resources.ts:26](https://github.com/AIFanatic/Trident/blob/456b6ba/src/resources/Resources.ts#L26)
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 #### Defined in
 
-[resources/Resources.ts:80](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L80)
+[resources/Resources.ts:80](https://github.com/AIFanatic/Trident/blob/456b6ba/src/resources/Resources.ts#L80)
 
 ___
 
@@ -126,7 +126,7 @@ ___
 
 #### Defined in
 
-[resources/Resources.ts:44](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L44)
+[resources/Resources.ts:44](https://github.com/AIFanatic/Trident/blob/456b6ba/src/resources/Resources.ts#L44)
 
 ___
 
@@ -147,7 +147,7 @@ ___
 
 #### Defined in
 
-[resources/Resources.ts:163](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L163)
+[resources/Resources.ts:163](https://github.com/AIFanatic/Trident/blob/456b6ba/src/resources/Resources.ts#L163)
 
 ___
 
@@ -169,4 +169,4 @@ ___
 
 #### Defined in
 
-[resources/Resources.ts:183](https://github.com/AIFanatic/Trident/blob/b587800/src/resources/Resources.ts#L183)
+[resources/Resources.ts:183](https://github.com/AIFanatic/Trident/blob/456b6ba/src/resources/Resources.ts#L183)

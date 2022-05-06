@@ -3,11 +3,9 @@ class _ResourcesCache {
         this.cache = new Map();
     }
     get(name) {
-        // console.log("get", name)
         return this.cache.get(name);
     }
     set(name, value) {
-        console.log("set", name);
         this.cache.set(name, value);
     }
     has(name) {

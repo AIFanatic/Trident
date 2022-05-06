@@ -67345,7 +67345,6 @@ var trident = (() => {
       return this.cache.get(name);
     }
     set(name, value) {
-      console.log("set", name);
       this.cache.set(name, value);
     }
     has(name) {

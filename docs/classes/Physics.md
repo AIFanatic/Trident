@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[Physics.ts:19](https://github.com/AIFanatic/Trident/blob/b587800/src/Physics.ts#L19)
+[Physics.ts:19](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Physics.ts#L19)
 
 ## Properties
 
@@ -54,7 +54,7 @@
 
 #### Defined in
 
-[Physics.ts:9](https://github.com/AIFanatic/Trident/blob/b587800/src/Physics.ts#L9)
+[Physics.ts:9](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Physics.ts#L9)
 
 ## Methods
 
@@ -68,7 +68,7 @@
 
 #### Defined in
 
-[Physics.ts:85](https://github.com/AIFanatic/Trident/blob/b587800/src/Physics.ts#L85)
+[Physics.ts:85](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Physics.ts#L85)
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 #### Defined in
 
-[Physics.ts:168](https://github.com/AIFanatic/Trident/blob/b587800/src/Physics.ts#L168)
+[Physics.ts:168](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Physics.ts#L168)
 
 ___
 
@@ -96,7 +96,7 @@ typeof `PhysX`
 
 #### Defined in
 
-[Physics.ts:160](https://github.com/AIFanatic/Trident/blob/b587800/src/Physics.ts#L160)
+[Physics.ts:160](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Physics.ts#L160)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[Physics.ts:164](https://github.com/AIFanatic/Trident/blob/b587800/src/Physics.ts#L164)
+[Physics.ts:164](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Physics.ts#L164)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 #### Defined in
 
-[Physics.ts:172](https://github.com/AIFanatic/Trident/blob/b587800/src/Physics.ts#L172)
+[Physics.ts:172](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Physics.ts#L172)
 
 ___
 
@@ -147,7 +147,7 @@ ___
 
 #### Defined in
 
-[Physics.ts:177](https://github.com/AIFanatic/Trident/blob/b587800/src/Physics.ts#L177)
+[Physics.ts:177](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Physics.ts#L177)
 
 ___
 
@@ -167,4 +167,4 @@ ___
 
 #### Defined in
 
-[Physics.ts:180](https://github.com/AIFanatic/Trident/blob/b587800/src/Physics.ts#L180)
+[Physics.ts:180](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Physics.ts#L180)
