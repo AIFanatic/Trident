@@ -96,7 +96,7 @@ const customComponent = gameObject.AddComponent(CustomComponent) as CustomCompon
 
 #### Defined in
 
-[components/Component.ts:59](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L59)
+[components/Component.ts:59](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L59)
 
 ## Properties
 
@@ -108,7 +108,7 @@ Used to identify the class name of individual components.
 
 #### Defined in
 
-[components/Component.ts:36](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L36)
+[components/Component.ts:36](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L36)
 
 ___
 
@@ -120,7 +120,7 @@ Used to detect valid components.
 
 #### Defined in
 
-[components/Component.ts:31](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L31)
+[components/Component.ts:31](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L31)
 
 ___
 
@@ -132,7 +132,7 @@ GameObject the this component is attached to.
 
 #### Defined in
 
-[components/Component.ts:41](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L41)
+[components/Component.ts:41](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L41)
 
 ___
 
@@ -142,7 +142,7 @@ ___
 
 #### Defined in
 
-[components/Component.ts:57](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L57)
+[components/Component.ts:57](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L57)
 
 ___
 
@@ -152,7 +152,7 @@ ___
 
 #### Defined in
 
-[components/Component.ts:53](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L53)
+[components/Component.ts:53](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L53)
 
 ___
 
@@ -164,7 +164,7 @@ ___
 
 #### Defined in
 
-[components/Component.ts:51](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L51)
+[components/Component.ts:51](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L51)
 
 ___
 
@@ -176,7 +176,7 @@ Transform that this component is attached to.
 
 #### Defined in
 
-[components/Component.ts:46](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L46)
+[components/Component.ts:46](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L46)
 
 ___
 
@@ -186,7 +186,7 @@ ___
 
 #### Defined in
 
-[components/Component.ts:55](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L55)
+[components/Component.ts:55](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L55)
 
 ___
 
@@ -202,7 +202,7 @@ IComponent.uuid
 
 #### Defined in
 
-[components/Component.ts:26](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L26)
+[components/Component.ts:26](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L26)
 
 ## Methods
 
@@ -218,7 +218,7 @@ Called once when the component is first added to a GameObject.
 
 #### Defined in
 
-[components/Component.ts:70](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L70)
+[components/Component.ts:70](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L70)
 
 ___
 
@@ -234,7 +234,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/Component.ts:127](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L127)
+[components/Component.ts:127](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L127)
 
 ___
 
@@ -250,7 +250,7 @@ Called before every Physics update.
 
 #### Defined in
 
-[components/Component.ts:90](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L90)
+[components/Component.ts:90](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L90)
 
 ___
 
@@ -266,7 +266,7 @@ Called after every Renderer update.
 
 #### Defined in
 
-[components/Component.ts:102](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L102)
+[components/Component.ts:102](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L102)
 
 ___
 
@@ -280,7 +280,7 @@ ___
 
 #### Defined in
 
-[components/Component.ts:72](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L72)
+[components/Component.ts:72](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L72)
 
 ___
 
@@ -296,7 +296,7 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-[components/Component.ts:121](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L121)
+[components/Component.ts:121](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L121)
 
 ___
 
@@ -312,7 +312,7 @@ Called once when Gizmos are disabled.
 
 #### Defined in
 
-[components/Component.ts:115](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L115)
+[components/Component.ts:115](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L115)
 
 ___
 
@@ -329,7 +329,7 @@ If Gizmos are enabled before the component is created this method is called once
 
 #### Defined in
 
-[components/Component.ts:109](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L109)
+[components/Component.ts:109](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L109)
 
 ___
 
@@ -345,7 +345,7 @@ Called once after the scene is started.
 
 #### Defined in
 
-[components/Component.ts:78](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L78)
+[components/Component.ts:78](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L78)
 
 ___
 
@@ -361,7 +361,7 @@ Called once after the scene is stopped.
 
 #### Defined in
 
-[components/Component.ts:84](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L84)
+[components/Component.ts:84](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L84)
 
 ___
 
@@ -377,4 +377,4 @@ Called before every Renderer update.
 
 #### Defined in
 
-[components/Component.ts:96](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/Component.ts#L96)
+[components/Component.ts:96](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/Component.ts#L96)

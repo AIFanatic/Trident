@@ -36,6 +36,7 @@ class _ResourcesCache {
     }
 }
 
+/**
+ * @ignore
+ */
 export const ResourcesCache = new _ResourcesCache();
-// console.warn(`[FilesCache] Removal of files not implemented, deque?`);
-// console.warn("[ArticulationBody] Articulation needs to be rethough of, maybe separate into multiple individual components (REVOLUTE, PRISMATIC, SPHERICAL");

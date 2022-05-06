@@ -51,7 +51,7 @@ A spot light.
 
 #### Defined in
 
-[components/SpotLight.ts:61](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L61)
+[components/SpotLight.ts:61](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L61)
 
 ## Accessors
 
@@ -65,7 +65,7 @@ A spot light.
 
 #### Defined in
 
-[components/SpotLight.ts:35](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L35)
+[components/SpotLight.ts:35](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L35)
 
 • `set` **color**(`color`): `void`
 
@@ -81,7 +81,7 @@ A spot light.
 
 #### Defined in
 
-[components/SpotLight.ts:39](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L39)
+[components/SpotLight.ts:39](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L39)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:44](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L44)
+[components/SpotLight.ts:44](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L44)
 
 • `set` **intensity**(`intensity`): `void`
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:48](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L48)
+[components/SpotLight.ts:48](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L48)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:26](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L26)
+[components/SpotLight.ts:26](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L26)
 
 • `set` **range**(`range`): `void`
 
@@ -141,7 +141,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:30](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L30)
+[components/SpotLight.ts:30](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L30)
 
 ___
 
@@ -155,7 +155,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:53](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L53)
+[components/SpotLight.ts:53](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L53)
 
 • `set` **shadows**(`shadows`): `void`
 
@@ -171,7 +171,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:57](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L57)
+[components/SpotLight.ts:57](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L57)
 
 ___
 
@@ -185,7 +185,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:17](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L17)
+[components/SpotLight.ts:17](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L17)
 
 • `set` **spotAngle**(`spotAngle`): `void`
 
@@ -201,7 +201,7 @@ ___
 
 #### Defined in
 
-[components/SpotLight.ts:21](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L21)
+[components/SpotLight.ts:21](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L21)
 
 ## Methods
 
@@ -221,7 +221,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/SpotLight.ts:83](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L83)
+[components/SpotLight.ts:83](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L83)
 
 ___
 
@@ -241,7 +241,7 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-[components/SpotLight.ts:74](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L74)
+[components/SpotLight.ts:74](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L74)
 
 ___
 
@@ -262,4 +262,4 @@ If Gizmos are enabled before the component is created this method is called once
 
 #### Defined in
 
-[components/SpotLight.ts:67](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/SpotLight.ts#L67)
+[components/SpotLight.ts:67](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/SpotLight.ts#L67)

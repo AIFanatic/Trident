@@ -45,7 +45,7 @@ The scene that holds all GameObjects.
 
 #### Defined in
 
-[Scene.ts:23](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L23)
+[Scene.ts:23](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L23)
 
 ## Properties
 
@@ -55,7 +55,7 @@ The scene that holds all GameObjects.
 
 #### Defined in
 
-[Scene.ts:14](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L14)
+[Scene.ts:14](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L14)
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:13](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L13)
+[Scene.ts:13](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L13)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:21](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L21)
+[Scene.ts:21](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L21)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:20](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L20)
+[Scene.ts:20](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L20)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:18](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L18)
+[Scene.ts:18](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L18)
 
 ## Methods
 
@@ -117,7 +117,7 @@ Adds a new GameObject to the scene.
 
 #### Defined in
 
-[Scene.ts:38](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L38)
+[Scene.ts:38](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L38)
 
 ___
 
@@ -134,7 +134,7 @@ Calls FixedUpdate on all attached components.
 
 #### Defined in
 
-[Scene.ts:85](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L85)
+[Scene.ts:85](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L85)
 
 ___
 
@@ -153,7 +153,7 @@ The main camera is the camera that the client is viewing the scene from.
 
 #### Defined in
 
-[Scene.ts:68](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L68)
+[Scene.ts:68](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L68)
 
 ___
 
@@ -167,7 +167,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:97](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L97)
+[Scene.ts:97](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L97)
 
 ___
 
@@ -181,7 +181,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:103](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L103)
+[Scene.ts:103](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L103)
 
 ___
 
@@ -205,7 +205,7 @@ Remove a GameObject from the scene
 
 #### Defined in
 
-[Scene.ts:47](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L47)
+[Scene.ts:47](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L47)
 
 ___
 
@@ -219,7 +219,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:113](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L113)
+[Scene.ts:113](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L113)
 
 ___
 
@@ -242,7 +242,7 @@ The main camera is the camera that the client is viewing the scene from.
 
 #### Defined in
 
-[Scene.ts:77](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L77)
+[Scene.ts:77](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L77)
 
 ___
 
@@ -256,7 +256,7 @@ ___
 
 #### Defined in
 
-[Scene.ts:91](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L91)
+[Scene.ts:91](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L91)
 
 ___
 
@@ -270,4 +270,4 @@ ___
 
 #### Defined in
 
-[Scene.ts:109](https://github.com/AIFanatic/Trident/blob/456b6ba/src/Scene.ts#L109)
+[Scene.ts:109](https://github.com/AIFanatic/Trident/blob/a1de164/src/Scene.ts#L109)

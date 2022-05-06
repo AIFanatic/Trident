@@ -21,7 +21,9 @@ class SerializableTypes {
 }
 
 export const SerializableTypesInstance = new SerializableTypes();
-
+/**
+ * @ignore
+ */
 export function SerializeField(target: any, propertyKey?: string, descriptor?: PropertyDescriptor);
 export function SerializeField(type?: any, propertyKey?: string, descriptor?: PropertyDescriptor) {
     // When no arguments are passed descriptor will be defined;

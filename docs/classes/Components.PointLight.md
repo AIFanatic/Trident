@@ -49,7 +49,7 @@ A point light.
 
 #### Defined in
 
-[components/PointLight.ts:52](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/PointLight.ts#L52)
+[components/PointLight.ts:52](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/PointLight.ts#L52)
 
 ## Accessors
 
@@ -63,7 +63,7 @@ A point light.
 
 #### Defined in
 
-[components/PointLight.ts:26](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/PointLight.ts#L26)
+[components/PointLight.ts:26](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/PointLight.ts#L26)
 
 • `set` **color**(`color`): `void`
 
@@ -79,7 +79,7 @@ A point light.
 
 #### Defined in
 
-[components/PointLight.ts:30](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/PointLight.ts#L30)
+[components/PointLight.ts:30](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/PointLight.ts#L30)
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 #### Defined in
 
-[components/PointLight.ts:35](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/PointLight.ts#L35)
+[components/PointLight.ts:35](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/PointLight.ts#L35)
 
 • `set` **intensity**(`intensity`): `void`
 
@@ -109,7 +109,7 @@ ___
 
 #### Defined in
 
-[components/PointLight.ts:39](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/PointLight.ts#L39)
+[components/PointLight.ts:39](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/PointLight.ts#L39)
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 #### Defined in
 
-[components/PointLight.ts:17](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/PointLight.ts#L17)
+[components/PointLight.ts:17](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/PointLight.ts#L17)
 
 • `set` **range**(`range`): `void`
 
@@ -139,7 +139,7 @@ ___
 
 #### Defined in
 
-[components/PointLight.ts:21](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/PointLight.ts#L21)
+[components/PointLight.ts:21](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/PointLight.ts#L21)
 
 ___
 
@@ -153,7 +153,7 @@ ___
 
 #### Defined in
 
-[components/PointLight.ts:44](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/PointLight.ts#L44)
+[components/PointLight.ts:44](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/PointLight.ts#L44)
 
 • `set` **shadows**(`shadows`): `void`
 
@@ -169,7 +169,7 @@ ___
 
 #### Defined in
 
-[components/PointLight.ts:48](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/PointLight.ts#L48)
+[components/PointLight.ts:48](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/PointLight.ts#L48)
 
 ## Methods
 
@@ -189,7 +189,7 @@ Called when the component is destroyed.
 
 #### Defined in
 
-[components/PointLight.ts:67](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/PointLight.ts#L67)
+[components/PointLight.ts:67](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/PointLight.ts#L67)
 
 ___
 
@@ -209,4 +209,4 @@ Called after every Update if Gizmos are enabled.
 
 #### Defined in
 
-[components/PointLight.ts:58](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/PointLight.ts#L58)
+[components/PointLight.ts:58](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/PointLight.ts#L58)

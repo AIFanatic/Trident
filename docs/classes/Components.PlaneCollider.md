@@ -43,7 +43,7 @@ Collider.constructor
 
 #### Defined in
 
-[components/PlaneCollider.ts:18](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/PlaneCollider.ts#L18)
+[components/PlaneCollider.ts:18](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/PlaneCollider.ts#L18)
 
 ## Methods
 
@@ -61,4 +61,4 @@ Collider.Update
 
 #### Defined in
 
-[components/PlaneCollider.ts:38](https://github.com/AIFanatic/Trident/blob/456b6ba/src/components/PlaneCollider.ts#L38)
+[components/PlaneCollider.ts:38](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/PlaneCollider.ts#L38)
