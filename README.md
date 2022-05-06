@@ -1,4 +1,8 @@
-# Trident
+<p align="center">
+  <img src="./screenshots/logo.png">
+</p>
+
+---
 
 A game engine for the web.
 
@@ -28,25 +32,29 @@ Creates a new scene, adds a Cube and changes its position.
 
 - Typescript
 ```javascript
-import { Scene, GameObject, Components } from 'trident';
+import { Runtime, GameObject, PrimitiveType } from 'trident';
 
-const rendererConfig = {
-    containerId: "canvasContainer",
-    targetFrameRate: 60,
+const config = {
+    renderer: {
+        containerId: "canvasContainer",
+    },
+    physics: {
+        physxWasmURL: "./dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm"
+    },
 };
-const physicsConfig = {
-    physxWasmURL: "./dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-};
 
-const scene = new Scene(rendererConfig, physicsConfig);
+const runtime = new Runtime(config);
+runtime.OnLoaded = () => {
+    const scene = Runtime.SceneManager.CreateScene("New Scene");
+    Runtime.SceneManager.SetActiveScene(scene);
 
-scene.OnLoaded = () => {
     const cubeGameobject = new GameObject(scene);
-    const cubeComponent = cubeGameobject.AddComponent(Components.Cube) as Components.Cube;
+    cubeGameobject.CreatePrimitive(PrimitiveType.Cube);
     cubeComponent.transform.position.set(0, -2, -10);
 
+    scene.Load();
     scene.Start();
-};
+}
 ```
 
 - Browser
@@ -56,26 +64,29 @@ scene.OnLoaded = () => {
         <canvas id="canvasContainer"></canvas>
 
         <script type="module">
-            import { Scene, GameObject, Components } from './dist/esm/trident-esm-bundle.js';
+            import { Scene, GameObject, PrimitiveType } from './dist/esm/trident-esm-bundle.js';
 
-            const rendererConfig = {
-                containerId: "canvasContainer",
-                targetFrameRate: 60,
+            const config = {
+                renderer: {
+                    containerId: "canvasContainer",
+                },
+                physics: {
+                    physxWasmURL: "./dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm"
+                },
             };
-            const physicsConfig = {
-                physxWasmURL: "./dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-            };
 
-            const scene = new Scene(rendererConfig, physicsConfig);
+            const runtime = new Runtime(config);
+            runtime.OnLoaded = () => {
+                const scene = Runtime.SceneManager.CreateScene("New Scene");
+                Runtime.SceneManager.SetActiveScene(scene);
 
-            scene.OnLoaded = () => {
                 const cubeGameobject = new GameObject(scene);
-                const cubeComponent = cubeGameobject.AddComponent(Components.Cube);
+                cubeGameobject.CreatePrimitive(PrimitiveType.Cube);
                 cubeComponent.transform.position.set(0, -2, -10);
 
+                scene.Load();
                 scene.Start();
-            };
-            
+            }
         </script>
     </body>
 </html>
@@ -88,46 +99,36 @@ Creates a new scene, adds a CustomComponent which in turn adds a Cube to itself 
 
 - Typescript
 ```javascript
-import { Scene, GameObject, Components } from 'trident';
+import { Scene, GameObject, Components, PrimitiveType } from 'trident';
 
 class CustomComponent extends Components.Component {
-    private cube: Components.Cube;
-
     public Start() {
-        this.cube = this.gameObject.AddComponent(Components.Cube);
+        this.gameObject.CreatePrimitive(PrimitiveType.Cube);
     }
 
     public Update() {
-        this.cube.transform.eulerAngles.x += 1;
+        this.transform.eulerAngles.x += 1;
     }
 }
 
-const rendererConfig = {
-    containerId: "canvasContainer",
-    targetFrameRate: 60,
-}
-
-const physicsConfig = {
-    physxWasmURL: "./dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm",
-}
-
-const scene = new Scene(rendererConfig, physicsConfig);
-scene.OnLoaded = () => {
-    const cubeGameobject = new GameObject(scene);
-    const cubeComponent = cubeGameobject.AddComponent(CustomComponent) as CustomComponent;
-    cubeComponent.transform.position.set(0, -2, -10);
-    
-    scene.Start()
+const config = {
+    renderer: {
+        containerId: "canvasContainer",
+    },
+    physics: {
+        physxWasmURL: "./dist/trident-physx-js-webidl/dist/trident-physx-js-webidl.wasm.wasm"
+    },
 };
+
+const runtime = new Runtime(config);
+runtime.OnLoaded = () => {
+    const scene = Runtime.SceneManager.CreateScene("New Scene");
+    Runtime.SceneManager.SetActiveScene(scene);
+
+    const cubeGameobject = new GameObject(scene);
+    const cubeComponent = cubeGameobject.AddComponent(CustomComponent)
+
+    scene.Load();
+    scene.Start();
+}
 ```
----
-## TODO
-- [ ] Collider
-  - [ ] OnCollisionEnter
-  - [ ] OnCollisionExit
-  - [ ] OnTriggerEnter
-  - [ ] OnTriggerExit
-- [ ] Physics
-  - [ ] Raycast (partially implemented)
-- [ ] Joints
-  - [ ] ArticulatedBody
