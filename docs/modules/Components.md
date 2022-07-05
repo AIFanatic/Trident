@@ -29,4 +29,6 @@
 - [Rigidbody](../classes/Components.Rigidbody.md)
 - [SphereCollider](../classes/Components.SphereCollider.md)
 - [SpotLight](../classes/Components.SpotLight.md)
+- [Terrain](../classes/Components.Terrain.md)
+- [TerrainCollider](../classes/Components.TerrainCollider.md)
 - [Transform](../classes/Components.Transform.md)

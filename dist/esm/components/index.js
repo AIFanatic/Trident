@@ -9,6 +9,7 @@ export * from "./SphereCollider";
 export * from "./CapsuleCollider";
 export * from "./PlaneCollider";
 export * from "./MeshCollider";
+export * from "./TerrainCollider";
 export * from "./Animation";
 export * from "./Component";
 export * from "./LineRenderer";
@@ -18,4 +19,5 @@ export * from "./DirectionalLight";
 export * from "./SpotLight";
 export * from "./AreaLight";
 export * from './ArticulationBody';
+export * from './Terrain';
 //# sourceMappingURL=index.js.map

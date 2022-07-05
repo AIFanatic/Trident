@@ -12,5 +12,8 @@ declare class _ResourcesCache {
     size(): number;
     clear(): void;
 }
+/**
+ * @ignore
+ */
 export declare const ResourcesCache: _ResourcesCache;
 export {};

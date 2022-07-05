@@ -35,7 +35,7 @@ export class Renderer {
         return new Scene();
     }
     OnResize() {
-        this.renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
+        // this.renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
     }
     Tick(scene, camera) {
         // calc elapsed time since last loop

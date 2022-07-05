@@ -117,10 +117,6 @@ export class Physics {
     GetCooking() {
         return this.physxCooking;
     }
-    Raycast(origin, direction, maxDistance, layerMask = 0) {
-        const ray = this.physicsRaycast.Raycast(origin, direction, maxDistance, layerMask);
-        return this.physicsRaycast.Raycast(origin, direction, maxDistance, layerMask);
-    }
     Start() {
     }
     Update(scene) {

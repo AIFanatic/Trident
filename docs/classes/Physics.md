@@ -18,7 +18,6 @@
 - [GetCooking](Physics.md#getcooking)
 - [GetPhysX](Physics.md#getphysx)
 - [GetPhysics](Physics.md#getphysics)
-- [Raycast](Physics.md#raycast)
 - [Start](Physics.md#start)
 - [Update](Physics.md#update)
 
@@ -36,7 +35,7 @@
 
 #### Defined in
 
-[Physics.ts:19](https://github.com/AIFanatic/Trident/blob/a1de164/src/Physics.ts#L19)
+[Physics.ts:14](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/Physics.ts#L14)
 
 ## Properties
 
@@ -54,7 +53,7 @@
 
 #### Defined in
 
-[Physics.ts:9](https://github.com/AIFanatic/Trident/blob/a1de164/src/Physics.ts#L9)
+[Physics.ts:6](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/Physics.ts#L6)
 
 ## Methods
 
@@ -68,7 +67,7 @@
 
 #### Defined in
 
-[Physics.ts:85](https://github.com/AIFanatic/Trident/blob/a1de164/src/Physics.ts#L85)
+[Physics.ts:80](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/Physics.ts#L80)
 
 ___
 
@@ -82,7 +81,7 @@ ___
 
 #### Defined in
 
-[Physics.ts:168](https://github.com/AIFanatic/Trident/blob/a1de164/src/Physics.ts#L168)
+[Physics.ts:163](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/Physics.ts#L163)
 
 ___
 
@@ -96,7 +95,7 @@ typeof `PhysX`
 
 #### Defined in
 
-[Physics.ts:160](https://github.com/AIFanatic/Trident/blob/a1de164/src/Physics.ts#L160)
+[Physics.ts:155](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/Physics.ts#L155)
 
 ___
 
@@ -110,30 +109,7 @@ ___
 
 #### Defined in
 
-[Physics.ts:164](https://github.com/AIFanatic/Trident/blob/a1de164/src/Physics.ts#L164)
-
-___
-
-### Raycast
-
-▸ **Raycast**(`origin`, `direction`, `maxDistance`, `layerMask?`): `PxRaycastBuffer10`
-
-#### Parameters
-
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `origin` | `Vector3` | `undefined` |
-| `direction` | `Vector3` | `undefined` |
-| `maxDistance` | `number` | `undefined` |
-| `layerMask` | `number` | `0` |
-
-#### Returns
-
-`PxRaycastBuffer10`
-
-#### Defined in
-
-[Physics.ts:172](https://github.com/AIFanatic/Trident/blob/a1de164/src/Physics.ts#L172)
+[Physics.ts:159](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/Physics.ts#L159)
 
 ___
 
@@ -147,7 +123,7 @@ ___
 
 #### Defined in
 
-[Physics.ts:177](https://github.com/AIFanatic/Trident/blob/a1de164/src/Physics.ts#L177)
+[Physics.ts:167](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/Physics.ts#L167)
 
 ___
 
@@ -167,4 +143,4 @@ ___
 
 #### Defined in
 
-[Physics.ts:180](https://github.com/AIFanatic/Trident/blob/a1de164/src/Physics.ts#L180)
+[Physics.ts:170](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/Physics.ts#L170)

@@ -1,5 +1,15 @@
 import { PhysX } from 'trident-physx-js-webidl';
 export class PhysicsShape {
+    static putIntoPhysXHeap(heap, array) {
+        const ptr = PhysX._malloc(4 * array.length);
+        let offset = 0;
+        for (let i = 0; i < array.length; i++) {
+            heap[(ptr + offset) >> 2] = array[i];
+            offset += 4;
+        }
+        return ptr;
+    }
+    ;
     static DefaultMaterial(physics) {
         return physics.createMaterial(0.6, 0.6, 0);
     }
@@ -55,16 +65,6 @@ export class PhysicsShape {
         const shape = this.CreateShape(physics, geometry);
         return shape;
     }
-    static putIntoPhysXHeap(heap, array) {
-        const ptr = PhysX._malloc(4 * array.length);
-        let offset = 0;
-        for (let i = 0; i < array.length; i++) {
-            heap[(ptr + offset) >> 2] = array[i];
-            offset += 4;
-        }
-        return ptr;
-    }
-    ;
     static CreateTrimesh(physics, cooking, vertices, indices) {
         const points = new PhysX.PxBoundedData();
         points.count = vertices.length / 3;
@@ -81,6 +81,19 @@ export class PhysicsShape {
         if (trimesh === null)
             return;
         const geometry = new PhysX.PxTriangleMeshGeometry(trimesh);
+        const shape = this.CreateShape(physics, geometry);
+        return shape;
+    }
+    static CreateHightField(physics, cooking, cols, rows, colScale, rowScale, heightScale, samples) {
+        const desc = new PhysX.PxHeightFieldDesc();
+        desc.format = PhysX.PxHeightFieldFormatEnum.S16_TM;
+        desc.samples.data = samples.data();
+        desc.samples.stride = 4;
+        desc.nbRows = rows;
+        desc.nbColumns = cols;
+        const heightField = cooking.createHeightField(desc, physics.getPhysicsInsertionCallback());
+        const flags = new PhysX.PxMeshGeometryFlags(0);
+        const geometry = new PhysX.PxHeightFieldGeometry(heightField, flags, heightScale, rowScale, colScale);
         const shape = this.CreateShape(physics, geometry);
         return shape;
     }

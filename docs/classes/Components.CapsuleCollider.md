@@ -37,4 +37,4 @@ Collider.constructor
 
 #### Defined in
 
-[components/CapsuleCollider.ts:16](https://github.com/AIFanatic/Trident/blob/a1de164/src/components/CapsuleCollider.ts#L16)
+[components/CapsuleCollider.ts:16](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/components/CapsuleCollider.ts#L16)

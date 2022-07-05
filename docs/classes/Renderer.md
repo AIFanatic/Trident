@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[Renderer.ts:25](https://github.com/AIFanatic/Trident/blob/a1de164/src/Renderer.ts#L25)
+[Renderer.ts:25](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/Renderer.ts#L25)
 
 ## Properties
 
@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[Renderer.ts:7](https://github.com/AIFanatic/Trident/blob/a1de164/src/Renderer.ts#L7)
+[Renderer.ts:7](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/Renderer.ts#L7)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-[Renderer.ts:9](https://github.com/AIFanatic/Trident/blob/a1de164/src/Renderer.ts#L9)
+[Renderer.ts:9](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/Renderer.ts#L9)
 
 ## Methods
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[Renderer.ts:56](https://github.com/AIFanatic/Trident/blob/a1de164/src/Renderer.ts#L56)
+[Renderer.ts:56](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/Renderer.ts#L56)
 
 ___
 
@@ -95,4 +95,4 @@ ___
 
 #### Defined in
 
-[Renderer.ts:64](https://github.com/AIFanatic/Trident/blob/a1de164/src/Renderer.ts#L64)
+[Renderer.ts:64](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/Renderer.ts#L64)

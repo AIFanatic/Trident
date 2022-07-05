@@ -7,5 +7,8 @@ declare class SerializableTypes {
     size(): number;
 }
 export declare const SerializableTypesInstance: SerializableTypes;
+/**
+ * @ignore
+ */
 export declare function SerializeField(target: any, propertyKey?: string, descriptor?: PropertyDescriptor): any;
 export {};

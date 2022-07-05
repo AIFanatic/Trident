@@ -23,4 +23,5 @@
 |Rigidbody|[Rigidbody.Cube](https://aifanatic.github.io/Trident/dist-examples/Rigidbody.Cube.html)| A simple cube with physics.|
 |Rigidbody|[Rigidbody.Mesh](https://aifanatic.github.io/Trident/dist-examples/Rigidbody.Mesh.html)| Rigidbody custom mesh (trimesh).|
 |Rigidbody|[Rigidbody.Shapes](https://aifanatic.github.io/Trident/dist-examples/Rigidbody.Shapes.html)| A bunch of shapes with physics.|
+|Terrain|[Terrain](https://aifanatic.github.io/Trident/dist-examples/Terrain.html)| Creates a terrain from a heightmap.|
 |Transform|[Transform.Parent](https://aifanatic.github.io/Trident/dist-examples/Transform.Parent.html)| Manipulate child Transform with parent.|

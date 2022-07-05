@@ -1,7 +1,8 @@
 import { Camera } from "./components";
 import { GameObject } from "./components/GameObject";
-import { Scene as THREEScene } from 'three';
+import { Scene as THREEScene, Vector3 } from 'three';
 import { PhysX } from "trident-physx-js-webidl";
+import { PhysicsRaycast } from "./physics/PhysicsRaycast";
 /**
  * The scene that holds all GameObjects.
  */
@@ -12,6 +13,7 @@ export declare class Scene {
     userData: any;
     readonly rendererScene: THREEScene;
     readonly physicsScene: PhysX.PxScene;
+    readonly physicsRaycast: PhysicsRaycast;
     constructor(name: string);
     /**
      * Adds a new GameObject to the scene.
@@ -44,5 +46,6 @@ export declare class Scene {
     LateUpdate(): void;
     OnDrawGizmos(): void;
     UpdatePhysics(): void;
+    Raycast(origin: Vector3, direction: Vector3, maxDistance: number, layerMask?: number): PhysX.PxRaycastBuffer10;
     Render(): void;
 }

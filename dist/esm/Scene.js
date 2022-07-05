@@ -1,6 +1,7 @@
 import { GameObject } from "./components/GameObject";
 import { Runtime } from "./Runtime";
 import { AmbientLight } from 'three';
+import { PhysicsRaycast } from "./physics/PhysicsRaycast";
 /**
  * The scene that holds all GameObjects.
  */
@@ -10,6 +11,7 @@ export class Scene {
         this.name = name;
         this.rendererScene = Runtime.Renderer.CreateScene();
         this.physicsScene = Runtime.Physics.CreateScene();
+        this.physicsRaycast = new PhysicsRaycast(this.physicsScene);
         // TODO: Clean renderer rendering settings (skybox, fog, ambient, etc)
         const ambientLight = new AmbientLight(0xffffff, 0.3);
         this.rendererScene.add(ambientLight);
@@ -81,6 +83,10 @@ export class Scene {
     }
     UpdatePhysics() {
         Runtime.Physics.Update(this.physicsScene);
+    }
+    Raycast(origin, direction, maxDistance, layerMask = 0) {
+        // const ray = this.physicsRaycast.Raycast(origin, direction, maxDistance, layerMask);
+        return this.physicsRaycast.Raycast(origin, direction, maxDistance, layerMask);
     }
     Render() {
         if (this.GetActiveCamera()) {

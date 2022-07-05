@@ -24,7 +24,7 @@ var trident = (() => {
     ArticulationJointType: () => ArticulationJointType,
     ArticulationMotion: () => ArticulationMotion,
     Components: () => components_exports,
-    GameObject: () => GameObject6,
+    GameObject: () => GameObject7,
     HideFlags: () => HideFlags,
     KeyCodes: () => KeyCodes,
     LayerMask: () => LayerMask,
@@ -30631,7 +30631,7 @@ var trident = (() => {
     CapsuleCollider: () => CapsuleCollider,
     Component: () => Component,
     DirectionalLight: () => DirectionalLight2,
-    GameObject: () => GameObject6,
+    GameObject: () => GameObject7,
     Gizmo: () => Gizmo,
     LineRenderer: () => LineRenderer,
     MeshCollider: () => MeshCollider,
@@ -30643,6 +30643,8 @@ var trident = (() => {
     Rigidbody: () => Rigidbody,
     SphereCollider: () => SphereCollider,
     SpotLight: () => SpotLight2,
+    Terrain: () => Terrain,
+    TerrainCollider: () => TerrainCollider,
     Transform: () => Transform
   });
 
@@ -31786,67 +31788,67 @@ var trident = (() => {
       var tempDouble;
       var tempI64;
       var ASM_CONSTS = {
-        229766: function($0, $1, $2) {
+        388222: function($0, $1, $2) {
           var self2 = Module["getCache"](Module["JavaSimulationEventCallback"])[$0];
           if (!self2.hasOwnProperty("onConstraintBreak"))
             throw "a JSImplementation must implement all functions, you forgot JavaSimulationEventCallback::onConstraintBreak.";
           self2["onConstraintBreak"]($1, $2);
         },
-        230042: function($0, $1, $2) {
+        388498: function($0, $1, $2) {
           var self2 = Module["getCache"](Module["JavaSimulationEventCallback"])[$0];
           if (!self2.hasOwnProperty("onWake"))
             throw "a JSImplementation must implement all functions, you forgot JavaSimulationEventCallback::onWake.";
           self2["onWake"]($1, $2);
         },
-        230285: function($0, $1, $2) {
+        388741: function($0, $1, $2) {
           var self2 = Module["getCache"](Module["JavaSimulationEventCallback"])[$0];
           if (!self2.hasOwnProperty("onSleep"))
             throw "a JSImplementation must implement all functions, you forgot JavaSimulationEventCallback::onSleep.";
           self2["onSleep"]($1, $2);
         },
-        230531: function($0, $1, $2, $3) {
+        388987: function($0, $1, $2, $3) {
           var self2 = Module["getCache"](Module["JavaSimulationEventCallback"])[$0];
           if (!self2.hasOwnProperty("onContact"))
             throw "a JSImplementation must implement all functions, you forgot JavaSimulationEventCallback::onContact.";
           self2["onContact"]($1, $2, $3);
         },
-        230786: function($0, $1, $2) {
+        389242: function($0, $1, $2) {
           var self2 = Module["getCache"](Module["JavaSimulationEventCallback"])[$0];
           if (!self2.hasOwnProperty("onTrigger"))
             throw "a JSImplementation must implement all functions, you forgot JavaSimulationEventCallback::onTrigger.";
           self2["onTrigger"]($1, $2);
         },
-        231038: function($0, $1, $2, $3, $4) {
+        389494: function($0, $1, $2, $3, $4) {
           var self2 = Module["getCache"](Module["JavaErrorCallback"])[$0];
           if (!self2.hasOwnProperty("reportError"))
             throw "a JSImplementation must implement all functions, you forgot JavaErrorCallback::reportError.";
           self2["reportError"]($1, $2, $3, $4);
         },
-        231282: function($0, $1) {
+        389738: function($0, $1) {
           var self2 = Module["getCache"](Module["JavaUserControllerHitReport"])[$0];
           if (!self2.hasOwnProperty("onShapeHit"))
             throw "a JSImplementation must implement all functions, you forgot JavaUserControllerHitReport::onShapeHit.";
           self2["onShapeHit"]($1);
         },
-        231534: function($0, $1) {
+        389990: function($0, $1) {
           var self2 = Module["getCache"](Module["JavaUserControllerHitReport"])[$0];
           if (!self2.hasOwnProperty("onControllerHit"))
             throw "a JSImplementation must implement all functions, you forgot JavaUserControllerHitReport::onControllerHit.";
           self2["onControllerHit"]($1);
         },
-        231801: function($0, $1) {
+        390257: function($0, $1) {
           var self2 = Module["getCache"](Module["JavaUserControllerHitReport"])[$0];
           if (!self2.hasOwnProperty("onObstacleHit"))
             throw "a JSImplementation must implement all functions, you forgot JavaUserControllerHitReport::onObstacleHit.";
           self2["onObstacleHit"]($1);
         },
-        232062: function($0) {
+        390518: function($0) {
           var self2 = Module["getCache"](Module["JSPvdTransport"])[$0];
           if (!self2.hasOwnProperty("connect"))
             throw "a JSImplementation must implement all functions, you forgot JSPvdTransport::connect.";
           return self2["connect"]();
         },
-        232284: function($0, $1, $2) {
+        390740: function($0, $1, $2) {
           var self2 = Module["getCache"](Module["JSPvdTransport"])[$0];
           if (!self2.hasOwnProperty("send"))
             throw "a JSImplementation must implement all functions, you forgot JSPvdTransport::send.";
@@ -65165,6 +65167,15 @@ var trident = (() => {
 
   // src/physics/PhysicsShape.ts
   var PhysicsShape = class {
+    static putIntoPhysXHeap(heap, array) {
+      const ptr = PhysX._malloc(4 * array.length);
+      let offset = 0;
+      for (let i = 0; i < array.length; i++) {
+        heap[ptr + offset >> 2] = array[i];
+        offset += 4;
+      }
+      return ptr;
+    }
     static DefaultMaterial(physics) {
       return physics.createMaterial(0.6, 0.6, 0);
     }
@@ -65219,15 +65230,6 @@ var trident = (() => {
       const shape = this.CreateShape(physics, geometry);
       return shape;
     }
-    static putIntoPhysXHeap(heap, array) {
-      const ptr = PhysX._malloc(4 * array.length);
-      let offset = 0;
-      for (let i = 0; i < array.length; i++) {
-        heap[ptr + offset >> 2] = array[i];
-        offset += 4;
-      }
-      return ptr;
-    }
     static CreateTrimesh(physics, cooking, vertices, indices) {
       const points = new PhysX.PxBoundedData();
       points.count = vertices.length / 3;
@@ -65244,6 +65246,19 @@ var trident = (() => {
       if (trimesh === null)
         return;
       const geometry = new PhysX.PxTriangleMeshGeometry(trimesh);
+      const shape = this.CreateShape(physics, geometry);
+      return shape;
+    }
+    static CreateHightField(physics, cooking, cols, rows, colScale, rowScale, heightScale, samples) {
+      const desc = new PhysX.PxHeightFieldDesc();
+      desc.format = PhysX.PxHeightFieldFormatEnum.S16_TM;
+      desc.samples.data = samples.data();
+      desc.samples.stride = 4;
+      desc.nbRows = rows;
+      desc.nbColumns = cols;
+      const heightField = cooking.createHeightField(desc, physics.getPhysicsInsertionCallback());
+      const flags = new PhysX.PxMeshGeometryFlags(0);
+      const geometry = new PhysX.PxHeightFieldGeometry(heightField, flags, heightScale, rowScale, colScale);
       const shape = this.CreateShape(physics, geometry);
       return shape;
     }
@@ -65656,6 +65671,82 @@ var trident = (() => {
     }
   };
   __name(MeshCollider, "MeshCollider");
+
+  // src/components/TerrainData.ts
+  var TerrainData = class {
+    get heightmapTexture() {
+      return this._heightmapTexture;
+    }
+    set heightmapTexture(texture) {
+      this._heightmapTexture = texture;
+      const canvas = document.createElement("canvas");
+      canvas.style.position = "absolute";
+      canvas.style.top = "60px";
+      canvas.style.left = "20px";
+      canvas.style.zIndex = "999999";
+      canvas.style.backgroundColor = "green";
+      canvas.width = this.detailResolution;
+      canvas.height = this.detailResolution;
+      const context = canvas.getContext("2d");
+      context.translate(0, canvas.height);
+      context.scale(1, -1);
+      context.drawImage(texture.image, 0, 0, texture.image.width, texture.image.height, 0, 0, canvas.width, canvas.height);
+      const data = context.getImageData(0, 0, this.detailResolution, this.detailResolution);
+      for (let i = 0, j = 0; i < data.data.length; i += 4, j++) {
+        const r = data.data[i];
+        this.heights[j] = Math.round(r / 255 * this.detailLength);
+      }
+      context.putImageData(data, 0, 0);
+    }
+    GetHeight(x, y) {
+      const xR = x / this.detailWidth * this.detailResolution;
+      const yR = y / this.detailHeight * this.detailResolution;
+      const i = this.detailResolution * Math.floor(xR) + Math.floor(yR);
+      return this.heights[i];
+    }
+    SetHeights(heights) {
+      this.heights = heights;
+    }
+    GetHeights() {
+      return this.heights;
+    }
+    constructor() {
+      this.detailWidth = 128;
+      this.detailHeight = 128;
+      this.detailLength = 10;
+      this.detailResolution = 32;
+      this.heights = new Float32Array(this.detailResolution * this.detailResolution);
+    }
+  };
+  __name(TerrainData, "TerrainData");
+
+  // src/components/TerrainCollider.ts
+  var TerrainCollider = class extends Collider {
+    constructor(gameObject, transform) {
+      super(gameObject, transform);
+      this.terrainData = new TerrainData();
+      this.CreateCollider();
+    }
+    CreateCollider() {
+      const terrainDataHeights = this.terrainData.GetHeights();
+      const samples = new PhysX.Vector_PxHeightFieldSample(this.terrainData.detailResolution * this.terrainData.detailResolution);
+      for (let i = 0; i < terrainDataHeights.length; i++) {
+        samples.at(i).height = terrainDataHeights[i];
+      }
+      const shape = PhysicsShape.CreateHightField(this.physxPhysics, Runtime.Physics.GetCooking(), this.terrainData.detailResolution, this.terrainData.detailResolution, this.terrainData.detailWidth / this.terrainData.detailResolution, this.terrainData.detailHeight / this.terrainData.detailResolution, 1, samples);
+      const geometry = shape.getGeometry().heightField();
+      const physxTransform = PhysicsUtils.ToTransform(this.transform.position, this.transform.rotation);
+      const rigidbody = this.physxPhysics.createRigidStatic(physxTransform);
+      const physicsBody = {
+        rigidbody,
+        geometry,
+        shape
+      };
+      this.body = new PhysicsRigidbody(this.physxPhysics, this.physxScene, physicsBody);
+      this.gameObject.BroadcastMessage("CreatedCollider", this.body);
+    }
+  };
+  __name(TerrainCollider, "TerrainCollider");
 
   // src/components/Animation.ts
   var Animation = class extends Component {
@@ -66407,6 +66498,42 @@ var trident = (() => {
     SerializeField
   ], ArticulationBody.prototype, "angularDamping", 1);
 
+  // src/components/Terrain.ts
+  var Terrain = class extends Component {
+    constructor(gameObject, transform) {
+      super(gameObject, transform);
+      this.collider = gameObject.GetComponent(TerrainCollider);
+      if (!this.collider) {
+        this.collider = gameObject.AddComponent(TerrainCollider);
+      }
+      this.terrainData = this.collider.terrainData;
+      this.material = new MeshBasicMaterial();
+      this.material.side = DoubleSide;
+    }
+    Flush() {
+      if (this.mesh)
+        this.transform.group.remove(this.mesh);
+      if (this.material)
+        this.material.dispose();
+      this.collider.CreateCollider();
+      const terrainData = this.collider.terrainData;
+      const geometry = new PlaneGeometry(terrainData.detailWidth, terrainData.detailHeight, terrainData.detailResolution - 1, terrainData.detailResolution - 1);
+      geometry.rotateX(Math.PI / 2);
+      geometry.rotateY(-Math.PI / 2);
+      geometry.translate((terrainData.detailWidth - 1) / 2, 0, (terrainData.detailHeight - 1) / 2);
+      const terrainDataHeights = this.collider.terrainData.GetHeights();
+      const vertices = geometry.vertices;
+      for (let i = 0; i < terrainDataHeights.length; i++) {
+        vertices[i].y = terrainDataHeights[i];
+      }
+      geometry.verticesNeedUpdate = true;
+      this.mesh = new Mesh(geometry, this.material);
+      this.mesh.receiveShadow = true;
+      this.transform.group.add(this.mesh);
+    }
+  };
+  __name(Terrain, "Terrain");
+
   // src/primitives/Cube.ts
   var Cube = class {
     static Create(gameObject) {
@@ -66615,7 +66742,7 @@ var trident = (() => {
   __name(Cylinder, "Cylinder");
 
   // src/components/GameObject.ts
-  var GameObject6 = class {
+  var GameObject7 = class {
     constructor(scene) {
       this.uuid = UUID.v4();
       this.classtype = ComponentsEnum.GameObject;
@@ -66746,7 +66873,31 @@ var trident = (() => {
       this.scene.RemoveGameObject(this);
     }
   };
-  __name(GameObject6, "GameObject");
+  __name(GameObject7, "GameObject");
+
+  // src/physics/PhysicsRaycast.ts
+  var PhysicsRaycast = class {
+    constructor(physxScene) {
+      this.physxScene = physxScene;
+      this._origin = new PhysX.PxVec3();
+      this._direction = new PhysX.PxVec3();
+      this._filterData = new PhysX.PxQueryFilterData();
+      this._hitFlags = new PhysX.PxHitFlags(PhysX.PxHitFlagEnum.POSITION | PhysX.PxHitFlagEnum.NORMAL);
+    }
+    Raycast(origin, direction, maxDistance, layerMask = 0) {
+      this._origin.x = origin.x;
+      this._origin.y = origin.y;
+      this._origin.z = origin.z;
+      this._direction.x = direction.x;
+      this._direction.y = direction.y;
+      this._direction.z = direction.z;
+      const callback = new PhysX.PxRaycastBuffer10();
+      this._filterData.data.word2 = layerMask;
+      this.physxScene.raycast(this._origin, this._direction, maxDistance, callback, this._hitFlags, this._filterData);
+      return callback;
+    }
+  };
+  __name(PhysicsRaycast, "PhysicsRaycast");
 
   // src/Scene.ts
   var Scene2 = class {
@@ -66755,6 +66906,7 @@ var trident = (() => {
       this.name = name;
       this.rendererScene = Runtime.Renderer.CreateScene();
       this.physicsScene = Runtime.Physics.CreateScene();
+      this.physicsRaycast = new PhysicsRaycast(this.physicsScene);
       const ambientLight = new AmbientLight(16777215, 0.3);
       this.rendererScene.add(ambientLight);
     }
@@ -66763,7 +66915,7 @@ var trident = (() => {
       return true;
     }
     RemoveGameObject(gameObject) {
-      if (gameObject instanceof GameObject6 == false) {
+      if (gameObject instanceof GameObject7 == false) {
         console.error(`Invalid GameObject ${gameObject}`);
         return false;
       }
@@ -66803,6 +66955,9 @@ var trident = (() => {
     }
     UpdatePhysics() {
       Runtime.Physics.Update(this.physicsScene);
+    }
+    Raycast(origin, direction, maxDistance, layerMask = 0) {
+      return this.physicsRaycast.Raycast(origin, direction, maxDistance, layerMask);
     }
     Render() {
       if (this.GetActiveCamera()) {
@@ -66926,7 +67081,7 @@ var trident = (() => {
       transform.localScale.set(transformSerialized.scale.x, transformSerialized.scale.y, transformSerialized.scale.z);
     }
     static async DeserializeGameObject(scene, gameObjectSerialized) {
-      const gameObject = new GameObject6(scene);
+      const gameObject = new GameObject7(scene);
       gameObject.uuid = gameObjectSerialized.uuid;
       gameObject.name = gameObjectSerialized.name;
       this.DeserializeTransform(scene, gameObject.transform, gameObjectSerialized.transform);
@@ -67027,7 +67182,6 @@ var trident = (() => {
       return new Scene();
     }
     OnResize() {
-      this.renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
     }
     Tick(scene, camera) {
       this.now = Date.now();
@@ -67140,10 +67294,6 @@ var trident = (() => {
     }
     GetCooking() {
       return this.physxCooking;
-    }
-    Raycast(origin, direction, maxDistance, layerMask = 0) {
-      const ray = this.physicsRaycast.Raycast(origin, direction, maxDistance, layerMask);
-      return this.physicsRaycast.Raycast(origin, direction, maxDistance, layerMask);
     }
     Start() {
     }

@@ -49,7 +49,7 @@ Created Scene
 
 #### Defined in
 
-[serializer/SceneDeserializer.ts:196](https://github.com/AIFanatic/Trident/blob/a1de164/src/serializer/SceneDeserializer.ts#L196)
+[serializer/SceneDeserializer.ts:196](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/serializer/SceneDeserializer.ts#L196)
 
 ___
 
@@ -74,7 +74,7 @@ Created component
 
 #### Defined in
 
-[serializer/SceneDeserializer.ts:130](https://github.com/AIFanatic/Trident/blob/a1de164/src/serializer/SceneDeserializer.ts#L130)
+[serializer/SceneDeserializer.ts:130](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/serializer/SceneDeserializer.ts#L130)
 
 ___
 
@@ -100,7 +100,7 @@ Created component
 
 #### Defined in
 
-[serializer/SceneDeserializer.ts:111](https://github.com/AIFanatic/Trident/blob/a1de164/src/serializer/SceneDeserializer.ts#L111)
+[serializer/SceneDeserializer.ts:111](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/serializer/SceneDeserializer.ts#L111)
 
 ___
 
@@ -133,7 +133,7 @@ This skips the creation of a new component on the GameObject (using AddComponent
 
 #### Defined in
 
-[serializer/SceneDeserializer.ts:42](https://github.com/AIFanatic/Trident/blob/a1de164/src/serializer/SceneDeserializer.ts#L42)
+[serializer/SceneDeserializer.ts:42](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/serializer/SceneDeserializer.ts#L42)
 
 ___
 
@@ -158,7 +158,7 @@ Created GameObject
 
 #### Defined in
 
-[serializer/SceneDeserializer.ts:178](https://github.com/AIFanatic/Trident/blob/a1de164/src/serializer/SceneDeserializer.ts#L178)
+[serializer/SceneDeserializer.ts:178](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/serializer/SceneDeserializer.ts#L178)
 
 ___
 
@@ -185,7 +185,7 @@ Therefore only set the parents when all the GameObjects are created.
 
 #### Defined in
 
-[serializer/SceneDeserializer.ts:161](https://github.com/AIFanatic/Trident/blob/a1de164/src/serializer/SceneDeserializer.ts#L161)
+[serializer/SceneDeserializer.ts:161](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/serializer/SceneDeserializer.ts#L161)
 
 ___
 
@@ -206,7 +206,7 @@ ___
 
 #### Defined in
 
-[serializer/SceneDeserializer.ts:147](https://github.com/AIFanatic/Trident/blob/a1de164/src/serializer/SceneDeserializer.ts#L147)
+[serializer/SceneDeserializer.ts:147](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/serializer/SceneDeserializer.ts#L147)
 
 ___
 
@@ -233,4 +233,4 @@ Loaded file
 
 #### Defined in
 
-[serializer/SceneDeserializer.ts:22](https://github.com/AIFanatic/Trident/blob/a1de164/src/serializer/SceneDeserializer.ts#L22)
+[serializer/SceneDeserializer.ts:22](https://github.com/AIFanatic/Trident/blob/f9d7b7c/src/serializer/SceneDeserializer.ts#L22)
