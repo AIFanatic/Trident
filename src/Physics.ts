@@ -1,8 +1,5 @@
 import { PhysXLoader, PhysX } from 'trident-physx-js-webidl';
 import { IPhysicsConfiguration } from './interfaces/IPhysicsConfiguration';
-import { Vector3 } from 'three';
-
-import { PhysicsRaycast } from './physics/PhysicsRaycast';
 import { ConfigurationDefaults } from './defaults/ConfigurationDefaults';
 
 export class Physics {
@@ -13,8 +10,6 @@ export class Physics {
     private physx: typeof PhysX;
     private physxPhysics: PhysX.PxPhysics;
     private physxCooking: PhysX.PxCooking;
-
-    private physicsRaycast: PhysicsRaycast;
 
     constructor(config: IPhysicsConfiguration) {
         this.config = Object.assign({}, ConfigurationDefaults.physics, config);
@@ -167,11 +162,6 @@ export class Physics {
 
     public GetCooking(): PhysX.PxCooking {
         return this.physxCooking;
-    }
-
-    public Raycast(origin: Vector3, direction: Vector3, maxDistance: number, layerMask: number = 0): PhysX.PxRaycastBuffer10 {
-        const ray = this.physicsRaycast.Raycast(origin, direction, maxDistance, layerMask);
-        return this.physicsRaycast.Raycast(origin, direction, maxDistance, layerMask);
     }
 
     public Start() {

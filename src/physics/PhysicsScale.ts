@@ -77,8 +77,9 @@ export class PhysicsScale {
             console.warn("Scaling HEIGHTFIELD not implemented");
             geometry = geometryHolder.heightField();
         }
-
+        
         shape.setGeometry(geometry);
+        
         return shape;
     }
     

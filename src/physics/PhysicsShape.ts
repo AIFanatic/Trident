@@ -3,6 +3,18 @@ import { Vector3 } from 'three';
 import { LayerMask } from '../enums/LayerMask';
 
 export class PhysicsShape {
+    private static putIntoPhysXHeap(heap, array: ArrayLike<number>) {
+        const ptr = PhysX._malloc(4 * array.length);
+        let offset = 0;
+      
+        for (let i = 0; i < array.length; i++) {
+          heap[(ptr + offset) >> 2] = array[i];
+          offset += 4;
+        }
+      
+        return ptr;
+    };
+
     public static DefaultMaterial(physics: PhysX.PxPhysics): PhysX.PxMaterial {
         return physics.createMaterial(0.6, 0.6, 0);
     }
@@ -79,18 +91,6 @@ export class PhysicsShape {
         return shape;
     }
 
-    private static putIntoPhysXHeap(heap, array: ArrayLike<number>) {
-        const ptr = PhysX._malloc(4 * array.length);
-        let offset = 0;
-      
-        for (let i = 0; i < array.length; i++) {
-          heap[(ptr + offset) >> 2] = array[i];
-          offset += 4;
-        }
-      
-        return ptr;
-    };
-
     public static CreateTrimesh(physics: PhysX.PxPhysics, cooking: PhysX.PxCooking, vertices: Float32Array, indices: Uint16Array): PhysX.PxShape {
         const points = new PhysX.PxBoundedData();
         points.count = vertices.length / 3;
@@ -113,6 +113,24 @@ export class PhysicsShape {
         const geometry = new PhysX.PxTriangleMeshGeometry(trimesh);
         
         const shape = this.CreateShape(physics, geometry);
+        return shape;
+    }
+
+    public static CreateHightField(physics: PhysX.PxPhysics, cooking: PhysX.PxCooking, cols: number, rows: number, colScale: number, rowScale: number, heightScale: number, samples: PhysX.Vector_PxHeightFieldSample): PhysX.PxShape {
+        const desc = new PhysX.PxHeightFieldDesc();
+        desc.format = PhysX.PxHeightFieldFormatEnum.S16_TM;
+        desc.samples.data = samples.data();
+        desc.samples.stride = 4;
+        desc.nbRows = rows;
+        desc.nbColumns = cols;
+    
+        const heightField = cooking.createHeightField(desc, physics.getPhysicsInsertionCallback());
+        
+        const flags = new PhysX.PxMeshGeometryFlags(0);
+        const geometry = new PhysX.PxHeightFieldGeometry(heightField, flags, heightScale, rowScale, colScale);
+
+        const shape = this.CreateShape(physics, geometry);
+
         return shape;
     }
 }

@@ -3,8 +3,9 @@ import { GameObject } from "./components/GameObject";
 
 import { Runtime } from "./Runtime";
 
-import { AmbientLight, Scene as THREEScene } from 'three';
+import { AmbientLight, Scene as THREEScene, Vector3 } from 'three';
 import { PhysX } from "trident-physx-js-webidl";
+import { PhysicsRaycast } from "./physics/PhysicsRaycast";
 
 /**
  * The scene that holds all GameObjects.
@@ -19,12 +20,15 @@ export class Scene {
 
     public readonly rendererScene: THREEScene;
     public readonly physicsScene: PhysX.PxScene;
+    public readonly physicsRaycast: PhysicsRaycast;
 
     constructor(name: string) {
         this.name = name;
 
         this.rendererScene = Runtime.Renderer.CreateScene();
         this.physicsScene = Runtime.Physics.CreateScene();
+
+        this.physicsRaycast = new PhysicsRaycast(this.physicsScene);
 
         // TODO: Clean renderer rendering settings (skybox, fog, ambient, etc)
         const ambientLight = new AmbientLight(0xffffff, 0.3);
@@ -108,6 +112,11 @@ export class Scene {
 
     public UpdatePhysics(): void {
         Runtime.Physics.Update(this.physicsScene);
+    }
+
+    public Raycast(origin: Vector3, direction: Vector3, maxDistance: number, layerMask: number = 0): PhysX.PxRaycastBuffer10 {
+        // const ray = this.physicsRaycast.Raycast(origin, direction, maxDistance, layerMask);
+        return this.physicsRaycast.Raycast(origin, direction, maxDistance, layerMask);
     }
 
     public Render(): void {

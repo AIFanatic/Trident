@@ -58,7 +58,7 @@ export class Renderer {
     }
 
     private OnResize() {
-        this.renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
+        // this.renderer.setSize(this.canvas.parentElement.offsetWidth, this.canvas.parentElement.offsetHeight);
     }
 
     public Tick(scene: Scene, camera: PerspectiveCamera) {
